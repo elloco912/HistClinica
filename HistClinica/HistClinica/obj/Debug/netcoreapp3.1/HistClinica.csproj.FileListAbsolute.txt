@@ -164,3 +164,5 @@ C:\Users\victo\source\repos\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razo
 C:\Users\victo\source\repos\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Paciente\Details.cshtml.g.cs
 C:\Users\victo\source\repos\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Paciente\Edit.cshtml.g.cs
 C:\Users\victo\source\repos\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Paciente\Index.cshtml.g.cs
+D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.dll
+D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.pdb
