@@ -8512,11 +8512,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< Updated upstream
       "projectUniqueName": "C:\\Users\\victo\\source\\repos\\HistClinica\\HistClinica\\HistClinica.csproj",
       "projectName": "HistClinica",
       "projectPath": "C:\\Users\\victo\\source\\repos\\HistClinica\\HistClinica\\HistClinica.csproj",
       "packagesPath": "C:\\Users\\victo\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\victo\\source\\repos\\HistClinica\\HistClinica\\obj\\",
+=======
+      "projectUniqueName": "D:\\HistClinica\\HistClinica\\HistClinica\\HistClinica.csproj",
+      "projectName": "HistClinica",
+      "projectPath": "D:\\HistClinica\\HistClinica\\HistClinica\\HistClinica.csproj",
+      "packagesPath": "C:\\Users\\victo\\.nuget\\packages\\",
+      "outputPath": "D:\\HistClinica\\HistClinica\\HistClinica\\obj\\",
+>>>>>>> Stashed changes
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",
