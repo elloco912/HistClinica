@@ -74,10 +74,10 @@
                 </div>
             </div>
             <div class="row" style="padding-top: 10px;">
-                <div class="col-sm-12">
-                    <a href="@Url.Action("CronogramaAdmision", "Citas")" " style="width: 135px; font-size: 15px;" class="btn btn-primary">Ver cronograma</a>
-                    <button style="width: 112px; font-size: 15px;" class="btn btn-primary" data-target="#imodal" data-toggle="modal">Citas</button>
-                </div>
+				<div class="col-sm-12">
+					<button style="width: 112px; font-size: 15px;" class="btn btn-primary" data-target="#imodal" data-toggle="modal">Citas</button>
+					<button style="width: 135px; font-size: 15px;" class="btn btn-primary">Orden</button>
+				</div>
             </div>
         </div>
 
@@ -196,7 +196,7 @@
             <div class="row">
                 <input type="hidden" id="id" name="name" value="" />
                 <div class="col-sm-12">
-                    <label style="margin-right:10px;">PACIENTE @Model.apePaterno @Model.apeMaterno @Model.nombres </label>
+                    <label style="margin-right:10px;">PACIENTE</label>
                 </div>
             </div>
             <div class="row" style="padding-top: 10px;">
@@ -204,7 +204,7 @@
                     <label>DNI</label>
                 </div>
                 <div class="col-sm-8">
-                    <input type="text" id="dni" name="name" value="@Model.dniPac" class="form-control"/>
+                    <input type="text" id="dni" name="name" value="" class="form-control"/>
                 </div>
             </div>
             <div class="row" style="padding-top: 10px;">
@@ -212,15 +212,15 @@
                     <label>Correo</label>
                 </div>
                 <div class="col-sm-8">
-                    <input type="text" id="correo" name="name" value="@Model.correo" class="form-control" />
+                    <input type="text" id="correo" name="name" value="" class="form-control" />
                 </div>
             </div>
             <div class="row" style="padding-top: 10px;">
                 <div class="col-sm-4">
-                    <label>Celular</label>
+                    <label>Edad</label>
                 </div>
                 <div class="col-sm-8">
-                    <input type="text" id="celular" name="name" value="@Model.celular" class="form-control" />
+                    <input type="text" id="celular" name="name" value="" class="form-control" />
                 </div>
             </div>
             <div class="row" style="padding-top: 10px;">
@@ -228,7 +228,7 @@
                     <label>Ocupación</label>
                 </div>
                 <div class="col-sm-8">
-                    <input type="text" id="ocupacion" name="name" value="@Model.idOcupacion" class="form-control" />
+                    <input type="text" id="ocupacion" name="name" value="" class="form-control" />
                 </div>
             </div>
         </div>
@@ -238,71 +238,55 @@
     </div>
     <div class="row" style="padding-top: 80px;">
         <div class="col-sm-12">
-            <table class="table table-striped table-hover">
+            <table class="table table-bordered table-responsive table-hover">
                 <thead>
-                    <tr>
-                        <th>Nro</th>
-                        <th>Tipo</th>
-                        <th>Fecha</th>
-                        <th>Hora</th>
-                        <th>Descripción</th>
-                        <th>Medico</th>
-                        <th>Especialidad</th>
-                        <th>Precio</th>
-                        <th>IGV</th>
-                        <th>Estado</th>
-                        <th>Est.Pago</th>
-                        <th>Total</th>
-                        <th>Acciones</th>
-                    </tr>
+					<tr>
+						<th>#</th>
+						<th>N°</th>
+						<th>Tipo</th>
+						<th>Fecha</th>
+						<th>Hora</th>
+						<th>Producto</th>
+						<th>Descripción</th>
+						<th>Medico</th>
+						<th>Especialidad</th>
+						<th>Precio</th>
+						<th>IGV</th>
+						<th>Estado</th>
+						<th>Est.Pago</th>
+						<th>Est.Aten</th>
+						<th>Total</th>
+						<th>Acciones</th>
+					</tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>2</td>
-                        <td>Examen</td>
-                        <td>15/02/2020</td>
-                        <td>10:00</td>
-                        <td>Homoglobina</td>
-                        <td>Sialer</td>
-                        <td>Patologia clinica</td>
-                        <td>50,00</td>
-                        <td>36</td>
-                        <td>Confirmado</td>
-                        <td>Pendiente</td>
-                        <td>0</td>
-                        <td>
-                            <button title="Reprogramar" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></button>
-                            <button title="Consultar" class="btn btn-primary">
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                            </button>
-                            <button title="Anular" class="btn btn-danger">
-                                <i class="fa fa-minus" aria-hidden="true"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Examen</td>
-                        <td>15/02/2020</td>
-                        <td>10:00</td>
-                        <td>Homoglobina</td>
-                        <td>Sialer</td>
-                        <td>Patologia clinica</td>
-                        <td>50,00</td>
-                        <td>36</td>
-                        <td>Confirmado</td>
-                        <td>Pendiente</td>
-                        <td>0</td>
-                        <td>
-                            <button title="Reprogramar" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></button>
-                            <button title="Consultar" class="btn btn-primary">
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                            </button>
-                            <button title="Anular" class="btn btn-danger">
-                                <i class="fa fa-minus" aria-hidden="true"></i>
-                            </button>
-                        </td>
-                    </tr>
+					<tr>
+						<td>2</td>
+						<td>Examen</td>
+						<td>15/02/2020</td>
+						<td>10:00</td>
+						<td>Homoglobina</td>
+						<td>Sialer</td>
+						<td>Patologia clinica</td>
+						<td>Patologia clinica</td>
+						<td>Patologia clinica</td>
+						<td>Patologia clinica</td>
+						<td>50,00</td>
+						<td>36</td>
+						<td>Confirmado</td>
+						<td>Pendiente</td>
+						<td>0</td>
+						<td>
+							<button title="Reprogramar" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></button>
+							<button title="Consultar" class="btn btn-primary">
+								<i class="fa fa-search" aria-hidden="true"></i>
+							</button>
+							<button title="Anular" class="btn btn-danger">
+								<i class="fa fa-minus" aria-hidden="true"></i>
+							</button>
+						</td>
+					</tr>
+      
                 </tbody>
             </table>
         </div>

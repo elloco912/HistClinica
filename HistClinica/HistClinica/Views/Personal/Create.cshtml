@@ -1,0 +1,112 @@
+﻿
+@{
+	ViewBag.Title = "Registro";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+	<div class="col-sm-12">
+		<div class="row">
+			<div class="col-sm-12 pb-2">
+				<div class="card card-primary">
+					<div class="card-header">
+						<h2>Registro de personal</h2>
+					</div>
+				</div>
+			</div>
+				</div>
+			</div>
+	<div class="col-sm-12">
+		<form id="loginForm" action="Registro" method="post" class="needs-validation" novalidate>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="box box-primary">
+						<div class="box-body">
+							<div class="form-group">
+								<label>TIPO DE EMPLEADO</label>
+							</div>
+							<div class="form-group">
+								<select class="form-control">
+									<option value="1" class="form-control">Médico</option>
+									<option value="2" class="form-control">Admicionista</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="txtNombres">NOMBRES</label>
+							</div>
+							<div class="form-group">
+								<input id="txtNombres" Text="" name="nombres" class="form-control" size="60" maxlength="60" required>
+							</div>
+							<div class="form-group">
+								<label for="txtNroDocumento">DOCUMENTO DE IDENTIDAD</label>
+							</div>
+							<div class="form-group">
+								<input id="txtNroDocumento" onkeypress="return soloNumeros(event);" name="nroDni" class="form-control" size="60" maxlength="60" required>
+							</div>
+							<div class="form-group">
+								<label for="txtNroColegio">N° DE COLEGIO</label>
+							</div>
+							<div class="form-group">
+								<input id="txtNroColegio" onkeypress="return soloNumeros(event);" name="nroColegio" class="form-control" size="60" maxlength="60" required>
+							</div>
+							<div class="form-group">
+								<label for="txtruc">N° DE RUC</label>
+							</div>
+							<div class="form-group">
+								<input id="txtruc" onkeypress="return soloNumeros(event);" name="nroRuc" class="form-control" size="60" maxlength="60" required>
+							</div>
+							<div class="form-group">
+								<label for="txtespecialidad">ESPECIALIDAD</label>
+							</div>
+							<div class="form-group">
+								<input id="txtespecialidad" name="especialidad" class="form-control" size="60" maxlength="60" required>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="box box-primary">
+						<div class="box-body">
+							<div class="form-group">
+								<label for="txtarea">AREA</label>
+							</div>
+							<div class="form-group">
+								<input id="txtarea" type="text" name="area" value="" class="form-control" required />
+							</div>
+							<div class="form-group">
+								<label for="txtApPaterno">APELLIDOS</label>
+							</div>
+							<div class="form-group">
+								<input id="txtApPaterno" name="apellidos" Text="" class="form-control" size="60" maxlength="60" required>
+							</div>
+							<div class="form-group">
+								<label id="txtfecingresopersonal">FECHA INGRESO</label>
+							</div>
+							<div class="form-group">
+								<input id="txtfecingresopersonal" type="text" name="fecingreso" value="" class="form-control" required />
+							</div>
+							<div class="form-group">
+								<label for="txtcargo">CARGO</label>
+							</div>
+							<div class="form-group">
+								<input id="txtcargo" name="cargo" class="form-control" size="60" maxlength="60" required>
+							</div>
+							<div class="form-group">
+								<label for="txtTelefono">TELÉFONO</label>
+							</div>
+							<div class="form-group">
+								<input id="txtTelefono" onkeypress="return soloNumeros(event);" name="teléfono" class="form-control" size="60" maxlength="60" required>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row m-0 p-0 pb-2">
+				<div class="col-sm-12 text-right">
+					<input type="submit" class="btn btn-primary" style="width: 112px;font-size: 16px;" value="Guardar">
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+

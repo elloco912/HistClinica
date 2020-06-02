@@ -25,8 +25,13 @@ namespace HistClinica.Controllers
             return View(await _context.Paciente.ToListAsync());
         }
 
+        public IActionResult Prueba()
+        {
+            return View();
+        }
+
         // GET: Paciente/Prueba/5
-        public async Task<IActionResult> Prueba(int? id)
+      /*  public async Task<IActionResult> Prueba(int? id)
         {
             if (id == null)
             {
@@ -41,7 +46,7 @@ namespace HistClinica.Controllers
             }
 
             return View(paciente);
-        }
+        }*/
 
         // GET: Paciente/Details/5
         public async Task<IActionResult> Details(int? id)
