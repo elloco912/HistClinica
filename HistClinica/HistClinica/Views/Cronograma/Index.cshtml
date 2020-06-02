@@ -1,0 +1,157 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+	<div class="container">
+		<div class="col-sm-12">
+			<div class="row">
+				<div class="col-sm-12 pt-2 pb-3">
+					<h2>Cronograma de Medicos</h2>
+				</div>
+			</div>
+
+			@Html.Partial("Create")
+
+			<div class="row pt-3">
+				<div class="col-sm-12">
+					<table class="table table-bordered table-hover text-center">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Fecha</th>
+								<th>Hora ini</th>
+								<th>Hora fin</th>
+								<th>Estado</th>
+								<th>Acciones</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>15/10/2020</td>
+								<td>9:00</td>
+								<td>18:00</td>
+								<td>Activo</td>
+								<td><button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"></i></button></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title text-center" id="exampleModalLabel">Actualizar cronograma</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="col-sm-12">
+							<div class="row pb-2">
+								<div class="col-sm-6">
+									<div class="row">
+										<div class="col-sm-4">
+											<label>Medico</label>
+										</div>
+										<div class="col-sm-8">
+											<select class="form-control">
+												<option>Juan Rivera</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="row">
+										<div class="col-sm-4">
+											<label>Especialidad</label>
+										</div>
+										<div class="col-sm-8">
+											<select class="form-control">
+												<option>Cardiologo</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row pb-2">
+								<div class="col-sm-6">
+									<div class="row">
+										<div class="col-sm-4">
+											<label>Consultorio</label>
+										</div>
+										<div class="col-sm-8">
+											<select class="form-control">
+												<option>Pediatria</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="row">
+										<div class="col-sm-4">
+											<label>Fecha</label>
+										</div>
+										<div class="col-sm-8">
+											<input type="date" class="form-control" name="">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row pb-2">
+								<div class="col-sm-6">
+									<div class="row">
+										<div class="col-sm-4">
+											<label>Hora Inicio</label>
+										</div>
+										<div class="col-sm-8">
+											<select class="form-control">
+												<option>9:00</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="row">
+										<div class="col-sm-4">
+											<label>Hora Fin</label>
+										</div>
+										<div class="col-sm-8">
+											<select class="form-control">
+												<option>18:00</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row pb-2">
+								<div class="col-sm-6">
+									<div class="row">
+										<div class="col-sm-4">
+											<label>Estado</label>
+										</div>
+										<div class="col-sm-8">
+											<select class="form-control">
+												<option>Activo</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-6">
+
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button style="width: 80px;" type="button" class="btn btn-primary">Guardar</button>
+							<button style="width: 80px;" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
