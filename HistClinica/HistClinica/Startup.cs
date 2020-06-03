@@ -1,4 +1,6 @@
 using HistClinica.Data;
+using HistClinica.Repositories.Interfaces;
+using HistClinica.Repositories.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -23,7 +25,7 @@ namespace HistClinica
             services.AddControllersWithViews();
             IServiceCollection serviceCollection =
                 services.AddDbContext<ClinicaServiceContext>(options => options.UseSqlServer(Configuration["Connection:ClinicaServiceConnection"]));
-            //services.AddScoped<IOrderRepository, OrderRepository>();
+                services.AddScoped<IPacienteRepository, PacienteRepository>();
             services.AddCors(opciones =>
             {
                 opciones.AddPolicy("AllowMyOrigin",
