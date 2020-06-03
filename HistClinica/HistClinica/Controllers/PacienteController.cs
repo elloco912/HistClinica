@@ -7,22 +7,23 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HistClinica.Data;
 using HistClinica.Models;
+using HistClinica.Repositories.Interfaces;
 
 namespace HistClinica.Controllers
 {
     public class PacienteController : Controller
     {
-        private readonly ClinicaServiceContext _context;
+        private readonly IPacienteRepository _pacienteRepository;
 
-        public PacienteController(ClinicaServiceContext context)
+        public PacienteController(IPacienteRepository pacienteRepository)
         {
-            _context = context;
+            _pacienteRepository = pacienteRepository;
         }
 
         // GET: Paciente
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Paciente.ToListAsync());
+            return View(await _pacienteRepository.GetAllPacientes());
         }
 
         public IActionResult Prueba()
@@ -56,8 +57,7 @@ namespace HistClinica.Controllers
                 return NotFound();
             }
 
-            var paciente = await _context.Paciente
-                .FirstOrDefaultAsync(m => m.idPaciente == id);
+            var paciente = await _pacienteRepository.GetByIdPaciente(id);
             if (paciente == null)
             {
                 return NotFound();
@@ -81,8 +81,7 @@ namespace HistClinica.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(paciente);
-                await _context.SaveChangesAsync();
+                await _pacienteRepository.InsertPaciente(paciente);
                 return RedirectToAction(nameof(Index));
             }
             return View(paciente);
@@ -96,7 +95,7 @@ namespace HistClinica.Controllers
                 return NotFound();
             }
 
-            var paciente = await _context.Paciente.FindAsync(id);
+            var paciente = await _pacienteRepository.GetByIdPaciente(id);
             if (paciente == null)
             {
                 return NotFound();
@@ -120,12 +119,11 @@ namespace HistClinica.Controllers
             {
                 try
                 {
-                    _context.Update(paciente);
-                    await _context.SaveChangesAsync();
+                    await _pacienteRepository.UpdatePaciente(paciente);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PacienteExists(paciente.idPaciente))
+                    if (!(await _pacienteRepository.PacienteExists(paciente.idPaciente)))
                     {
                         return NotFound();
                     }
@@ -147,8 +145,7 @@ namespace HistClinica.Controllers
                 return NotFound();
             }
 
-            var paciente = await _context.Paciente
-                .FirstOrDefaultAsync(m => m.idPaciente == id);
+            var paciente = await _pacienteRepository.GetByIdPaciente(id);
             if (paciente == null)
             {
                 return NotFound();
@@ -162,15 +159,9 @@ namespace HistClinica.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var paciente = await _context.Paciente.FindAsync(id);
-            _context.Paciente.Remove(paciente);
-            await _context.SaveChangesAsync();
+            var paciente = await _pacienteRepository.GetByIdPaciente(id);
+            await _pacienteRepository.DeletePaciente(id);
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool PacienteExists(int id)
-        {
-            return _context.Paciente.Any(e => e.idPaciente == id);
         }
     }
 }
