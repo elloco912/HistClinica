@@ -57,7 +57,7 @@ namespace HistClinica.Controllers
                 return NotFound();
             }
 
-            var paciente = await _pacienteRepository.GetByIdPaciente(id);
+            var paciente = await _pacienteRepository.GetByDni(id);
             if (paciente == null)
             {
                 return NotFound();
@@ -95,7 +95,7 @@ namespace HistClinica.Controllers
                 return NotFound();
             }
 
-            var paciente = await _pacienteRepository.GetByIdPaciente(id);
+            var paciente = await _pacienteRepository.GetByDni(id);
             if (paciente == null)
             {
                 return NotFound();
@@ -145,7 +145,7 @@ namespace HistClinica.Controllers
                 return NotFound();
             }
 
-            var paciente = await _pacienteRepository.GetByIdPaciente(id);
+            var paciente = await _pacienteRepository.GetByDni(id);
             if (paciente == null)
             {
                 return NotFound();
@@ -159,7 +159,7 @@ namespace HistClinica.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var paciente = await _pacienteRepository.GetByIdPaciente(id);
+            var paciente = await _pacienteRepository.GetByDni(id);
             await _pacienteRepository.DeletePaciente(id);
             return RedirectToAction(nameof(Index));
         }

@@ -27,7 +27,7 @@ namespace HistClinica
             services.AddTransient<IPacienteRepository, PacienteRepository>();
             IServiceCollection serviceCollection =
                 services.AddDbContext<ClinicaServiceContext>(options => options.UseSqlServer(Configuration["Connection:ClinicaServiceConnection"]));
-            //services.AddScoped<IOrderRepository, OrderRepository>();
+                services.AddScoped<IPacienteRepository, PacienteRepository>();
             services.AddCors(opciones =>
             {
                 opciones.AddPolicy("AllowMyOrigin",
