@@ -1,5 +1,9 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 #pragma checksum "C:\Users\User\Desktop\Proy_his\HistClinica\HistClinica\HistClinica\Views\Shared\_Layout.cshtml" "{ff1816ec-aa5e-4d10-87f7-6f4963833460}" "1ef1dab45305abc2efab45da939ee766c392314f"
+=======
+#pragma checksum "D:\HistClinica\HistClinica\HistClinica\Views\Shared\_Layout.cshtml" "{ff1816ec-aa5e-4d10-87f7-6f4963833460}" "688ec4f1cab4e38f42f4d5ca24ff43b4144f300f"
+>>>>>>> Stashed changes
 =======
 #pragma checksum "D:\HistClinica\HistClinica\HistClinica\Views\Shared\_Layout.cshtml" "{ff1816ec-aa5e-4d10-87f7-6f4963833460}" "688ec4f1cab4e38f42f4d5ca24ff43b4144f300f"
 >>>>>>> Stashed changes
@@ -73,6 +77,9 @@ using HistClinica.Models;
 =======
             WriteLiteral("<!DOCTYPE html>\r\n<html lang=\"en\">\r\n");
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "688ec4f1cab4e38f42f4d5ca24ff43b4144f300f16629", async() => {
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                 WriteLiteral(@"
 	<meta charset=""utf-8"">
@@ -315,7 +322,11 @@ WriteAttributeValue("", 1495, Url.Content("~/Content/plugins/datatables-bs4/css/
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n");
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1ef1dab45305abc2efab45da939ee766c392314f11984", async() => {
+=======
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "688ec4f1cab4e38f42f4d5ca24ff43b4144f300f26634", async() => {
+>>>>>>> Stashed changes
 =======
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "688ec4f1cab4e38f42f4d5ca24ff43b4144f300f26634", async() => {
 >>>>>>> Stashed changes
@@ -533,6 +544,9 @@ WriteAttributeValue("", 4152, Url.Content("~"), 4152, 17, false);
 			<a href=""index3.html"" class=""brand-link"">
 				");
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "688ec4f1cab4e38f42f4d5ca24ff43b4144f300f34817", async() => {
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                 }
                 );
@@ -557,6 +571,9 @@ WriteAttributeValue("", 4152, Url.Content("~"), 4152, 17, false);
 =======
                 WriteLiteral("\r\n\t\t\t\t<span class=\"brand-text font-weight-light\">AdminLTE 3</span>\r\n\t\t\t</a>\r\n\r\n\t\t\t<!-- Sidebar -->\r\n\t\t\t<div class=\"sidebar\">\r\n\t\t\t\t<!-- Sidebar user panel (optional) -->\r\n\t\t\t\t<div class=\"user-panel mt-3 pb-3 mb-3 d-flex\">\r\n\t\t\t\t\t<div class=\"image\">\r\n\t\t\t\t\t\t");
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "688ec4f1cab4e38f42f4d5ca24ff43b4144f300f36478", async() => {
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                 }
                 );
