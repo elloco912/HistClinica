@@ -332,12 +332,15 @@ C:\Users\User\Desktop\Proy_his\HistClinica\HistClinica\HistClinica\obj\Debug\net
 C:\Users\User\Desktop\Proy_his\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.genruntimeconfig.cache
 C:\Users\User\Desktop\Proy_his\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.csproj.CoreCompileInputs.cache
 C:\Users\User\Desktop\Proy_his\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.MvcApplicationPartsAssemblyInfo.cache
+<<<<<<< Updated upstream
 C:\Users\User\Desktop\Proy_his\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Personal\Create.cshtml.g.cs
 C:\Users\User\Desktop\Proy_his\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Personal\Index.cshtml.g.cs
 <<<<<<< HEAD
 C:\Users\User\Desktop\Proy_his\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cronograma\Create.cshtml.g.cs
 C:\Users\User\Desktop\Proy_his\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cronograma\Index.cshtml.g.cs
 =======
+=======
+>>>>>>> Stashed changes
 D:\HistClinica\HistClinica\HistClinica\bin\Debug\netcoreapp3.1\appsettings.Development.json
 D:\HistClinica\HistClinica\HistClinica\bin\Debug\netcoreapp3.1\appsettings.json
 D:\HistClinica\HistClinica\HistClinica\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
@@ -493,8 +496,11 @@ D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Pacie
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Paciente\Edit.cshtml.g.cs
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Paciente\Index.cshtml.g.cs
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Paciente\Prueba.cshtml.g.cs
+<<<<<<< Updated upstream
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Personal\Create.cshtml.g.cs
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Personal\Index.cshtml.g.cs
+=======
+>>>>>>> Stashed changes
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
@@ -506,5 +512,8 @@ D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.Views
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.csproj.CopyComplete
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.dll
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.pdb
+<<<<<<< Updated upstream
 >>>>>>> 20bd66dfc02a662dcdcf00e970bb80bf3873ea7a
 C:\Users\User\Desktop\Proy_his\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cronograma\Edit.cshtml.g.cs
+=======
+>>>>>>> Stashed changes
