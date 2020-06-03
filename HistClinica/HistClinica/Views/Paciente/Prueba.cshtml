@@ -25,10 +25,10 @@
                     </select>
                 </div>
 				<div class="col-sm-4">
-					@Html.TextBox("dni", null, new { placeholder = "Ingrese dni", @class = "form-control"})
+					<input type="text" name="dni" value="" class="form-control"/>
 				</div>
                 <div class="col-sm-5">
-                    <button class="btn btn-info" onclick="Search();" type="submit" id="btnBuscar"><i class="fas fa-search"></i></button>
+                    <a class="btn btn-info" type="submit" asp-action="GetByDni" asp-route-id="dni" id="btnBuscar"><i class="fas fa-search"></i></a>
                     <button class="btn btn-primary" type="submit" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();"><i class="fas fa-user-plus"></i></button>
                     <button class="btn btn-secondary" type="submit" onclick="return getbyID();"><i class="fas fa-edit"></i></button>
                 </div>
