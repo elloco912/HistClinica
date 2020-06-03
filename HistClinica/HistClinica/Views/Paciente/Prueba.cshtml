@@ -24,9 +24,9 @@
                         <option value="value">DNI</option>
                     </select>
                 </div>
-                <div class="col-sm-4">
-                    <input type="text" name="name" id="txtDni" value="" class="form-control" />
-                </div>
+				<div class="col-sm-4">
+					@Html.TextBox("dni", null, new { placeholder = "Ingrese dni", @class = "form-control"})
+				</div>
                 <div class="col-sm-5">
                     <button class="btn btn-info" onclick="Search();" type="submit" id="btnBuscar"><i class="fas fa-search"></i></button>
                     <button class="btn btn-primary" type="submit" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();"><i class="fas fa-user-plus"></i></button>
