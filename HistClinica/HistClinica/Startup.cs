@@ -1,4 +1,6 @@
 using HistClinica.Data;
+using HistClinica.Repositories.Interfaces;
+using HistClinica.Repositories.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +23,8 @@ namespace HistClinica
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddTransient<ICronogramaRepository, CronogramaRepository>();
+            services.AddTransient<IPacienteRepository, PacienteRepository>();
             IServiceCollection serviceCollection =
                 services.AddDbContext<ClinicaServiceContext>(options => options.UseSqlServer(Configuration["Connection:ClinicaServiceConnection"]));
             //services.AddScoped<IOrderRepository, OrderRepository>();

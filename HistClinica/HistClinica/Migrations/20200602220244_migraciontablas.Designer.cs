@@ -4,131 +4,22 @@ using HistClinica.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HistClinica.Migrations
 {
     [DbContext(typeof(ClinicaServiceContext))]
-    partial class ClinicaServiceContextModelSnapshot : ModelSnapshot
+    [Migration("20200602220244_migraciontablas")]
+    partial class migraciontablas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("HistClinica.Models.Cita", b =>
-                {
-                    b.Property<int>("idCita")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<double>("coa")
-                        .HasColumnType("float");
-
-                    b.Property<int>("codCita")
-                        .HasColumnType("int");
-
-                    b.Property<string>("descripcion")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("descuento")
-                        .HasColumnType("float");
-
-                    b.Property<string>("ejecutado")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("estadoReprogram")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("fechaCita")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("idConsultorio")
-                        .HasColumnType("int");
-
-                    b.Property<int>("idEmpleado")
-                        .HasColumnType("int");
-
-                    b.Property<int>("idEstAtencion")
-                        .HasColumnType("int");
-
-                    b.Property<int>("idEstaGralPac")
-                        .HasColumnType("int");
-
-                    b.Property<int>("idEstadoCita")
-                        .HasColumnType("int");
-
-                    b.Property<int>("idPaciente")
-                        .HasColumnType("int");
-
-                    b.Property<int>("idProgramMedica")
-                        .HasColumnType("int");
-
-                    b.Property<int>("idTpAtencion")
-                        .HasColumnType("int");
-
-                    b.Property<double>("igv")
-                        .HasColumnType("float");
-
-                    b.Property<int>("nroCita")
-                        .HasColumnType("int");
-
-                    b.Property<int>("nroHC")
-                        .HasColumnType("int");
-
-                    b.Property<double>("precio")
-                        .HasColumnType("float");
-
-                    b.Property<string>("prioridad")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("servicio")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("tpAtencion")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ultCie10")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("idCita");
-
-                    b.ToTable("Cita");
-                });
-
-            modelBuilder.Entity("HistClinica.Models.Consultorio", b =>
-                {
-                    b.Property<int>("idConsultorio")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("area")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("descripcion")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("idEspecialidad")
-                        .HasColumnType("int");
-
-                    b.Property<string>("nroConsultorio")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("piso")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("tpConsultorio")
-                        .HasColumnType("int");
-
-                    b.HasKey("idConsultorio");
-
-                    b.ToTable("Consultorio");
-                });
 
             modelBuilder.Entity("HistClinica.Models.CronoMedico", b =>
                 {
@@ -212,27 +103,6 @@ namespace HistClinica.Migrations
                     b.HasKey("idEspecialidad");
 
                     b.ToTable("Especialidad");
-                });
-
-            modelBuilder.Entity("HistClinica.Models.EstadoCita", b =>
-                {
-                    b.Property<int>("idEstadoCita")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("codEstadoCita")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("estado")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("origen")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("idEstadoCita");
-
-                    b.ToTable("EstadoCita");
                 });
 
             modelBuilder.Entity("HistClinica.Models.Medico", b =>
