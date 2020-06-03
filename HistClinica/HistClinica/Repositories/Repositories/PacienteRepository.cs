@@ -89,7 +89,7 @@ namespace HistClinica.Repositories.Repositories
 
             return Pacientes;
         }
-        public async Task<Paciente> GetByIdPaciente(int? Dni)
+        public async Task<Paciente> GetByDni(int? Dni)
         {
             Paciente Paciente = await (from p in _context.Paciente
                                           where p.dniPac == Dni
