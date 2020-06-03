@@ -36,10 +36,11 @@ namespace HistClinica.Repositories.Repositories
 			GC.SuppressFinalize(this);
 		}
 
-		public async Task DeleteCronograma(int CronoID)
+		public async Task DeleteCronograma(int? CronoID)
 		{
 			CronoMedico cronoMedico = await _context.CronoMedico.FindAsync(CronoID);
 			_context.CronoMedico.Remove(cronoMedico);
+			await Save();
 		}
 
 		public async Task<List<CronoMedico>> GetAllCronogramas()

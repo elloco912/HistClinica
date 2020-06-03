@@ -507,3 +507,4 @@ D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.cspro
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.dll
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.pdb
 >>>>>>> 20bd66dfc02a662dcdcf00e970bb80bf3873ea7a
+C:\Users\User\Desktop\Proy_his\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cronograma\Edit.cshtml.g.cs

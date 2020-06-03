@@ -60,5 +60,33 @@ namespace HistClinica.Controllers
             }
             return PartialView();
         }
+
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            await cronogramaRepository.DeleteCronograma(id);
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Editar(int id)
+        {
+            CronoMedico cronoMedico = await cronogramaRepository.GetByIdCrono(id);
+            return PartialView("Edit",cronoMedico);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(CronoMedico cronoMedico)
+        {
+            if (ModelState.IsValid)
+            {
+                await cronogramaRepository.UpdateCronograma(cronoMedico);
+                return RedirectToAction("Index");
+            }
+            return PartialView();
+        }
     }
 }

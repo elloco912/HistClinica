@@ -12,7 +12,7 @@ namespace HistClinica.Repositories.Interfaces
 		Task<string> UpdateCronograma(CronoMedico cronograma);
 		Task<CronoMedico> GetByIdCrono(int CronoID);
 		Task<List<CronoMedico>> GetAllCronogramas();
-		Task DeleteCronograma(int CronoID);
+		Task DeleteCronograma(int? CronoID);
 		Task Save();
 	}
 }

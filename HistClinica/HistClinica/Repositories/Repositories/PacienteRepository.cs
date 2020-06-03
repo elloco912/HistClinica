@@ -43,6 +43,7 @@ namespace HistClinica.Repositories.Repositories
         {
             Paciente Paciente = await _context.Paciente.FindAsync(PacienteID);
             _context.Paciente.Remove(Paciente);
+            await Save();
         }
         public async Task<string> InsertPaciente(Paciente Paciente)
         {
