@@ -39,6 +39,11 @@ namespace HistClinica.Repositories.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task<bool> PacienteExists(int id)
+        {
+            return await _context.Paciente.AnyAsync(e => e.idPaciente == id);
+        }
+
         public async Task DeletePaciente(int PacienteID)
         {
             Paciente Paciente = await _context.Paciente.FindAsync(PacienteID);
@@ -84,7 +89,7 @@ namespace HistClinica.Repositories.Repositories
 
             return Pacientes;
         }
-        public async Task<Paciente> GetByIdPaciente(int PacienteID)
+        public async Task<Paciente> GetByIdPaciente(int? PacienteID)
         {
             Paciente Paciente = await (from p in _context.Paciente
                                           where p.idPaciente == PacienteID
