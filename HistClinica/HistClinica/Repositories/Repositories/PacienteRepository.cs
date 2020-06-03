@@ -90,7 +90,7 @@ namespace HistClinica.Repositories.Repositories
 
             return Pacientes;
         }
-        public async Task<Paciente> GetByIdPaciente(int? Dni)
+        public async Task<Paciente> GetByDni(int? Dni)
         {
             Paciente Paciente = await (from p in _context.Paciente
                                           where p.dniPac == Dni
@@ -100,19 +100,6 @@ namespace HistClinica.Repositories.Repositories
                                               apePaterno = p.apePaterno,
                                               apeMaterno = p.apeMaterno
                                           }).FirstOrDefaultAsync();
-            return Paciente;
-        }
-
-        public async Task<Paciente> GetByDni(int? dni)
-        {
-            Paciente Paciente = await(from p in _context.Paciente
-                                      where p.dniPac == dni
-                                      select new Paciente
-                                      {
-                                          idPaciente = p.idPaciente,
-                                          apePaterno = p.apePaterno,
-                                          apeMaterno = p.apeMaterno
-                                      }).FirstOrDefaultAsync();
             return Paciente;
         }
     }
