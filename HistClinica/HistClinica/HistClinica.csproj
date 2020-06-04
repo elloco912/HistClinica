@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200604173314_datanueva.cs" />
+    <Compile Remove="Migrations\20200604173314_datanueva.Designer.cs" />
+    <Compile Remove="Migrations\20200604174518_nuevo.cs" />
+    <Compile Remove="Migrations\20200604174518_nuevo.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.3">
       <PrivateAssets>all</PrivateAssets>
@@ -14,10 +21,6 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.3">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.9.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
