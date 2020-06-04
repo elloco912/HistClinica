@@ -8,7 +8,7 @@ namespace HistClinica.Models
 {
 	public class Consultorio
 	{
-		[Key]
+	    [Key]
 		public int idConsultorio { get; set; }
 		public string nroConsultorio { get; set; }
 		public int? tpConsultorio { get; set; }

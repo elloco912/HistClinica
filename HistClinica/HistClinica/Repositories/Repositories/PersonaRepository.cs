@@ -271,30 +271,30 @@ namespace HistClinica.Repositories.Repositories
         public async Task<List<PersonaDTO>> GetAllPersonas()
         {
             List<PersonaDTO> Personas = await (from p in _context.Persona
-                                               where p.idPersona == (from m in _context.Medico where m.idPersona == p.idPersona select m.idPersona).First()
-                                               || p.idPersona == (from e in _context.Empleado where e.idPersona == p.idPersona select e.idPersona).FirstOrDefault()
-                                               select new PersonaDTO
-                                               {
-                                                   idPersona = p.idPersona,
-                                                   nombres = p.nombres,
-                                                   apellidos = p.apePaterno + " " + p.apeMaterno,
-                                                   fechaIngreso = "",
-                                                   telefono = p.telefono,
-                                                   cargo = ""
-                                               }).ToListAsync();
+                                            where p.idPersona == (from m in _context.Medico where m.idPersona == p.idPersona select m.idPersona).First() 
+                                            || p.idPersona == (from e in _context.Empleado where e.idPersona == p.idPersona select e.idPersona).FirstOrDefault()
+                                            select new PersonaDTO
+                                            {
+                                                idPersona = p.idPersona,
+                                                nombres = p.nombres,
+                                                apellidos = p.apePaterno + " " + p.apeMaterno,
+                                                fechaIngreso = "",
+                                                telefono = p.telefono,
+                                                cargo = ""
+                                            }).ToListAsync();
 
             return Personas;
         }
         public async Task<Persona> GetById(int? id)
         {
             Persona Persona = await (from p in _context.Persona
-                                     where p.idPersona == id
-                                     select new Persona
-                                     {
-                                         idPersona = p.idPersona,
-                                         apePaterno = p.apePaterno,
-                                         apeMaterno = p.apeMaterno
-                                     }).FirstOrDefaultAsync();
+                                        where p.idPersona == id
+                                        select new Persona
+                                        {
+                                            idPersona = p.idPersona,
+                                            apePaterno = p.apePaterno,
+                                            apeMaterno = p.apeMaterno
+                                        }).FirstOrDefaultAsync();
             return Persona;
         }
     }

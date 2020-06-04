@@ -163,5 +163,11 @@ namespace HistClinica.Controllers
             await _pacienteRepository.DeletePaciente(id);
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> GetByDni(int dni)
+        {
+            var paciente = await _pacienteRepository.GetByDni(dni);
+            return RedirectToAction("Prueba", paciente);
+        }
     }
 }
