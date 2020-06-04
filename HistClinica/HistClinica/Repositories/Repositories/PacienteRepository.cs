@@ -39,7 +39,7 @@ namespace HistClinica.Repositories.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<bool> PacienteExists(int id)
+        public async Task<bool> PacienteExists(int? id)
         {
             return await _context.Paciente.AnyAsync(e => e.idPaciente == id);
         }

@@ -15,7 +15,7 @@ namespace HistClinica.Repositories.Interfaces
         Task<string> InsertPersona(PersonaDTO Persona);
         Task<string> UpdatePersona(PersonaDTO Persona);
         Task DeletePersona(int PersonaID);
-        Task<bool> PersonaExists(int id);
+        Task<bool> PersonaExists(int? id);
         Task Save();
     }
 }

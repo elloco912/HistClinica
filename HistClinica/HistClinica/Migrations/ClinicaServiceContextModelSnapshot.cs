@@ -203,19 +203,22 @@ namespace HistClinica.Migrations
                     b.Property<string>("estado")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("fecIngreso")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("gender")
+                    b.Property<string>("fecIngreso")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("idHorario")
+                    b.Property<string>("genero")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("idHorario")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("idPersona")
                         .HasColumnType("int");
 
                     b.Property<int?>("idTipoEmpleado")
                         .HasColumnType("int");
 
-                    b.Property<string>("name")
+                    b.Property<string>("nombres")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("nroDni")
@@ -224,7 +227,7 @@ namespace HistClinica.Migrations
                     b.Property<double?>("precio")
                         .HasColumnType("float");
 
-                    b.Property<int?>("salary")
+                    b.Property<int?>("salario")
                         .HasColumnType("int");
 
                     b.HasKey("idEmpleado");
@@ -314,7 +317,13 @@ namespace HistClinica.Migrations
                     b.Property<string>("fecIngreso")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("idEmpleado")
+                        .HasColumnType("int");
+
                     b.Property<int?>("idEspecialidad")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("idPersona")
                         .HasColumnType("int");
 
                     b.Property<string>("nombres")
@@ -437,9 +446,6 @@ namespace HistClinica.Migrations
                     b.Property<string>("fotografia")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("idEmpleado")
-                        .HasColumnType("int");
-
                     b.Property<int?>("idEstCivil")
                         .HasColumnType("int");
 
@@ -452,13 +458,7 @@ namespace HistClinica.Migrations
                     b.Property<int?>("idGrdInstruc")
                         .HasColumnType("int");
 
-                    b.Property<int?>("idMedico")
-                        .HasColumnType("int");
-
                     b.Property<int?>("idOcupacion")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("idPaciente")
                         .HasColumnType("int");
 
                     b.Property<int?>("idParentesco")
@@ -474,9 +474,6 @@ namespace HistClinica.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("idUbigeoResi")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("idUsuario")
                         .HasColumnType("int");
 
                     b.Property<int?>("idciaSeguro")
