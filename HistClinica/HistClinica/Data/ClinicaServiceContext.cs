@@ -17,5 +17,6 @@ namespace HistClinica.Data
         public DbSet<Cita> Cita { get; set; }
         public DbSet<EstadoCita> EstadoCita { get; set; }
         public DbSet<Consultorio> Consultorio { get; set; }
+        public DbSet<TipoEmpleado> TipoEmpleado { get; set; }
     }
 }
