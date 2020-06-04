@@ -13,7 +13,7 @@ namespace HistClinica.Models
 		public string name { get; set; }
 		public string gender { get; set; }
 		public int? salary { get; set; }
-		public decimal? precio { get; set; }
+		public double? precio { get; set; }
 		public DateTime? fecIngreso { get; set; }
 		public int? idTipoEmpleado { get; set; }
 		public int idHorario { get; set; }
