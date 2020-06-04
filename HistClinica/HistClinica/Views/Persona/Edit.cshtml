@@ -1,4 +1,4 @@
-﻿@model HistClinica.Models.Persona
+﻿@model HistClinica.DTO.PersonaDTO
 
 @{
     ViewData["Title"] = "Edit";
@@ -8,7 +8,7 @@
 
 <h4>Persona</h4>
 <hr />
-<div class="row">
+@*<div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -204,26 +204,6 @@
                 <span asp-validation-for="correo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="idPaciente" class="control-label"></label>
-                <input asp-for="idPaciente" class="form-control" />
-                <span asp-validation-for="idPaciente" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="idEmpleado" class="control-label"></label>
-                <input asp-for="idEmpleado" class="form-control" />
-                <span asp-validation-for="idEmpleado" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="idMedico" class="control-label"></label>
-                <input asp-for="idMedico" class="form-control" />
-                <span asp-validation-for="idMedico" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="idUsuario" class="control-label"></label>
-                <input asp-for="idUsuario" class="form-control" />
-                <span asp-validation-for="idUsuario" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="iddatoReniec" class="control-label"></label>
                 <input asp-for="iddatoReniec" class="form-control" />
                 <span asp-validation-for="iddatoReniec" class="text-danger"></span>
@@ -263,7 +243,7 @@
             </div>
         </form>
     </div>
-</div>
+</div>*@
 
 <div>
     <a asp-action="Index">Back to List</a>

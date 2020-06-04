@@ -1,6 +1,8 @@
-﻿@{
-	ViewBag.Title = "Gestión";
-	Layout = "~/Views/Shared/_Layout.cshtml";
+
+@model IEnumerable<HistClinica.DTO.PersonaDTO>
+
+@{
+    ViewData["Title"] = "Index";
 }
 
 <div class="container">
@@ -35,7 +37,6 @@
 	<div class="col-sm-12" style="padding-top: 30px;">
 		<div class="row">
 			<div class="col-sm-6">
-
 			</div>
 			<div class="col-sm-6 text-right" style="padding-bottom: 10px">
 				<a asp-controller="Persona" asp-action="Create" class="btn btn-primary" style="width: 152px;font-size: 16px;">Agregar Personal</a>
@@ -56,7 +57,22 @@
 						<th>Acciones</th>
 					</tr>
 				</thead>
-				<tbody class="tbl_body_table">
+				<tbody>
+					@foreach (var item in Model)
+					{
+					<tr>
+						<td>@item.idPersona</td>
+						<td>@item.nombres</td>
+						<td>@item.apellidos</td>
+						<td>@item.fechaIngreso</td>
+						<td>@item.telefono</td>
+						<td>@item.cargo</td>
+						<td>
+							<a type="submit" class="edit btn btn-primary" ><i class="fas fa-edit"></i></a>
+							<a type="submit" class="btn btn-danger"><i class="fas fa-minus"></i></a>
+						</td>
+					</tr>
+					}
 				</tbody>
 			</table>
 		</div>
@@ -318,3 +334,4 @@
 		</div>
 	</div>
 </div>
+

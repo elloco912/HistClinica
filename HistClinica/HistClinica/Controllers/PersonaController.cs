@@ -65,7 +65,7 @@ namespace HistClinica.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("idPersona,idEmpleado,idTipoEmpleado,idMedico,area,nombres,apellidos,dni,fechaIngreso,numeroColegio,cargo,ruc,telefono,idEspecialidad")] PersonaDTO personaDTO)
+        public async Task<IActionResult> Create(PersonaDTO personaDTO)
         {
             if (ModelState.IsValid)
             {
@@ -75,34 +75,13 @@ namespace HistClinica.Controllers
             return View(personaDTO);
         }
 
-        // GET: Persona/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var persona = await _personaRepository.GetById(id);
-            if (persona == null)
-            {
-                return NotFound();
-            }
-            return View(persona);
-        }
-
         // POST: Persona/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("idPersona,idEmpleado,idTipoEmpleado,idMedico,area,nombres,apellidos,dni,fechaIngreso,numeroColegio,cargo,ruc,telefono,idEspecialidad")] PersonaDTO personaDTO)
-        {
-            if (id != personaDTO.idPersona)
-            {
-                return NotFound();
-            }
-
+        public async Task<IActionResult> Edit(PersonaDTO personaDTO)
+        {       
             if (ModelState.IsValid)
             {
                 try

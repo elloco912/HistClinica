@@ -24,8 +24,9 @@ namespace HistClinica.Models
 		public string condicion { get; set; }
 		public string telefono { get; set; }
 		public string fecIngreso { get; set; }
-		//public int? idEmpleado { get; set; }
+		public int? idEmpleado { get; set; }
 		public int? idEspecialidad { get; set; }
+		public int? idPersona { get; set; }
 		public string estado { get; set; }
 	}
 }

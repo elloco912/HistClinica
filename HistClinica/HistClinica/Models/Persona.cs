@@ -48,10 +48,6 @@ namespace HistClinica.Models
 		public int? telefono { get; set; }
 		public int? celular { get; set; }
 		public string correo { get; set; }
-		public int? idPaciente { get; set; }
-		public int? idEmpleado { get; set; }
-		public int? idMedico { get; set; }
-		public int? idUsuario { get; set; }
 		public int? iddatoReniec { get; set; }
 		public int? iddatoSunat { get; set; }
 		public int? iddatoSiteds { get; set; }
