@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,6 +8,7 @@ namespace HistClinica.Models
 {
     public class CronoMedico
     {
+	[Key]
 	public int idProgramMedica { get; set; }
 	public string mes {get;set;} 
 	public string semana {get;set;} 

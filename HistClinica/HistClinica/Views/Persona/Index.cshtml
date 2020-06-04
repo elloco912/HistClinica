@@ -1,0 +1,323 @@
+﻿@model IEnumerable<HistClinica.Models.Persona>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.apePaterno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.apeMaterno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombres)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idtpDocumento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dniPersona)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idSexo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idEtnico)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fecNacimiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idUbigeoResi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idtipoVia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombreVia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nroVia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nroDpto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.interior)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.manzana)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nroLote)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nroKm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nroBlock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nroEtapa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.edad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idUbigeoNace)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fotografia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idGrdInstruc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idReligion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.centroEduca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idEstCivil)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idOcupacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idgpoSangre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idFactorrh)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nroRuc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.razonSocial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.estadoRuc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.condicionRuc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.domiFiscal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idParentesco)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.telefono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.celular)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.correo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idPaciente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idEmpleado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idMedico)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idUsuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.iddatoReniec)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.iddatoSunat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.iddatoSiteds)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idemprConvenio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idciaSeguro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idtipoIafa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.estado)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.apePaterno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.apeMaterno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombres)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idtpDocumento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dniPersona)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idSexo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idEtnico)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecNacimiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idUbigeoResi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idtipoVia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombreVia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nroVia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nroDpto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.interior)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.manzana)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nroLote)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nroKm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nroBlock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nroEtapa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.edad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idUbigeoNace)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fotografia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idGrdInstruc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idReligion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.centroEduca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idEstCivil)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idOcupacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idgpoSangre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idFactorrh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nroRuc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.razonSocial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.estadoRuc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.condicionRuc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.domiFiscal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idParentesco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.celular)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.correo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idPaciente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idEmpleado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idMedico)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.iddatoReniec)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.iddatoSunat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.iddatoSiteds)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idemprConvenio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idciaSeguro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idtipoIafa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.estado)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.idPersona">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.idPersona">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.idPersona">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

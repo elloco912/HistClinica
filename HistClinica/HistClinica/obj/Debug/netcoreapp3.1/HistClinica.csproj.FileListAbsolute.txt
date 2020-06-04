@@ -483,11 +483,6 @@ D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.TagHe
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.RazorCoreGenerate.cache
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
-D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Paciente\Create.cshtml.g.cs
-D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Paciente\Delete.cshtml.g.cs
-D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Paciente\Details.cshtml.g.cs
-D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Paciente\Edit.cshtml.g.cs
-D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Paciente\Index.cshtml.g.cs
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Paciente\Prueba.cshtml.g.cs
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Personal\Create.cshtml.g.cs
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Personal\Index.cshtml.g.cs
@@ -502,3 +497,8 @@ D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.Views
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.csproj.CopyComplete
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.dll
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.pdb
+D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Persona\Create.cshtml.g.cs
+D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Persona\Delete.cshtml.g.cs
+D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Persona\Details.cshtml.g.cs
+D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Persona\Edit.cshtml.g.cs
+D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Persona\Index.cshtml.g.cs
