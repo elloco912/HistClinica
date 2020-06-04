@@ -80,26 +80,24 @@ namespace HistClinica.Repositories.Repositories
         }
         public async Task<List<Paciente>> GetAllPacientes()
         {
-            List<Paciente> Pacientes = await (from p in _context.Paciente
-                                                 select new Paciente
-                                                 {
-                                                     idPaciente = p.idPaciente,
-                                                     apePaterno = p.apePaterno,
-                                                     apeMaterno = p.apeMaterno
-                                                 }).ToListAsync();
+            List<Paciente> Pacientes = await (  from p in _context.Paciente
+                                                join o in _context.Persona on p.idPersona equals o.idPersona
+                                                select new Paciente
+                                                {
+                                                    idPaciente = p.idPaciente,
+                                                }).ToListAsync();
 
             return Pacientes;
         }
         public async Task<Paciente> GetByDni(int? Dni)
         {
-            Paciente Paciente = await (from p in _context.Paciente
-                                          where p.dniPac == Dni
-                                       select new Paciente
-                                          {
-                                              idPaciente = p.idPaciente,
-                                              apePaterno = p.apePaterno,
-                                              apeMaterno = p.apeMaterno
-                                          }).FirstOrDefaultAsync();
+            Paciente Paciente = await ( from p in _context.Paciente
+                                        join o in _context.Persona on p.idPersona equals o.idPersona
+                                        where o.dniPersona == Dni
+                                        select new Paciente
+                                        {
+                                            idPaciente = p.idPaciente,
+                                        }).FirstOrDefaultAsync();
             return Paciente;
         }
     }

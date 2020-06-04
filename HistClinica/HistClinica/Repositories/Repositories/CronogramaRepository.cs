@@ -59,9 +59,9 @@ namespace HistClinica.Repositories.Repositories
 
 		public async Task<CronoMedico> GetByIdCrono(int CronoID)
 		{
-			CronoMedico cronoMedicos = await (from c in _context.CronoMedico 
+			CronoMedico cronoMedicos = await (from c in _context.CronoMedico
 											  where c.idProgramMedica == CronoID
-											select c).FirstOrDefaultAsync();
+											  select c).FirstOrDefaultAsync();
 			return cronoMedicos;
 		}
 
@@ -88,7 +88,7 @@ namespace HistClinica.Repositories.Repositories
 		{
 			try
 			{
-			    _context.Entry(cronograma).State = EntityState.Modified;
+				_context.Entry(cronograma).State = EntityState.Modified;
 				await Save();
 				return "Actualizacion exitosa";
 			}

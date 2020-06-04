@@ -8,7 +8,6 @@ namespace HistClinica.Models
 {
     public class CronoMedico
     {
-
 	[Key]
 	public int idProgramMedica { get; set; }
 	public string mes {get;set;} 

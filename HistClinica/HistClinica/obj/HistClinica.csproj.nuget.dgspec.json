@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Desktop\\Proy_his\\HistClinica\\HistClinica\\HistClinica\\HistClinica.csproj": {}
+    "C:\\Users\\User\\Desktop\\proy_v2\\HistClinica\\HistClinica\\HistClinica\\HistClinica.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Desktop\\Proy_his\\HistClinica\\HistClinica\\HistClinica\\HistClinica.csproj": {
+    "C:\\Users\\User\\Desktop\\proy_v2\\HistClinica\\HistClinica\\HistClinica\\HistClinica.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\Proy_his\\HistClinica\\HistClinica\\HistClinica\\HistClinica.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\proy_v2\\HistClinica\\HistClinica\\HistClinica\\HistClinica.csproj",
         "projectName": "HistClinica",
-        "projectPath": "C:\\Users\\User\\Desktop\\Proy_his\\HistClinica\\HistClinica\\HistClinica\\HistClinica.csproj",
+        "projectPath": "C:\\Users\\User\\Desktop\\proy_v2\\HistClinica\\HistClinica\\HistClinica\\HistClinica.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\Proy_his\\HistClinica\\HistClinica\\HistClinica\\obj\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\proy_v2\\HistClinica\\HistClinica\\HistClinica\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
