@@ -106,8 +106,8 @@ namespace HistClinica.Repositories.Repositories
                 await Save();
                 idPersona = (await _context.Persona
                     .FirstOrDefaultAsync(m => m.dniPersona == PersonaDTO.dni)).idPersona;
-                if (PersonaDTO.idTipoEmpleado == 1)
-                {
+                //if (PersonaDTO.idTipoEmpleado == 1)
+                //{
                     Empleado Empleado = new Empleado
                     {
                         cargo = PersonaDTO.cargo,
@@ -126,7 +126,7 @@ namespace HistClinica.Repositories.Repositories
                     };
                     await _context.Empleado.AddAsync(Empleado);
                     await Save();
-                }
+                //}
                 if (PersonaDTO.idTipoEmpleado == 2)
                 {
                     Medico Medico = new Medico()
@@ -164,8 +164,8 @@ namespace HistClinica.Repositories.Repositories
         {
             try
             {
-                if (PersonaDTO.idTipoEmpleado == 1)
-                {
+                //if (PersonaDTO.idTipoEmpleado == 1)
+                //{
                     Empleado Empleado = new Empleado
                     {
                         idEmpleado = int.Parse(PersonaDTO.idEmpleado.ToString()),
@@ -184,7 +184,7 @@ namespace HistClinica.Repositories.Repositories
                         idPersona = PersonaDTO.idPersona
                     };
                     _context.Entry(Empleado).State = EntityState.Modified;
-                }
+                //}
                 if (PersonaDTO.idTipoEmpleado == 2)
                 {
                     Medico Medico = new Medico()
