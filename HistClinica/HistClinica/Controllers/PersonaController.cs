@@ -86,9 +86,9 @@ namespace HistClinica.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(PersonaDTO personaDTO)
+        public async Task<IActionResult> Edit(int id,PersonaDTO personaDTO)
         {       
-            if (ModelState.IsValid)
+            if (personaDTO != null)
             {
                 try
                 {
