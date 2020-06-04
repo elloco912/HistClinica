@@ -67,12 +67,18 @@ namespace HistClinica.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(PersonaDTO personaDTO)
         {
-            if (ModelState.IsValid)
+            if (personaDTO != null)
             {
                 await _personaRepository.InsertPersona(personaDTO);
                 return RedirectToAction(nameof(Index));
             }
-            return View(personaDTO);
+            return RedirectToAction("Create");
+        }
+
+        public async Task<IActionResult> Editar(int idpersona)
+        {
+            Persona persona = await _personaRepository.GetById(idpersona);
+            return PartialView("Edit");
         }
 
         // POST: Persona/Edit/5
