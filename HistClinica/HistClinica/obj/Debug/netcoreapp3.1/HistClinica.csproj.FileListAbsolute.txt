@@ -674,3 +674,5 @@ C:\Users\User\Desktop\proy_v2\HistClinica\HistClinica\HistClinica\obj\Debug\netc
 C:\Users\User\Desktop\proy_v2\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.pdb
 C:\Users\User\Desktop\proy_v2\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.genruntimeconfig.cache
 C:\Users\User\Desktop\proy_v2\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.csprojAssemblyReference.cache
+D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cronograma\Create.cshtml.g.cs
+D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cronograma\Index.cshtml.g.cs
