@@ -40,7 +40,7 @@ namespace HistClinica.Repositories.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<bool> PersonaExists(int id)
+        public async Task<bool> PersonaExists(int? id)
         {
             return await _context.Persona.AnyAsync(e => e.idPersona == id);
         }
@@ -52,10 +52,60 @@ namespace HistClinica.Repositories.Repositories
         }
         public async Task<string> InsertPersona(PersonaDTO PersonaDTO)
         {
-            int idMedico = 0;
-            int idEmpleado = 0;
+            int idPersona = 0;
             try
             {
+                await _context.Persona.AddAsync(new Persona()
+                {
+                    nombres = PersonaDTO.nombres,
+                    apePaterno = PersonaDTO.apellidos.Split(" ")[0],
+                    apeMaterno = PersonaDTO.apellidos.Split(" ")[1],
+                    dniPersona = PersonaDTO.dni,
+                    nroRuc = PersonaDTO.ruc,
+                    telefono = int.Parse(PersonaDTO.telefono.ToString()),
+                    celular = null,
+                    centroEduca = null,
+                    condicionRuc = null,
+                    correo = null,
+                    domiFiscal = null,
+                    edad = null,
+                    estado = null,
+                    estadoRuc = null,
+                    fecNacimiento = null,
+                    fotografia = null,
+                    idciaSeguro = null,
+                    iddatoReniec = null,
+                    iddatoSiteds = null,
+                    iddatoSunat = null,
+                    idemprConvenio = null,
+                    idEstCivil = null,
+                    idEtnico = null,
+                    idFactorrh = null,
+                    idgpoSangre = null,
+                    idGrdInstruc = null,
+                    idOcupacion = null,
+                    idParentesco = null,
+                    idReligion = null,
+                    idSexo = null,
+                    idtipoIafa = null,
+                    idtipoVia = null,
+                    idtpDocumento = null,
+                    idUbigeoNace = null,
+                    idUbigeoResi = null,
+                    interior = null,
+                    manzana = null,
+                    nombreVia = null,
+                    nroBlock = null,
+                    nroDpto = null,
+                    nroEtapa = null,
+                    nroKm = null,
+                    nroLote = null,
+                    nroVia = null,
+                    razonSocial = null
+                });
+                await Save();
+                idPersona = (await _context.Persona
+                    .FirstOrDefaultAsync(m => m.dniPersona == PersonaDTO.dni)).idPersona;
                 if (PersonaDTO.idTipoEmpleado == 1)
                 {
                     Empleado Empleado = new Empleado
@@ -64,24 +114,25 @@ namespace HistClinica.Repositories.Repositories
                         codEmpleado = null,
                         descArea = null,
                         estado = null,
-                        fecIngreso = DateTime.Parse(PersonaDTO.fechaIngreso),
-                        gender = null,
+                        fecIngreso = PersonaDTO.fechaIngreso,
+                        genero = null,
                         idHorario = 0,
                         idTipoEmpleado = PersonaDTO.idTipoEmpleado,
-                        name = PersonaDTO.nombres + "" + PersonaDTO.apellidos,
+                        nombres = PersonaDTO.nombres + "" + PersonaDTO.apellidos,
                         nroDni = PersonaDTO.dni,
                         precio = null,
-                        salary = null
+                        salario = null,
+                        idPersona = idPersona
                     };
                     await _context.Empleado.AddAsync(Empleado);
                     await Save();
-                    idEmpleado = (await _context.Empleado
-                    .FirstOrDefaultAsync(m => m.nroDni == PersonaDTO.dni)).idEmpleado;
                 }
-                else
+                if (PersonaDTO.idTipoEmpleado == 2)
                 {
                     Medico Medico = new Medico()
                     {
+                        idEmpleado = null,
+                        idPersona = idPersona,
                         area = PersonaDTO.area,
                         nombres = PersonaDTO.nombres,
                         apellidos = PersonaDTO.apellidos,
@@ -90,7 +141,7 @@ namespace HistClinica.Repositories.Repositories
                         nroColegio = PersonaDTO.numeroColegio,
                         cargo = PersonaDTO.cargo,
                         nroRuc = PersonaDTO.ruc,
-                        telefono = PersonaDTO.telefono,
+                        telefono = PersonaDTO.telefono.ToString(),
                         idEspecialidad = PersonaDTO.idEspecialidad,
                         codMedico = null,
                         condicion = null,
@@ -101,67 +152,11 @@ namespace HistClinica.Repositories.Repositories
                     };
                     await _context.Medico.AddAsync(Medico);
                     await Save();
-                    idMedico = (await _context.Medico
-                    .FirstOrDefaultAsync(m => m.nroDni == PersonaDTO.dni)).idMedico;
                 }
-                await _context.Persona.AddAsync(new Persona()
-                {
-                    nombres = PersonaDTO.nombres,
-                    apePaterno = PersonaDTO.apellidos.Split(" ")[0],
-                    apeMaterno = PersonaDTO.apellidos.Split(" ")[1],
-                    dniPersona = PersonaDTO.dni,
-                    nroRuc = PersonaDTO.ruc,
-                    telefono = int.Parse(PersonaDTO.telefono),
-                    celular = null,
-                    centroEduca = null,
-                    condicionRuc = null,
-                    correo = null,
-                    domiFiscal = null,
-                    edad = null,
-                    estado = null,
-                    estadoRuc = null,
-                    fecNacimiento = null,
-                    fotografia = null,
-                    idciaSeguro = null,
-                    iddatoReniec = null,
-                    iddatoSiteds = null,
-                    iddatoSunat = null,
-                    idEmpleado = null,
-                    idemprConvenio = null,
-                    idEstCivil = null,
-                    idEtnico = null,
-                    idFactorrh = null,
-                    idgpoSangre = null,
-                    idGrdInstruc = null,
-                    idMedico =null,
-                    idOcupacion =null,
-                    idPaciente =null,
-                    idParentesco =null,
-                    idReligion =null,
-                    idSexo =null,
-                    idtipoIafa =null,
-                    idtipoVia =null,
-                    idtpDocumento =null,
-                    idUbigeoNace =null,
-                    idUbigeoResi =null,
-                    idUsuario =null,
-                    interior =null,
-                    manzana =null,
-                    nombreVia =null,
-                    nroBlock =null,
-                    nroDpto =null,
-                    nroEtapa =null,
-                    nroKm =null,
-                    nroLote =null,
-                    nroVia =null,
-                    razonSocial = null
-                });
-                await Save();
                 return "Ingreso Exitoso Persona,Medico,Empleado";
             }
             catch (Exception ex)
             {
-
                 return "Error en el guardado " + ex.StackTrace;
             }
         }
@@ -171,8 +166,31 @@ namespace HistClinica.Repositories.Repositories
             {
                 if (PersonaDTO.idTipoEmpleado == 1)
                 {
+                    Empleado Empleado = new Empleado
+                    {
+                        idEmpleado = int.Parse(PersonaDTO.idEmpleado.ToString()),
+                        cargo = PersonaDTO.cargo,
+                        codEmpleado = null,
+                        descArea = null,
+                        estado = null,
+                        fecIngreso = PersonaDTO.fechaIngreso,
+                        genero = null,
+                        idHorario = 0,
+                        idTipoEmpleado = PersonaDTO.idTipoEmpleado,
+                        nombres = PersonaDTO.nombres + "" + PersonaDTO.apellidos,
+                        nroDni = PersonaDTO.dni,
+                        precio = null,
+                        salario = null,
+                        idPersona = PersonaDTO.idPersona
+                    };
+                    _context.Entry(Empleado).State = EntityState.Modified;
+                }
+                if (PersonaDTO.idTipoEmpleado == 2)
+                {
                     Medico Medico = new Medico()
                     {
+                        idMedico = int.Parse(PersonaDTO.idMedico.ToString()),
+                        idEmpleado = null,
                         area = PersonaDTO.area,
                         nombres = PersonaDTO.nombres,
                         apellidos = PersonaDTO.apellidos,
@@ -181,38 +199,26 @@ namespace HistClinica.Repositories.Repositories
                         nroColegio = PersonaDTO.numeroColegio,
                         cargo = PersonaDTO.cargo,
                         nroRuc = PersonaDTO.ruc,
-                        telefono = PersonaDTO.telefono,
-                        idEspecialidad = PersonaDTO.idEspecialidad
+                        telefono = PersonaDTO.telefono.ToString(),
+                        idEspecialidad = PersonaDTO.idEspecialidad,
+                        codMedico = null,
+                        condicion = null,
+                        especialidad = null,
+                        estado = "Activo",
+                        nroRne = null,
+                        tpDocumento = null
                     };
                     _context.Entry(Medico).State = EntityState.Modified;
                 }
-                else
-                {
-                    Empleado Empleado = new Empleado
-                    {
-                        cargo = PersonaDTO.cargo,
-                        codEmpleado = null,
-                        descArea = null,
-                        estado = null,
-                        fecIngreso = DateTime.Parse(PersonaDTO.fechaIngreso),
-                        gender = null,
-                        idHorario = 0,
-                        idTipoEmpleado = PersonaDTO.idTipoEmpleado,
-                        name = PersonaDTO.nombres + "" + PersonaDTO.apellidos,
-                        nroDni = PersonaDTO.dni,
-                        precio = null,
-                        salary = null
-                    };
-                    await _context.Empleado.AddAsync(Empleado);
-                }
                 _context.Entry(new Persona()
                 {
+                    idPersona = int.Parse(PersonaDTO.idPersona.ToString()),
                     nombres = PersonaDTO.nombres,
                     apePaterno = PersonaDTO.apellidos.Split(" ")[0],
                     apeMaterno = PersonaDTO.apellidos.Split(" ")[1],
                     dniPersona = PersonaDTO.dni,
                     nroRuc = PersonaDTO.ruc,
-                    telefono = int.Parse(PersonaDTO.telefono),
+                    telefono = PersonaDTO.telefono,
                     celular = null,
                     centroEduca = null,
                     condicionRuc = null,
@@ -227,16 +233,13 @@ namespace HistClinica.Repositories.Repositories
                     iddatoReniec = null,
                     iddatoSiteds = null,
                     iddatoSunat = null,
-                    idEmpleado = null,
                     idemprConvenio = null,
                     idEstCivil = null,
                     idEtnico = null,
                     idFactorrh = null,
                     idgpoSangre = null,
                     idGrdInstruc = null,
-                    idMedico = null,
                     idOcupacion = null,
-                    idPaciente = null,
                     idParentesco = null,
                     idReligion = null,
                     idSexo = null,
@@ -245,7 +248,6 @@ namespace HistClinica.Repositories.Repositories
                     idtpDocumento = null,
                     idUbigeoNace = null,
                     idUbigeoResi = null,
-                    idUsuario = null,
                     interior = null,
                     manzana = null,
                     nombreVia = null,
@@ -266,15 +268,20 @@ namespace HistClinica.Repositories.Repositories
                 return "Error en el guardado " + ex.StackTrace;
             }
         }
-        public async Task<List<Persona>> GetAllPersonas()
+        public async Task<List<PersonaDTO>> GetAllPersonas()
         {
-            List<Persona> Personas = await (from p in _context.Persona
-                                              select new Persona
-                                              {
-                                                  idPersona = p.idPersona,
-                                                  apePaterno = p.apePaterno,
-                                                  apeMaterno = p.apeMaterno
-                                              }).ToListAsync();
+            List<PersonaDTO> Personas = await (from p in _context.Persona
+                                            where p.idPersona == (from m in _context.Medico where m.idPersona == p.idPersona select m.idPersona).First() 
+                                            || p.idPersona == (from e in _context.Empleado where e.idPersona == p.idPersona select e.idPersona).FirstOrDefault()
+                                            select new PersonaDTO
+                                            {
+                                                idPersona = p.idPersona,
+                                                nombres = p.nombres,
+                                                apellidos = p.apePaterno + " " + p.apeMaterno,
+                                                fechaIngreso = "",
+                                                telefono = p.telefono,
+                                                cargo = ""
+                                            }).ToListAsync();
 
             return Personas;
         }

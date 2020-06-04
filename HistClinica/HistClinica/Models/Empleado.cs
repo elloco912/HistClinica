@@ -10,17 +10,18 @@ namespace HistClinica.Models
     {
 		[Key]
 		public int idEmpleado { get; set; }
-		public string name { get; set; }
-		public string gender { get; set; }
-		public int? salary { get; set; }
-		public decimal? precio { get; set; }
-		public DateTime? fecIngreso { get; set; }
+		public string nombres { get; set; }
+		public string genero { get; set; }
+		public int? salario { get; set; }
+		public double? precio { get; set; }
+		public string fecIngreso { get; set; }
 		public int? idTipoEmpleado { get; set; }
-		public int idHorario { get; set; }
+		public int? idHorario { get; set; }
 		public string codEmpleado { get; set; }
 		public string descArea { get; set; }
 		public string cargo { get; set; }
 		public int? nroDni { get; set; }
+		public int? idPersona { get; set; }
 		public string estado { get; set; }
 	}
 }

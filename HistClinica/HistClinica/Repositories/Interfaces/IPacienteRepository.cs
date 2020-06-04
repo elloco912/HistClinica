@@ -14,7 +14,7 @@ namespace HistClinica.Repositories.Interfaces
         Task<string> InsertPaciente(Paciente Order);
         Task<string> UpdatePaciente(Paciente Order);
         Task DeletePaciente(int PacienteID);
-        Task<bool> PacienteExists(int id);
+        Task<bool> PacienteExists(int? id);
         Task Save();
     }
 }
