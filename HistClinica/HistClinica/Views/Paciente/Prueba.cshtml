@@ -1,0 +1,1149 @@
+﻿@model HistClinica.Models.Paciente
+
+@{
+    ViewBag.Title = "ProgramarCitaAdmision";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h1>Admision</h1>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row" style="padding-top:30px;">
+        <div class="col-sm-4">
+            <div class="row">
+                <div class="col-sm-3">
+                    <select class="form-control">
+                        <option value="value">DNI</option>
+                    </select>
+                </div>
+				<div class="col-sm-4">
+					<input type="text" name="dni" value="" class="form-control"/>
+				</div>
+                <div class="col-sm-5">
+                    <a class="btn btn-info" type="submit" asp-action="GetByDni" asp-route-id="dni" id="btnBuscar"><i class="fas fa-search"></i></a>
+                    <button class="btn btn-primary" type="submit" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();"><i class="fas fa-user-plus"></i></button>
+                    <button class="btn btn-secondary" type="submit" onclick="return getbyID();"><i class="fas fa-edit"></i></button>
+                </div>
+            </div>
+            <div class="row" style="padding-top: 10px;">
+                <div class="col-sm-4">
+                    <label>Atencion</label>
+                </div>
+                <div class="col-sm-8">
+                    <select class="form-control">
+                        <option value="value">Call center</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row" style="padding-top: 10px;">
+                <div class="col-sm-4">
+                    <label>Admision</label>
+                </div>
+                <div class="col-sm-8">
+                    <select class="form-control">
+                        <option value="value">Seguro convenio</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row" style="padding-top: 10px;">
+                <div class="col-sm-4">
+                    <label>Seguro</label>
+                </div>
+                <div class="col-sm-8">
+                    <select class="form-control">
+                        <option value="value">Rimac</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row" style="padding-top: 10px;">
+                <div class="col-sm-4">
+                    <label>Tarifario</label>
+                </div>
+                <div class="col-sm-8">
+                    <select class="form-control">
+                        <option value="value">Rimac</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row" style="padding-top: 10px;">
+				<div class="col-sm-12">
+					<button style="width: 112px; font-size: 15px;" class="btn btn-primary" data-target="#imodal" data-toggle="modal">Citas</button>
+					<button style="width: 135px; font-size: 15px;" class="btn btn-primary">Orden</button>
+				</div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="imodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width: 1200px;position: relative;right: 302px;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h2>Solicitud de cita</h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <label>Datos del paciente</label>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <input type="text" name="name" value="" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-top: 10px;">
+                                    <div class="col-sm-12">
+                                        <label>Area</label>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <select class="form-control">
+                                            <option value="value">Oftalmologia</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-top: 10px;">
+                                    <div class="col-sm-12">
+                                        <label>Medico:</label>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <select class="form-control">
+                                            <option value="value">Carlos Perez Cuellar</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-top: 10px;">
+                                    <div class="col-sm-12">
+                                        <label>Fecha</label>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <input type="date" name="name" value="" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-top: 10px;">
+                                    <div class="col-sm-12">
+                                        <label>Horario</label>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <select class="form-control">
+                                            <option value="value">2:30 pm</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <label>Pruebas</label>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-top: 10px;">
+                                    <div class="col-sm-12">
+                                        <label>Laboratorio</label>
+                                    </div>
+                                    <div>
+                                        <div class="col-sm-12">
+                                            <select class="form-control">
+                                                <option value="value">Sangre</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-top: 10px;">
+                                    <div class="col-sm-12">
+                                        <label>Examen</label>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <select class="form-control">
+                                            <option value="value">Rayos x</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-top: 10px;">
+                                    <div class="col-sm-12">
+                                        <label>Comentarios adicionales</label>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <textarea class="form-control">
+
+</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px; padding-bottom: 20px;">
+                            <div class="col-sm-6">
+                                <button style="width:120px" class="btn btn-primary">Registrar</button>
+                                <button style="width:120px" class="btn btn-primary">Cancelar</button>
+                            </div>
+                            <div class="col-sm-6">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="row">
+                <input type="hidden" id="id" name="name" value="" />
+                <div class="col-sm-12">
+                    <label style="margin-right:10px;">PACIENTE</label>
+                </div>
+            </div>
+            <div class="row" style="padding-top: 10px;">
+                <div class="col-sm-4">
+                    <label>DNI</label>
+                </div>
+                <div class="col-sm-8">
+                    <input type="text" id="dni" name="name" value="" class="form-control"/>
+                </div>
+            </div>
+            <div class="row" style="padding-top: 10px;">
+                <div class="col-sm-4">
+                    <label>Correo</label>
+                </div>
+                <div class="col-sm-8">
+                    <input type="text" id="correo" name="name" value="" class="form-control" />
+                </div>
+            </div>
+            <div class="row" style="padding-top: 10px;">
+                <div class="col-sm-4">
+                    <label>Edad</label>
+                </div>
+                <div class="col-sm-8">
+                    <input type="text" id="celular" name="name" value="" class="form-control" />
+                </div>
+            </div>
+            <div class="row" style="padding-top: 10px;">
+                <div class="col-sm-4">
+                    <label>Ocupación</label>
+                </div>
+                <div class="col-sm-8">
+                    <input type="text" id="ocupacion" name="name" value="" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+
+        </div>
+    </div>
+    <div class="row" style="padding-top: 80px;">
+        <div class="col-sm-12">
+            <table class="table table-bordered table-responsive table-hover">
+                <thead>
+					<tr>
+						<th>#</th>
+						<th>N°</th>
+						<th>Tipo</th>
+						<th>Fecha</th>
+						<th>Hora</th>
+						<th>Producto</th>
+						<th>Descripción</th>
+						<th>Medico</th>
+						<th>Especialidad</th>
+						<th>Precio</th>
+						<th>IGV</th>
+						<th>Estado</th>
+						<th>Est.Pago</th>
+						<th>Est.Aten</th>
+						<th>Total</th>
+						<th>Acciones</th>
+					</tr>
+                </thead>
+                <tbody>
+					<tr>
+						<td>2</td>
+						<td>Examen</td>
+						<td>15/02/2020</td>
+						<td>10:00</td>
+						<td>Homoglobina</td>
+						<td>Sialer</td>
+						<td>Patologia clinica</td>
+						<td>Patologia clinica</td>
+						<td>Patologia clinica</td>
+						<td>Patologia clinica</td>
+						<td>50,00</td>
+						<td>36</td>
+						<td>Confirmado</td>
+						<td>Pendiente</td>
+						<td>0</td>
+						<td>
+							<button title="Reprogramar" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></button>
+							<button title="Consultar" class="btn btn-primary">
+								<i class="fa fa-search" aria-hidden="true"></i>
+							</button>
+							<button title="Anular" class="btn btn-danger">
+								<i class="fa fa-minus" aria-hidden="true"></i>
+							</button>
+						</td>
+					</tr>
+      
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-12 text-right">
+            <span style="margin-right:10px;">TOTAL DE VALOR VENTA - OPERACION GRAVADA</span><span>300</span><br />
+            <span style="margin-right:10px;">IGV(18%)</span><span>54</span><br />
+            <span style="margin-right:10px;">IMPORTE TOTAL</span><span>354</span>
+        </div>
+        <div class="col-sm-12" style="padding-top: 10px;">
+            <div class="row">
+                <div class="col-sm-6">
+
+                </div>
+                <div class="col-sm-6 text-right">
+                    <button class="btn btn-primary" style="width: 112px;font-size: 16px;">Pagar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--    MODAL DE REGISTRO DE PACIENTES   -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 1331px;position: relative;right: 400px;">
+            <button style="text-align:right" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <div class="col-sm-12">
+                <form action="/" method="post" id="idformpac" class="needs-validation" novalidate>
+
+                    <div class="col-sm-12 text-center pt-2 pb-4">
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h1>Datos del paciente</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="col-sm-12">
+                                            <div class="row">
+                                                <div class="col-sm-5">
+                                                    <label>Tipo de paciente</label>
+                                                </div>
+                                                <div class="col-sm-7">
+                                                    <select onchange="MostrarInputs()" id="cbotppac" class="custom-select">
+                                                        <option value="1">Paciente particular</option>
+                                                        <option value="2">Paciente convenio</option>
+                                                        <option value="3">Paciente compañia</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+
+                                    </div>
+                                    <div class="col-sm-4">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row pb-2">
+                                    <div class="col-sm-3">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label for="apepatpac">Apellido paterno</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input id="apepatpac" type="text" name="name" value="" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label for="apematpac">Apellido Materno</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input id="apematpac" type="text" name="name" value="" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label for="firstname">Primer nombre</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input id="firstname" type="text" name="name" value="" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label for="secondname">Segundo nombre</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input id="secondname" type="text" name="name" value="" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row pb-2">
+                                    <div class="col-sm-3">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label for="cbosexo">Sexo</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <select id="cbosexo" class="form-control">
+                                                    <option value="value">text</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label for="fechdate">Fecha de nacimiento</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input id="fechdate" type="date" name="name" value="" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label for="edadpac">Edad</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <inpu id="edadpac" t type="text" name="name" value="" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label for="cboocupacion">Ocupación</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <select id="cboocupacion" class="form-control">
+                                                    <option value="value">Secretaria</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row pb-2">
+                                    <div class="col-sm-3">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label for="cbogrdinstruccion">Grado de instruccion</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <select id="cbogrdinstruccion" class="form-control">
+                                                    <option value="value">Estudiante</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label for="estcivil">Estado civil</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <select id="estcivil" class="form-control">
+                                                    <option value="value">Estudiante</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label for="emailpac">Email</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input id="emailpac" type="text" name="name" value="" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label for="celularpac">Celular</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input id="celularpac" type="text" name="name" value="" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row pb-3">
+                                    <div class="col-sm-3">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label for="cbodoc">Tipo de Doc</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <select id="cbodoc" class="form-control">
+                                                    <option value="value">DNI</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label for="nrodoc">Nro. Doc.</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input id="nrodoc" type="text" name="name" value="" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label for="cboparentesco">Parentesco</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <select id="cboparentesco" class="form-control">
+                                                    <option value="value">Hijo</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="row" id="divpacconv" style="display:none;">
+                                            <div class="col-sm-4">
+                                                <label for="factor_rh">Factor RH</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <select id="factor_rh" class="form-control">
+                                                    <option value="value">text</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row pb-2">
+                                    <div class="col-sm-3">
+                                        <div class="row" id="divpaccomp" style="display:none;">
+                                            <div class="col-sm-4">
+                                                <label for="cbogruposanguineo">Grupo sanguineo</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <select id="cbogruposanguineo" class="form-control">
+                                                    <option value="value">Negativo</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+
+                                    </div>
+                                    <div class="col-sm-3">
+
+                                    </div>
+                                    <div class="col-sm-3">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <a data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-sm-6 card-title">
+                                            <h4>Ubicación</h4>
+                                        </div>
+                                        <div class="col-sm-6 text-right">
+                                            <i style="font-size: 30px;" class="fas fa-plus fx-5"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="card">
+                            <div class="collapse multi-collapse" id="multiCollapseExample1">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label for="departamentopac">Departamento</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <select id="departamentopac" class="custom-select">
+                                                        <option value="value">text</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label for="provinciapac">Provincia</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <select id="provinciapac" class="custom-select">
+                                                        <option value="value">text</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label for="tipvia">Tipo de vía</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <input id="tipvia" type="text" name="name" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label for="nomvia">Nombre de via</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <input id="nomvia" type="text" name="name" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label for="nro">N°</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <input id="nro" type="text" name="name" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label for="nrodpto">DPTO N°</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <input id="nrodpto" type="text" name="name" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label for="nroInterior">Interior</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <input id="nroInterior" type="text" name="name" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label for="nrolote">N° de lote</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <input id="nrolote" type="text" name="name" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <a data-toggle="collapse" href="#collapsedatosnac" role="button" aria-expanded="false" aria-controls="collapsedatosnac">
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-sm-6 card-title">
+                                            <h4>Datos nacimiento</h4>
+                                        </div>
+                                        <div class="col-sm-6 text-right">
+                                            <i style="font-size: 30px;" class="fas fa-plus fx-5"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="card">
+                            <div class="collapse multi-collapse" id="collapsedatosnac">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label for="paisnac">Pais origen</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <select id="paisnac" class="form-control">
+                                                        <option value="value">Peru</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label for="dptonac">Departamento</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <select id="dptonac" class="form-control">
+                                                        <option value="value">Peru</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label for="provinnac">Provincia</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <select id="provinnac" class="form-control">
+                                                        <option value="value">Peru</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label for="cbodistritonac">Distrito</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <select id="cbodistritonac" class="form-control">
+                                                        <option value="value">Peru</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12" id="divpacotros" style="display: none;">
+                        <a data-toggle="collapse" href="#collapseotroscompañia" role="button" aria-expanded="false" aria-controls="collapseotroscompañia">
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-sm-6 card-title">
+                                            <h4>Otros</h4>
+                                        </div>
+                                        <div class="col-sm-6 text-right">
+                                            <i style="font-size: 30px;" class="fas fa-plus fx-5"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="card">
+                            <div class="collapse multi-collapse" id="collapseotroscompañia">
+                                <div id="actcompañia" class="card-body" style="display:none;">
+                                    <div class="row pb-2">
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-5">
+                                                    <label for="cobertura">Cobertura</label>
+                                                </div>
+                                                <div class="col-sm-7">
+                                                    <input id="cobertura" type="text" name="name" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-5">
+                                                    <label for="nroatenmed">Ord. Atencion medica</label>
+                                                </div>
+                                                <div class="col-sm-7">
+                                                    <input id="nroatenmed" type="text" name="name" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-5">
+                                                    <label for="nomaseg">Nombre de la Aseguradora</label>
+                                                </div>
+                                                <div class="col-sm-7">
+                                                    <input id="nomaseg" type="text" name="name" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-5">
+                                                    <label for="codaseg">Cod. del asegurado</label>
+                                                </div>
+                                                <div class="col-sm-7">
+                                                    <input id="codaseg" type="text" name="name" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row pb-3">
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-5">
+                                                    <label for="poliza">Poliza</label>
+                                                </div>
+                                                <div class="col-sm-7">
+                                                    <input id="poliza" type="text" name="name" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-5">
+                                                    <label for="cboparentesco2">Parentesco</label>
+                                                </div>
+                                                <div class="col-sm-7">
+                                                    <select id="cboparentesco2" class="custom-select">
+                                                        <option value="value">text</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-5">
+                                                    <label for="fechinivig">Inicio de vig.</label>
+                                                </div>
+                                                <div class="col-sm-7">
+                                                    <input id="fechinivig" type="date" name="name" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-5">
+                                                    <label for="fechfinvig">Fin de vig.</label>
+                                                </div>
+                                                <div class="col-sm-7">
+                                                    <input id="fechfinvig" type="date" name="name" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-5">
+                                                    <label for="tpplansalud">Tip Plan de salud</label>
+                                                </div>
+                                                <div class="col-sm-7">
+                                                    <input id="tpplansalud" type="text" name="name" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-5">
+                                                    <label for="nroplansalud">N° plan de salud</label>
+                                                </div>
+                                                <div class="col-sm-7">
+                                                    <input id="nroplansalud" type="text" name="name" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+
+                                        </div>
+                                        <div class="col-sm-3">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="actconvenio" class="card-body" style="display:none;">
+                                    <div class="row pb-2">
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-5">
+                                                    <label for="coberturacov">Cobertura</label>
+                                                </div>
+                                                <div class="col-sm-7">
+                                                    <input id="coberturacov" type="text" name="name" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-5">
+                                                    <label for="ordatencioncov">Ord. Atencion medica</label>
+                                                </div>
+                                                <div class="col-sm-7">
+                                                    <input id="ordatencioncov" type="text" name="name" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-5">
+                                                    <label for="cboparentesco3">Parentesco</label>
+                                                </div>
+                                                <div class="col-sm-7">
+                                                    <select id="cboparentesco3" class="custom-select">
+                                                        <option value="value">text</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-5">
+                                                    <label for="fechinicov">Inicio de vig.</label>
+                                                </div>
+                                                <div class="col-sm-7">
+                                                    <input id="fechinicov" type="date" name="name" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row pb-3">
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-5">
+                                                    <label for="fechfincov">Fin de vig.</label>
+                                                </div>
+                                                <div class="col-sm-7">
+                                                    <input id="fechfincov" type="date" name="name" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <a data-toggle="collapse" href="#collapsedatosempresa" role="button" aria-expanded="false" aria-controls="collapsedatosempresa">
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-sm-6 card-title">
+                                            <h4>Empresa</h4>
+                                        </div>
+                                        <div class="col-sm-6 text-right">
+                                            <i style="font-size: 30px;" class="fas fa-plus fx-5"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="card">
+                            <div class="collapse multi-collapse" id="collapsedatosempresa">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label for="nroruc">RUC</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <input id="nroruc" type="text" name="name" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label for="razsoc">Razon social</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <input id="razsoc" type="text" name="name" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label for="estruc">Estado del RUC</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <input id="estruc" type="text" name="name" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label for="domfiscal">Domicilio fiscal</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <input id="domfiscal" type="text" name="name" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <a data-toggle="collapse" href="#collapseacom" role="button" aria-expanded="false" aria-controls="collapseacom">
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-sm-6 card-title">
+                                            <h4>Datos del acompañante</h4>
+                                        </div>
+                                        <div class="col-sm-6 text-right">
+                                            <i style="font-size: 30px;" class="fas fa-plus fx-5"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="card">
+                            <div class="collapse multi-collapse" id="collapseacom">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label for="cbotipdocacom">Tipo de Doc</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <select id="cbotipdocacom" class="form-control">
+                                                        <option value="value">text</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label for="nrodocacom">Nro Doc.</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <input id="nrodocacom" type="text" name="name" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label>Buscar</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <button class="btn btn-primary"><i class="fas fas-search"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label for="apepatacom">Apellido paterno</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <input id="apepatacom" type="text" name="name" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label for="apematacom">Apellido materno</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <input id="apematacom" type="text" name="name" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label for="firstnomacom">Primer nombre</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <input id="firstnomacom" type="text" name="name" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label for="secondnameacom">Segundo nombre</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <input id="secondnameacom" type="text" name="name" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label for="cboparentescoacom">Parentesco</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <select id="cboparentescoacom" class="form-control">
+                                                        <option value="value">Padre</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label for="edadacom">Edad</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <input id="edadacom" type="text" name="name" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+
+                                        </div>
+                                        <div class="col-sm-3">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 text-right pb-2">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <button type="submit" class="btn btn-primary">Cerrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/Mantenedor_Paciente.js"></script>
