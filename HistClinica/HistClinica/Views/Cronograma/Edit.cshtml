@@ -1,4 +1,4 @@
-﻿@model HistClinica.Models.CronoMedico
+﻿@model HistClinica.Models.D012_CRONOMEDICO
 <div class="modal-dialog modal-lg" role="document">
 	<div class="modal-content">
 		<div class="modal-header">
@@ -65,7 +65,7 @@
 									<label>Hora Inicio</label>
 								</div>
 								<div class="col-sm-8">
-									@Html.DropDownListFor(m => m.dsHrInicio, new SelectList(ViewBag.listahoras), new { @class = "form-control" })
+									@Html.DropDownListFor(m => m.hrInicio, new SelectList(ViewBag.listahoras), new { @class = "form-control" })
 								</div>
 							</div>
 						</div>
@@ -75,7 +75,7 @@
 									<label>Hora Fin</label>
 								</div>
 								<div class="col-sm-8">
-									@Html.DropDownListFor(m => m.dsHrFin, new SelectList(ViewBag.listahoras), new { @class = "form-control" })
+									@Html.DropDownListFor(m => m.hrFin, new SelectList(ViewBag.listahoras), new { @class = "form-control" })
 								</div>
 							</div>
 						</div>
@@ -87,7 +87,7 @@
 									<label>Estado</label>
 								</div>
 								<div class="col-sm-8">
-									<select asp-for="dsEstado" class="form-control">
+									<select asp-for="idEstado" class="form-control">
 										<option>Activo</option>
 										<option>Inactivo</option>
 									</select>

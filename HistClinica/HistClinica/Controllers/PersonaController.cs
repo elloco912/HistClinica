@@ -49,13 +49,13 @@ namespace HistClinica.Controllers
         // GET: Persona/Create
         public IActionResult Create()
         {
-            List<Especialidad> lespecialidads = new List<Especialidad>();
-            lespecialidads = _context.Especialidad.ToList();
+            List<T120_ESPECIALIDAD> lespecialidads = new List<T120_ESPECIALIDAD>();
+            lespecialidads = _context.T120_ESPECIALIDAD.ToList();
             ViewBag.listaespecialidades = lespecialidads;
 
             //combo tipo de empleado
-            List<TipoEmpleado> tipoEmpleados = new List<TipoEmpleado>();
-            tipoEmpleados = _context.TipoEmpleado.ToList();
+            List<D015_TPEMPLEADO> tipoEmpleados = new List<D015_TPEMPLEADO>();
+            tipoEmpleados = _context.D015_TPEMPLEADO.ToList();
             ViewBag.lsttipoempleado = tipoEmpleados;
             return View();
         }
@@ -75,24 +75,26 @@ namespace HistClinica.Controllers
             return RedirectToAction("Create");
         }
 
+
+        // POST: Persona/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         public async Task<IActionResult> Editar(int idpersona)
         {
-            List<Especialidad> lespecialidads = new List<Especialidad>();
-            lespecialidads = _context.Especialidad.ToList();
+            List<T120_ESPECIALIDAD> lespecialidads = new List<T120_ESPECIALIDAD>();
+            lespecialidads = _context.T120_ESPECIALIDAD.ToList();
             ViewBag.listaespecialidades = lespecialidads;
 
             //combo tipo de empleado
-            List<TipoEmpleado> tipoEmpleados = new List<TipoEmpleado>();
-            tipoEmpleados = _context.TipoEmpleado.ToList();
+            List<D015_TPEMPLEADO> tipoEmpleados = new List<D015_TPEMPLEADO>();
+            tipoEmpleados = _context.D015_TPEMPLEADO.ToList();
             ViewBag.lsttipoempleado = tipoEmpleados;
 
             PersonaDTO persona = await _personaRepository.GetById(idpersona);
             return PartialView("Edit", persona);
         }
 
-        // POST: Persona/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id,PersonaDTO personaDTO)
