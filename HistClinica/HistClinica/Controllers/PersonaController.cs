@@ -78,6 +78,22 @@ namespace HistClinica.Controllers
         // POST: Persona/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        public async Task<IActionResult> Editar(int idpersona)
+        {
+            List<Especialidad> lespecialidads = new List<Especialidad>();
+            lespecialidads = _context.Especialidad.ToList();
+            ViewBag.listaespecialidades = lespecialidads;
+
+            //combo tipo de empleado
+            List<TipoEmpleado> tipoEmpleados = new List<TipoEmpleado>();
+            tipoEmpleados = _context.TipoEmpleado.ToList();
+            ViewBag.lsttipoempleado = tipoEmpleados;
+
+            PersonaDTO persona = await _personaRepository.GetById(idpersona);
+            return PartialView("Edit", persona);
+        }
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id,PersonaDTO personaDTO)
