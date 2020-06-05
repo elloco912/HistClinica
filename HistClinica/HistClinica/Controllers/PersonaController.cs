@@ -77,7 +77,7 @@ namespace HistClinica.Controllers
 
         public async Task<IActionResult> Editar(int idpersona)
         {
-            Persona persona = await _personaRepository.GetById(idpersona);
+            PersonaDTO persona = await _personaRepository.GetById(idpersona);
             return PartialView("Edit");
         }
 
