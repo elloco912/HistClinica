@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HistClinica.Models
 {
-	public class Persona
+	public class T000_PERSONA
 	{
 		[Key]
 		public int idPersona { get; set; }
@@ -45,11 +45,10 @@ namespace HistClinica.Models
 		public string condicionRuc { get; set; }
 		public string domiFiscal { get; set; }
 		public int? idParentesco { get; set; }
-		public int? telefono { get; set; }
-		public int? celular { get; set; }
+		public string telefono { get; set; }
+		public string celular { get; set; }
 		public string correo { get; set; }
-		public int? iddatoReniec { get; set; }
-		public int? iddatoSunat { get; set; }
+		public int? tpPersona { get; set; }
 		public int? iddatoSiteds { get; set; }
 		public int? idemprConvenio { get; set; }
 		public int? idciaSeguro { get; set; }
