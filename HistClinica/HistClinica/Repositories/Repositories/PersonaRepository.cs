@@ -298,7 +298,15 @@ namespace HistClinica.Repositories.Repositories
                                          apellidos = p.apePaterno + " " + p.apeMaterno,
                                          fechaIngreso = "",
                                          telefono = p.telefono,
-                                         cargo = ""
+                                         cargo = "",
+                                         area = "",
+                                         dni = p.dniPersona,
+                                         idEmpleado = 0,
+                                         idEspecialidad = 0,
+                                         idMedico = 0,
+                                         idTipoEmpleado = 0,
+                                         numeroColegio = 0,
+                                         ruc = p.nroRuc
                                      }).FirstOrDefaultAsync();
             return Persona;
         }
