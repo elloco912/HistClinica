@@ -15,11 +15,8 @@ namespace HistClinica.Models
 	public string dia {get;set;} 
 	public string fecProgramMedica { get; set; }
 	public int idMedico { get; set; }
-	public string dsMedico {get;set;} 
 	public int idEspecialidad { get; set; }
-	public string dsEspecialidad {get;set;} 
 	public int idConsultorio { get; set; }
-	public string dsConsultorio { get; set; }
 	public string dsHrInicio {get;set;} 
 	public string dsHrFin {get;set;} 
 	public int idEstado { get; set; }
