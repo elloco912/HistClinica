@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace HistClinica.Models
 {
-	public class TipoEmpleado
+	public class T109_ESTADOCITA
 	{
 		[Key]
-		public int idTipoEmpleado { get; set; }
-		public string Descripcion { get; set; }
+		public int idEstadoCita { get; set; }
+		public string codEstadoCita { get; set; }
+		public string estado { get; set; }
+		public string origen { get; set; }
 	}
 }

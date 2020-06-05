@@ -10,15 +10,15 @@ namespace HistClinica.Data
        : base(options)
         { }
 
-        public DbSet<Persona> Persona { get; set; }
-        public DbSet<Empleado> Empleado { get; set; }
-        public DbSet<Paciente> Paciente { get; set; }
-        public DbSet<CronoMedico> CronoMedico { get; set; }
-        public DbSet<Medico> Medico { get; set; }
-        public DbSet<Especialidad> Especialidad { get; set; }
-        public DbSet<Cita> Cita { get; set; }
-        public DbSet<EstadoCita> EstadoCita { get; set; }
-        public DbSet<Consultorio> Consultorio { get; set; }
-        public DbSet<TipoEmpleado> TipoEmpleado { get; set; }
+        public DbSet<T000_PERSONA> T000_PERSONA { get; set; }
+        public DbSet<T120_EMPLEADO> T120_EMPLEADO { get; set; }
+        public DbSet<T001_PACIENTE> T001_PACIENTE { get; set; }
+        public DbSet<D012_CRONOMEDICO> D012_CRONOMEDICO { get; set; }
+        public DbSet<T212_MEDICO> T212_MEDICO { get; set; }
+        public DbSet<T120_ESPECIALIDAD> T120_ESPECIALIDAD { get; set; }
+        public DbSet<T068_CITA> T068_CITA { get; set; }
+        public DbSet<T109_ESTADOCITA> T109_ESTADOCITA { get; set; }
+        public DbSet<D008_CONSULTORIO> D008_CONSULTORIO { get; set; }
+        public DbSet<D015_TPEMPLEADO> D015_TPEMPLEADO { get; set; }
     }
 }

@@ -43,27 +43,27 @@ namespace HistClinica.Repositories.Repositories
 
         public async Task<bool> PersonaExists(int? id)
         {
-            return await _context.Persona.AnyAsync(e => e.idPersona == id);
+            return await _context.T000_PERSONA.AnyAsync(e => e.idPersona == id);
         }
 
         public async Task DeletePersona(int PersonaID)
         {
-            Persona Persona = await _context.Persona.FindAsync(PersonaID);
-            _context.Persona.Remove(Persona);
+            T000_PERSONA Persona = await _context.T000_PERSONA.FindAsync(PersonaID);
+            _context.T000_PERSONA.Remove(Persona);
         }
         public async Task<string> InsertPersona(PersonaDTO PersonaDTO)
         {
             int idPersona = 0;
             try
             {
-                await _context.Persona.AddAsync(new Persona()
+                await _context.T000_PERSONA.AddAsync(new T000_PERSONA()
                 {
                     nombres = PersonaDTO.nombres,
                     apePaterno = PersonaDTO.apellidos.Split(" ")[0],
                     apeMaterno = PersonaDTO.apellidos.Split(" ")[1],
                     dniPersona = PersonaDTO.dni,
                     nroRuc = PersonaDTO.ruc,
-                    telefono = int.Parse(PersonaDTO.telefono.ToString()),
+                    telefono = PersonaDTO.telefono,
                     celular = null,
                     centroEduca = null,
                     condicionRuc = null,
@@ -75,9 +75,7 @@ namespace HistClinica.Repositories.Repositories
                     fecNacimiento = null,
                     fotografia = null,
                     idciaSeguro = null,
-                    iddatoReniec = null,
                     iddatoSiteds = null,
-                    iddatoSunat = null,
                     idemprConvenio = null,
                     idEstCivil = null,
                     idEtnico = null,
@@ -105,53 +103,42 @@ namespace HistClinica.Repositories.Repositories
                     razonSocial = null
                 });
                 await Save();
-                idPersona = (await _context.Persona
+                idPersona = (await _context.T000_PERSONA
                     .FirstOrDefaultAsync(m => m.dniPersona == PersonaDTO.dni)).idPersona;
-                if (PersonaDTO.idTipoEmpleado == 1)
+                //if (PersonaDTO.idTipoEmpleado == 1)
+                //{
+                T120_EMPLEADO Empleado = new T120_EMPLEADO
                 {
-                    Empleado Empleado = new Empleado
-                    {
-                        cargo = PersonaDTO.cargo,
-                        codEmpleado = null,
-                        descArea = null,
-                        estado = null,
-                        fecIngreso = PersonaDTO.fechaIngreso,
-                        genero = null,
-                        idHorario = 0,
-                        idTipoEmpleado = PersonaDTO.idTipoEmpleado,
-                        nombres = PersonaDTO.nombres + "" + PersonaDTO.apellidos,
-                        nroDni = PersonaDTO.dni,
-                        precio = null,
-                        salario = null,
-                        idPersona = idPersona
-                    };
-                    await _context.Empleado.AddAsync(Empleado);
-                    await Save();
-                }
+                    cargo = PersonaDTO.cargo,
+                    codEmpleado = null,
+                    descArea = null,
+                    estado = null,
+                    fecIngreso = PersonaDTO.fechaIngreso,
+                    genero = null,
+                    idtpEmpleado = PersonaDTO.idTipoEmpleado,
+                    precio = null,
+                    salario = null,
+                    idPersona = idPersona                
+                };
+                await _context.T120_EMPLEADO.AddAsync(Empleado);
+                await Save();
+                //}
                 if (PersonaDTO.idTipoEmpleado == 2)
                 {
-                    Medico Medico = new Medico()
+                    T212_MEDICO Medico = new T212_MEDICO()
                     {
                         idEmpleado = null,
                         idPersona = idPersona,
-                        area = PersonaDTO.area,
-                        nombres = PersonaDTO.nombres,
-                        apellidos = PersonaDTO.apellidos,
-                        nroDni = PersonaDTO.dni,
-                        fecIngreso = PersonaDTO.fechaIngreso,
                         nroColegio = PersonaDTO.numeroColegio,
-                        cargo = PersonaDTO.cargo,
                         nroRuc = PersonaDTO.ruc,
-                        telefono = PersonaDTO.telefono.ToString(),
                         idEspecialidad = PersonaDTO.idEspecialidad,
                         codMedico = null,
                         condicion = null,
-                        especialidad = null,
                         estado = "Activo",
                         nroRne = null,
-                        tpDocumento = null
+                        idtpDocumento = null
                     };
-                    await _context.Medico.AddAsync(Medico);
+                    await _context.T212_MEDICO.AddAsync(Medico);
                     await Save();
                 }
                 return "Ingreso Exitoso Persona,Medico,Empleado";
@@ -165,53 +152,41 @@ namespace HistClinica.Repositories.Repositories
         {
             try
             {
-                if (PersonaDTO.idTipoEmpleado == 1)
+                //if (PersonaDTO.idTipoEmpleado == 1)
+                //{
+                T120_EMPLEADO Empleado = new T120_EMPLEADO
                 {
-                    Empleado Empleado = new Empleado
-                    {
-                        idEmpleado = int.Parse(PersonaDTO.idEmpleado.ToString()),
-                        cargo = PersonaDTO.cargo,
-                        codEmpleado = null,
-                        descArea = null,
-                        estado = null,
-                        fecIngreso = PersonaDTO.fechaIngreso,
-                        genero = null,
-                        idHorario = 0,
-                        idTipoEmpleado = PersonaDTO.idTipoEmpleado,
-                        nombres = PersonaDTO.nombres + "" + PersonaDTO.apellidos,
-                        nroDni = PersonaDTO.dni,
-                        precio = null,
-                        salario = null,
-                        idPersona = PersonaDTO.idPersona
-                    };
-                    _context.Entry(Empleado).State = EntityState.Modified;
-                }
+                    cargo = PersonaDTO.cargo,
+                    codEmpleado = null,
+                    descArea = null,
+                    estado = null,
+                    fecIngreso = PersonaDTO.fechaIngreso,
+                    genero = null,
+                    idEmpleado = int.Parse(PersonaDTO.idTipoEmpleado.ToString()),
+                    precio = null,
+                    salario = null,
+                    idPersona = PersonaDTO.idPersona
+                };
+                _context.Entry(Empleado).State = EntityState.Modified;
+                //}
                 if (PersonaDTO.idTipoEmpleado == 2)
                 {
-                    Medico Medico = new Medico()
+                    T212_MEDICO Medico = new T212_MEDICO()
                     {
-                        idMedico = int.Parse(PersonaDTO.idMedico.ToString()),
                         idEmpleado = null,
-                        area = PersonaDTO.area,
-                        nombres = PersonaDTO.nombres,
-                        apellidos = PersonaDTO.apellidos,
-                        nroDni = PersonaDTO.dni,
-                        fecIngreso = PersonaDTO.fechaIngreso,
+                        idPersona = PersonaDTO.idPersona,
                         nroColegio = PersonaDTO.numeroColegio,
-                        cargo = PersonaDTO.cargo,
                         nroRuc = PersonaDTO.ruc,
-                        telefono = PersonaDTO.telefono.ToString(),
                         idEspecialidad = PersonaDTO.idEspecialidad,
                         codMedico = null,
                         condicion = null,
-                        especialidad = null,
                         estado = "Activo",
                         nroRne = null,
-                        tpDocumento = null
+                        idtpDocumento = null
                     };
                     _context.Entry(Medico).State = EntityState.Modified;
                 }
-                _context.Entry(new Persona()
+                _context.Entry(new T000_PERSONA()
                 {
                     idPersona = int.Parse(PersonaDTO.idPersona.ToString()),
                     nombres = PersonaDTO.nombres,
@@ -231,9 +206,7 @@ namespace HistClinica.Repositories.Repositories
                     fecNacimiento = null,
                     fotografia = null,
                     idciaSeguro = null,
-                    iddatoReniec = null,
                     iddatoSiteds = null,
-                    iddatoSunat = null,
                     idemprConvenio = null,
                     idEstCivil = null,
                     idEtnico = null,
@@ -271,33 +244,33 @@ namespace HistClinica.Repositories.Repositories
         }
         public async Task<List<PersonaDTO>> GetAllPersonas()
         {
-            List<PersonaDTO> Personas = await (from p in _context.Persona
-                                            where p.idPersona == (from m in _context.Medico where m.idPersona == p.idPersona select m.idPersona).First() 
-                                            || p.idPersona == (from e in _context.Empleado where e.idPersona == p.idPersona select e.idPersona).FirstOrDefault()
+            List<PersonaDTO> Personas = await (from p in _context.T000_PERSONA
+                                            where p.idPersona == (from m in _context.T212_MEDICO where m.idPersona == p.idPersona select m.idPersona).First() 
+                                            || p.idPersona == (from e in _context.T120_EMPLEADO where e.idPersona == p.idPersona select e.idPersona).FirstOrDefault()
                                             select new PersonaDTO
                                             {
                                                 idPersona = p.idPersona,
                                                 nombres = p.nombres,
                                                 apellidos = p.apePaterno + " " + p.apeMaterno,
-                                                fechaIngreso = "",
+                                                fechaIngreso = null, //Empleado
                                                 telefono = p.telefono,
-                                                cargo = ""
+                                                cargo = "" //Empleado
                                             }).ToListAsync();
 
             return Personas;
         }
         public async Task<PersonaDTO> GetById(int? id)
         {
-            PersonaDTO Persona = await (from p in _context.Persona
-                                     where (p.idPersona == (from m in _context.Medico where m.idPersona == p.idPersona select m.idPersona).First()
-                                     || p.idPersona == (from e in _context.Empleado where e.idPersona == p.idPersona select e.idPersona).FirstOrDefault())
+            PersonaDTO Persona = await (from p in _context.T000_PERSONA
+                                     where (p.idPersona == (from m in _context.T212_MEDICO where m.idPersona == p.idPersona select m.idPersona).First()
+                                     || p.idPersona == (from e in _context.T120_EMPLEADO where e.idPersona == p.idPersona select e.idPersona).FirstOrDefault())
                                      && p.idPersona == id
                                      select new PersonaDTO
                                      {
                                          idPersona = p.idPersona,
                                          nombres = p.nombres,
                                          apellidos = p.apePaterno + " " + p.apeMaterno,
-                                         fechaIngreso = "",
+                                         fechaIngreso = null,
                                          telefono = p.telefono,
                                          cargo = "",
                                          area = "",

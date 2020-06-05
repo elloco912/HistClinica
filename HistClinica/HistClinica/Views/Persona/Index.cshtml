@@ -1,4 +1,3 @@
-
 @model IEnumerable<HistClinica.DTO.PersonaDTO>
 
 @{
@@ -80,151 +79,152 @@
 </div>
 
 <div class="modal fade" id="modalestado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<button style="text-align:right;" type="button" class="close" data-dismiss="modal" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-			<div class="modal-body">
-				<div class="col-sm-12 text-center" style="padding-bottom: 10px;">
-					<h2 id="exampleModalLabel">Aviso!</h2>
-				</div>
-				<div class="col-sm-12 text-center" style="padding-top: 10px; padding-bottom:10px;">
-					<h4>¿Desea cambiar el estado del personal?</h4>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button style="width: 80px;" type="button" id="btnaceptar" class="btn btn-primary">Si</button>
-				<button style="width: 80px;" type="button" data-dismiss="modal" class="btn btn-primary">No</button>
-			</div>
-		</div>
-	</div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <button style="text-align:right;" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-body">
+                <div class="col-sm-12 text-center" style="padding-bottom: 10px;">
+                    <h2 id="exampleModalLabel">Aviso!</h2>
+                </div>
+                <div class="col-sm-12 text-center" style="padding-top: 10px; padding-bottom:10px;">
+                    <h4>¿Desea cambiar el estado del personal?</h4>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button style="width: 80px;" type="button" id="btnaceptar" class="btn btn-primary">Si</button>
+                <button style="width: 80px;" type="button" data-dismiss="modal" class="btn btn-primary">No</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 
 
 <div class="modal fade" id="modalasignar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content" style="width: 1200px;position: relative;right: 302px;">
-			<div class="container">
-				<div class="col-sm-12">
-					<div class="row">
-						<div class="col-sm-12">
-							<h2 style="text-align: left">Asignar Usuario</h2>
-						</div>
-					</div>
-				</div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width: 1200px;position: relative;right: 302px;">
+            <div class="container">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h2 style="text-align: left">Asignar Usuario</h2>
+                        </div>
+                    </div>
+                </div>
 
-			</div>
+            </div>
 
 
-			<div class="container">
-				<div class="col-sm-12">
-					<div class="row">
-						<div class="col-md-6">
-							<div class="box box-primary">
-								<div class="box-body">
-									<div class="form-group">
-										<label>CODIGO</label>
-									</div>
-									<div class="form-group">
-										<input id="txtCodigo" Text="" class="form-control" size="60" maxlength="60">
-									</div>
-									<div class="form-group">
-										<label>TIPO</label>
-									</div>
-									<div class="form-group">
-										<input id="txtTipo" Text="" class="form-control" size="60" maxlength="60">
-									</div>
-									<div class="form-group">
-										<label>ID</label>
-									</div>
-									<div class="form-group">
-										<input id="txtId" Text="" class="form-control" size="60" maxlength="60">
-									</div>
-									<div class="form-group">
-										<label>CLAVE </label>
-									</div>
-									<div class="form-group">
-										<input ID="txtClave" Text="" class="form-control" size="60" maxlength="60">
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="box box-primary">
-								<div class="box-body">
-									<div class="form-group">
-										<label>ESTADO</label>
-									</div>
-									<div class="form-group">
-										<select ID="ddlEstado" class="form-control" style="width: 520px">
-											<option value="masculino">Activo</option>
-											<option value="femenino">Inactivo</option>
-										</select>
-									</div>
-									<div class="form-group">
-										<label>MODULO</label>
-									</div>
-									<div class="form-group">
-										<select ID="ddlModulo" class="form-control" style="width: 520px">
-											<option value="masculino">Programacion de Citas</option>
-											<option value="femenino">Inactivo</option>
-										</select>
-									</div>
+            <div class="container">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="box box-primary">
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <label>CODIGO</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input id="txtCodigo" Text="" class="form-control" size="60" maxlength="60">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>TIPO</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input id="txtTipo" Text="" class="form-control" size="60" maxlength="60">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>ID</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input id="txtId" Text="" class="form-control" size="60" maxlength="60">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>CLAVE </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input ID="txtClave" Text="" class="form-control" size="60" maxlength="60">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="box box-primary">
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <label>ESTADO</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <select ID="ddlEstado" class="form-control" style="width: 520px">
+                                            <option value="masculino">Activo</option>
+                                            <option value="femenino">Inactivo</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>MODULO</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <select ID="ddlModulo" class="form-control" style="width: 520px">
+                                            <option value="masculino">Programacion de Citas</option>
+                                            <option value="femenino">Inactivo</option>
+                                        </select>
+                                    </div>
 
-									<div class="form-group">
-										<label>PERMISOS</label>
-									</div>
-									<div class="form-group">
-										<select ID="ddlPermisos" class="form-control" style="width: 520px">
-											<option value="masculino">Programacion de Citas</option>
-											<option value="masculino">Reportes</option>
-											<option value="masculino">Gestion de Personal</option>
-										</select>
-									</div>
+                                    <div class="form-group">
+                                        <label>PERMISOS</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <select ID="ddlPermisos" class="form-control" style="width: 520px">
+                                            <option value="masculino">Programacion de Citas</option>
+                                            <option value="masculino">Reportes</option>
+                                            <option value="masculino">Gestion de Personal</option>
+                                        </select>
+                                    </div>
 
-								</div>
-								<div align="center" style="padding-bottom: 20px;">
-									<table>
-										<tr>
-											<td>
-												<button type="button" class="btn btn-primary" Width="400px">Agregar</button>
-											</td>
-											<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-											<td>
-												<button type="button" class="btn btn-danger" Width="400px">Desagregar</button>
-											</td>
-										</tr>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+                                </div>
+                                <div align="center" style="padding-bottom: 20px;">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <button type="button" class="btn btn-primary" Width="400px">Agregar</button>
+                                            </td>
+                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                            <td>
+                                                <button type="button" class="btn btn-danger" Width="400px">Desagregar</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-				<div align="right" style="padding-bottom: 20px;">
-					<table>
-						<tr>
-							<td>
-								<button type="button" class="btn btn-primary" style="width: 112px;font-size: 16px;">Guardar </button>
-							</td>
-							<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-							<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <div align="right" style="padding-bottom: 20px;">
+                    <table>
+                        <tr>
+                            <td>
+                                <button type="button" class="btn btn-primary" style="width: 112px;font-size: 16px;">Guardar </button>
+                            </td>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
 
-							<td>
-								<button type="button" class="btn btn-dark" style="width: 112px;font-size: 16px;">Salir</button>
-							</td>
-						</tr>
-					</table>
-				</div>
+                            <td>
+                                <button type="button" class="btn btn-dark" style="width: 112px;font-size: 16px;">Salir</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
 
-			</div>
+            </div>
 
-		</div>
-	</div>
+        </div>
+    </div>
 </div>
 <div class="modal fade" id="modaleditar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 
 </div>
 <script src="~/js/cargavistaparcial.js"></script>
+

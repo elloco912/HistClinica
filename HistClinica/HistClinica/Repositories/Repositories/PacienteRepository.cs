@@ -41,20 +41,20 @@ namespace HistClinica.Repositories.Repositories
 
         public async Task<bool> PacienteExists(int? id)
         {
-            return await _context.Paciente.AnyAsync(e => e.idPaciente == id);
+            return await _context.T001_PACIENTE.AnyAsync(e => e.idPaciente == id);
         }
 
         public async Task DeletePaciente(int PacienteID)
         {
-            Paciente Paciente = await _context.Paciente.FindAsync(PacienteID);
-            _context.Paciente.Remove(Paciente);
+            T001_PACIENTE Paciente = await _context.T001_PACIENTE.FindAsync(PacienteID);
+            _context.T001_PACIENTE.Remove(Paciente);
             await Save();
         }
-        public async Task<string> InsertPaciente(Paciente Paciente)
+        public async Task<string> InsertPaciente(T001_PACIENTE Paciente)
         {
             try
             {
-                await _context.Paciente.AddAsync(Paciente);
+                await _context.T001_PACIENTE.AddAsync(Paciente);
                 await Save();
                 return "Ingreso Exitoso";
             }
@@ -64,7 +64,7 @@ namespace HistClinica.Repositories.Repositories
                 return "Error en el guardado " + ex.StackTrace;
             }
         }
-        public async Task<string> UpdatePaciente(Paciente Paciente)
+        public async Task<string> UpdatePaciente(T001_PACIENTE Paciente)
         {
             try
             {
@@ -78,23 +78,23 @@ namespace HistClinica.Repositories.Repositories
                 return "Error en el guardado " + ex.StackTrace;
             }
         }
-        public async Task<List<Paciente>> GetAllPacientes()
+        public async Task<List<T001_PACIENTE>> GetAllPacientes()
         {
-            List<Paciente> Pacientes = await (  from p in _context.Paciente
-                                                join o in _context.Persona on p.idPersona equals o.idPersona
-                                                select new Paciente
+            List<T001_PACIENTE> Pacientes = await (  from p in _context.T001_PACIENTE
+                                                join o in _context.T000_PERSONA on p.idPersona equals o.idPersona
+                                                select new T001_PACIENTE
                                                 {
                                                     idPaciente = p.idPaciente,
                                                 }).ToListAsync();
 
             return Pacientes;
         }
-        public async Task<Paciente> GetByDni(int? Dni)
+        public async Task<T001_PACIENTE> GetByDni(int? Dni)
         {
-            Paciente Paciente = await ( from p in _context.Paciente
-                                        join o in _context.Persona on p.idPersona equals o.idPersona
+            T001_PACIENTE Paciente = await ( from p in _context.T001_PACIENTE
+                                        join o in _context.T000_PERSONA on p.idPersona equals o.idPersona
                                         where o.dniPersona == Dni
-                                        select new Paciente
+                                        select new T001_PACIENTE
                                         {
                                             idPaciente = p.idPaciente,
                                         }).FirstOrDefaultAsync();

@@ -4,7 +4,7 @@
 		$.ajax({
 			type: "GET",
 			url: "/Cronograma/Editar",
-			data: {id: id},
+			data: { id: id },
 			contentType: "application/json; charset=utf-8",
 			dataType: "html",
 			success: function (response) {

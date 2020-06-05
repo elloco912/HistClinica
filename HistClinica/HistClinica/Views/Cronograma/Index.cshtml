@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HistClinica.Models.CronoMedico>
+﻿@model IEnumerable<HistClinica.Models.D012_CRONOMEDICO>
 @{
 	ViewData["Title"] = "Index";
 }
@@ -12,7 +12,7 @@
 		</div>
 
 
-		<partial name="Create" model="new HistClinica.Models.CronoMedico()">
+		<partial name="Create" model="new HistClinica.Models.D012_CRONOMEDICO()">
 
 			<div class="row pt-3">
 				<div class="col-sm-12">
@@ -33,9 +33,9 @@
 								<tr>
 									<td>@item.idProgramMedica</td>
 									<td>@item.fecProgramMedica</td>
-									<td>@item.dsHrInicio</td>
-									<td>@item.dsHrFin</td>
-									<td>@item.dsEstado</td>
+									<td>@item.hrInicio</td>
+									<td>@item.hrFin</td>
+									<td>@item.idEstado</td>
 									<td>
 										<button type="submit" class="edit btn btn-primary" onclick="Cargarmodal();"><i class="fas fa-edit"></i></button>
 										<a type="submit" asp-action="Delete" asp-route-id="@item.idProgramMedica" class="btn btn-danger"><i class="fas fa-minus"></i></a>

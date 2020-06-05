@@ -77,7 +77,7 @@ namespace HistClinica.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("idPaciente,apePaterno,apeMaterno,nombres,idtpDocumento,dniPac,idSexo,idEtnico,fecNacimiento,idUbigeoResi,idtipoVia,nombreVia,nroVia,nroDpto,interior,manzana,nroLote,nroKm,nroBlock,nroEtapa,edad,nrohc,idUbigeoNace,fotografia,idGrdInstruc,idReligion,centroEduca,idEstCivil,idOcupacion,idgpoSangre,idFactorrh,nroRuc,razonSocial,estadoRuc,condicionRuc,domiFiscal,idParentesco,nombreAcom,edadAcom,dniAcom,fonoFijo,celular,correo,idtpPaciente,idAsegurado,idPacConvenio,iddatoReniec,iddatoSunat,iddatoSiteds,idemprConvenio,idciaSeguro,idtipoIafa")] Paciente paciente)
+        public async Task<IActionResult> Create([Bind("idPaciente,apePaterno,apeMaterno,nombres,idtpDocumento,dniPac,idSexo,idEtnico,fecNacimiento,idUbigeoResi,idtipoVia,nombreVia,nroVia,nroDpto,interior,manzana,nroLote,nroKm,nroBlock,nroEtapa,edad,nrohc,idUbigeoNace,fotografia,idGrdInstruc,idReligion,centroEduca,idEstCivil,idOcupacion,idgpoSangre,idFactorrh,nroRuc,razonSocial,estadoRuc,condicionRuc,domiFiscal,idParentesco,nombreAcom,edadAcom,dniAcom,fonoFijo,celular,correo,idtpPaciente,idAsegurado,idPacConvenio,iddatoReniec,iddatoSunat,iddatoSiteds,idemprConvenio,idciaSeguro,idtipoIafa")] T001_PACIENTE paciente)
         {
             if (ModelState.IsValid)
             {
@@ -108,7 +108,7 @@ namespace HistClinica.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("idPaciente,apePaterno,apeMaterno,nombres,idtpDocumento,dniPac,idSexo,idEtnico,fecNacimiento,idUbigeoResi,idtipoVia,nombreVia,nroVia,nroDpto,interior,manzana,nroLote,nroKm,nroBlock,nroEtapa,edad,nrohc,idUbigeoNace,fotografia,idGrdInstruc,idReligion,centroEduca,idEstCivil,idOcupacion,idgpoSangre,idFactorrh,nroRuc,razonSocial,estadoRuc,condicionRuc,domiFiscal,idParentesco,nombreAcom,edadAcom,dniAcom,fonoFijo,celular,correo,idtpPaciente,idAsegurado,idPacConvenio,iddatoReniec,iddatoSunat,iddatoSiteds,idemprConvenio,idciaSeguro,idtipoIafa")] Paciente paciente)
+        public async Task<IActionResult> Edit(int id, [Bind("idPaciente,apePaterno,apeMaterno,nombres,idtpDocumento,dniPac,idSexo,idEtnico,fecNacimiento,idUbigeoResi,idtipoVia,nombreVia,nroVia,nroDpto,interior,manzana,nroLote,nroKm,nroBlock,nroEtapa,edad,nrohc,idUbigeoNace,fotografia,idGrdInstruc,idReligion,centroEduca,idEstCivil,idOcupacion,idgpoSangre,idFactorrh,nroRuc,razonSocial,estadoRuc,condicionRuc,domiFiscal,idParentesco,nombreAcom,edadAcom,dniAcom,fonoFijo,celular,correo,idtpPaciente,idAsegurado,idPacConvenio,iddatoReniec,iddatoSunat,iddatoSiteds,idemprConvenio,idciaSeguro,idtipoIafa")] T001_PACIENTE paciente)
         {
             if (id != paciente.idPaciente)
             {

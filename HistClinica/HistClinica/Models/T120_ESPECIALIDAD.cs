@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace HistClinica.Models
 {
-	public class Especialidad
+	public class T120_ESPECIALIDAD
 	{
 		[Key]
 		public int idEspecialidad { get; set; }
-		public string codEspecialidad { get; set; }
+		public string codEspecial { get; set; }
 		public string codSigesa { get; set; }
 		public string descripcion { get; set; }
 		public string codSubEspecial { get; set; }
 		public string descSubEspecial { get; set; }
-		public string estado { get; set; }
 	}
 }
