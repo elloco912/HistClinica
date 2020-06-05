@@ -250,43 +250,55 @@ namespace HistClinica.Repositories.Repositories
         public async Task<List<PersonaDTO>> GetAllPersonas()
         {
             List<PersonaDTO> Personas = await (from p in _context.T000_PERSONA
-                                            where p.idPersona == (from m in _context.T212_MEDICO where m.idPersona == p.idPersona select m.idPersona).FirstOrDefault() 
-                                            || p.idPersona == (from e in _context.T120_EMPLEADO where e.idPersona == p.idPersona select e.idPersona).FirstOrDefault()
+                                            join e in _context.T120_EMPLEADO on p.idPersona equals e.idPersona
                                             select new PersonaDTO
                                             {
                                                 idPersona = p.idPersona,
                                                 nombres = p.nombres,
                                                 apellidos = p.apePaterno + " " + p.apeMaterno,
-                                                fechaIngreso = null, //Empleado
+                                                fechaIngreso = e.fecIngreso, 
                                                 telefono = p.telefono,
-                                                cargo = "" //Empleado
+                                                cargo = e.cargo 
                                             }).ToListAsync();
 
             return Personas;
         }
         public async Task<PersonaDTO> GetById(int? id)
         {
-            PersonaDTO Persona = await (from p in _context.T000_PERSONA
-                                     where (p.idPersona == (from m in _context.T212_MEDICO where m.idPersona == p.idPersona select m.idPersona).FirstOrDefault()
-                                     || p.idPersona == (from e in _context.T120_EMPLEADO where e.idPersona == p.idPersona select e.idPersona).FirstOrDefault())
-                                     && p.idPersona == id
+            PersonaDTO Persona;
+            Persona = await (from p in _context.T000_PERSONA
+                                        join e in _context.T120_EMPLEADO on p.idPersona equals e.idPersona
+                                        where p.idPersona == id
                                      select new PersonaDTO
                                      {
                                          idPersona = p.idPersona,
                                          nombres = p.nombres,
                                          apellidos = p.apePaterno + " " + p.apeMaterno,
-                                         fechaIngreso = null,
+                                         fechaIngreso = e.fecIngreso,
                                          telefono = p.telefono,
-                                         cargo = "",
-                                         area = "",
+                                         cargo = e.cargo,
+                                         area = e.descArea,
                                          dni = p.dniPersona,
-                                         idEmpleado = 0,
+                                         idEmpleado = e.idEmpleado,
                                          idEspecialidad = 0,
                                          idMedico = 0,
-                                         idTipoEmpleado = 0,
+                                         idTipoEmpleado = e.idtpEmpleado,
                                          numeroColegio = 0,
                                          ruc = p.nroRuc
                                      }).FirstOrDefaultAsync();
+            if(Persona.idTipoEmpleado != 1)
+            {
+                var personaTemporal = await (from m in _context.T212_MEDICO
+                                             where m.idEmpleado == Persona.idEmpleado
+                                             select new PersonaDTO {
+                                                 idEspecialidad = m.idEspecialidad,
+                                                 idMedico = m.idMedico,
+                                                 numeroColegio = m.nroColegio
+                                             }).FirstOrDefaultAsync();
+                Persona.idEspecialidad = personaTemporal.idEspecialidad;
+                Persona.idMedico = personaTemporal.idMedico;
+                Persona.numeroColegio = personaTemporal.numeroColegio;
+            }
             return Persona;
         }
     }

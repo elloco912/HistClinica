@@ -23,10 +23,10 @@ namespace HistClinica.Models
 		public string estadoReprogram { get; set; }
 		public string ejecutado { get; set; }
 		public string prioridad { get; set; }
-		public decimal? precio { get; set; }
-		public decimal? descuento { get; set; }
-		public decimal? coa { get; set; }
-		public decimal? igv { get; set; }
+		public double? precio { get; set; }
+		public double? descuento { get; set; }
+		public double? coa { get; set; }
+		public double? igv { get; set; }
 		public int? idPaciente { get; set; }
 		public int? idEmpleado { get; set; }
 		public int? idConsultorio { get; set; }
