@@ -54,6 +54,7 @@ namespace HistClinica.Repositories.Repositories
         public async Task<string> InsertPersona(PersonaDTO PersonaDTO)
         {
             int idPersona = 0;
+            int idEmpleado = 0;
             try
             {
                 await _context.T000_PERSONA.AddAsync(new T000_PERSONA()
@@ -100,11 +101,12 @@ namespace HistClinica.Repositories.Repositories
                     nroKm = null,
                     nroLote = null,
                     nroVia = null,
-                    razonSocial = null
+                    razonSocial = null,
+                    tpPersona = null
                 });
                 await Save();
                 idPersona = (await _context.T000_PERSONA
-                    .FirstOrDefaultAsync(m => m.dniPersona == PersonaDTO.dni)).idPersona;
+                    .FirstOrDefaultAsync(p => p.dniPersona == PersonaDTO.dni)).idPersona;
                 //if (PersonaDTO.idTipoEmpleado == 1)
                 //{
                 T120_EMPLEADO Empleado = new T120_EMPLEADO
@@ -118,16 +120,18 @@ namespace HistClinica.Repositories.Repositories
                     idtpEmpleado = PersonaDTO.idTipoEmpleado,
                     precio = null,
                     salario = null,
-                    idPersona = idPersona                
+                    idPersona = idPersona
                 };
                 await _context.T120_EMPLEADO.AddAsync(Empleado);
                 await Save();
+                idEmpleado = (await _context.T120_EMPLEADO
+                    .FirstOrDefaultAsync(e => e.idPersona == idPersona)).idEmpleado;
                 //}
                 if (PersonaDTO.idTipoEmpleado == 2)
                 {
                     T212_MEDICO Medico = new T212_MEDICO()
                     {
-                        idEmpleado = null,
+                        idEmpleado = idEmpleado,
                         idPersona = idPersona,
                         nroColegio = PersonaDTO.numeroColegio,
                         nroRuc = PersonaDTO.ruc,
@@ -135,8 +139,7 @@ namespace HistClinica.Repositories.Repositories
                         codMedico = null,
                         condicion = null,
                         estado = "Activo",
-                        nroRne = null,
-                        idtpDocumento = null
+                        nroRne = null
                     };
                     await _context.T212_MEDICO.AddAsync(Medico);
                     await Save();
@@ -163,6 +166,7 @@ namespace HistClinica.Repositories.Repositories
                     fecIngreso = PersonaDTO.fechaIngreso,
                     genero = null,
                     idEmpleado = int.Parse(PersonaDTO.idTipoEmpleado.ToString()),
+                    idtpEmpleado = PersonaDTO.idTipoEmpleado,
                     precio = null,
                     salario = null,
                     idPersona = PersonaDTO.idPersona
@@ -173,7 +177,7 @@ namespace HistClinica.Repositories.Repositories
                 {
                     T212_MEDICO Medico = new T212_MEDICO()
                     {
-                        idEmpleado = null,
+                        idEmpleado = PersonaDTO.idEmpleado,
                         idPersona = PersonaDTO.idPersona,
                         nroColegio = PersonaDTO.numeroColegio,
                         nroRuc = PersonaDTO.ruc,
@@ -182,7 +186,8 @@ namespace HistClinica.Repositories.Repositories
                         condicion = null,
                         estado = "Activo",
                         nroRne = null,
-                        idtpDocumento = null
+                        idtpDocumento = null,
+                        idMedico = int.Parse(PersonaDTO.idMedico.ToString())
                     };
                     _context.Entry(Medico).State = EntityState.Modified;
                 }
@@ -231,7 +236,8 @@ namespace HistClinica.Repositories.Repositories
                     nroKm = null,
                     nroLote = null,
                     nroVia = null,
-                    razonSocial = null
+                    razonSocial = null,
+                    tpPersona = null                
                 }).State = EntityState.Modified;
                 await Save();
                 return "Actualizacion Exitosa";
@@ -245,7 +251,7 @@ namespace HistClinica.Repositories.Repositories
         public async Task<List<PersonaDTO>> GetAllPersonas()
         {
             List<PersonaDTO> Personas = await (from p in _context.T000_PERSONA
-                                            where p.idPersona == (from m in _context.T212_MEDICO where m.idPersona == p.idPersona select m.idPersona).First() 
+                                            where p.idPersona == (from m in _context.T212_MEDICO where m.idPersona == p.idPersona select m.idPersona).FirstOrDefault() 
                                             || p.idPersona == (from e in _context.T120_EMPLEADO where e.idPersona == p.idPersona select e.idPersona).FirstOrDefault()
                                             select new PersonaDTO
                                             {
@@ -262,7 +268,7 @@ namespace HistClinica.Repositories.Repositories
         public async Task<PersonaDTO> GetById(int? id)
         {
             PersonaDTO Persona = await (from p in _context.T000_PERSONA
-                                     where (p.idPersona == (from m in _context.T212_MEDICO where m.idPersona == p.idPersona select m.idPersona).First()
+                                     where (p.idPersona == (from m in _context.T212_MEDICO where m.idPersona == p.idPersona select m.idPersona).FirstOrDefault()
                                      || p.idPersona == (from e in _context.T120_EMPLEADO where e.idPersona == p.idPersona select e.idPersona).FirstOrDefault())
                                      && p.idPersona == id
                                      select new PersonaDTO
