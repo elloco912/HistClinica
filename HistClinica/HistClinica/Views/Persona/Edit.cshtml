@@ -8,11 +8,12 @@
 					<h4 class="modal-title" id="myModalLabel">Actualizar registro</h4>
 				</div>
 				<div class="col-sm-12 pt-4">
-					@using (Html.BeginForm())
+					@using (Html.BeginForm("Edit","Persona"))
 					{
 						<div class="row">
 							<div class="col-md-6">
 								<div class="box box-primary">
+									@Html.HiddenFor(m => m.idPersona)
 									<div class="box-body">
 										<div class="form-group">
 											<label>TIPO DE EMPLEADO</label>
@@ -24,25 +25,25 @@
 											<label for="txtNombres">NOMBRES</label>
 										</div>
 										<div class="form-group">
-											@Html.TextBoxFor(m => m.nombres, new { @class = "form-control" })
+											@Html.EditorFor(m => m.nombres, new { htmlAttributes = new { @class = "form-control" } })
 										</div>
 										<div class="form-group">
 											<label for="txtNroDocumento">DOCUMENTO DE IDENTIDAD</label>
 										</div>
 										<div class="form-group">
-											@Html.TextBoxFor(m => m.dni, new { @class = "form-control" })
+											@Html.EditorFor(m => m.dni, new { htmlAttributes = new { @class = "form-control" } })
 										</div>
 										<div class="form-group">
 											<label for="txtNroColegio">N° DE COLEGIO</label>
 										</div>
 										<div class="form-group">
-											@Html.TextBoxFor(m => m.numeroColegio, new { @class = "form-control" })
+											@Html.EditorFor(m => m.numeroColegio, new { htmlAttributes = new { @class = "form-control" } })
 										</div>
 										<div class="form-group">
 											<label for="txtruc">N° DE RUC</label>
 										</div>
 										<div class="form-group">
-											@Html.TextBoxFor(m => m.ruc, new { @class = "form-control" })
+											@Html.EditorFor(m => m.ruc, new { htmlAttributes = new { @class = "form-control" } })
 										</div>
 										<div class="form-group">
 											<label for="txtespecialidad">ESPECIALIDAD</label>
@@ -60,31 +61,31 @@
 											<label for="txtarea">AREA</label>
 										</div>
 										<div class="form-group">
-											@Html.TextBoxFor(m => m.area, new { @class = "form-control" })
+											@Html.EditorFor(m => m.area, new { htmlAttributes = new { @class = "form-control" } })
 										</div>
 										<div class="form-group">
 											<label for="txtApPaterno">APELLIDOS</label>
 										</div>
 										<div class="form-group">
-											@Html.TextBoxFor(m => m.apellidos, new { @class = "form-control" })
+											@Html.EditorFor(m => m.apellidos, new { htmlAttributes = new { @class = "form-control" } })
 										</div>
 										<div class="form-group">
 											<label id="txtfecingresopersonal">FECHA INGRESO</label>
 										</div>
 										<div class="form-group">
-											@Html.TextBoxFor(m => m.fechaIngreso, new { @class = "form-control", @type = "Date" })
+											@Html.EditorFor(m => m.fechaIngreso, new { htmlAttributes = new { @class = "form-control", @type = "Date" } })
 										</div>
 										<div class="form-group">
 											<label for="txtcargo">CARGO</label>
 										</div>
 										<div class="form-group">
-											@Html.TextBoxFor(m => m.cargo, new { @class = "form-control" })
+											@Html.EditorFor(m => m.cargo, new { htmlAttributes = new { @class = "form-control" } })
 										</div>
 										<div class="form-group">
 											<label for="txtTelefono">TELÉFONO</label>
 										</div>
 										<div class="form-group">
-											@Html.TextBoxFor(m => m.telefono, new { @class = "form-control" })
+											@Html.EditorFor(m => m.telefono, new { htmlAttributes = new { @class = "form-control" } })
 										</div>
 									</div>
 								</div>

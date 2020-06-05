@@ -266,7 +266,7 @@ namespace HistClinica.Repositories.Repositories
             catch (Exception ex)
             {
 
-                return "Error en el guardado " + ex.StackTrace;
+                return "Error en el guardado " + ex.Message;
             }
         }
         public async Task<List<PersonaDTO>> GetAllPersonas()
@@ -299,7 +299,15 @@ namespace HistClinica.Repositories.Repositories
                                          apellidos = p.apePaterno + " " + p.apeMaterno,
                                          fechaIngreso = "",
                                          telefono = p.telefono,
-                                         cargo = ""
+                                         cargo = "",
+                                         area = "",
+                                         dni = p.dniPersona,
+                                         idEmpleado = 0,
+                                         idEspecialidad = 0,
+                                         idMedico = 0,
+                                         idTipoEmpleado = 0,
+                                         numeroColegio = 0,
+                                         ruc = p.nroRuc
                                      }).FirstOrDefaultAsync();
             return Persona;
         }

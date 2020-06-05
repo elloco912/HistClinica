@@ -31,8 +31,8 @@ function CargarmodalPersona() {
 			contentType: "application/json; charset=utf-8",
 			dataType: "html",
 			success: function (response) {
-				$('#exampleModal').html(response);
-				$('#exampleModal').modal('show');
+				$('#modalestado').html(response);
+				$('#modalestado').modal('show');
 			},
 			failure: function (response) {
 				alert(response.responseText);
