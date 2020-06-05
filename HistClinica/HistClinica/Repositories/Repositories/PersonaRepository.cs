@@ -99,7 +99,8 @@ namespace HistClinica.Repositories.Repositories
                     nroKm = null,
                     nroLote = null,
                     nroVia = null,
-                    razonSocial = null
+                    razonSocial = null,
+                    tpPersona = null
                 });
                 await Save();
                 idPersona = (await _context.T000_PERSONA
@@ -114,10 +115,10 @@ namespace HistClinica.Repositories.Repositories
                     estado = null,
                     fecIngreso = PersonaDTO.fechaIngreso,
                     genero = null,
-                    idEmpleado = int.Parse(PersonaDTO.idTipoEmpleado.ToString()),
+                    idtpEmpleado = PersonaDTO.idTipoEmpleado,
                     precio = null,
                     salario = null,
-                    idPersona = idPersona                
+                    idPersona = idPersona
                 };
                 await _context.T120_EMPLEADO.AddAsync(Empleado);
                 await Save();
@@ -134,8 +135,7 @@ namespace HistClinica.Repositories.Repositories
                         codMedico = null,
                         condicion = null,
                         estado = "Activo",
-                        nroRne = null,
-                        idtpDocumento = null
+                        nroRne = null
                     };
                     await _context.T212_MEDICO.AddAsync(Medico);
                     await Save();
@@ -162,6 +162,7 @@ namespace HistClinica.Repositories.Repositories
                     fecIngreso = PersonaDTO.fechaIngreso,
                     genero = null,
                     idEmpleado = int.Parse(PersonaDTO.idTipoEmpleado.ToString()),
+                    idtpEmpleado = PersonaDTO.idTipoEmpleado,
                     precio = null,
                     salario = null,
                     idPersona = PersonaDTO.idPersona
@@ -181,7 +182,8 @@ namespace HistClinica.Repositories.Repositories
                         condicion = null,
                         estado = "Activo",
                         nroRne = null,
-                        idtpDocumento = null
+                        idtpDocumento = null,
+                        idMedico = int.Parse(PersonaDTO.idMedico.ToString())
                     };
                     _context.Entry(Medico).State = EntityState.Modified;
                 }
@@ -230,7 +232,8 @@ namespace HistClinica.Repositories.Repositories
                     nroKm = null,
                     nroLote = null,
                     nroVia = null,
-                    razonSocial = null
+                    razonSocial = null,
+                    tpPersona = null                
                 }).State = EntityState.Modified;
                 await Save();
                 return "Actualizacion Exitosa";
