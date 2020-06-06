@@ -154,43 +154,7 @@ namespace HistClinica.Repositories.Repositories
         {
             try
             {
-                //if (PersonaDTO.idTipoEmpleado == 1)
-                //{
-                T120_EMPLEADO Empleado = new T120_EMPLEADO
-                {
-                    cargo = PersonaDTO.cargo,
-                    codEmpleado = null,
-                    descArea = null,
-                    estado = null,
-                    fecIngreso = PersonaDTO.fechaIngreso,
-                    genero = null,
-                    idEmpleado = int.Parse(PersonaDTO.idTipoEmpleado.ToString()),
-                    idtpEmpleado = PersonaDTO.idTipoEmpleado,
-                    precio = null,
-                    salario = null,
-                    idPersona = PersonaDTO.idPersona
-                };
-                _context.Entry(Empleado).State = EntityState.Modified;
-                //}
-                if (PersonaDTO.idTipoEmpleado == 2)
-                {
-                    T212_MEDICO Medico = new T212_MEDICO()
-                    {
-                        idEmpleado = PersonaDTO.idEmpleado,
-                        idPersona = PersonaDTO.idPersona,
-                        nroColegio = PersonaDTO.numeroColegio,
-                        nroRuc = PersonaDTO.ruc,
-                        idEspecialidad = PersonaDTO.idEspecialidad,
-                        codMedico = null,
-                        condicion = null,
-                        estado = "Activo",
-                        nroRne = null,
-                        idtpDocumento = null,
-                        idMedico = int.Parse(PersonaDTO.idMedico.ToString())
-                    };
-                    _context.Entry(Medico).State = EntityState.Modified;
-                }
-                _context.Entry(new T000_PERSONA()
+                _context.Update(new T000_PERSONA()
                 {
                     idPersona = int.Parse(PersonaDTO.idPersona.ToString()),
                     nombres = PersonaDTO.nombres,
@@ -236,9 +200,47 @@ namespace HistClinica.Repositories.Repositories
                     nroLote = null,
                     nroVia = null,
                     razonSocial = null,
-                    tpPersona = null                
-                }).State = EntityState.Modified;
+                    tpPersona = null
+                });
                 await Save();
+                //if (PersonaDTO.idTipoEmpleado == 1)
+                //{
+                T120_EMPLEADO Empleado = new T120_EMPLEADO
+                {
+                    cargo = PersonaDTO.cargo,
+                    codEmpleado = null,
+                    descArea = null,
+                    estado = null,
+                    fecIngreso = PersonaDTO.fechaIngreso,
+                    genero = null,
+                    idEmpleado = int.Parse(PersonaDTO.idTipoEmpleado.ToString()),
+                    idtpEmpleado = PersonaDTO.idTipoEmpleado,
+                    precio = null,
+                    salario = null,
+                    idPersona = PersonaDTO.idPersona
+                };
+                _context.Update(Empleado);
+                await Save();
+                //}
+                if (PersonaDTO.idTipoEmpleado == 2)
+                {
+                    T212_MEDICO Medico = new T212_MEDICO()
+                    {
+                        idEmpleado = PersonaDTO.idEmpleado,
+                        idPersona = PersonaDTO.idPersona,
+                        nroColegio = PersonaDTO.numeroColegio,
+                        nroRuc = PersonaDTO.ruc,
+                        idEspecialidad = PersonaDTO.idEspecialidad,
+                        codMedico = null,
+                        condicion = null,
+                        estado = "Activo",
+                        nroRne = null,
+                        idtpDocumento = null,
+                        idMedico = int.Parse(PersonaDTO.idMedico.ToString())
+                    };
+                    _context.Update(Medico);
+                    await Save();
+                }
                 return "Actualizacion Exitosa";
             }
             catch (Exception ex)
