@@ -85,19 +85,6 @@ namespace HistClinica.Repositories.Repositories
                                                 select new T001_PACIENTE
                                                 {
                                                     idPaciente = p.idPaciente,
-                                                    codPaciente = p.codPaciente,
-                                                    descripcion = p.descripcion,
-                                                    dniAcom = p.dniAcom,
-                                                    edadAcom = p.edadAcom,
-                                                    estado = p.estado,
-                                                    idAsegurado = p.idAsegurado,
-                                                    idFactorrh = p.idFactorrh,
-                                                    idgpoSangre = p.idgpoSangre,
-                                                    idPacConvenio = p.idPacConvenio,
-                                                    idPersona = p.idPersona,
-                                                    idtpPaciente = p.idtpPaciente,
-                                                    nombreAcom = p.nombreAcom,
-                                                    nrohc = p.nrohc
                                                 }).ToListAsync();
 
             return Pacientes;
@@ -110,19 +97,6 @@ namespace HistClinica.Repositories.Repositories
                                         select new T001_PACIENTE
                                         {
                                             idPaciente = p.idPaciente,
-                                            codPaciente = p.codPaciente,
-                                            descripcion = p.descripcion,
-                                            dniAcom = p.dniAcom,
-                                            edadAcom = p.edadAcom,
-                                            estado = p.estado,
-                                            idAsegurado = p.idAsegurado,
-                                            idFactorrh = p.idFactorrh,
-                                            idgpoSangre = p.idgpoSangre,
-                                            idPacConvenio = p.idPacConvenio,
-                                            idPersona = p.idPersona,
-                                            idtpPaciente = p.idtpPaciente,
-                                            nombreAcom = p.nombreAcom,
-                                            nrohc = p.nrohc
                                         }).FirstOrDefaultAsync();
             return Paciente;
         }

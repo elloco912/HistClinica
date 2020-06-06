@@ -75,6 +75,7 @@ namespace HistClinica.Controllers
             return RedirectToAction("Create");
         }
 
+
         // POST: Persona/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -138,8 +139,8 @@ namespace HistClinica.Controllers
         }
 
         // POST: Persona/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+      //  [HttpPost, ActionName("Delete")]
+       // [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var persona = await _personaRepository.GetById(id);
