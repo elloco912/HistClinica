@@ -58,7 +58,7 @@ namespace HistClinica
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}");
+                    pattern: "{controller=Login}/{action=Index}");
             });
             app.UseCors("AllowMyOrigin");
         }

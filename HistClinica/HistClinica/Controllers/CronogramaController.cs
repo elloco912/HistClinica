@@ -34,13 +34,17 @@ namespace HistClinica.Controllers
             List<T120_ESPECIALIDAD> lespecialidads = new List<T120_ESPECIALIDAD>();
             lespecialidads = _context.T120_ESPECIALIDAD.ToList();
             ViewBag.listaespecialidades = lespecialidads;
-
-            //combo medicos
-            List<T212_MEDICO> medicos = new List<T212_MEDICO>();
-            medicos = _context.T212_MEDICO.ToList();
-            ViewBag.listamedicos = medicos;
             ViewBag.listahoras = horas;
-
+            var medico = from per in _context.T000_PERSONA
+                         join e in _context.T120_EMPLEADO on per.idPersona
+                         equals e.idPersona
+                         join med in _context.T212_MEDICO on e.idPersona equals med.idPersona
+                         select new
+                         {
+                             idMedico = med.idMedico,
+                             nombres = per.nombres + " " + per.apePaterno + " " + per.apeMaterno
+                         };
+            ViewBag.listamedicos = medico;
             //listar
             List<D012_CRONOMEDICO> cronograma = new List<D012_CRONOMEDICO>();
             cronograma = await cronogramaRepository.GetAllCronogramas();
@@ -86,10 +90,22 @@ namespace HistClinica.Controllers
             lespecialidads = _context.T120_ESPECIALIDAD.ToList();
             ViewBag.listaespecialidades = lespecialidads;
 
+            var medico = from per in _context.T000_PERSONA
+                         join e in _context.T120_EMPLEADO on per.idPersona
+                         equals e.idPersona
+                         join med in _context.T212_MEDICO on e.idPersona equals med.idPersona
+                         select new
+                         {
+                             idMedico = med.idMedico,
+                             nombres = per.nombres + " " + per.apePaterno + " " + per.apeMaterno
+                         };
+            ViewBag.listamedicos = medico;
+
             //combo medicos
-            List<T212_MEDICO> medicos = new List<T212_MEDICO>();
-            medicos = _context.T212_MEDICO.ToList();
-            ViewBag.listamedicos = medicos;
+            /*   List<T212_MEDICO> medicos = new List<T212_MEDICO>();
+               medicos = _context.T212_MEDICO.ToList();
+               ViewBag.listamedicos = medicos;*/
+
             ViewBag.listahoras = horas;
 
             D012_CRONOMEDICO cronoMedico = await cronogramaRepository.GetByIdCrono(id);
@@ -107,6 +123,45 @@ namespace HistClinica.Controllers
                 return RedirectToAction("Index");
             }
             return PartialView();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ConsultarCronograma()
+        {
+            List<D012_CRONOMEDICO> cronograma = new List<D012_CRONOMEDICO>();
+            cronograma = await cronogramaRepository.GetAllCronogramas();
+
+            //filtro de medico
+            var medico = from per in _context.T000_PERSONA
+                         join e in _context.T120_EMPLEADO on per.idPersona
+                         equals e.idPersona
+                         join med in _context.T212_MEDICO on e.idPersona equals med.idPersona
+                         select new
+                         {
+                             idMedico = med.idMedico,
+                             nombres = per.nombres + " " + per.apePaterno + " " + per.apeMaterno
+                         };
+            ViewBag.listamedicos = medico;
+
+            return PartialView(cronograma);
+        }
+        
+        public async Task<IActionResult> ConsultarCronogramapost(int id)
+        {
+            var medico = from per in _context.T000_PERSONA
+                         join e in _context.T120_EMPLEADO on per.idPersona
+                         equals e.idPersona
+                         join med in _context.T212_MEDICO on e.idPersona equals med.idPersona
+                         select new
+                         {
+                             idMedico = med.idMedico,
+                             nombres = per.nombres + " " + per.apePaterno + " " + per.apeMaterno
+                         };
+            ViewBag.listamedicos = medico;
+
+            List<D012_CRONOMEDICO> cronograma = new List<D012_CRONOMEDICO>();
+            cronograma = await cronogramaRepository.GetCronogramaByMedico(id);
+            return PartialView("ConsultarCronograma", cronograma);
         }
     }
 }

@@ -143,11 +143,15 @@ C:\Users\User\Desktop\proy_v2\HistClinica\HistClinica\HistClinica\obj\Debug\netc
 C:\Users\User\Desktop\proy_v2\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.TagHelpers.input.cache
 C:\Users\User\Desktop\proy_v2\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.TagHelpers.output.cache
 C:\Users\User\Desktop\proy_v2\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.RazorCoreGenerate.cache
+C:\Users\User\Desktop\proy_v2\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cronograma\ConsultarCronograma.cshtml.g.cs
 C:\Users\User\Desktop\proy_v2\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cronograma\Create.cshtml.g.cs
 C:\Users\User\Desktop\proy_v2\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cronograma\Edit.cshtml.g.cs
+C:\Users\User\Desktop\proy_v2\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cronograma\Filtro.cshtml.g.cs
 C:\Users\User\Desktop\proy_v2\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cronograma\Index.cshtml.g.cs
 C:\Users\User\Desktop\proy_v2\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\User\Desktop\proy_v2\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
+C:\Users\User\Desktop\proy_v2\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Login\Index.cshtml.g.cs
+C:\Users\User\Desktop\proy_v2\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Paciente\Create.cshtml.g.cs
 C:\Users\User\Desktop\proy_v2\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Paciente\Prueba.cshtml.g.cs
 C:\Users\User\Desktop\proy_v2\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Persona\Create.cshtml.g.cs
 C:\Users\User\Desktop\proy_v2\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Persona\Delete.cshtml.g.cs

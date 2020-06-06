@@ -3,10 +3,46 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HistClinica.Migrations
 {
-    public partial class nuevamigracion : Migration
+    public partial class nuevastablas : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "D001_USUARIO",
+                columns: table => new
+                {
+                    idUsuario = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    loginUser = table.Column<string>(nullable: true),
+                    claveUser = table.Column<string>(nullable: true),
+                    idEmpleado = table.Column<int>(nullable: false),
+                    estado = table.Column<string>(nullable: false),
+                    usuRegistra = table.Column<string>(nullable: true),
+                    fechaRegistra = table.Column<string>(nullable: true),
+                    usuMod = table.Column<string>(nullable: true),
+                    fechaMod = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_D001_USUARIO", x => x.idUsuario);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "D002_PERFIL",
+                columns: table => new
+                {
+                    idPerfil = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    codPerfil = table.Column<string>(nullable: true),
+                    nombrePerfil = table.Column<string>(nullable: true),
+                    idUsuario = table.Column<int>(nullable: false),
+                    estado = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_D002_PERFIL", x => x.idPerfil);
+                });
+
             migrationBuilder.CreateTable(
                 name: "D008_CONSULTORIO",
                 columns: table => new
@@ -255,6 +291,12 @@ namespace HistClinica.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "D001_USUARIO");
+
+            migrationBuilder.DropTable(
+                name: "D002_PERFIL");
+
             migrationBuilder.DropTable(
                 name: "D008_CONSULTORIO");
 

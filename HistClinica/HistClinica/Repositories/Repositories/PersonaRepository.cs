@@ -7,7 +7,6 @@ using System.Linq;
 using HistClinica.Models;
 using System.Threading.Tasks;
 using HistClinica.DTO;
-using Microsoft.Data.SqlClient;
 
 namespace HistClinica.Repositories.Repositories
 {
@@ -146,7 +145,7 @@ namespace HistClinica.Repositories.Repositories
                 }
                 return "Ingreso Exitoso Persona,Medico,Empleado";
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 return "Error en el guardado " + ex.Message;
             }
@@ -155,43 +154,7 @@ namespace HistClinica.Repositories.Repositories
         {
             try
             {
-                //if (PersonaDTO.idTipoEmpleado == 1)
-                //{
-                T120_EMPLEADO Empleado = new T120_EMPLEADO
-                {
-                    cargo = PersonaDTO.cargo,
-                    codEmpleado = null,
-                    descArea = null,
-                    estado = null,
-                    fecIngreso = PersonaDTO.fechaIngreso,
-                    genero = null,
-                    idEmpleado = int.Parse(PersonaDTO.idTipoEmpleado.ToString()),
-                    idtpEmpleado = PersonaDTO.idTipoEmpleado,
-                    precio = null,
-                    salario = null,
-                    idPersona = PersonaDTO.idPersona
-                };
-                _context.Entry(Empleado).State = EntityState.Modified;
-                //}
-                if (PersonaDTO.idTipoEmpleado == 2)
-                {
-                    T212_MEDICO Medico = new T212_MEDICO()
-                    {
-                        idEmpleado = PersonaDTO.idEmpleado,
-                        idPersona = PersonaDTO.idPersona,
-                        nroColegio = PersonaDTO.numeroColegio,
-                        nroRuc = PersonaDTO.ruc,
-                        idEspecialidad = PersonaDTO.idEspecialidad,
-                        codMedico = null,
-                        condicion = null,
-                        estado = "Activo",
-                        nroRne = null,
-                        idtpDocumento = null,
-                        idMedico = int.Parse(PersonaDTO.idMedico.ToString())
-                    };
-                    _context.Entry(Medico).State = EntityState.Modified;
-                }
-                _context.Entry(new T000_PERSONA()
+                _context.Update(new T000_PERSONA()
                 {
                     idPersona = int.Parse(PersonaDTO.idPersona.ToString()),
                     nombres = PersonaDTO.nombres,
@@ -237,57 +200,108 @@ namespace HistClinica.Repositories.Repositories
                     nroLote = null,
                     nroVia = null,
                     razonSocial = null,
-                    tpPersona = null                
-                }).State = EntityState.Modified;
+                    tpPersona = null
+                });
                 await Save();
+                //if (PersonaDTO.idTipoEmpleado == 1)
+                //{
+                T120_EMPLEADO Empleado = new T120_EMPLEADO
+                {
+                    cargo = PersonaDTO.cargo,
+                    codEmpleado = null,
+                    descArea = null,
+                    estado = null,
+                    fecIngreso = PersonaDTO.fechaIngreso,
+                    genero = null,
+                    idEmpleado = int.Parse(PersonaDTO.idTipoEmpleado.ToString()),
+                    idtpEmpleado = PersonaDTO.idTipoEmpleado,
+                    precio = null,
+                    salario = null,
+                    idPersona = PersonaDTO.idPersona
+                };
+                _context.Update(Empleado);
+                await Save();
+                //}
+                if (PersonaDTO.idTipoEmpleado == 2)
+                {
+                    T212_MEDICO Medico = new T212_MEDICO()
+                    {
+                        idEmpleado = PersonaDTO.idEmpleado,
+                        idPersona = PersonaDTO.idPersona,
+                        nroColegio = PersonaDTO.numeroColegio,
+                        nroRuc = PersonaDTO.ruc,
+                        idEspecialidad = PersonaDTO.idEspecialidad,
+                        codMedico = null,
+                        condicion = null,
+                        estado = "Activo",
+                        nroRne = null,
+                        idtpDocumento = null,
+                        idMedico = int.Parse(PersonaDTO.idMedico.ToString())
+                    };
+                    _context.Update(Medico);
+                    await Save();
+                }
                 return "Actualizacion Exitosa";
             }
             catch (Exception ex)
             {
 
-                return "Error en el guardado " + ex.Message;
+                return "Error en el guardado " + ex.StackTrace;
             }
         }
         public async Task<List<PersonaDTO>> GetAllPersonas()
         {
             List<PersonaDTO> Personas = await (from p in _context.T000_PERSONA
-                                            where p.idPersona == (from m in _context.T212_MEDICO where m.idPersona == p.idPersona select m.idPersona).FirstOrDefault() 
-                                            || p.idPersona == (from e in _context.T120_EMPLEADO where e.idPersona == p.idPersona select e.idPersona).FirstOrDefault()
-                                            select new PersonaDTO
-                                            {
-                                                idPersona = p.idPersona,
-                                                nombres = p.nombres,
-                                                apellidos = p.apePaterno + " " + p.apeMaterno,
-                                                fechaIngreso = null, //Empleado
-                                                telefono = p.telefono,
-                                                cargo = "" //Empleado
-                                            }).ToListAsync();
+                                               join e in _context.T120_EMPLEADO on p.idPersona equals e.idPersona
+                                               select new PersonaDTO
+                                               {
+                                                   idPersona = p.idPersona,
+                                                   nombres = p.nombres,
+                                                   apellidos = p.apePaterno + " " + p.apeMaterno,
+                                                   fechaIngreso = e.fecIngreso,
+                                                   telefono = p.telefono,
+                                                   cargo = e.cargo
+                                               }).ToListAsync();
 
             return Personas;
         }
         public async Task<PersonaDTO> GetById(int? id)
         {
-            PersonaDTO Persona = await (from p in _context.T000_PERSONA
-                                     where (p.idPersona == (from m in _context.T212_MEDICO where m.idPersona == p.idPersona select m.idPersona).FirstOrDefault()
-                                     || p.idPersona == (from e in _context.T120_EMPLEADO where e.idPersona == p.idPersona select e.idPersona).FirstOrDefault())
-                                     && p.idPersona == id
-                                     select new PersonaDTO
-                                     {
-                                         idPersona = p.idPersona,
-                                         nombres = p.nombres,
-                                         apellidos = p.apePaterno + " " + p.apeMaterno,
-                                         fechaIngreso = null,
-                                         telefono = p.telefono,
-                                         cargo = "",
-                                         area = "",
-                                         dni = p.dniPersona,
-                                         idEmpleado = 0,
-                                         idEspecialidad = 0,
-                                         idMedico = 0,
-                                         idTipoEmpleado = 0,
-                                         numeroColegio = 0,
-                                         ruc = p.nroRuc
-                                     }).FirstOrDefaultAsync();
+            PersonaDTO Persona;
+            Persona = await (from p in _context.T000_PERSONA
+                             join e in _context.T120_EMPLEADO on p.idPersona equals e.idPersona
+                             where p.idPersona == id
+                             select new PersonaDTO
+                             {
+                                 idPersona = p.idPersona,
+                                 nombres = p.nombres,
+                                 apellidos = p.apePaterno + " " + p.apeMaterno,
+                                 fechaIngreso = e.fecIngreso,
+                                 telefono = p.telefono,
+                                 cargo = e.cargo,
+                                 area = e.descArea,
+                                 dni = p.dniPersona,
+                                 idEmpleado = e.idEmpleado,
+                                 idEspecialidad = 0,
+                                 idMedico = 0,
+                                 idTipoEmpleado = e.idtpEmpleado,
+                                 numeroColegio = 0,
+                                 ruc = p.nroRuc
+                             }).FirstOrDefaultAsync();
+            if (Persona.idTipoEmpleado != 1)
+            {
+                var personaTemporal = await (from m in _context.T212_MEDICO
+                                             where m.idEmpleado == Persona.idEmpleado
+                                             select new PersonaDTO
+                                             {
+                                                 idEspecialidad = m.idEspecialidad,
+                                                 idMedico = m.idMedico,
+                                                 numeroColegio = m.nroColegio
+                                             }).FirstOrDefaultAsync();
+                Persona.idEspecialidad = personaTemporal.idEspecialidad;
+                Persona.idMedico = personaTemporal.idMedico;
+                Persona.numeroColegio = personaTemporal.numeroColegio;
+            }
             return Persona;
         }
     }
