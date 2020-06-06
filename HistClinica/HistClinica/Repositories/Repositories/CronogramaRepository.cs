@@ -97,5 +97,13 @@ namespace HistClinica.Repositories.Repositories
 				return "Error en el guardado " + ex.Message;
 			}
 		}
+
+		public async Task<List<D012_CRONOMEDICO>> GetCronogramaByMedico(int idmedico)
+		{
+			List<D012_CRONOMEDICO> cronogramas = await (from c in _context.D012_CRONOMEDICO
+														where c.idMedico == idmedico
+														select c).ToListAsync();
+			return cronogramas;
+		}
 	}
 }

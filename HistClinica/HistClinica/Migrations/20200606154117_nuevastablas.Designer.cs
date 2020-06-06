@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HistClinica.Migrations
 {
     [DbContext(typeof(ClinicaServiceContext))]
-    [Migration("20200605205301_nuevamigracion")]
-    partial class nuevamigracion
+    [Migration("20200606154117_nuevastablas")]
+    partial class nuevastablas
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,67 @@ namespace HistClinica.Migrations
                 .HasAnnotation("ProductVersion", "3.1.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("HistClinica.Models.D001_USUARIO", b =>
+                {
+                    b.Property<int>("idUsuario")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("claveUser")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("estado")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(1)");
+
+                    b.Property<string>("fechaMod")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fechaRegistra")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("idEmpleado")
+                        .HasColumnType("int");
+
+                    b.Property<string>("loginUser")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("usuMod")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("usuRegistra")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("idUsuario");
+
+                    b.ToTable("D001_USUARIO");
+                });
+
+            modelBuilder.Entity("HistClinica.Models.D002_PERFIL", b =>
+                {
+                    b.Property<int>("idPerfil")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("codPerfil")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("estado")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("idUsuario")
+                        .HasColumnType("int");
+
+                    b.Property<string>("nombrePerfil")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("idPerfil");
+
+                    b.ToTable("D002_PERFIL");
+                });
 
             modelBuilder.Entity("HistClinica.Models.D008_CONSULTORIO", b =>
                 {
