@@ -68,7 +68,7 @@
 						<td>@item.cargo</td>
 						<td>
 							<button type="submit" onclick="CargarmodalPersona();" class="edit btn btn-primary" ><i class="fas fa-edit"></i></button>
-							<button type="submit" class="btn btn-danger"><i class="fas fa-minus"></i></button>
+							<a type="submit" asp-action="DeleteConfirmed" asp-route-id="@item.idPersona"  class="btn btn-danger"><i class="fas fa-minus"></i></a>
 						</td>
 					</tr>
 					}
