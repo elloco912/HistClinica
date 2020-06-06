@@ -169,3 +169,8 @@ D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\staticwebassets\H
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\staticwebassets\HistClinica.StaticWebAssets.xml
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.genruntimeconfig.cache
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.csprojAssemblyReference.cache
+D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cita\Create.cshtml.g.cs
+D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cita\Delete.cshtml.g.cs
+D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cita\Details.cshtml.g.cs
+D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cita\Edit.cshtml.g.cs
+D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cita\Index.cshtml.g.cs
