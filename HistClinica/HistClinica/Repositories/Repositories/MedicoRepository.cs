@@ -44,7 +44,7 @@ namespace HistClinica.Repositories.Repositories
         {
             return await _context.T212_MEDICO.AnyAsync(e => e.idMedico == id);
         }
-        public async Task<string> InsertMedico(PersonaDTO PersonaDTO,int idPersona, int idEmpleado)
+        public async Task<string> InsertMedico(PersonaDTO Persona,int idPersona, int idEmpleado)
         {
             try
             {
@@ -52,13 +52,14 @@ namespace HistClinica.Repositories.Repositories
                 {
                     idEmpleado = idEmpleado,
                     idPersona = idPersona,
-                    nroColegio = PersonaDTO.numeroColegio,
-                    nroRuc = PersonaDTO.ruc,
-                    idEspecialidad = PersonaDTO.idEspecialidad,
-                    codMedico = null,
-                    condicion = null,
-                    estado = "Activo",
-                    nroRne = null
+                    nroColegio = Persona.numeroColegio,
+                    nroRuc = Persona.ruc,
+                    idEspecialidad = Persona.idEspecialidad,
+                    estado = Persona.estadoPersonal,
+                    codMedico = Persona.codMedico,
+                    condicion = Persona.condicion,
+                    nroRne = Persona.nroRne,
+                    idtpDocumento = Persona.idTipoDocumento
                 };
                 await _context.T212_MEDICO.AddAsync(Medico);
                 await Save();
@@ -69,23 +70,23 @@ namespace HistClinica.Repositories.Repositories
                 return "Error en el guardado " + ex.Message;
             }
         }
-        public async Task<string> UpdateMedico(PersonaDTO PersonaDTO)
+        public async Task<string> UpdateMedico(PersonaDTO Persona)
         {
             try
             {
                 T212_MEDICO Medico = new T212_MEDICO()
                 {
-                    idEmpleado = PersonaDTO.idEmpleado,
-                    idMedico = int.Parse(PersonaDTO.idMedico.ToString()),
-                    nroColegio = PersonaDTO.numeroColegio,
-                    nroRuc = PersonaDTO.ruc,
-                    idEspecialidad = PersonaDTO.idEspecialidad,
-                    codMedico = null,
-                    condicion = null,
-                    estado = "Activo",
-                    nroRne = null,
-                    idtpDocumento = null,
-                    idPersona = PersonaDTO.idPersona
+                    idPersona = Persona.idPersona,
+                    idEmpleado = Persona.idEmpleado,
+                    idMedico = (int)Persona.idMedico,
+                    nroColegio = Persona.numeroColegio,
+                    nroRuc = Persona.ruc,
+                    idEspecialidad = Persona.idEspecialidad,
+                    estado = Persona.estadoPersonal,
+                    codMedico = Persona.codMedico,
+                    condicion = Persona.condicion,
+                    nroRne = Persona.nroRne,
+                    idtpDocumento = Persona.idTipoDocumento
                 };
                 _context.Update(Medico);
                 await Save();

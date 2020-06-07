@@ -44,22 +44,22 @@ namespace HistClinica.Repositories.Repositories
         {
             return await _context.T120_EMPLEADO.AnyAsync(e => e.idEmpleado == id);
         }
-        public async Task<string> InsertEmpleado(PersonaDTO PersonaDTO, int idPersona)
+        public async Task<string> InsertEmpleado(PersonaDTO Persona, int idPersona)
         {
             try
             {
                 T120_EMPLEADO Empleado = new T120_EMPLEADO
                 {
-                    cargo = PersonaDTO.cargo,
-                    codEmpleado = null,
-                    descArea = null,
-                    estado = null,
-                    fecIngreso = PersonaDTO.fechaIngreso,
-                    genero = null,
-                    idtpEmpleado = PersonaDTO.idTipoEmpleado,
-                    precio = null,
-                    salario = null,
-                    idPersona = idPersona
+                    idPersona = idPersona,
+                    cargo = Persona.cargo,
+                    codEmpleado = Persona.codEmpleado,
+                    descArea = Persona.descArea,
+                    estado = Persona.estadoPersonal,
+                    fecIngreso = Persona.fechaIngreso,
+                    genero = Persona.genero,
+                    idtpEmpleado = Persona.idTipoEmpleado,
+                    precio = Persona.precio,
+                    salario = Persona.salario
                 };
                 await _context.T120_EMPLEADO.AddAsync(Empleado);
                 await Save();
@@ -70,23 +70,23 @@ namespace HistClinica.Repositories.Repositories
                 return "Error en el guardado " + ex.Message;
             }
         }
-        public async Task<string> UpdateEmpleado(PersonaDTO PersonaDTO)
+        public async Task<string> UpdateEmpleado(PersonaDTO Persona)
         {
             try
             {
                 T120_EMPLEADO Empleado = new T120_EMPLEADO
                 {
-                    cargo = PersonaDTO.cargo,
-                    codEmpleado = null,
-                    descArea = null,
-                    estado = null,
-                    fecIngreso = PersonaDTO.fechaIngreso,
-                    genero = null,
-                    idEmpleado = int.Parse(PersonaDTO.idTipoEmpleado.ToString()),
-                    idtpEmpleado = PersonaDTO.idTipoEmpleado,
-                    precio = null,
-                    salario = null,
-                    idPersona = PersonaDTO.idPersona
+                    idPersona = Persona.idPersona,
+                    idEmpleado = (int)Persona.idTipoEmpleado,
+                    cargo = Persona.cargo,
+                    codEmpleado = Persona.codEmpleado,
+                    descArea = Persona.descArea,
+                    estado = Persona.estadoPersonal,
+                    fecIngreso = Persona.fechaIngreso,
+                    genero = Persona.genero,
+                    idtpEmpleado = Persona.idTipoEmpleado,
+                    precio = Persona.precio,
+                    salario = Persona.salario
                 };
                 _context.Update(Empleado);
                 await Save();

@@ -24,6 +24,9 @@ namespace HistClinica.Data
         public DbSet<D002_PERFIL> D002_PERFIL { get; set; }
         public DbSet<D00_TBGENERAL> D00_TBGENERAL { get; set; }
         public DbSet<D00_TBDETALLE> D00_TBDETALLE { get; set; }
+        public DbSet<D010_PACACOMPANA> D010_PACACOMPANA { get; set; }
+        public DbSet<T001_PACASEGURADO> T001_PACASEGURADO { get; set; }
+        public DbSet<T001_PACCONVENIO> T001_PACCONVENIO { get; set; }
 
     }
 }

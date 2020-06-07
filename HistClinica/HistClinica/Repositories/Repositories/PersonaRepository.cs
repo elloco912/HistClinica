@@ -56,7 +56,7 @@ namespace HistClinica.Repositories.Repositories
             T000_PERSONA Persona = await _context.T000_PERSONA.FindAsync(PersonaID);
             _context.T000_PERSONA.Remove(Persona);
         }
-        public async Task<string> InsertPersona(PersonaDTO PersonaDTO)
+        public async Task<string> InsertPersona(PersonaDTO Persona)
         {
             int idPersona = 0;
             int idEmpleado = 0;
@@ -64,66 +64,66 @@ namespace HistClinica.Repositories.Repositories
             {
                 await _context.T000_PERSONA.AddAsync(new T000_PERSONA()
                 {
-                    nombres = PersonaDTO.primerNombre + " " + PersonaDTO.segundoNombre,
-                    apePaterno = PersonaDTO.apellidoPaterno,
-                    apeMaterno = PersonaDTO.apellidoMaterno,
-                    dniPersona = PersonaDTO.numeroDocumento,
-                    nroRuc = PersonaDTO.ruc,
-                    telefono = PersonaDTO.telefono,
-                    celular = null,
-                    centroEduca = null,
-                    condicionRuc = null,
-                    correo = null,
-                    domiFiscal = null,
-                    edad = null,
-                    estado = null,
-                    estadoRuc = null,
-                    fecNacimiento = null,
-                    fotografia = null,
-                    idciaSeguro = null,
-                    iddatoSiteds = null,
-                    idemprConvenio = null,
-                    idEstCivil = null,
-                    idEtnico = null,
-                    idFactorrh = null,
-                    idgpoSangre = null,
-                    idGrdInstruc = null,
-                    idOcupacion = null,
-                    idParentesco = null,
-                    idReligion = null,
-                    idSexo = null,
-                    idtipoIafa = null,
-                    idtipoVia = null,
-                    idtpDocumento = null,
-                    idUbigeoNace = null,
-                    idUbigeoResi = null,
-                    interior = null,
-                    manzana = null,
-                    nombreVia = null,
-                    nroBlock = null,
-                    nroDpto = null,
-                    nroEtapa = null,
-                    nroKm = null,
-                    nroLote = null,
-                    nroVia = null,
-                    razonSocial = null,
-                    tpPersona = null
+                    nombres = Persona.primerNombre + " " + Persona.segundoNombre,
+                    apePaterno = Persona.apellidoPaterno,
+                    apeMaterno = Persona.apellidoMaterno,
+                    dniPersona = Persona.numeroDocumento,
+                    nroRuc = Persona.ruc,
+                    telefono = Persona.telefono,
+                    celular = Persona.celular,
+                    centroEduca = Persona.centroEduca,
+                    condicionRuc = Persona.condicionRuc,
+                    correo = Persona.correo,
+                    domiFiscal = Persona.domiFiscal,
+                    edad = Persona.edad,
+                    estado = Persona.estado,
+                    estadoRuc = Persona.estadoRuc,
+                    fecNacimiento = Persona.fechaNacimiento,
+                    fotografia = Persona.fotografia,
+                    idciaSeguro = Persona.idciaSeguro,
+                    iddatoSiteds = Persona.iddatoSiteds,
+                    idemprConvenio = Persona.idemprConvenio,
+                    idEstCivil = Persona.idEstCivil,
+                    idEtnico = Persona.idEtnico,
+                    idFactorrh = Persona.idFactorRrh,
+                    idgpoSangre = Persona.idgpoSangre,
+                    idGrdInstruc = Persona.idGrdInstruc,
+                    idOcupacion = Persona.idOcupacion,
+                    idParentesco = Persona.idParentesco,
+                    idReligion = Persona.idReligion,
+                    idSexo = Persona.idSexo,
+                    idtipoIafa = Persona.idtipoIafa,
+                    idtipoVia = Persona.idtipoVia,
+                    idtpDocumento = Persona.idTipoDocumento,
+                    idUbigeoNace = Persona.idUbigeoNace,
+                    idUbigeoResi = Persona.idUbigeoResi,
+                    interior = Persona.interiorUbicacion,
+                    manzana = Persona.manzana,
+                    nombreVia = Persona.nombreViaUbicacion,
+                    nroBlock = Persona.numeroUbicacion,
+                    nroDpto = Persona.numeroDepartamentoUbicacion,
+                    nroEtapa = Persona.nroEtapa,
+                    nroKm = Persona.nroKm,
+                    nroLote = Persona.numeroLoteUbicacion,
+                    nroVia = Persona.nroVia,
+                    razonSocial = Persona.razonSocial,
+                    tpPersona = Persona.tpPersona
                 });
                 await Save();
                 idPersona = (await _context.T000_PERSONA
-                    .FirstOrDefaultAsync(p => p.dniPersona == PersonaDTO.numeroDocumento)).idPersona;
-                if (PersonaDTO.idTipoEmpleado != null)
+                    .FirstOrDefaultAsync(p => p.dniPersona == Persona.numeroDocumento)).idPersona;
+                if (Persona.idTipoEmpleado != null)
                 {
-                    await _empleadoRepository.InsertEmpleado(PersonaDTO, idPersona);
+                    await _empleadoRepository.InsertEmpleado(Persona, idPersona);
                     idEmpleado = await _empleadoRepository.GetIdEmpleado(idPersona);
-                    if (PersonaDTO.idTipoEmpleado == 2)
+                    if (Persona.idTipoEmpleado == 2)
                     {
-                        await _medicoRepository.InsertMedico(PersonaDTO, idPersona, idEmpleado);
+                        await _medicoRepository.InsertMedico(Persona, idPersona, idEmpleado);
                     }
                 }
                 else
                 {
-                    await _pacienteRepository.InsertPaciente(PersonaDTO,idPersona);
+                    await _pacienteRepository.InsertPaciente(Persona, idPersona);
                 }
                 return "Ingreso Exitoso Persona";
             }
@@ -132,70 +132,70 @@ namespace HistClinica.Repositories.Repositories
                 return "Error en el guardado " + ex.Message;
             }
         }
-        public async Task<string> UpdatePersona(PersonaDTO PersonaDTO)
+        public async Task<string> UpdatePersona(PersonaDTO Persona)
         {
             try
             {
                 _context.Update(new T000_PERSONA()
                 {
-                    idPersona = int.Parse(PersonaDTO.idPersona.ToString()),
-                    nombres = PersonaDTO.primerNombre + " " + PersonaDTO.segundoNombre,
-                    apePaterno = PersonaDTO.apellidoPaterno,
-                    apeMaterno = PersonaDTO.apellidoMaterno,
-                    dniPersona = PersonaDTO.numeroDocumento,
-                    nroRuc = PersonaDTO.ruc,
-                    telefono = PersonaDTO.telefono,
-                    celular = null,
-                    centroEduca = null,
-                    condicionRuc = null,
-                    correo = null,
-                    domiFiscal = null,
-                    edad = null,
-                    estado = null,
-                    estadoRuc = null,
-                    fecNacimiento = null,
-                    fotografia = null,
-                    idciaSeguro = null,
-                    iddatoSiteds = null,
-                    idemprConvenio = null,
-                    idEstCivil = null,
-                    idEtnico = null,
-                    idFactorrh = null,
-                    idgpoSangre = null,
-                    idGrdInstruc = null,
-                    idOcupacion = null,
-                    idParentesco = null,
-                    idReligion = null,
-                    idSexo = null,
-                    idtipoIafa = null,
-                    idtipoVia = null,
-                    idtpDocumento = null,
-                    idUbigeoNace = null,
-                    idUbigeoResi = null,
-                    interior = null,
-                    manzana = null,
-                    nombreVia = null,
-                    nroBlock = null,
-                    nroDpto = null,
-                    nroEtapa = null,
-                    nroKm = null,
-                    nroLote = null,
-                    nroVia = null,
-                    razonSocial = null,
-                    tpPersona = null
+                    idPersona = (int)Persona.idPersona,
+                    nombres = Persona.primerNombre + " " + Persona.segundoNombre,
+                    apePaterno = Persona.apellidoPaterno,
+                    apeMaterno = Persona.apellidoMaterno,
+                    dniPersona = Persona.numeroDocumento,
+                    nroRuc = Persona.ruc,
+                    telefono = Persona.telefono,
+                    celular = Persona.celular,
+                    centroEduca = Persona.centroEduca,
+                    condicionRuc = Persona.condicionRuc,
+                    correo = Persona.correo,
+                    domiFiscal = Persona.domiFiscal,
+                    edad = Persona.edad,
+                    estado = Persona.estado,
+                    estadoRuc = Persona.estadoRuc,
+                    fecNacimiento = Persona.fechaNacimiento,
+                    fotografia = Persona.fotografia,
+                    idciaSeguro = Persona.idciaSeguro,
+                    iddatoSiteds = Persona.iddatoSiteds,
+                    idemprConvenio = Persona.idemprConvenio,
+                    idEstCivil = Persona.idEstCivil,
+                    idEtnico = Persona.idEtnico,
+                    idFactorrh = Persona.idFactorRrh,
+                    idgpoSangre = Persona.idgpoSangre,
+                    idGrdInstruc = Persona.idGrdInstruc,
+                    idOcupacion = Persona.idOcupacion,
+                    idParentesco = Persona.idParentesco,
+                    idReligion = Persona.idReligion,
+                    idSexo = Persona.idSexo,
+                    idtipoIafa = Persona.idtipoIafa,
+                    idtipoVia = Persona.idtipoVia,
+                    idtpDocumento = Persona.idTipoDocumento,
+                    idUbigeoNace = Persona.idUbigeoNace,
+                    idUbigeoResi = Persona.idUbigeoResi,
+                    interior = Persona.interiorUbicacion,
+                    manzana = Persona.manzana,
+                    nombreVia = Persona.nombreViaUbicacion,
+                    nroBlock = Persona.numeroUbicacion,
+                    nroDpto = Persona.numeroDepartamentoUbicacion,
+                    nroEtapa = Persona.nroEtapa,
+                    nroKm = Persona.nroKm,
+                    nroLote = Persona.numeroLoteUbicacion,
+                    nroVia = Persona.nroVia,
+                    razonSocial = Persona.razonSocial,
+                    tpPersona = Persona.tpPersona
                 });
                 await Save();
-                if (PersonaDTO.idTipoEmpleado != null)
+                if (Persona.idTipoEmpleado != null)
                 {
-                    await _empleadoRepository.UpdateEmpleado(PersonaDTO);
-                    if (PersonaDTO.idTipoEmpleado == 2)
+                    await _empleadoRepository.UpdateEmpleado(Persona);
+                    if (Persona.idTipoEmpleado == 2)
                     {
-                        await _medicoRepository.UpdateMedico(PersonaDTO);
+                        await _medicoRepository.UpdateMedico(Persona);
                     }
                 }
                 else
                 {
-                    await _pacienteRepository.UpdatePaciente(PersonaDTO);
+                    await _pacienteRepository.UpdatePaciente(Persona);
                 }
                 return "Actualizacion Exitosa Persona";
             }
