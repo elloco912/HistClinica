@@ -22,6 +22,8 @@ namespace HistClinica.Data
         public DbSet<D015_TPEMPLEADO> D015_TPEMPLEADO { get; set; }
         public DbSet<D001_USUARIO> D001_USUARIO { get; set; }
         public DbSet<D002_PERFIL> D002_PERFIL { get; set; }
+        public DbSet<D00_TBGENERAL> D00_TBGENERAL { get; set; }
+        public DbSet<D00_TBDETALLE> D00_TBDETALLE { get; set; }
 
     }
 }
