@@ -14,19 +14,21 @@ namespace HistClinica.Controllers
     public class PacienteController : Controller
     {
         private readonly IPacienteRepository _pacienteRepository;
+        private readonly IUtilRepository _utilrepository;
 
-        public PacienteController(IPacienteRepository pacienteRepository)
+        public PacienteController(IPacienteRepository pacienteRepository, IUtilRepository utilrepository)
         {
             _pacienteRepository = pacienteRepository;
+            _utilrepository = utilrepository;
         }
 
-        // GET: Paciente
-        public async Task<IActionResult> Index()
-        {
-            return View(await _pacienteRepository.GetAllPacientes());
-        }
+       // GET: Paciente
+        //public async Task<IActionResult> Index()
+        //{
+        //    return View(await _pacienteRepository.GetAllPacientes());
+        //}
 
-        public IActionResult Prueba()
+        public IActionResult Index()
         {
             return View();
         }
@@ -67,8 +69,48 @@ namespace HistClinica.Controllers
         }
 
         // GET: Paciente/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            var lsttipsexo = new Object();
+            lsttipsexo = await _utilrepository.GetTipo("sexo");
+            ViewBag.lssexo = lsttipsexo;
+
+            var lsgrdinstruccion = new Object();
+            lsgrdinstruccion = await _utilrepository.GetTipo("grado instruccion");
+            ViewBag.lgrdinst = lsgrdinstruccion;
+
+            var ocupacion = new Object();
+            ocupacion = await _utilrepository.GetTipo("Ocupacion");
+            ViewBag.locupacion = ocupacion;
+
+            var gruposangre = new Object();
+            gruposangre = await _utilrepository.GetTipo("Grupo Sangre");
+            ViewBag.lgpsangre = gruposangre;
+
+            var factrh = new Object();
+            factrh = await _utilrepository.GetTipo("Factor RH");
+            ViewBag.lfh = factrh;
+
+            var parentesco = new Object();
+            parentesco = await _utilrepository.GetTipo("Parentesco");
+            ViewBag.lparentesco = parentesco;
+
+            var tipovia = new Object();
+            tipovia = await _utilrepository.GetTipo("Tipo Via");
+            ViewBag.ltipovia = tipovia;
+
+            var tippac = new Object();
+            tippac = await _utilrepository.GetTipo("Tipo Paciente");
+            ViewBag.ltippac = tippac;
+
+            var estadocivil = new Object();
+            estadocivil = await _utilrepository.GetTipo("Estado Civil");
+            ViewBag.lestcivil = estadocivil;
+
+            var tipdoc = new Object();
+            tipdoc = await _utilrepository.GetTipo("Tipo Documento");
+            ViewBag.ltipdoc = tipdoc;
+
             return View();
         }
 

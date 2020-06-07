@@ -4,836 +4,809 @@
 }
 
 
-				<div class="col-sm-12">
-					<form action="/" method="post" id="idformpac" class="needs-validation" novalidate>
+	<div class="col-sm-12">
+		@using (Html.BeginForm())
+		{
+			<div class="col-sm-12 text-center pt-2 pb-4">
+				<div class="card card-primary">
+					<div class="card-header">
+						<h1>Datos del paciente</h1>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-sm-4">
+								<div class="col-sm-12">
+									<div class="row">
+										<div class="col-sm-5">
+											<label>Tipo de paciente</label>
+										</div>
+										<div class="col-sm-7">
+											@Html.DropDownList("tippac", new SelectList(ViewBag.ltippac, "idtab", "descripcion"), "Seleccione", new { @class = "form-control" })
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-4">
 
-						<div class="col-sm-12 text-center pt-2 pb-4">
-							<div class="card card-primary">
-								<div class="card-header">
-									<h1>Datos del paciente</h1>
+							</div>
+							<div class="col-sm-4">
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="row pb-2">
+							<div class="col-sm-3">
+								<div class="row">
+									<div class="col-sm-4">
+										<label for="apepatpac">Apellido paterno</label>
+									</div>
+									<div class="col-sm-8">
+										<input id="apepatpac" type="text" name="name" value="" class="form-control" />
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="row">
+									<div class="col-sm-4">
+										<label for="apematpac">Apellido Materno</label>
+									</div>
+									<div class="col-sm-8">
+										<input id="apematpac" type="text" name="name" value="" class="form-control" />
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="row">
+									<div class="col-sm-4">
+										<label for="firstname">Primer nombre</label>
+									</div>
+									<div class="col-sm-8">
+										<input id="firstname" type="text" name="name" value="" class="form-control" />
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="row">
+									<div class="col-sm-4">
+										<label for="secondname">Segundo nombre</label>
+									</div>
+									<div class="col-sm-8">
+										<input id="secondname" type="text" name="name" value="" class="form-control" />
+									</div>
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-12">
-							<div class="card">
-								<div class="card-body">
+						<div class="row pb-2">
+							<div class="col-sm-3">
+								<div class="row">
+									<div class="col-sm-4">
+										<label for="cbosexo">Sexo</label>
+									</div>
+									<div class="col-sm-8">
+										@Html.DropDownList("sexo", new SelectList(ViewBag.lssexo, "idtab", "descripcion"), "Seleccione", new { @class = "form-control" })
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="row">
+									<div class="col-sm-4">
+										<label for="fechdate">Fecha de nacimiento</label>
+									</div>
+									<div class="col-sm-8">
+										<input id="fechdate" type="date" name="name" value="" class="form-control" />
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="row">
+									<div class="col-sm-4">
+										<label for="edadpac">Edad</label>
+									</div>
+									<div class="col-sm-8">
+										<inpu id="edadpac" t type="text" name="name" value="" class="form-control" />
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="row">
+									<div class="col-sm-4">
+										<label for="cboocupacion">Ocupación</label>
+									</div>
+									<div class="col-sm-8">
+										@Html.DropDownList("ocupac", new SelectList(ViewBag.locupacion, "idtab", "descripcion"), "Seleccione", new { @class = "form-control" })
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row pb-2">
+							<div class="col-sm-3">
+								<div class="row">
+									<div class="col-sm-4">
+										<label for="cbogrdinstruccion">Grado de instruccion</label>
+									</div>
+									<div class="col-sm-8">
+										@Html.DropDownList("grdins", new SelectList(ViewBag.lgrdinst, "idtab", "descripcion"), "Seleccione", new { @class = "form-control" })
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="row">
+									<div class="col-sm-4">
+										<label for="estcivil">Estado civil</label>
+									</div>
+									<div class="col-sm-8">
+										@Html.DropDownList("estciv", new SelectList(ViewBag.lestcivil, "idtab", "descripcion"), "Seleccione", new { @class = "form-control" })
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="row">
+									<div class="col-sm-4">
+										<label for="emailpac">Email</label>
+									</div>
+									<div class="col-sm-8">
+										<input id="emailpac" type="text" name="name" value="" class="form-control" />
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="row">
+									<div class="col-sm-4">
+										<label for="celularpac">Celular</label>
+									</div>
+									<div class="col-sm-8">
+										<input id="celularpac" type="text" name="name" value="" class="form-control" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row pb-3">
+							<div class="col-sm-3">
+								<div class="row">
+									<div class="col-sm-4">
+										<label for="cbodoc">Tipo de Doc</label>
+									</div>
+									<div class="col-sm-8">
+										@Html.DropDownList("tipdoc", new SelectList(ViewBag.ltipdoc, "idtab", "descripcion"), "Seleccione", new { @class = "form-control" })
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="row">
+									<div class="col-sm-4">
+										<label for="nrodoc">Nro. Doc.</label>
+									</div>
+									<div class="col-sm-8">
+										<input id="nrodoc" type="text" name="name" value="" class="form-control" />
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="row">
+									<div class="col-sm-4">
+										<label for="cboparentesco">Parentesco</label>
+									</div>
+									<div class="col-sm-8">
+										@Html.DropDownList("paren", new SelectList(ViewBag.lparentesco, "idtab", "descripcion"), "Seleccione", new { @class = "form-control" })
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="row" id="divpacconv" style="display:none;">
+									<div class="col-sm-4">
+										<label for="factor_rh">Factor RH</label>
+									</div>
+									<div class="col-sm-8">
+										@Html.DropDownList("facrh", new SelectList(ViewBag.lfh, "idtab", "descripcion"), "Seleccione", new { @class = "form-control" })
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row pb-2">
+							<div class="col-sm-3">
+								<div class="row" id="divpaccomp" style="display:none;">
+									<div class="col-sm-4">
+										<label for="cbogruposanguineo">Grupo sanguineo</label>
+									</div>
+									<div class="col-sm-8">
+										@Html.DropDownList("grsangui", new SelectList(ViewBag.lgpsangre, "idtab", "descripcion"), "Seleccione", new { @class = "form-control" })
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+
+							</div>
+							<div class="col-sm-3">
+
+							</div>
+							<div class="col-sm-3">
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-12">
+				<a data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
+					<div class="card card-primary">
+						<div class="card-header">
+							<div class="row">
+								<div class="col-sm-6 card-title">
+									<h4>Ubicación</h4>
+								</div>
+								<div class="col-sm-6 text-right">
+									<i style="font-size: 30px;" class="fas fa-plus fx-5"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<div class="card">
+					<div class="collapse multi-collapse" id="multiCollapseExample1">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-sm-3">
 									<div class="row">
 										<div class="col-sm-4">
-											<div class="col-sm-12">
-												<div class="row">
-													<div class="col-sm-5">
-														<label>Tipo de paciente</label>
-													</div>
-													<div class="col-sm-7">
-														<select onchange="MostrarInputs()" id="cbotppac" class="custom-select">
-															<option value="1">Paciente particular</option>
-															<option value="2">Paciente convenio</option>
-															<option value="3">Paciente compañia</option>
-														</select>
-													</div>
-												</div>
-											</div>
+											<label for="departamentopac">Departamento</label>
 										</div>
+										<div class="col-sm-8">
+											<select id="departamentopac" class="custom-select">
+												<option value="value">text</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="row">
 										<div class="col-sm-4">
-
+											<label for="provinciapac">Provincia</label>
 										</div>
+										<div class="col-sm-8">
+											<select id="provinciapac" class="custom-select">
+												<option value="value">text</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="row">
 										<div class="col-sm-4">
-
+											<label for="tipvia">Tipo de vía</label>
+										</div>
+										<div class="col-sm-8">
+											@Html.DropDownList("tipvia", new SelectList(ViewBag.ltipovia, "idtab", "descripcion"), "Seleccione", new { @class = "form-control" })
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-4">
+											<label for="nomvia">Nombre de via</label>
+										</div>
+										<div class="col-sm-8">
+											<input id="nomvia" type="text" name="name" value="" class="form-control" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-4">
+											<label for="nro">N°</label>
+										</div>
+										<div class="col-sm-8">
+											<input id="nro" type="text" name="name" value="" class="form-control" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-4">
+											<label for="nrodpto">DPTO N°</label>
+										</div>
+										<div class="col-sm-8">
+											<input id="nrodpto" type="text" name="name" value="" class="form-control" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-4">
+											<label for="nroInterior">Interior</label>
+										</div>
+										<div class="col-sm-8">
+											<input id="nroInterior" type="text" name="name" value="" class="form-control" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-4">
+											<label for="nrolote">N° de lote</label>
+										</div>
+										<div class="col-sm-8">
+											<input id="nrolote" type="text" name="name" value="" class="form-control" />
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-12">
-							<div class="card">
-								<div class="card-body">
-									<div class="row pb-2">
-										<div class="col-sm-3">
-											<div class="row">
-												<div class="col-sm-4">
-													<label for="apepatpac">Apellido paterno</label>
-												</div>
-												<div class="col-sm-8">
-													<input id="apepatpac" type="text" name="name" value="" class="form-control" />
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-3">
-											<div class="row">
-												<div class="col-sm-4">
-													<label for="apematpac">Apellido Materno</label>
-												</div>
-												<div class="col-sm-8">
-													<input id="apematpac" type="text" name="name" value="" class="form-control" />
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-3">
-											<div class="row">
-												<div class="col-sm-4">
-													<label for="firstname">Primer nombre</label>
-												</div>
-												<div class="col-sm-8">
-													<input id="firstname" type="text" name="name" value="" class="form-control" />
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-3">
-											<div class="row">
-												<div class="col-sm-4">
-													<label for="secondname">Segundo nombre</label>
-												</div>
-												<div class="col-sm-8">
-													<input id="secondname" type="text" name="name" value="" class="form-control" />
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="row pb-2">
-										<div class="col-sm-3">
-											<div class="row">
-												<div class="col-sm-4">
-													<label for="cbosexo">Sexo</label>
-												</div>
-												<div class="col-sm-8">
-													<select id="cbosexo" class="form-control">
-														<option value="value">text</option>
-													</select>
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-3">
-											<div class="row">
-												<div class="col-sm-4">
-													<label for="fechdate">Fecha de nacimiento</label>
-												</div>
-												<div class="col-sm-8">
-													<input id="fechdate" type="date" name="name" value="" class="form-control" />
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-3">
-											<div class="row">
-												<div class="col-sm-4">
-													<label for="edadpac">Edad</label>
-												</div>
-												<div class="col-sm-8">
-													<inpu id="edadpac" t type="text" name="name" value="" class="form-control" />
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-3">
-											<div class="row">
-												<div class="col-sm-4">
-													<label for="cboocupacion">Ocupación</label>
-												</div>
-												<div class="col-sm-8">
-													<select id="cboocupacion" class="form-control">
-														<option value="value">Secretaria</option>
-													</select>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="row pb-2">
-										<div class="col-sm-3">
-											<div class="row">
-												<div class="col-sm-4">
-													<label for="cbogrdinstruccion">Grado de instruccion</label>
-												</div>
-												<div class="col-sm-8">
-													<select id="cbogrdinstruccion" class="form-control">
-														<option value="value">Estudiante</option>
-													</select>
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-3">
-											<div class="row">
-												<div class="col-sm-4">
-													<label for="estcivil">Estado civil</label>
-												</div>
-												<div class="col-sm-8">
-													<select id="estcivil" class="form-control">
-														<option value="value">Estudiante</option>
-													</select>
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-3">
-											<div class="row">
-												<div class="col-sm-4">
-													<label for="emailpac">Email</label>
-												</div>
-												<div class="col-sm-8">
-													<input id="emailpac" type="text" name="name" value="" class="form-control" />
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-3">
-											<div class="row">
-												<div class="col-sm-4">
-													<label for="celularpac">Celular</label>
-												</div>
-												<div class="col-sm-8">
-													<input id="celularpac" type="text" name="name" value="" class="form-control" />
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="row pb-3">
-										<div class="col-sm-3">
-											<div class="row">
-												<div class="col-sm-4">
-													<label for="cbodoc">Tipo de Doc</label>
-												</div>
-												<div class="col-sm-8">
-													<select id="cbodoc" class="form-control">
-														<option value="value">DNI</option>
-													</select>
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-3">
-											<div class="row">
-												<div class="col-sm-4">
-													<label for="nrodoc">Nro. Doc.</label>
-												</div>
-												<div class="col-sm-8">
-													<input id="nrodoc" type="text" name="name" value="" class="form-control" />
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-3">
-											<div class="row">
-												<div class="col-sm-4">
-													<label for="cboparentesco">Parentesco</label>
-												</div>
-												<div class="col-sm-8">
-													<select id="cboparentesco" class="form-control">
-														<option value="value">Hijo</option>
-													</select>
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-3">
-											<div class="row" id="divpacconv" style="display:none;">
-												<div class="col-sm-4">
-													<label for="factor_rh">Factor RH</label>
-												</div>
-												<div class="col-sm-8">
-													<select id="factor_rh" class="form-control">
-														<option value="value">text</option>
-													</select>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="row pb-2">
-										<div class="col-sm-3">
-											<div class="row" id="divpaccomp" style="display:none;">
-												<div class="col-sm-4">
-													<label for="cbogruposanguineo">Grupo sanguineo</label>
-												</div>
-												<div class="col-sm-8">
-													<select id="cbogruposanguineo" class="form-control">
-														<option value="value">Negativo</option>
-													</select>
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-3">
-
-										</div>
-										<div class="col-sm-3">
-
-										</div>
-										<div class="col-sm-3">
-
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-12">
-							<a data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
-								<div class="card card-primary">
-									<div class="card-header">
-										<div class="row">
-											<div class="col-sm-6 card-title">
-												<h4>Ubicación</h4>
-											</div>
-											<div class="col-sm-6 text-right">
-												<i style="font-size: 30px;" class="fas fa-plus fx-5"></i>
-											</div>
-										</div>
-									</div>
-								</div>
-							</a>
-							<div class="card">
-								<div class="collapse multi-collapse" id="multiCollapseExample1">
-									<div class="card-body">
-										<div class="row">
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-4">
-														<label for="departamentopac">Departamento</label>
-													</div>
-													<div class="col-sm-8">
-														<select id="departamentopac" class="custom-select">
-															<option value="value">text</option>
-														</select>
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-4">
-														<label for="provinciapac">Provincia</label>
-													</div>
-													<div class="col-sm-8">
-														<select id="provinciapac" class="custom-select">
-															<option value="value">text</option>
-														</select>
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-4">
-														<label for="tipvia">Tipo de vía</label>
-													</div>
-													<div class="col-sm-8">
-														<input id="tipvia" type="text" name="name" value="" class="form-control" />
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-4">
-														<label for="nomvia">Nombre de via</label>
-													</div>
-													<div class="col-sm-8">
-														<input id="nomvia" type="text" name="name" value="" class="form-control" />
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-4">
-														<label for="nro">N°</label>
-													</div>
-													<div class="col-sm-8">
-														<input id="nro" type="text" name="name" value="" class="form-control" />
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-4">
-														<label for="nrodpto">DPTO N°</label>
-													</div>
-													<div class="col-sm-8">
-														<input id="nrodpto" type="text" name="name" value="" class="form-control" />
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-4">
-														<label for="nroInterior">Interior</label>
-													</div>
-													<div class="col-sm-8">
-														<input id="nroInterior" type="text" name="name" value="" class="form-control" />
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-4">
-														<label for="nrolote">N° de lote</label>
-													</div>
-													<div class="col-sm-8">
-														<input id="nrolote" type="text" name="name" value="" class="form-control" />
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-12">
-							<a data-toggle="collapse" href="#collapsedatosnac" role="button" aria-expanded="false" aria-controls="collapsedatosnac">
-								<div class="card card-primary">
-									<div class="card-header">
-										<div class="row">
-											<div class="col-sm-6 card-title">
-												<h4>Datos nacimiento</h4>
-											</div>
-											<div class="col-sm-6 text-right">
-												<i style="font-size: 30px;" class="fas fa-plus fx-5"></i>
-											</div>
-										</div>
-									</div>
-								</div>
-							</a>
-							<div class="card">
-								<div class="collapse multi-collapse" id="collapsedatosnac">
-									<div class="card-body">
-										<div class="row">
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-4">
-														<label for="paisnac">Pais origen</label>
-													</div>
-													<div class="col-sm-8">
-														<select id="paisnac" class="form-control">
-															<option value="value">Peru</option>
-														</select>
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-4">
-														<label for="dptonac">Departamento</label>
-													</div>
-													<div class="col-sm-8">
-														<select id="dptonac" class="form-control">
-															<option value="value">Peru</option>
-														</select>
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-4">
-														<label for="provinnac">Provincia</label>
-													</div>
-													<div class="col-sm-8">
-														<select id="provinnac" class="form-control">
-															<option value="value">Peru</option>
-														</select>
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-4">
-														<label for="cbodistritonac">Distrito</label>
-													</div>
-													<div class="col-sm-8">
-														<select id="cbodistritonac" class="form-control">
-															<option value="value">Peru</option>
-														</select>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-12" id="divpacotros" style="display: none;">
-							<a data-toggle="collapse" href="#collapseotroscompañia" role="button" aria-expanded="false" aria-controls="collapseotroscompañia">
-								<div class="card card-primary">
-									<div class="card-header">
-										<div class="row">
-											<div class="col-sm-6 card-title">
-												<h4>Otros</h4>
-											</div>
-											<div class="col-sm-6 text-right">
-												<i style="font-size: 30px;" class="fas fa-plus fx-5"></i>
-											</div>
-										</div>
-									</div>
-								</div>
-							</a>
-							<div class="card">
-								<div class="collapse multi-collapse" id="collapseotroscompañia">
-									<div id="actcompañia" class="card-body" style="display:none;">
-										<div class="row pb-2">
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-5">
-														<label for="cobertura">Cobertura</label>
-													</div>
-													<div class="col-sm-7">
-														<input id="cobertura" type="text" name="name" value="" class="form-control" />
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-5">
-														<label for="nroatenmed">Ord. Atencion medica</label>
-													</div>
-													<div class="col-sm-7">
-														<input id="nroatenmed" type="text" name="name" value="" class="form-control" />
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-5">
-														<label for="nomaseg">Nombre de la Aseguradora</label>
-													</div>
-													<div class="col-sm-7">
-														<input id="nomaseg" type="text" name="name" value="" class="form-control" />
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-5">
-														<label for="codaseg">Cod. del asegurado</label>
-													</div>
-													<div class="col-sm-7">
-														<input id="codaseg" type="text" name="name" value="" class="form-control" />
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="row pb-3">
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-5">
-														<label for="poliza">Poliza</label>
-													</div>
-													<div class="col-sm-7">
-														<input id="poliza" type="text" name="name" value="" class="form-control" />
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-5">
-														<label for="cboparentesco2">Parentesco</label>
-													</div>
-													<div class="col-sm-7">
-														<select id="cboparentesco2" class="custom-select">
-															<option value="value">text</option>
-														</select>
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-5">
-														<label for="fechinivig">Inicio de vig.</label>
-													</div>
-													<div class="col-sm-7">
-														<input id="fechinivig" type="date" name="name" value="" class="form-control" />
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-5">
-														<label for="fechfinvig">Fin de vig.</label>
-													</div>
-													<div class="col-sm-7">
-														<input id="fechfinvig" type="date" name="name" value="" class="form-control" />
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-5">
-														<label for="tpplansalud">Tip Plan de salud</label>
-													</div>
-													<div class="col-sm-7">
-														<input id="tpplansalud" type="text" name="name" value="" class="form-control" />
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-5">
-														<label for="nroplansalud">N° plan de salud</label>
-													</div>
-													<div class="col-sm-7">
-														<input id="nroplansalud" type="text" name="name" value="" class="form-control" />
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3">
-
-											</div>
-											<div class="col-sm-3">
-
-											</div>
-										</div>
-									</div>
-									<div id="actconvenio" class="card-body" style="display:none;">
-										<div class="row pb-2">
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-5">
-														<label for="coberturacov">Cobertura</label>
-													</div>
-													<div class="col-sm-7">
-														<input id="coberturacov" type="text" name="name" value="" class="form-control" />
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-5">
-														<label for="ordatencioncov">Ord. Atencion medica</label>
-													</div>
-													<div class="col-sm-7">
-														<input id="ordatencioncov" type="text" name="name" value="" class="form-control" />
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-5">
-														<label for="cboparentesco3">Parentesco</label>
-													</div>
-													<div class="col-sm-7">
-														<select id="cboparentesco3" class="custom-select">
-															<option value="value">text</option>
-														</select>
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-5">
-														<label for="fechinicov">Inicio de vig.</label>
-													</div>
-													<div class="col-sm-7">
-														<input id="fechinicov" type="date" name="name" value="" class="form-control" />
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="row pb-3">
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-5">
-														<label for="fechfincov">Fin de vig.</label>
-													</div>
-													<div class="col-sm-7">
-														<input id="fechfincov" type="date" name="name" value="" class="form-control" />
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3">
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-12">
-							<a data-toggle="collapse" href="#collapsedatosempresa" role="button" aria-expanded="false" aria-controls="collapsedatosempresa">
-								<div class="card card-primary">
-									<div class="card-header">
-										<div class="row">
-											<div class="col-sm-6 card-title">
-												<h4>Empresa</h4>
-											</div>
-											<div class="col-sm-6 text-right">
-												<i style="font-size: 30px;" class="fas fa-plus fx-5"></i>
-											</div>
-										</div>
-									</div>
-								</div>
-							</a>
-							<div class="card">
-								<div class="collapse multi-collapse" id="collapsedatosempresa">
-									<div class="card-body">
-										<div class="row">
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-4">
-														<label for="nroruc">RUC</label>
-													</div>
-													<div class="col-sm-8">
-														<input id="nroruc" type="text" name="name" value="" class="form-control" />
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-4">
-														<label for="razsoc">Razon social</label>
-													</div>
-													<div class="col-sm-8">
-														<input id="razsoc" type="text" name="name" value="" class="form-control" />
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-4">
-														<label for="estruc">Estado del RUC</label>
-													</div>
-													<div class="col-sm-8">
-														<input id="estruc" type="text" name="name" value="" class="form-control" />
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-4">
-														<label for="domfiscal">Domicilio fiscal</label>
-													</div>
-													<div class="col-sm-8">
-														<input id="domfiscal" type="text" name="name" value="" class="form-control" />
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-12">
-							<a data-toggle="collapse" href="#collapseacom" role="button" aria-expanded="false" aria-controls="collapseacom">
-								<div class="card card-primary">
-									<div class="card-header">
-										<div class="row">
-											<div class="col-sm-6 card-title">
-												<h4>Datos del acompañante</h4>
-											</div>
-											<div class="col-sm-6 text-right">
-												<i style="font-size: 30px;" class="fas fa-plus fx-5"></i>
-											</div>
-										</div>
-									</div>
-								</div>
-							</a>
-							<div class="card">
-								<div class="collapse multi-collapse" id="collapseacom">
-									<div class="card-body">
-										<div class="row">
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-4">
-														<label for="cbotipdocacom">Tipo de Doc</label>
-													</div>
-													<div class="col-sm-8">
-														<select id="cbotipdocacom" class="form-control">
-															<option value="value">text</option>
-														</select>
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-4">
-														<label for="nrodocacom">Nro Doc.</label>
-													</div>
-													<div class="col-sm-8">
-														<input id="nrodocacom" type="text" name="name" value="" class="form-control" />
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-4">
-														<label>Buscar</label>
-													</div>
-													<div class="col-sm-8">
-														<button class="btn btn-primary"><i class="fas fas-search"></i></button>
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3">
-
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-4">
-														<label for="apepatacom">Apellido paterno</label>
-													</div>
-													<div class="col-sm-8">
-														<input id="apepatacom" type="text" name="name" value="" class="form-control" />
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-4">
-														<label for="apematacom">Apellido materno</label>
-													</div>
-													<div class="col-sm-8">
-														<input id="apematacom" type="text" name="name" value="" class="form-control" />
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-4">
-														<label for="firstnomacom">Primer nombre</label>
-													</div>
-													<div class="col-sm-8">
-														<input id="firstnomacom" type="text" name="name" value="" class="form-control" />
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-4">
-														<label for="secondnameacom">Segundo nombre</label>
-													</div>
-													<div class="col-sm-8">
-														<input id="secondnameacom" type="text" name="name" value="" class="form-control" />
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-4">
-														<label for="cboparentescoacom">Parentesco</label>
-													</div>
-													<div class="col-sm-8">
-														<select id="cboparentescoacom" class="form-control">
-															<option value="value">Padre</option>
-														</select>
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3">
-												<div class="row">
-													<div class="col-sm-4">
-														<label for="edadacom">Edad</label>
-													</div>
-													<div class="col-sm-8">
-														<input id="edadacom" type="text" name="name" value="" class="form-control" />
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3">
-
-											</div>
-											<div class="col-sm-3">
-
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-12 text-right pb-2">
-							<button type="submit" class="btn btn-primary">Guardar</button>
-							<a asp-action="Prueba" asp-controller="Paciente" type="submit" class="btn btn-primary">Cerrar</a>
-						</div>
-					</form>
+					</div>
 				</div>
+			</div>
+			<div class="col-sm-12">
+				<a data-toggle="collapse" href="#collapsedatosnac" role="button" aria-expanded="false" aria-controls="collapsedatosnac">
+					<div class="card card-primary">
+						<div class="card-header">
+							<div class="row">
+								<div class="col-sm-6 card-title">
+									<h4>Datos nacimiento</h4>
+								</div>
+								<div class="col-sm-6 text-right">
+									<i style="font-size: 30px;" class="fas fa-plus fx-5"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<div class="card">
+					<div class="collapse multi-collapse" id="collapsedatosnac">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-4">
+											<label for="paisnac">Pais origen</label>
+										</div>
+										<div class="col-sm-8">
+											<select id="paisnac" class="form-control">
+												<option value="value">Peru</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-4">
+											<label for="dptonac">Departamento</label>
+										</div>
+										<div class="col-sm-8">
+											<select id="dptonac" class="form-control">
+												<option value="value">Peru</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-4">
+											<label for="provinnac">Provincia</label>
+										</div>
+										<div class="col-sm-8">
+											<select id="provinnac" class="form-control">
+												<option value="value">Peru</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-4">
+											<label for="cbodistritonac">Distrito</label>
+										</div>
+										<div class="col-sm-8">
+											<select id="cbodistritonac" class="form-control">
+												<option value="value">Peru</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-12" id="divpacotros" style="display: none;">
+				<a data-toggle="collapse" href="#collapseotroscompañia" role="button" aria-expanded="false" aria-controls="collapseotroscompañia">
+					<div class="card card-primary">
+						<div class="card-header">
+							<div class="row">
+								<div class="col-sm-6 card-title">
+									<h4>Otros</h4>
+								</div>
+								<div class="col-sm-6 text-right">
+									<i style="font-size: 30px;" class="fas fa-plus fx-5"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<div class="card">
+					<div class="collapse multi-collapse" id="collapseotroscompañia">
+						<div id="actcompañia" class="card-body" style="display:none;">
+							<div class="row pb-2">
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-5">
+											<label for="cobertura">Cobertura</label>
+										</div>
+										<div class="col-sm-7">
+											<input id="cobertura" type="text" name="name" value="" class="form-control" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-5">
+											<label for="nroatenmed">Ord. Atencion medica</label>
+										</div>
+										<div class="col-sm-7">
+											<input id="nroatenmed" type="text" name="name" value="" class="form-control" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-5">
+											<label for="nomaseg">Nombre de la Aseguradora</label>
+										</div>
+										<div class="col-sm-7">
+											<input id="nomaseg" type="text" name="name" value="" class="form-control" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-5">
+											<label for="codaseg">Cod. del asegurado</label>
+										</div>
+										<div class="col-sm-7">
+											<input id="codaseg" type="text" name="name" value="" class="form-control" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row pb-3">
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-5">
+											<label for="poliza">Poliza</label>
+										</div>
+										<div class="col-sm-7">
+											<input id="poliza" type="text" name="name" value="" class="form-control" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-5">
+											<label for="cboparentesco2">Parentesco</label>
+										</div>
+										<div class="col-sm-7">
+											@Html.DropDownList("parenpac", new SelectList(ViewBag.lparentesco, "idtab", "descripcion"), "Seleccione", new { @class = "form-control" })
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-5">
+											<label for="fechinivig">Inicio de vig.</label>
+										</div>
+										<div class="col-sm-7">
+											<input id="fechinivig" type="date" name="name" value="" class="form-control" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-5">
+											<label for="fechfinvig">Fin de vig.</label>
+										</div>
+										<div class="col-sm-7">
+											<input id="fechfinvig" type="date" name="name" value="" class="form-control" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-5">
+											<label for="tpplansalud">Tip Plan de salud</label>
+										</div>
+										<div class="col-sm-7">
+											<input id="tpplansalud" type="text" name="name" value="" class="form-control" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-5">
+											<label for="nroplansalud">N° plan de salud</label>
+										</div>
+										<div class="col-sm-7">
+											<input id="nroplansalud" type="text" name="name" value="" class="form-control" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+
+								</div>
+								<div class="col-sm-3">
+
+								</div>
+							</div>
+						</div>
+						<div id="actconvenio" class="card-body" style="display:none;">
+							<div class="row pb-2">
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-5">
+											<label for="coberturacov">Cobertura</label>
+										</div>
+										<div class="col-sm-7">
+											<input id="coberturacov" type="text" name="name" value="" class="form-control" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-5">
+											<label for="ordatencioncov">Ord. Atencion medica</label>
+										</div>
+										<div class="col-sm-7">
+											<input id="ordatencioncov" type="text" name="name" value="" class="form-control" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-5">
+											<label for="cboparentesco3">Parentesco</label>
+										</div>
+										<div class="col-sm-7">
+											@Html.DropDownList("parenpac2", new SelectList(ViewBag.lparentesco, "idtab", "descripcion"), "Seleccione", new { @class = "form-control" })
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-5">
+											<label for="fechinicov">Inicio de vig.</label>
+										</div>
+										<div class="col-sm-7">
+											<input id="fechinicov" type="date" name="name" value="" class="form-control" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row pb-3">
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-5">
+											<label for="fechfincov">Fin de vig.</label>
+										</div>
+										<div class="col-sm-7">
+											<input id="fechfincov" type="date" name="name" value="" class="form-control" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-12">
+				<a data-toggle="collapse" href="#collapsedatosempresa" role="button" aria-expanded="false" aria-controls="collapsedatosempresa">
+					<div class="card card-primary">
+						<div class="card-header">
+							<div class="row">
+								<div class="col-sm-6 card-title">
+									<h4>Empresa</h4>
+								</div>
+								<div class="col-sm-6 text-right">
+									<i style="font-size: 30px;" class="fas fa-plus fx-5"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<div class="card">
+					<div class="collapse multi-collapse" id="collapsedatosempresa">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-4">
+											<label for="nroruc">RUC</label>
+										</div>
+										<div class="col-sm-8">
+											<input id="nroruc" type="text" name="name" value="" class="form-control" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-4">
+											<label for="razsoc">Razon social</label>
+										</div>
+										<div class="col-sm-8">
+											<input id="razsoc" type="text" name="name" value="" class="form-control" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-4">
+											<label for="estruc">Estado del RUC</label>
+										</div>
+										<div class="col-sm-8">
+											<input id="estruc" type="text" name="name" value="" class="form-control" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-4">
+											<label for="domfiscal">Domicilio fiscal</label>
+										</div>
+										<div class="col-sm-8">
+											<input id="domfiscal" type="text" name="name" value="" class="form-control" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-12">
+				<a data-toggle="collapse" href="#collapseacom" role="button" aria-expanded="false" aria-controls="collapseacom">
+					<div class="card card-primary">
+						<div class="card-header">
+							<div class="row">
+								<div class="col-sm-6 card-title">
+									<h4>Datos del acompañante</h4>
+								</div>
+								<div class="col-sm-6 text-right">
+									<i style="font-size: 30px;" class="fas fa-plus fx-5"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<div class="card">
+					<div class="collapse multi-collapse" id="collapseacom">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-4">
+											<label for="cbotipdocacom">Tipo de Doc</label>
+										</div>
+										<div class="col-sm-8">
+											@Html.DropDownList("tipdocacom", new SelectList(ViewBag.ltipdoc, "idtab", "descripcion"), "Seleccione", new { @class = "form-control" })
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-4">
+											<label for="nrodocacom">Nro Doc.</label>
+										</div>
+										<div class="col-sm-8">
+											<input id="nrodocacom" type="text" name="name" value="" class="form-control" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-4">
+											<label>Buscar</label>
+										</div>
+										<div class="col-sm-8">
+											<button class="btn btn-primary"><i class="fas fas-search"></i></button>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-4">
+											<label for="apepatacom">Apellido paterno</label>
+										</div>
+										<div class="col-sm-8">
+											<input id="apepatacom" type="text" name="name" value="" class="form-control" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-4">
+											<label for="apematacom">Apellido materno</label>
+										</div>
+										<div class="col-sm-8">
+											<input id="apematacom" type="text" name="name" value="" class="form-control" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-4">
+											<label for="firstnomacom">Primer nombre</label>
+										</div>
+										<div class="col-sm-8">
+											<input id="firstnomacom" type="text" name="name" value="" class="form-control" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-4">
+											<label for="secondnameacom">Segundo nombre</label>
+										</div>
+										<div class="col-sm-8">
+											<input id="secondnameacom" type="text" name="name" value="" class="form-control" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-4">
+											<label for="cboparentescoacom">Parentesco</label>
+										</div>
+										<div class="col-sm-8">
+											@Html.DropDownList("parenacom", new SelectList(ViewBag.lparentesco, "idtab", "descripcion"), "Seleccione", new { @class = "form-control" })
+
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="row">
+										<div class="col-sm-4">
+											<label for="edadacom">Edad</label>
+										</div>
+										<div class="col-sm-8">
+											<input id="edadacom" type="text" name="name" value="" class="form-control" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+
+								</div>
+								<div class="col-sm-3">
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-12 text-right pb-2">
+				<button type="submit" class="btn btn-primary">Guardar</button>
+				<a asp-action="Index" asp-controller="Paciente" type="submit" class="btn btn-primary">Cerrar</a>
+			</div>
+		}
+	</div>
 
 
 				<script src="~/js/Mantenedor_Paciente.js"></script>

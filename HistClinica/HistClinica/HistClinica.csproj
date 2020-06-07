@@ -11,6 +11,8 @@
     <Compile Remove="Migrations\20200605215612_05062020.Designer.cs" />
     <Compile Remove="Migrations\20200606153947_nuevatabla.cs" />
     <Compile Remove="Migrations\20200606153947_nuevatabla.Designer.cs" />
+    <Compile Remove="Migrations\20200606221229_nuevastablas.cs" />
+    <Compile Remove="Migrations\20200606221229_nuevastablas.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
