@@ -106,7 +106,7 @@ namespace HistClinica.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(PersonaDTO persona)
         {
-            if (ModelState.IsValid)
+            if (persona != null)
             {
                 await _personaRepository.InsertPersona(persona);
                 return RedirectToAction(nameof(Index));

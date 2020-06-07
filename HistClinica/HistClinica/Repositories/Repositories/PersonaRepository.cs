@@ -212,7 +212,7 @@ namespace HistClinica.Repositories.Repositories
                                                select new PersonaDTO
                                                {
                                                    idPersona = p.idPersona,
-                                                   primerNombre = "",
+                                                   primerNombre = p.nombres,
                                                    segundoNombre = "",
                                                    apellidoPaterno = p.apePaterno,
                                                    apellidoMaterno = p.apeMaterno,
@@ -232,7 +232,7 @@ namespace HistClinica.Repositories.Repositories
                              select new PersonaDTO
                              {
                                  idPersona = p.idPersona,
-                                 primerNombre = "",
+                                 primerNombre = p.nombres,
                                  segundoNombre = "",
                                  apellidoPaterno = p.apePaterno,
                                  apellidoMaterno = p.apeMaterno,
