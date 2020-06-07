@@ -19,7 +19,7 @@
 					<label>Especialidad</label>
 				</div>
 				<div class="col-sm-8">
-					@Html.DropDownListFor(m => m.idEspecialidad, new SelectList(ViewBag.listaespecialidades, "idEspecialidad", "descripcion"), new { @class = "form-control" })
+					@Html.DropDownListFor(m => m.idEspecialidad, new SelectList(ViewBag.listaespecialidades, "idtab", "descripcion"), new { @class = "form-control" })
 				</div>
 			</div>
 		</div>
@@ -29,7 +29,7 @@
 					<label>Consultorio</label>
 				</div>
 				<div class="col-sm-8">
-					@Html.DropDownListFor(m => m.idConsultorio, new SelectList(ViewBag.listaconsultorio, "idConsultorio", "descripcion"), new { @class = "form-control" })
+					@Html.DropDownListFor(m => m.idConsultorio, new SelectList(ViewBag.listaconsultorio, "idtab", "descripcion"), new { @class = "form-control" })
 				</div>
 			</div>
 		</div>

@@ -24,7 +24,7 @@ namespace HistClinica.Repositories.Repositories
 								 where tg.descripcion == nombretipo
 								 select new
 								 {
-									 idtab = tg.idTab,
+									 idtab = td.idDet,
 									 descripcion = td.descripcion
 								 }).ToListAsync();
 			return combo;

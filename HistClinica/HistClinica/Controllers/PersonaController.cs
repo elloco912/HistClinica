@@ -16,11 +16,13 @@ namespace HistClinica.Controllers
     {
         private readonly ClinicaServiceContext _context;
         private readonly IPersonaRepository _personaRepository;
+        private readonly IUtilRepository _utilrepository;
 
-        public PersonaController(IPersonaRepository personaRepository,ClinicaServiceContext contexto)
+        public PersonaController(IPersonaRepository personaRepository,ClinicaServiceContext contexto,IUtilRepository utilRepository)
         {
             _context = contexto;
             _personaRepository = personaRepository;
+            _utilrepository = utilRepository;
         }
 
         // GET: Persona
@@ -47,15 +49,15 @@ namespace HistClinica.Controllers
         }
 
         // GET: Persona/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            List<T120_ESPECIALIDAD> lespecialidads = new List<T120_ESPECIALIDAD>();
-            lespecialidads = _context.T120_ESPECIALIDAD.ToList();
+            var lespecialidads = new Object();
+            lespecialidads = await _utilrepository.GetTipo("Especialidad");
             ViewBag.listaespecialidades = lespecialidads;
 
             //combo tipo de empleado
-            List<D015_TPEMPLEADO> tipoEmpleados = new List<D015_TPEMPLEADO>();
-            tipoEmpleados = _context.D015_TPEMPLEADO.ToList();
+            var tipoEmpleados = new Object();
+            tipoEmpleados = await _utilrepository.GetTipo("Tipo Empleado");
             ViewBag.lsttipoempleado = tipoEmpleados;
             return View();
         }
@@ -81,13 +83,13 @@ namespace HistClinica.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         public async Task<IActionResult> Editar(int idpersona)
         {
-            List<T120_ESPECIALIDAD> lespecialidads = new List<T120_ESPECIALIDAD>();
-            lespecialidads = _context.T120_ESPECIALIDAD.ToList();
+            var lespecialidads = new Object();
+            lespecialidads = await _utilrepository.GetTipo("Especialidad");
             ViewBag.listaespecialidades = lespecialidads;
 
             //combo tipo de empleado
-            List<D015_TPEMPLEADO> tipoEmpleados = new List<D015_TPEMPLEADO>();
-            tipoEmpleados = _context.D015_TPEMPLEADO.ToList();
+            var tipoEmpleados = new Object();
+            tipoEmpleados = await _utilrepository.GetTipo("Tipo Empleado");
             ViewBag.lsttipoempleado = tipoEmpleados;
 
             PersonaDTO persona = await _personaRepository.GetById(idpersona);

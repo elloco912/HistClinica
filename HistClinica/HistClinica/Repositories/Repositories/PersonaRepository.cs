@@ -116,7 +116,7 @@ namespace HistClinica.Repositories.Repositories
                 {
                     await _empleadoRepository.InsertEmpleado(PersonaDTO, idPersona);
                     idEmpleado = await _empleadoRepository.GetIdEmpleado(idPersona);
-                    if (PersonaDTO.idTipoEmpleado == 2)
+                    if (PersonaDTO.idTipoEmpleado == 109)
                     {
                         await _medicoRepository.InsertMedico(PersonaDTO, idPersona, idEmpleado);
                     }
