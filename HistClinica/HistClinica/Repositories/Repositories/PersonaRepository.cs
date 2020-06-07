@@ -212,12 +212,10 @@ namespace HistClinica.Repositories.Repositories
                                                select new PersonaDTO
                                                {
                                                    idPersona = p.idPersona,
-                                                   primerNombre = "",
+                                                   primerNombre = p.nombres,
                                                    segundoNombre = "",
                                                    apellidoPaterno = p.apePaterno,
                                                    apellidoMaterno = p.apeMaterno,
-                                                   nombres = p.nombres,
-                                                   apellidos = p.apePaterno + " " + p.apeMaterno,
                                                    fechaIngreso = e.fecIngreso,
                                                    telefono = p.telefono,
                                                    cargo = e.cargo
@@ -234,12 +232,10 @@ namespace HistClinica.Repositories.Repositories
                              select new PersonaDTO
                              {
                                  idPersona = p.idPersona,
-                                 primerNombre = "",
+                                 primerNombre = p.nombres,
                                  segundoNombre = "",
                                  apellidoPaterno = p.apePaterno,
                                  apellidoMaterno = p.apeMaterno,
-                                 nombres = p.nombres,
-                                 apellidos = p.apePaterno + " " + p.apeMaterno,
                                  fechaIngreso = e.fecIngreso,
                                  telefono = p.telefono,
                                  cargo = e.cargo,
