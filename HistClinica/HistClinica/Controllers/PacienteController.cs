@@ -8,16 +8,19 @@ using Microsoft.EntityFrameworkCore;
 using HistClinica.Data;
 using HistClinica.Models;
 using HistClinica.Repositories.Interfaces;
+using HistClinica.DTO;
 
 namespace HistClinica.Controllers
 {
     public class PacienteController : Controller
     {
+        private readonly IPersonaRepository _personaRepository;
         private readonly IPacienteRepository _pacienteRepository;
         private readonly IUtilRepository _utilrepository;
 
-        public PacienteController(IPacienteRepository pacienteRepository, IUtilRepository utilrepository)
+        public PacienteController(IPersonaRepository personaRepository, IPacienteRepository pacienteRepository,IUtilRepository utilrepository)
         {
+            _personaRepository = personaRepository;
             _pacienteRepository = pacienteRepository;
             _utilrepository = utilrepository;
         }
@@ -32,24 +35,6 @@ namespace HistClinica.Controllers
         {
             return View();
         }
-
-        // GET: Paciente/Prueba/5
-      /*  public async Task<IActionResult> Prueba(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var paciente = await _context.Paciente
-                .FirstOrDefaultAsync(m => m.dniPac == id);
-            if (paciente == null)
-            {
-                return NotFound();
-            }
-
-            return View(paciente);
-        }*/
 
         // GET: Paciente/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -119,14 +104,14 @@ namespace HistClinica.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("idPaciente,apePaterno,apeMaterno,nombres,idtpDocumento,dniPac,idSexo,idEtnico,fecNacimiento,idUbigeoResi,idtipoVia,nombreVia,nroVia,nroDpto,interior,manzana,nroLote,nroKm,nroBlock,nroEtapa,edad,nrohc,idUbigeoNace,fotografia,idGrdInstruc,idReligion,centroEduca,idEstCivil,idOcupacion,idgpoSangre,idFactorrh,nroRuc,razonSocial,estadoRuc,condicionRuc,domiFiscal,idParentesco,nombreAcom,edadAcom,dniAcom,fonoFijo,celular,correo,idtpPaciente,idAsegurado,idPacConvenio,iddatoReniec,iddatoSunat,iddatoSiteds,idemprConvenio,idciaSeguro,idtipoIafa")] T001_PACIENTE paciente)
+        public async Task<IActionResult> Create(PersonaDTO persona)
         {
             if (ModelState.IsValid)
             {
-                await _pacienteRepository.InsertPaciente(paciente);
+                await _personaRepository.InsertPersona(persona);
                 return RedirectToAction(nameof(Index));
             }
-            return View(paciente);
+            return View(persona);
         }
 
         // GET: Paciente/Edit/5
@@ -150,7 +135,7 @@ namespace HistClinica.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("idPaciente,apePaterno,apeMaterno,nombres,idtpDocumento,dniPac,idSexo,idEtnico,fecNacimiento,idUbigeoResi,idtipoVia,nombreVia,nroVia,nroDpto,interior,manzana,nroLote,nroKm,nroBlock,nroEtapa,edad,nrohc,idUbigeoNace,fotografia,idGrdInstruc,idReligion,centroEduca,idEstCivil,idOcupacion,idgpoSangre,idFactorrh,nroRuc,razonSocial,estadoRuc,condicionRuc,domiFiscal,idParentesco,nombreAcom,edadAcom,dniAcom,fonoFijo,celular,correo,idtpPaciente,idAsegurado,idPacConvenio,iddatoReniec,iddatoSunat,iddatoSiteds,idemprConvenio,idciaSeguro,idtipoIafa")] T001_PACIENTE paciente)
+        public async Task<IActionResult> Edit(int id, PersonaDTO paciente)
         {
             if (id != paciente.idPaciente)
             {
@@ -161,7 +146,7 @@ namespace HistClinica.Controllers
             {
                 try
                 {
-                    await _pacienteRepository.UpdatePaciente(paciente);
+                    await _personaRepository.UpdatePersona(paciente);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -204,12 +189,6 @@ namespace HistClinica.Controllers
             var paciente = await _pacienteRepository.GetByDni(id);
             await _pacienteRepository.DeletePaciente(id);
             return RedirectToAction(nameof(Index));
-        }
-
-        public async Task<IActionResult> GetByDni(int dni)
-        {
-            var paciente = await _pacienteRepository.GetByDni(dni);
-            return RedirectToAction("Prueba", paciente);
         }
     }
 }

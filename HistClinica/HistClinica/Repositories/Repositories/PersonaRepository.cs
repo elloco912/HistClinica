@@ -13,9 +13,15 @@ namespace HistClinica.Repositories.Repositories
     public class PersonaRepository : IPersonaRepository
     {
         private readonly ClinicaServiceContext _context;
-        public PersonaRepository(ClinicaServiceContext context)
+        private readonly IMedicoRepository _medicoRepository;
+        private readonly IEmpleadoRepository _empleadoRepository;
+        private readonly IPacienteRepository _pacienteRepository;
+        public PersonaRepository(ClinicaServiceContext context, IMedicoRepository medicorepository, IEmpleadoRepository empleadoRepository, IPacienteRepository pacienteRepository)
         {
             _context = context;
+            _medicoRepository = medicorepository;
+            _empleadoRepository = empleadoRepository;
+            _pacienteRepository = pacienteRepository;
         }
 
         private bool disposed = false;
@@ -58,10 +64,10 @@ namespace HistClinica.Repositories.Repositories
             {
                 await _context.T000_PERSONA.AddAsync(new T000_PERSONA()
                 {
-                    nombres = PersonaDTO.nombres,
-                    apePaterno = PersonaDTO.apellidos.Split(" ")[0],
-                    apeMaterno = PersonaDTO.apellidos.Split(" ")[1],
-                    dniPersona = PersonaDTO.dni,
+                    nombres = PersonaDTO.primerNombre + " " + PersonaDTO.segundoNombre,
+                    apePaterno = PersonaDTO.apellidoPaterno,
+                    apeMaterno = PersonaDTO.apellidoMaterno,
+                    dniPersona = PersonaDTO.numeroDocumento,
                     nroRuc = PersonaDTO.ruc,
                     telefono = PersonaDTO.telefono,
                     celular = null,
@@ -105,45 +111,21 @@ namespace HistClinica.Repositories.Repositories
                 });
                 await Save();
                 idPersona = (await _context.T000_PERSONA
-                    .FirstOrDefaultAsync(p => p.dniPersona == PersonaDTO.dni)).idPersona;
-                //if (PersonaDTO.idTipoEmpleado == 1)
-                //{
-                T120_EMPLEADO Empleado = new T120_EMPLEADO
+                    .FirstOrDefaultAsync(p => p.dniPersona == PersonaDTO.numeroDocumento)).idPersona;
+                if (PersonaDTO.idTipoEmpleado != 0)
                 {
-                    cargo = PersonaDTO.cargo,
-                    codEmpleado = null,
-                    descArea = null,
-                    estado = null,
-                    fecIngreso = PersonaDTO.fechaIngreso,
-                    genero = null,
-                    idtpEmpleado = PersonaDTO.idTipoEmpleado,
-                    precio = null,
-                    salario = null,
-                    idPersona = idPersona
-                };
-                await _context.T120_EMPLEADO.AddAsync(Empleado);
-                await Save();
-                idEmpleado = (await _context.T120_EMPLEADO
-                    .FirstOrDefaultAsync(e => e.idPersona == idPersona)).idEmpleado;
-                //}
-                if (PersonaDTO.idTipoEmpleado == 2)
-                {
-                    T212_MEDICO Medico = new T212_MEDICO()
+                    await _empleadoRepository.InsertEmpleado(PersonaDTO, idPersona);
+                    idEmpleado = await _empleadoRepository.GetIdEmpleado(idPersona);
+                    if (PersonaDTO.idTipoEmpleado == 2)
                     {
-                        idEmpleado = idEmpleado,
-                        idPersona = idPersona,
-                        nroColegio = PersonaDTO.numeroColegio,
-                        nroRuc = PersonaDTO.ruc,
-                        idEspecialidad = PersonaDTO.idEspecialidad,
-                        codMedico = null,
-                        condicion = null,
-                        estado = "Activo",
-                        nroRne = null
-                    };
-                    await _context.T212_MEDICO.AddAsync(Medico);
-                    await Save();
+                        await _medicoRepository.InsertMedico(PersonaDTO, idPersona, idEmpleado);
+                    }
                 }
-                return "Ingreso Exitoso Persona,Medico,Empleado";
+                else
+                {
+                    await _pacienteRepository.InsertPaciente(PersonaDTO,idPersona);
+                }
+                return "Ingreso Exitoso Persona";
             }
             catch (Exception ex)
             {
@@ -157,10 +139,10 @@ namespace HistClinica.Repositories.Repositories
                 _context.Update(new T000_PERSONA()
                 {
                     idPersona = int.Parse(PersonaDTO.idPersona.ToString()),
-                    nombres = PersonaDTO.nombres,
-                    apePaterno = PersonaDTO.apellidos.Split(" ")[0],
-                    apeMaterno = PersonaDTO.apellidos.Split(" ")[1],
-                    dniPersona = PersonaDTO.dni,
+                    nombres = PersonaDTO.primerNombre + " " + PersonaDTO.segundoNombre,
+                    apePaterno = PersonaDTO.apellidoPaterno,
+                    apeMaterno = PersonaDTO.apellidoMaterno,
+                    dniPersona = PersonaDTO.numeroDocumento,
                     nroRuc = PersonaDTO.ruc,
                     telefono = PersonaDTO.telefono,
                     celular = null,
@@ -203,45 +185,19 @@ namespace HistClinica.Repositories.Repositories
                     tpPersona = null
                 });
                 await Save();
-                //if (PersonaDTO.idTipoEmpleado == 1)
-                //{
-                T120_EMPLEADO Empleado = new T120_EMPLEADO
+                if (PersonaDTO.idTipoEmpleado != 0)
                 {
-                    cargo = PersonaDTO.cargo,
-                    codEmpleado = null,
-                    descArea = null,
-                    estado = null,
-                    fecIngreso = PersonaDTO.fechaIngreso,
-                    genero = null,
-                    idEmpleado = int.Parse(PersonaDTO.idTipoEmpleado.ToString()),
-                    idtpEmpleado = PersonaDTO.idTipoEmpleado,
-                    precio = null,
-                    salario = null,
-                    idPersona = PersonaDTO.idPersona
-                };
-                _context.Update(Empleado);
-                await Save();
-                //}
-                if (PersonaDTO.idTipoEmpleado == 2)
-                {
-                    T212_MEDICO Medico = new T212_MEDICO()
+                    await _empleadoRepository.UpdateEmpleado(PersonaDTO);
+                    if (PersonaDTO.idTipoEmpleado == 2)
                     {
-                        idEmpleado = PersonaDTO.idEmpleado,
-                        idPersona = PersonaDTO.idPersona,
-                        nroColegio = PersonaDTO.numeroColegio,
-                        nroRuc = PersonaDTO.ruc,
-                        idEspecialidad = PersonaDTO.idEspecialidad,
-                        codMedico = null,
-                        condicion = null,
-                        estado = "Activo",
-                        nroRne = null,
-                        idtpDocumento = null,
-                        idMedico = int.Parse(PersonaDTO.idMedico.ToString())
-                    };
-                    _context.Update(Medico);
-                    await Save();
+                        await _medicoRepository.UpdateMedico(PersonaDTO);
+                    }
                 }
-                return "Actualizacion Exitosa";
+                else
+                {
+                    await _pacienteRepository.UpdatePaciente(PersonaDTO);
+                }
+                return "Actualizacion Exitosa Persona";
             }
             catch (Exception ex)
             {
@@ -256,6 +212,10 @@ namespace HistClinica.Repositories.Repositories
                                                select new PersonaDTO
                                                {
                                                    idPersona = p.idPersona,
+                                                   primerNombre = "",
+                                                   segundoNombre = "",
+                                                   apellidoPaterno = p.apePaterno,
+                                                   apellidoMaterno = p.apeMaterno,
                                                    nombres = p.nombres,
                                                    apellidos = p.apePaterno + " " + p.apeMaterno,
                                                    fechaIngreso = e.fecIngreso,
@@ -274,13 +234,17 @@ namespace HistClinica.Repositories.Repositories
                              select new PersonaDTO
                              {
                                  idPersona = p.idPersona,
+                                 primerNombre = "",
+                                 segundoNombre = "",
+                                 apellidoPaterno = p.apePaterno,
+                                 apellidoMaterno = p.apeMaterno,
                                  nombres = p.nombres,
                                  apellidos = p.apePaterno + " " + p.apeMaterno,
                                  fechaIngreso = e.fecIngreso,
                                  telefono = p.telefono,
                                  cargo = e.cargo,
                                  area = e.descArea,
-                                 dni = p.dniPersona,
+                                 numeroDocumento = (int)p.dniPersona,
                                  idEmpleado = e.idEmpleado,
                                  idEspecialidad = 0,
                                  idMedico = 0,
