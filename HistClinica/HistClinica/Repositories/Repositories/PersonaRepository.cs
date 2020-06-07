@@ -216,8 +216,6 @@ namespace HistClinica.Repositories.Repositories
                                                    segundoNombre = "",
                                                    apellidoPaterno = p.apePaterno,
                                                    apellidoMaterno = p.apeMaterno,
-                                                   nombres = p.nombres,
-                                                   apellidos = p.apePaterno + " " + p.apeMaterno,
                                                    fechaIngreso = e.fecIngreso,
                                                    telefono = p.telefono,
                                                    cargo = e.cargo
@@ -238,8 +236,6 @@ namespace HistClinica.Repositories.Repositories
                                  segundoNombre = "",
                                  apellidoPaterno = p.apePaterno,
                                  apellidoMaterno = p.apeMaterno,
-                                 nombres = p.nombres,
-                                 apellidos = p.apePaterno + " " + p.apeMaterno,
                                  fechaIngreso = e.fecIngreso,
                                  telefono = p.telefono,
                                  cargo = e.cargo,
