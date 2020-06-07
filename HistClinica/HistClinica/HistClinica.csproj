@@ -11,6 +11,8 @@
     <Compile Remove="Migrations\20200605215612_05062020.Designer.cs" />
     <Compile Remove="Migrations\20200606153947_nuevatabla.cs" />
     <Compile Remove="Migrations\20200606153947_nuevatabla.Designer.cs" />
+    <Compile Remove="Migrations\20200607224915_nuevamigracion.cs" />
+    <Compile Remove="Migrations\20200607224915_nuevamigracion.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,10 +29,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
 
