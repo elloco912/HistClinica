@@ -112,7 +112,7 @@ namespace HistClinica.Repositories.Repositories
                 await Save();
                 idPersona = (await _context.T000_PERSONA
                     .FirstOrDefaultAsync(p => p.dniPersona == PersonaDTO.numeroDocumento)).idPersona;
-                if (PersonaDTO.idTipoEmpleado != 0)
+                if (PersonaDTO.idTipoEmpleado != null)
                 {
                     await _empleadoRepository.InsertEmpleado(PersonaDTO, idPersona);
                     idEmpleado = await _empleadoRepository.GetIdEmpleado(idPersona);
@@ -185,7 +185,7 @@ namespace HistClinica.Repositories.Repositories
                     tpPersona = null
                 });
                 await Save();
-                if (PersonaDTO.idTipoEmpleado != 0)
+                if (PersonaDTO.idTipoEmpleado != null)
                 {
                     await _empleadoRepository.UpdateEmpleado(PersonaDTO);
                     if (PersonaDTO.idTipoEmpleado == 2)
