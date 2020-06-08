@@ -1,0 +1,86 @@
+﻿@model HistClinica.Models.Paciente
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Paciente</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="idPaciente" />
+            <div class="form-group">
+                <label asp-for="idtpPaciente" class="control-label"></label>
+                <input asp-for="idtpPaciente" class="form-control" />
+                <span asp-validation-for="idtpPaciente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="descripcion" class="control-label"></label>
+                <input asp-for="descripcion" class="form-control" />
+                <span asp-validation-for="descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="idAsegurado" class="control-label"></label>
+                <input asp-for="idAsegurado" class="form-control" />
+                <span asp-validation-for="idAsegurado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nrohc" class="control-label"></label>
+                <input asp-for="nrohc" class="form-control" />
+                <span asp-validation-for="nrohc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nomAcompana" class="control-label"></label>
+                <input asp-for="nomAcompana" class="form-control" />
+                <span asp-validation-for="nomAcompana" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="edadAcompana" class="control-label"></label>
+                <input asp-for="edadAcompana" class="form-control" />
+                <span asp-validation-for="edadAcompana" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="dniAcompana" class="control-label"></label>
+                <input asp-for="dniAcompana" class="form-control" />
+                <span asp-validation-for="dniAcompana" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="idgpoSangre" class="control-label"></label>
+                <input asp-for="idgpoSangre" class="form-control" />
+                <span asp-validation-for="idgpoSangre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="idFactorrh" class="control-label"></label>
+                <input asp-for="idFactorrh" class="form-control" />
+                <span asp-validation-for="idFactorrh" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="idPersona" class="control-label"></label>
+                <input asp-for="idPersona" class="form-control" />
+                <span asp-validation-for="idPersona" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="idPacConvenio" class="control-label"></label>
+                <input asp-for="idPacConvenio" class="form-control" />
+                <span asp-validation-for="idPacConvenio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="estado" class="control-label"></label>
+                <input asp-for="estado" class="form-control" />
+                <span asp-validation-for="estado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

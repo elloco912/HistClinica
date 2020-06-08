@@ -1,0 +1,103 @@
+﻿@model IEnumerable<HistClinica.Models.Paciente>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+    <p>
+        <a type="submit" asp-action="Create" class="btn btn-primary">Nuevo Paciente</a>
+        <a type="submit" asp-action="exportarExcel" asp-controller="Pacientes" class="btn btn-success">Reporte Excel</a>
+        <a type="submit" asp-action="exportarPDF" asp-controller="Pacientes" class="btn btn-danger">Reporte Pdf</a>
+
+    </p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.idtpPaciente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idAsegurado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nrohc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nomAcompana)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.edadAcompana)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dniAcompana)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idgpoSangre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idFactorrh)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idPersona)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idPacConvenio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.estado)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idtpPaciente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idAsegurado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nrohc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomAcompana)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.edadAcompana)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dniAcompana)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idgpoSangre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idFactorrh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idPersona)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idPacConvenio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.estado)
+            </td>
+            @*<td>
+                <a asp-action="Edit" asp-route-id="@item.idPaciente">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.idPaciente">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.idPaciente">Delete</a>
+            </td>*@
+        </tr>
+}
+    </tbody>
+</table>

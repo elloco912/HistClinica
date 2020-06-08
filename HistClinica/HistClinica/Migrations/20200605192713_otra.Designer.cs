@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HistClinica.Migrations
 {
     [DbContext(typeof(ClinicaServiceContext))]
-    [Migration("20200604191537_04062020")]
-    partial class _04062020
+    [Migration("20200605192713_otra")]
+    partial class otra
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -2,7 +2,7 @@
 
 namespace HistClinica.Migrations
 {
-    public partial class _04062020 : Migration
+    public partial class otra : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
