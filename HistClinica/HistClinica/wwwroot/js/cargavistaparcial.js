@@ -1,5 +1,4 @@
 ﻿function Cargarmodal() {
-	$("#cronogramagrid .edit").click(function () {
 		var id = $(this).closest("tr").find("td").eq(0).html();
 		$.ajax({
 			type: "GET",
@@ -18,7 +17,6 @@
 				alert(response.responseText);
 			}
 		});
-	});
 }
 
 function CargarmodalPersona() {
@@ -42,4 +40,46 @@ function CargarmodalPersona() {
 			}
 		});
 	});
+}
+
+function CargaConsultaCronograma() {
+		$.ajax({
+			type: "GET",
+			url: "/Cronograma/ConsultarCronograma",
+			contentType: "application/json; charset=utf-8",
+			dataType: "html",
+			success: function (response) {
+				$('#modalcronograma').html(response);
+				$('#modalcronograma').modal('show');
+			},
+			failure: function (response) {
+				alert(response.responseText);
+			},
+			error: function (response) {
+				alert(response.responseText);
+			}
+		});
+}
+
+function BuscarCronograma() {
+	var idmedico = $("#idmedico option:selected").val();
+		$.ajax({
+			type: "GET",
+			url: "/Cronograma/ConsultarCronogramapost",
+			data: { id: idmedico },
+			contentType: "application/json; charset=utf-8",
+			dataType: "html",
+			success: function (response) {
+				$('#modalcronograma').html(response);
+				$('#modalcronograma').modal('show');
+				console.log(response);
+				//$('#modalestado').modal('show');
+			},
+			failure: function (response) {
+				alert(response.responseText);
+			},
+			error: function (response) {
+				alert(response.responseText);
+			}
+		});
 }

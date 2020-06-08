@@ -8,11 +8,12 @@ namespace HistClinica.Repositories.Interfaces
 {
 	public interface ICronogramaRepository
 	{
-		Task<string> InsertCronograma(CronoMedico cronograma);
-		Task<string> UpdateCronograma(CronoMedico cronograma);
-		Task<CronoMedico> GetByIdCrono(int CronoID);
-		Task<List<CronoMedico>> GetAllCronogramas();
+		Task<string> InsertCronograma(D012_CRONOMEDICO cronograma);
+		Task<string> UpdateCronograma(D012_CRONOMEDICO cronograma);
+		Task<D012_CRONOMEDICO> GetByIdCrono(int CronoID);
+		Task<List<D012_CRONOMEDICO>> GetAllCronogramas();
 		Task DeleteCronograma(int? CronoID);
 		Task Save();
+		Task<List<D012_CRONOMEDICO>> GetCronogramaByMedico(int idmedico);
 	}
 }

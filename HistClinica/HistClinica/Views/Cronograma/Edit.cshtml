@@ -1,4 +1,4 @@
-﻿@model HistClinica.Models.CronoMedico
+﻿@model HistClinica.Models.D012_CRONOMEDICO
 <div class="modal-dialog modal-lg" role="document">
 	<div class="modal-content">
 		<div class="modal-header">
@@ -13,6 +13,8 @@
 				<div class="col-sm-12">
 					<div class="row pb-2">
 						<div class="col-sm-6">
+							@Html.HiddenFor(m => m.idProgramMedica)
+
 							<div class="row">
 								<div class="col-sm-4">
 									<label>Medico</label>
@@ -28,7 +30,7 @@
 									<label>Especialidad</label>
 								</div>
 								<div class="col-sm-8">
-									@Html.DropDownListFor(m => m.idEspecialidad, new SelectList(ViewBag.listaespecialidades, "idEspecialidad", "descripcion"), new { @class = "form-control" })
+									@Html.DropDownListFor(m => m.idEspecialidad, new SelectList(ViewBag.listaespecialidades, "idtab", "descripcion"), new { @class = "form-control" })
 								</div>
 							</div>
 						</div>
@@ -40,7 +42,7 @@
 									<label>Consultorio</label>
 								</div>
 								<div class="col-sm-8">
-									@Html.DropDownListFor(m => m.idConsultorio, new SelectList(ViewBag.listaconsultorio, "idConsultorio", "descripcion"), new { @class = "form-control" })
+									@Html.DropDownListFor(m => m.idConsultorio, new SelectList(ViewBag.listaconsultorio, "idtab", "descripcion"), new { @class = "form-control" })
 								</div>
 							</div>
 						</div>
@@ -50,7 +52,8 @@
 									<label>Fecha</label>
 								</div>
 								<div class="col-sm-8">
-									@Html.TextBoxFor(m => m.fecProgramMedica, new { @class = "form-control", @type = "Date" })
+
+									@Html.EditorFor(m => m.fecProgramMedica, new { htmlAttributes = new { @class = "form-control", @type = "Date" } })
 								</div>
 							</div>
 						</div>
@@ -62,7 +65,7 @@
 									<label>Hora Inicio</label>
 								</div>
 								<div class="col-sm-8">
-									@Html.DropDownListFor(m => m.dsHrInicio, new SelectList(ViewBag.listahoras), new { @class = "form-control" })
+									@Html.DropDownListFor(m => m.hrInicio, new SelectList(ViewBag.listahoras), new { @class = "form-control" })
 								</div>
 							</div>
 						</div>
@@ -72,7 +75,7 @@
 									<label>Hora Fin</label>
 								</div>
 								<div class="col-sm-8">
-									@Html.DropDownListFor(m => m.dsHrFin, new SelectList(ViewBag.listahoras), new { @class = "form-control" })
+									@Html.DropDownListFor(m => m.hrFin, new SelectList(ViewBag.listahoras), new { @class = "form-control" })
 								</div>
 							</div>
 						</div>
@@ -84,7 +87,7 @@
 									<label>Estado</label>
 								</div>
 								<div class="col-sm-8">
-									<select asp-for="dsEstado" class="form-control">
+									<select asp-for="idEstado" class="form-control">
 										<option>Activo</option>
 										<option>Inactivo</option>
 									</select>

@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace HistClinica.Models
 {
-	public class EstadoCita
+	public class D002_PERFIL
 	{
 		[Key]
-		public int idEstadoCita { get; set; }
-		public string codEstadoCita { get; set; }
+		public int idPerfil { get; set; }
+		public string codPerfil { get; set; }
+		public string nombrePerfil { get; set; }
+		public int idUsuario { get; set; }
 		public string estado { get; set; }
-		public string origen { get; set; }
 	}
 }

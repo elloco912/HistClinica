@@ -38,38 +38,38 @@ namespace HistClinica.Repositories.Repositories
 
 		public async Task DeleteCronograma(int? CronoID)
 		{
-			CronoMedico cronoMedico = await _context.CronoMedico.FindAsync(CronoID);
-			_context.CronoMedico.Remove(cronoMedico);
+			D012_CRONOMEDICO D012_CRONOMEDICO = await _context.D012_CRONOMEDICO.FindAsync(CronoID);
+			_context.D012_CRONOMEDICO.Remove(D012_CRONOMEDICO);
 			await Save();
 		}
 
-		public async Task<List<CronoMedico>> GetAllCronogramas()
+		public async Task<List<D012_CRONOMEDICO>> GetAllCronogramas()
 		{
-			List<CronoMedico> cronoMedicos = await (from c in _context.CronoMedico
-													select new CronoMedico
+			List<D012_CRONOMEDICO> D012_CRONOMEDICOs = await (from c in _context.D012_CRONOMEDICO
+													select new D012_CRONOMEDICO
 													{
 														idProgramMedica = c.idProgramMedica,
 														fecProgramMedica = c.fecProgramMedica,
-														dsHrInicio = c.dsHrInicio,
-														dsHrFin = c.dsHrFin,
-														dsEstado = c.dsEstado
+														hrInicio = c.hrInicio,
+														hrFin = c.hrFin,
+														idEstado = c.idEstado
 													}).ToListAsync();
-			return cronoMedicos;
+			return D012_CRONOMEDICOs;
 		}
 
-		public async Task<CronoMedico> GetByIdCrono(int CronoID)
+		public async Task<D012_CRONOMEDICO> GetByIdCrono(int CronoID)
 		{
-			CronoMedico cronoMedicos = await (from c in _context.CronoMedico
+			D012_CRONOMEDICO D012_CRONOMEDICOs = await (from c in _context.D012_CRONOMEDICO
 											  where c.idProgramMedica == CronoID
 											  select c).FirstOrDefaultAsync();
-			return cronoMedicos;
+			return D012_CRONOMEDICOs;
 		}
 
-		public async Task<string> InsertCronograma(CronoMedico cronograma)
+		public async Task<string> InsertCronograma(D012_CRONOMEDICO cronograma)
 		{
 			try
 			{
-				await _context.CronoMedico.AddAsync(cronograma);
+				await _context.D012_CRONOMEDICO.AddAsync(cronograma);
 				await Save();
 				return "Ingreso exitoso";
 			}
@@ -84,7 +84,7 @@ namespace HistClinica.Repositories.Repositories
 			await _context.SaveChangesAsync();
 		}
 
-		public async Task<string> UpdateCronograma(CronoMedico cronograma)
+		public async Task<string> UpdateCronograma(D012_CRONOMEDICO cronograma)
 		{
 			try
 			{
@@ -94,8 +94,16 @@ namespace HistClinica.Repositories.Repositories
 			}
 			catch (Exception ex)
 			{
-				return "Error en el guardado " + ex.StackTrace;
+				return "Error en el guardado " + ex.Message;
 			}
+		}
+
+		public async Task<List<D012_CRONOMEDICO>> GetCronogramaByMedico(int idmedico)
+		{
+			List<D012_CRONOMEDICO> cronogramas = await (from c in _context.D012_CRONOMEDICO
+														where c.idMedico == idmedico
+														select c).ToListAsync();
+			return cronogramas;
 		}
 	}
 }

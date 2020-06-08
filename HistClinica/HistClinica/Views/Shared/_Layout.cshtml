@@ -113,101 +113,81 @@
 
 				<!-- Sidebar Menu -->
 				<nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-    with font-awesome or any other icon font library -->
-                        <li class="nav-item ">
-                            <a href="@Url.Content("~")Panel/Panel" class="nav-link active">
-                                <i class="nav-icon fas fa-clinic-medical"></i>
-                                <p>
-                                    Panel de Administracion
+					<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+						<!-- Add icons to the links using the .nav-icon class
+						with font-awesome or any other icon font library -->
+						<li class="nav-item ">
+							<a href="@Url.Content("~")Panel/Panel" class="nav-link active">
+								<i class="nav-icon fas fa-clinic-medical"></i>
+								<p>
+									Panel de Administracion
 
-                                </p>
-                            </a>
-                        </li>
+								</p>
+							</a>
+						</li>
 
-                        <li class="nav-item">
-                            <a asp-action="Index" asp-controller="Persona" class="nav-link ">
-                                <i class="nav-icon fas fa-user-injured"></i>
-                                <p>
-                                    Gestionar Personal
+						<li class="nav-item">
+							<a asp-action="Index" asp-controller="Persona" class="nav-link ">
+								<i class="nav-icon fas fa-user-injured"></i>
+								<p>
+									Gestionar Personal
 
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a asp-action="Index" asp-controller="Cronograma" class="nav-link ">
-                                <i class="nav-icon fas fa-user-injured"></i>
-                                <p>
-                                    Cronograma de medicos
+								</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a asp-action="Index" asp-controller="Cronograma" class="nav-link ">
+								<i class="nav-icon fas fa-user-injured"></i>
+								<p>
+									Cronograma de medicos
 
-                                </p>
-                            </a>
-                        </li>
+								</p>
+							</a>
+						</li>
 
-                        @*<li class="nav-item">
-                            <a asp-action="Index" asp-controller="Especialidad" class="nav-link ">
-                                <i class="nav-icon fas fa-user-injured"></i>
-                                <p>
-                                    Gestion de Especialidad
+						<li class="nav-item">
+							<a asp-action="Index" asp-controller="Paciente" class="nav-link ">
+								<i class="nav-icon fas fa-notes-medical"></i>
+								<p>
+									Reserva de Citas
 
-                                </p>
-                            </a>
-                        </li>*@
+								</p>
+							</a>
+						</li>
 
-                        <li class="nav-item">
-                            <a asp-action="Index" asp-controller="Pacientes" class="nav-link ">
-                                <i class="nav-icon fas fa-user-injured"></i>
-                                <p>
-                                    Reportes de Pacientes
+						<li class="nav-item">
+							<a href="#" class="nav-link ">
+								<i class="nav-icon far fa-business-time"></i>
+								<p>
+									Atencion Citas
 
-                                </p>
-                            </a>
-                        </li>
+								</p>
+							</a>
+						</li>
 
-                        <li class="nav-item">
-                            <a asp-action="Prueba" asp-controller="Paciente" class="nav-link ">
-                                <i class="nav-icon fas fa-notes-medical"></i>
-                                <p>
-                                    Reserva de Citas
+						<li class="nav-item">
+							<a href="#" class="nav-link ">
+								<i class="nav-icon far fa-calendar-alt"></i>
+								<p>
+									Horarios
 
-                                </p>
-                            </a>
-                        </li>
+								</p>
+							</a>
+						</li>
 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link ">
-                                <i class="nav-icon far fa-business-time"></i>
-                                <p>
-                                    Atencion Citas
+						<li class="nav-item">
+							<a href="#" class="nav-link ">
+								<i class="nav-icon far fa-chart-bar">&nbsp;</i>
+								<p>
+									Reportes
 
-                                </p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="#" class="nav-link ">
-                                <i class="nav-icon far fa-calendar-alt"></i>
-                                <p>
-                                    Horarios
-
-                                </p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="#" class="nav-link ">
-                                <i class="nav-icon far fa-chart-bar">&nbsp;</i>
-                                <p>
-                                    Reportes
-
-                                </p>
-                            </a>
-                        </li>
+								</p>
+							</a>
+						</li>
 
 
 
-                    </ul>
+					</ul>
 				</nav>
 				<!-- /.sidebar-menu -->
 			</div>

@@ -16,11 +16,13 @@ namespace HistClinica.Controllers
     {
         private readonly ClinicaServiceContext _context;
         private readonly IPersonaRepository _personaRepository;
+        private readonly IUtilRepository _utilrepository;
 
-        public PersonaController(IPersonaRepository personaRepository,ClinicaServiceContext contexto)
+        public PersonaController(IPersonaRepository personaRepository,ClinicaServiceContext contexto,IUtilRepository utilRepository)
         {
             _context = contexto;
             _personaRepository = personaRepository;
+            _utilrepository = utilRepository;
         }
 
         // GET: Persona
@@ -47,15 +49,15 @@ namespace HistClinica.Controllers
         }
 
         // GET: Persona/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            List<Especialidad> lespecialidads = new List<Especialidad>();
-            lespecialidads = _context.Especialidad.ToList();
+            var lespecialidads = new Object();
+            lespecialidads = await _utilrepository.GetTipo("Especialidad");
             ViewBag.listaespecialidades = lespecialidads;
 
             //combo tipo de empleado
-            List<TipoEmpleado> tipoEmpleados = new List<TipoEmpleado>();
-            tipoEmpleados = _context.TipoEmpleado.ToList();
+            var tipoEmpleados = new Object();
+            tipoEmpleados = await _utilrepository.GetTipo("Tipo Empleado");
             ViewBag.lsttipoempleado = tipoEmpleados;
             return View();
         }
@@ -75,18 +77,19 @@ namespace HistClinica.Controllers
             return RedirectToAction("Create");
         }
 
+
         // POST: Persona/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         public async Task<IActionResult> Editar(int idpersona)
         {
-            List<Especialidad> lespecialidads = new List<Especialidad>();
-            lespecialidads = _context.Especialidad.ToList();
+            var lespecialidads = new Object();
+            lespecialidads = await _utilrepository.GetTipo("Especialidad");
             ViewBag.listaespecialidades = lespecialidads;
 
             //combo tipo de empleado
-            List<TipoEmpleado> tipoEmpleados = new List<TipoEmpleado>();
-            tipoEmpleados = _context.TipoEmpleado.ToList();
+            var tipoEmpleados = new Object();
+            tipoEmpleados = await _utilrepository.GetTipo("Tipo Empleado");
             ViewBag.lsttipoempleado = tipoEmpleados;
 
             PersonaDTO persona = await _personaRepository.GetById(idpersona);
@@ -138,8 +141,8 @@ namespace HistClinica.Controllers
         }
 
         // POST: Persona/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+      //  [HttpPost, ActionName("Delete")]
+       // [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var persona = await _personaRepository.GetById(id);

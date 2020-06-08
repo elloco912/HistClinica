@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace HistClinica.Models
 {
-	public class Consultorio
+	public class D008_CONSULTORIO
 	{
-	    [Key]
+		[Key]
 		public int idConsultorio { get; set; }
-		public string nroConsultorio { get; set; }
+		public int? nroConsultorio { get; set; }
 		public int? tpConsultorio { get; set; }
 		public string descripcion { get; set; }
 		public string area { get; set; }
