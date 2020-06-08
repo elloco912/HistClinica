@@ -122,7 +122,7 @@
 									<label for="cboocupacion">Ocupación</label>
 								</div>
 								<div class="col-sm-8">
-									@Html.DropDownListFor(m => m.idOcupacionPaciente, new SelectList(ViewBag.locupacion, "idtab", "descripcion"), "Seleccione", new { @class = "form-control" })
+									@Html.DropDownListFor(m => m.idOcupacion, new SelectList(ViewBag.locupacion, "idtab", "descripcion"), "Seleccione", new { @class = "form-control" })
 								</div>
 							</div>
 						</div>
@@ -134,7 +134,7 @@
 									<label for="cbogrdinstruccion">Grado de instruccion</label>
 								</div>
 								<div class="col-sm-8">
-									@Html.DropDownListFor(m => m.idGradoInstruccion, new SelectList(ViewBag.lgrdinst, "idtab", "descripcion"), "Seleccione", new { @class = "form-control" })
+									@Html.DropDownListFor(m => m.idGrdInstruc, new SelectList(ViewBag.lgrdinst, "idtab", "descripcion"), "Seleccione", new { @class = "form-control" })
 								</div>
 							</div>
 						</div>
@@ -144,7 +144,7 @@
 									<label for="estcivil">Estado civil</label>
 								</div>
 								<div class="col-sm-8">
-									@Html.DropDownListFor(m => m.idEstadoCivil, new SelectList(ViewBag.lestcivil, "idtab", "descripcion"), "Seleccione", new { @class = "form-control" })
+									@Html.DropDownListFor(m => m.idEstCivil, new SelectList(ViewBag.lestcivil, "idtab", "descripcion"), "Seleccione", new { @class = "form-control" })
 								</div>
 							</div>
 						</div>
@@ -154,7 +154,7 @@
 									<label for="emailpac">Email</label>
 								</div>
 								<div class="col-sm-8">
-									@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+									@Html.TextBoxFor(m => m.correo, new { @class = "form-control" })
 								</div>
 							</div>
 						</div>
