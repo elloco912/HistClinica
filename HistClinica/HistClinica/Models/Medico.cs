@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace HistClinica.Models
 {
-    public class Medico
-    {
+	public class Medico
+	{
 		[Key]
 		public int idMedico { get; set; }
 		public string codMedico { get; set; }

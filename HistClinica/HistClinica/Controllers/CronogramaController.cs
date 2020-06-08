@@ -21,8 +21,9 @@ namespace HistClinica.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            //combo horas
-            string[] horas = new string[] { "1:00", "2:00", "3:00", "4:00", "5:00", "6:00", "7:00", "8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00", "24:00" };
+
+            string[] horas = new string[] {"1:00","2:00","3:00","4:00","5:00","6:00","7:00","8:00","9:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00","24:00"};
+
 
             //combo consultorios
             List<Consultorio> lconsultorio = new List<Consultorio>();
@@ -43,7 +44,6 @@ namespace HistClinica.Controllers
             //listar
             List<CronoMedico> cronograma = new List<CronoMedico>();
             cronograma = await cronogramaRepository.GetAllCronogramas();
-
 
             return View(cronograma);
         }
@@ -75,7 +75,9 @@ namespace HistClinica.Controllers
         public async Task<IActionResult> Editar(int id)
         {
             CronoMedico cronoMedico = await cronogramaRepository.GetByIdCrono(id);
-            return PartialView("Edit", cronoMedico);
+
+            return PartialView("Edit",cronoMedico);
+
         }
 
         [HttpPost]

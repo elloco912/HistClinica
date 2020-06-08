@@ -14,10 +14,12 @@ namespace HistClinica.Controllers
 {
     public class PersonaController : Controller
     {
+        private readonly ClinicaServiceContext _context;
         private readonly IPersonaRepository _personaRepository;
 
-        public PersonaController(IPersonaRepository personaRepository)
+        public PersonaController(IPersonaRepository personaRepository,ClinicaServiceContext contexto)
         {
+            _context = contexto;
             _personaRepository = personaRepository;
         }
 
@@ -47,6 +49,14 @@ namespace HistClinica.Controllers
         // GET: Persona/Create
         public IActionResult Create()
         {
+            List<Especialidad> lespecialidads = new List<Especialidad>();
+            lespecialidads = _context.Especialidad.ToList();
+            ViewBag.listaespecialidades = lespecialidads;
+
+            //combo tipo de empleado
+            List<TipoEmpleado> tipoEmpleados = new List<TipoEmpleado>();
+            tipoEmpleados = _context.TipoEmpleado.ToList();
+            ViewBag.lsttipoempleado = tipoEmpleados;
             return View();
         }
 
@@ -57,22 +67,38 @@ namespace HistClinica.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(PersonaDTO personaDTO)
         {
-            if (ModelState.IsValid)
+            if (personaDTO != null)
             {
                 await _personaRepository.InsertPersona(personaDTO);
                 return RedirectToAction(nameof(Index));
             }
-            return View(personaDTO);
+            return RedirectToAction("Create");
         }
 
         // POST: Persona/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        public async Task<IActionResult> Editar(int idpersona)
+        {
+            List<Especialidad> lespecialidads = new List<Especialidad>();
+            lespecialidads = _context.Especialidad.ToList();
+            ViewBag.listaespecialidades = lespecialidads;
+
+            //combo tipo de empleado
+            List<TipoEmpleado> tipoEmpleados = new List<TipoEmpleado>();
+            tipoEmpleados = _context.TipoEmpleado.ToList();
+            ViewBag.lsttipoempleado = tipoEmpleados;
+
+            PersonaDTO persona = await _personaRepository.GetById(idpersona);
+            return PartialView("Edit", persona);
+        }
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(PersonaDTO personaDTO)
+        public async Task<IActionResult> Edit(int id,PersonaDTO personaDTO)
         {       
-            if (ModelState.IsValid)
+            if (personaDTO != null)
             {
                 try
                 {

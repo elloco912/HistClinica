@@ -157,7 +157,7 @@ namespace HistClinica.Repositories.Repositories
             }
             catch (Exception ex)
             {
-                return "Error en el guardado " + ex.StackTrace;
+                return "Error en el guardado " + ex.Message;
             }
         }
         public async Task<string> UpdatePersona(PersonaDTO PersonaDTO)
@@ -285,16 +285,29 @@ namespace HistClinica.Repositories.Repositories
 
             return Personas;
         }
-        public async Task<Persona> GetById(int? id)
+        public async Task<PersonaDTO> GetById(int? id)
         {
-            Persona Persona = await (from p in _context.Persona
-                                        where p.idPersona == id
-                                        select new Persona
-                                        {
-                                            idPersona = p.idPersona,
-                                            apePaterno = p.apePaterno,
-                                            apeMaterno = p.apeMaterno
-                                        }).FirstOrDefaultAsync();
+            PersonaDTO Persona = await (from p in _context.Persona
+                                     where (p.idPersona == (from m in _context.Medico where m.idPersona == p.idPersona select m.idPersona).First()
+                                     || p.idPersona == (from e in _context.Empleado where e.idPersona == p.idPersona select e.idPersona).FirstOrDefault())
+                                     && p.idPersona == id
+                                     select new PersonaDTO
+                                     {
+                                         idPersona = p.idPersona,
+                                         nombres = p.nombres,
+                                         apellidos = p.apePaterno + " " + p.apeMaterno,
+                                         fechaIngreso = "",
+                                         telefono = p.telefono,
+                                         cargo = "",
+                                         area = "",
+                                         dni = p.dniPersona,
+                                         idEmpleado = 0,
+                                         idEspecialidad = 0,
+                                         idMedico = 0,
+                                         idTipoEmpleado = 0,
+                                         numeroColegio = 0,
+                                         ruc = p.nroRuc
+                                     }).FirstOrDefaultAsync();
             return Persona;
         }
     }

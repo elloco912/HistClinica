@@ -13,9 +13,25 @@
     <Compile Remove="Migrations\20200604191508_mimigracion.Designer.cs" />
     <Compile Remove="Migrations\20200604191834_prueba.cs" />
     <Compile Remove="Migrations\20200604191834_prueba.Designer.cs" />
+    <Compile Remove="Migrations\20200604200703_pruebamigracion.cs" />
+    <Compile Remove="Migrations\20200604200703_pruebamigracion.Designer.cs" />
+    <Compile Remove="Migrations\20200604201012_pruebamig.cs" />
+    <Compile Remove="Migrations\20200604201012_pruebamig.Designer.cs" />
+    <Compile Remove="Migrations\20200604201513_migr.cs" />
+    <Compile Remove="Migrations\20200604201513_migr.Designer.cs" />
+    <Compile Remove="Migrations\20200604201757_pruebaentity.cs" />
+    <Compile Remove="Migrations\20200604201757_pruebaentity.Designer.cs" />
+    <Compile Remove="Migrations\20200604201917_nuevaentidad.cs" />
+    <Compile Remove="Migrations\20200604201917_nuevaentidad.Designer.cs" />
+    <Compile Remove="Migrations\20200604202049_otrastb.cs" />
+    <Compile Remove="Migrations\20200604202049_otrastb.Designer.cs" />
+    <Compile Remove="Migrations\20200605192037_primeramigracion.cs" />
+    <Compile Remove="Migrations\20200605192037_primeramigracion.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="EPPlus" Version="5.1.2" />
+    <PackageReference Include="itext7" Version="7.1.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.3">
       <PrivateAssets>all</PrivateAssets>
