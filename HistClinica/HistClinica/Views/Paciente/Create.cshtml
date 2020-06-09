@@ -122,7 +122,7 @@
 									<label for="cboocupacion">Ocupación</label>
 								</div>
 								<div class="col-sm-8">
-									@Html.DropDownListFor(m => m.paciente.idOcupacionPaciente, new SelectList(ViewBag.locupacion, "idtab", "descripcion"), "Seleccione", new { @class = "form-control" })
+									@Html.DropDownListFor(m => m.idOcupacion, new SelectList(ViewBag.locupacion, "idtab", "descripcion"), "Seleccione", new { @class = "form-control" })
 								</div>
 							</div>
 						</div>
