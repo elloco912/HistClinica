@@ -14,10 +14,14 @@ namespace HistClinica.Controllers
     public class CitaController : Controller
     {
         private readonly ICitaRepository _repository;
+        private readonly ClinicaServiceContext _context;
+        private readonly IUtilRepository _utilrepository;
 
-        public CitaController(ICitaRepository repository)
+        public CitaController(ICitaRepository repository, IUtilRepository utilRepository,ClinicaServiceContext clinicaService)
         {
             _repository = repository;
+            _context = clinicaService;
+            _utilrepository = utilRepository;
         }
 
         // GET: Cita
@@ -138,6 +142,31 @@ namespace HistClinica.Controllers
         {
             await _repository.DeleteCita(id);
             return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<JsonResult> GetMedicoByEsp(int id)
+        {
+            var medico = await _utilrepository.GetMedicoByEspecialidad(id);
+            return Json(medico);
+        }
+
+        public async Task<IActionResult> Registro()
+        {
+            var lespecialidads = new Object();
+            lespecialidads = await _utilrepository.GetTipo("Especialidad");
+            ViewBag.listaespecialidades = lespecialidads;
+
+            var medico = from per in _context.T000_PERSONA
+                         join e in _context.T120_EMPLEADO on per.idPersona
+                         equals e.idPersona
+                         join med in _context.T212_MEDICO on e.idPersona equals med.idPersona
+                         select new
+                         {
+                             idMedico = med.idMedico,
+                             nombres = per.nombres + " " + per.apePaterno + " " + per.apeMaterno
+                         };
+            ViewBag.listamedicos = medico;
+            return PartialView();
         }
     }
 }

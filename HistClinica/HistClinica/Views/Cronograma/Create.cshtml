@@ -9,7 +9,11 @@
 					<label>Medico</label>
 				</div>
 				<div class="col-sm-8">
-					@Html.DropDownListFor(m => m.idMedico, new SelectList(ViewBag.listamedicos, "idMedico", "nombres"), "Seleccione", new { @class = "form-control" })
+					@Html.DropDownListFor(m => m.idMedico, new SelectList(ViewBag.listamedicos, "idMedico", "nombres"), "Seleccione", new { @class = "form-control" ,
+				   data_cascade_combo = "#stypes",
+				   data_cascade_combo_source = Url.Action("GetEspecialidad", "Cronograma"),
+				   data_cascade_combo_param_name = "id"
+			   })
 				</div>
 			</div>
 		</div>
@@ -19,7 +23,7 @@
 					<label>Especialidad</label>
 				</div>
 				<div class="col-sm-8">
-					@Html.DropDownListFor(m => m.idEspecialidad, new SelectList(ViewBag.listaespecialidades, "idtab", "descripcion"), new { @class = "form-control" })
+					@Html.DropDownListFor(m => m.idEspecialidad, new SelectList(ViewBag.listaespecialidades, "idtab", "descripcion"), new { @class = "form-control", id = "stypes" })
 				</div>
 			</div>
 		</div>
@@ -73,10 +77,7 @@
 					<label>Estado</label>
 				</div>
 				<div class="col-sm-8">
-					<select asp-for="idEstado" class="form-control">
-						<option value="1">Activo</option>
-						<option value="2">Inactivo</option>
-					</select>
+					@Html.DropDownListFor(m => m.idEstado, new SelectList(ViewBag.lestado, "idtab", "descripcion"), new { @class = "form-control" })
 				</div>
 			</div>
 		</div>
@@ -91,3 +92,4 @@
 		</div>
 	</div>
 }
+<script src="~/js/comboaninado.js"></script>

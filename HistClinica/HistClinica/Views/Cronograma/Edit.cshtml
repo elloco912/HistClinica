@@ -87,10 +87,7 @@
 									<label>Estado</label>
 								</div>
 								<div class="col-sm-8">
-									<select asp-for="idEstado" class="form-control">
-										<option>Activo</option>
-										<option>Inactivo</option>
-									</select>
+									@Html.DropDownListFor(m => m.idEstado, new SelectList(ViewBag.lestado, "idtab", "descripcion"), new { @class = "form-control" })
 								</div>
 							</div>
 						</div>

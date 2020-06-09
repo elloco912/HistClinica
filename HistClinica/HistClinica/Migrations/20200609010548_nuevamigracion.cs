@@ -132,7 +132,7 @@ namespace HistClinica.Migrations
                     idConsultorio = table.Column<int>(nullable: true),
                     hrInicio = table.Column<string>(nullable: true),
                     hrFin = table.Column<string>(nullable: true),
-                    idEstado = table.Column<string>(nullable: true)
+                    idEstado = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
