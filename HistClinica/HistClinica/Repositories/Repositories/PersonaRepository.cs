@@ -53,6 +53,7 @@ namespace HistClinica.Repositories.Repositories
         {
             T000_PERSONA Persona = await _context.T000_PERSONA.FindAsync(PersonaID);
             _context.T000_PERSONA.Remove(Persona);
+            await Save();
         }
         public async Task<string> InsertPersona(PersonaDTO Persona)
         {

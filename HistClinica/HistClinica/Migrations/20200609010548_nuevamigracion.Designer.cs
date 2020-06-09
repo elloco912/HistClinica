@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HistClinica.Migrations
 {
     [DbContext(typeof(ClinicaServiceContext))]
-    [Migration("20200607225341_nuevamigracion")]
+    [Migration("20200609010548_nuevamigracion")]
     partial class nuevamigracion
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -233,8 +233,8 @@ namespace HistClinica.Migrations
                     b.Property<int?>("idEspecialidad")
                         .HasColumnType("int");
 
-                    b.Property<string>("idEstado")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("idEstado")
+                        .HasColumnType("int");
 
                     b.Property<int?>("idMedico")
                         .HasColumnType("int");

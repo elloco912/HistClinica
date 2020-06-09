@@ -231,8 +231,8 @@ namespace HistClinica.Migrations
                     b.Property<int?>("idEspecialidad")
                         .HasColumnType("int");
 
-                    b.Property<string>("idEstado")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("idEstado")
+                        .HasColumnType("int");
 
                     b.Property<int?>("idMedico")
                         .HasColumnType("int");

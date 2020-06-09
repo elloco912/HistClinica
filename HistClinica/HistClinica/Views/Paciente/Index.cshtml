@@ -1,23 +1,25 @@
-﻿@model HistClinica.Models.T001_PACIENTE
+﻿@model HistClinica.DTO.PersonaDTO
 
 @{
-    ViewBag.Title = "ProgramarCitaAdmision";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = "ProgramarCitaAdmision";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-12 text-center">
-				<div class="card card-primary">
-					<div class="card-header">
-						<h1>Admision</h1>
-					</div>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12 text-center">
+			<div class="card card-primary">
+				<div class="card-header">
+					<h1>Admision</h1>
 				</div>
-
 			</div>
+
 		</div>
-		<div class="row" style="padding-top:30px;">
-			<div class="col-sm-4">
+	</div>
+	<div class="row" style="padding-top:30px;">
+		<div class="col-sm-4">
+			@using (Html.BeginForm())
+			{
 				<div class="row">
 					<div class="col-sm-3">
 						<select class="form-control">
@@ -25,293 +27,187 @@
 						</select>
 					</div>
 					<div class="col-sm-4">
-						<input type="text" name="dni" value="" class="form-control" />
+						<input type="text" id="dni" name="dni" class="form-control"/>
 					</div>
 					<div class="col-sm-5">
-						<a class="btn btn-info" type="submit" asp-action="GetByDni" asp-route-id="dni" id="btnBuscar"><i class="fas fa-search"></i></a>
+						<button class="btn btn-info" type="submit" id="btnBuscar"><i class="fas fa-search"></i></button>
 						<a class="btn btn-primary" type="submit" asp-action="Create" asp-controller="Paciente"><i class="fas fa-user-plus"></i></a>
 						<button class="btn btn-secondary" type="submit" onclick="return getbyID();"><i class="fas fa-edit"></i></button>
 					</div>
 				</div>
-				<div class="row" style="padding-top: 10px;">
-					<div class="col-sm-4">
-						<label>Atencion</label>
-					</div>
-					<div class="col-sm-8">
-						<select class="form-control">
-							<option value="value">Call center</option>
-						</select>
-					</div>
+			}
+			<div class="row" style="padding-top: 10px;">
+				<div class="col-sm-4">
+					<label>Atencion</label>
 				</div>
-				<div class="row" style="padding-top: 10px;">
-					<div class="col-sm-4">
-						<label>Admision</label>
-					</div>
-					<div class="col-sm-8">
-						<select class="form-control">
-							<option value="value">Seguro convenio</option>
-						</select>
-					</div>
-				</div>
-				<div class="row" style="padding-top: 10px;">
-					<div class="col-sm-4">
-						<label>Seguro</label>
-					</div>
-					<div class="col-sm-8">
-						<select class="form-control">
-							<option value="value">Rimac</option>
-						</select>
-					</div>
-				</div>
-				<div class="row" style="padding-top: 10px;">
-					<div class="col-sm-4">
-						<label>Tarifario</label>
-					</div>
-					<div class="col-sm-8">
-						<select class="form-control">
-							<option value="value">Rimac</option>
-						</select>
-					</div>
+				<div class="col-sm-8">
+					<select class="form-control">
+						<option value="value">Call center</option>
+					</select>
 				</div>
 			</div>
-
-			<div class="col-sm-4">
-				<div class="row">
-					<input type="hidden" id="id" name="name" value="" />
-					<div class="col-sm-12">
-						<label style="margin-right:10px;">PACIENTE</label>
-					</div>
+			<div class="row" style="padding-top: 10px;">
+				<div class="col-sm-4">
+					<label>Admision</label>
 				</div>
-				<div class="row" style="padding-top: 10px;">
-					<div class="col-sm-4">
-						<label>DNI</label>
-					</div>
-					<div class="col-sm-8">
-						<input type="text" id="dni" name="name" value="" class="form-control" />
-					</div>
-				</div>
-				<div class="row" style="padding-top: 10px;">
-					<div class="col-sm-4">
-						<label>Correo</label>
-					</div>
-					<div class="col-sm-8">
-						<input type="text" id="correo" name="name" value="" class="form-control" />
-					</div>
-				</div>
-				<div class="row" style="padding-top: 10px;">
-					<div class="col-sm-4">
-						<label>Edad</label>
-					</div>
-					<div class="col-sm-8">
-						<input type="text" id="celular" name="name" value="" class="form-control" />
-					</div>
-				</div>
-				<div class="row" style="padding-top: 10px;">
-					<div class="col-sm-4">
-						<label>Ocupación</label>
-					</div>
-					<div class="col-sm-8">
-						<input type="text" id="ocupacion" name="name" value="" class="form-control" />
-					</div>
+				<div class="col-sm-8">
+					<select class="form-control">
+						<option value="value">Seguro convenio</option>
+					</select>
 				</div>
 			</div>
-			<div class="col-sm-4">
-
+			<div class="row" style="padding-top: 10px;">
+				<div class="col-sm-4">
+					<label>Seguro</label>
+				</div>
+				<div class="col-sm-8">
+					<select class="form-control">
+						<option value="value">Rimac</option>
+					</select>
+				</div>
+			</div>
+			<div class="row" style="padding-top: 10px;">
+				<div class="col-sm-4">
+					<label>Tarifario</label>
+				</div>
+				<div class="col-sm-8">
+					<select class="form-control">
+						<option value="value">Rimac</option>
+					</select>
+				</div>
 			</div>
 		</div>
-		<div class="row" style="padding-top: 10px;">
-			<div class="col-sm-12">
-				<button style="width: 112px; font-size: 15px;" class="btn btn-primary" data-target="#imodal" data-toggle="modal">Citas</button>
-				<button style="width: 135px; font-size: 15px;" class="btn btn-primary">Orden</button>
-				<button onclick="CargaConsultaCronograma();" style="width: 135px; font-size: 15px;" class="btn btn-primary">Cronograma</button>
+
+		<div class="col-sm-4">
+			<div class="row">
+				<input type="hidden" id="id" name="name" value="" />
+				<div class="col-sm-12">
+					<label style="margin-right:10px;">PACIENTE</label>
+				</div>
+			</div>
+			<div class="row" style="padding-top: 10px;">
+				<div class="col-sm-4">
+					<label>DNI</label>
+				</div>
+				<div class="col-sm-8">
+					<input type="text" id="dni" name="name" value="" class="form-control" />
+				</div>
+			</div>
+			<div class="row" style="padding-top: 10px;">
+				<div class="col-sm-4">
+					<label>Correo</label>
+				</div>
+				<div class="col-sm-8">
+					<input type="text" id="correo" name="name" value="" class="form-control" />
+				</div>
+			</div>
+			<div class="row" style="padding-top: 10px;">
+				<div class="col-sm-4">
+					<label>Edad</label>
+				</div>
+				<div class="col-sm-8">
+					<input type="text" id="celular" name="name" value="" class="form-control" />
+				</div>
+			</div>
+			<div class="row" style="padding-top: 10px;">
+				<div class="col-sm-4">
+					<label>Ocupación</label>
+				</div>
+				<div class="col-sm-8">
+					<input type="text" id="ocupacion" name="name" value="" class="form-control" />
+				</div>
 			</div>
 		</div>
-		<div class="row" style="padding-top: 80px;">
-			<div class="col-sm-12">
-				<table class="table table-bordered table-responsive table-hover">
-					<thead>
-						<tr>
-							<th>#</th>
-							<th>N°</th>
-							<th>Tipo</th>
-							<th>Fecha</th>
-							<th>Hora</th>
-							<th>Producto</th>
-							<th>Descripción</th>
-							<th>Medico</th>
-							<th>Especialidad</th>
-							<th>Precio</th>
-							<th>IGV</th>
-							<th>Estado</th>
-							<th>Est.Pago</th>
-							<th>Est.Aten</th>
-							<th>Total</th>
-							<th>Acciones</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>2</td>
-							<td>Examen</td>
-							<td>15/02/2020</td>
-							<td>10:00</td>
-							<td>Homoglobina</td>
-							<td>Sialer</td>
-							<td>Patologia clinica</td>
-							<td>Patologia clinica</td>
-							<td>Patologia clinica</td>
-							<td>Patologia clinica</td>
-							<td>50,00</td>
-							<td>36</td>
-							<td>Confirmado</td>
-							<td>Pendiente</td>
-							<td>0</td>
-							<td>
-								<button title="Reprogramar" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></button>
-								<button title="Consultar" class="btn btn-primary">
-									<i class="fa fa-search" aria-hidden="true"></i>
-								</button>
-								<button title="Anular" class="btn btn-danger">
-									<i class="fa fa-minus" aria-hidden="true"></i>
-								</button>
-							</td>
-						</tr>
+		<div class="col-sm-4">
 
-					</tbody>
-				</table>
-			</div>
-			<div class="col-sm-12 text-right">
-				<span style="margin-right:10px;">TOTAL DE VALOR VENTA - OPERACION GRAVADA</span><span>300</span><br />
-				<span style="margin-right:10px;">IGV(18%)</span><span>54</span><br />
-				<span style="margin-right:10px;">IMPORTE TOTAL</span><span>354</span>
-			</div>
-			<div class="col-sm-12" style="padding-top: 10px;">
-				<div class="row">
-					<div class="col-sm-6">
-
-					</div>
-					<div class="col-sm-6 text-right">
-						<button class="btn btn-primary" style="width: 112px;font-size: 16px;">Pagar</button>
-					</div>
-				</div>
-
-			</div>
 		</div>
 	</div>
-
-	<div class="modal fade" id="imodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content" style="width: 1200px;position: relative;right: 302px;">
-				<div class="container">
-					<div class="col-sm-12 pb-2 pt-2">
-						<h4>Programacion de cita ambulatoria</h4>
-					</div>
-					<div class="col-sm-12">
-						<div class="row pb-3">
-							<div class="col-sm-6">
-								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-									<label class="form-check-label" for="inlineRadio1">Consulta</label>
-								</div>
-								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-									<label class="form-check-label" for="inlineRadio2">Procedimiento</label>
-								</div>
-							</div>
-							<div class="col-sm-6"></div>
-						</div>
-						<div class="row pb-3">
-							<div class="col-sm-6">
-								<div class="row">
-									<div class="col-sm-4">
-										<label>Especialidad</label>
-									</div>
-									<div class="col-sm-8">
-										<select class="form-control">
-											<option>
-												Cardiologia
-											</option>
-										</select>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6">
-								<div class="row">
-									<div class="col-sm-4">
-										<label>Medico</label>
-									</div>
-									<div class="col-sm-8">
-										<select class="form-control">
-											<option>
-												Juan Caceres
-											</option>
-										</select>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row pb">
-							<div class="col-sm-6">
-								<div class="row">
-									<div class="col-sm-4">
-										<label>Fecha Atencion</label>
-									</div>
-									<div class="col-sm-8">
-										<select class="form-control">
-											<option>15/10/2020</option>
-										</select>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6">
-								<div class="row">
-									<div class="col-sm-4">
-										<label>Hora</label>
-									</div>
-									<div class="col-sm-8">
-										<select class="form-control">
-											<option>9:00</option>
-										</select>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-4"></div>
-						</div>
-						<div class="row pb-3 pt-3">
-							<div class="col-sm-6">
-								<div class="row">
-									<div class="col-sm-4">
-										<label>Dni</label>
-									</div>
-									<div class="col-sm-8 form-inline">
-										<input type="text" class="form-control pr-2" name="">
-										<button class="btn btn-primary"><i class="fas fa-search"></i></button>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6">
-								<div class="row">
-									<div class="col-sm-4">
-										<label>Paciente</label>
-									</div>
-									<div class="col-sm-8">
-										<input type="text" class="form-control" name="">
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row pt-3 pb-2">
-							<div class="col-sm-12 text-right">
-								<button class="btn btn-primary">Registrar</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+	<div class="row" style="padding-top: 10px;">
+		<div class="col-sm-12">
+			<button style="width: 112px; font-size: 15px;" class="btn btn-primary" onclick="CargaModalCitas();">Citas</button>
+			<button style="width: 135px; font-size: 15px;" class="btn btn-primary">Orden</button>
+			<button onclick="CargaConsultaCronograma();" style="width: 135px; font-size: 15px;" class="btn btn-primary">Cronograma</button>
 		</div>
 	</div>
+	<div class="row" style="padding-top: 80px;">
+		<div class="col-sm-12">
+			<table class="table table-bordered table-responsive table-hover">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>N°</th>
+						<th>Tipo</th>
+						<th>Fecha</th>
+						<th>Hora</th>
+						<th>Producto</th>
+						<th>Descripción</th>
+						<th>Medico</th>
+						<th>Especialidad</th>
+						<th>Precio</th>
+						<th>IGV</th>
+						<th>Estado</th>
+						<th>Est.Pago</th>
+						<th>Est.Aten</th>
+						<th>Total</th>
+						<th>Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>2</td>
+						<td>Examen</td>
+						<td>15/02/2020</td>
+						<td>10:00</td>
+						<td>Homoglobina</td>
+						<td>Sialer</td>
+						<td>Patologia clinica</td>
+						<td>Patologia clinica</td>
+						<td>Patologia clinica</td>
+						<td>Patologia clinica</td>
+						<td>50,00</td>
+						<td>36</td>
+						<td>Confirmado</td>
+						<td>Pendiente</td>
+						<td>0</td>
+						<td>
+							<button title="Reprogramar" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></button>
+							<button title="Consultar" class="btn btn-primary">
+								<i class="fa fa-search" aria-hidden="true"></i>
+							</button>
+							<button title="Anular" class="btn btn-danger">
+								<i class="fa fa-minus" aria-hidden="true"></i>
+							</button>
+						</td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+		<div class="col-sm-12 text-right">
+			<span style="margin-right:10px;">TOTAL DE VALOR VENTA - OPERACION GRAVADA</span><span>300</span><br />
+			<span style="margin-right:10px;">IGV(18%)</span><span>54</span><br />
+			<span style="margin-right:10px;">IMPORTE TOTAL</span><span>354</span>
+		</div>
+		<div class="col-sm-12" style="padding-top: 10px;">
+			<div class="row">
+				<div class="col-sm-6">
+
+				</div>
+				<div class="col-sm-6 text-right">
+					<button class="btn btn-primary" style="width: 112px;font-size: 16px;">Pagar</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="modalcitas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+</div>
 
 
 <div id="modalcronograma" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
 </div>
 <script src="~/js/cargavistaparcial.js"></script>
+<script src="~/js/combosaninadoscitas.js"></script>

@@ -1,18 +1,24 @@
-﻿using HistClinica.Models;
+﻿using HistClinica.Data;
+using HistClinica.Models;
 using HistClinica.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Threading.Tasks;
 
 namespace HistClinica.Controllers
 {
     public class CitaController : Controller
     {
+        private readonly ClinicaServiceContext _context;
         private readonly ICitaRepository _repository;
+        private readonly IUtilRepository _utilrepository;
 
-        public CitaController(ICitaRepository repository)
+        public CitaController(ClinicaServiceContext clinicaService,ICitaRepository repository, IUtilRepository utilRepository)
         {
             _repository = repository;
+            _context = clinicaService;
+            _utilrepository = utilRepository;
         }
 
         // GET: Cita
@@ -133,6 +139,23 @@ namespace HistClinica.Controllers
         {
             await _repository.DeleteCita(id);
             return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<JsonResult> GetMedicoByEsp(int id)
+        {
+            var medico = await _utilrepository.GetMedicoByEspecialidad(id);
+            return Json(medico);
+        }
+
+        public async Task<IActionResult> Registro()
+        {
+            var lespecialidads = new Object();
+            lespecialidads = await _utilrepository.GetTipo("Especialidad");
+            ViewBag.listaespecialidades = lespecialidads;
+
+            var medico = _utilrepository.GetMedicos();
+            ViewBag.listamedicos = medico;
+            return PartialView();
         }
     }
 }

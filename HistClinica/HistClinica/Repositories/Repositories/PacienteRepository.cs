@@ -169,7 +169,7 @@ namespace HistClinica.Repositories.Repositories
         {
             try
             {
-                if (Persona.paciente.idTipoPaciente == 151)//Compañia
+                if (Persona.paciente.idTipoPaciente == 120)//Compañia
                 {
                     _context.Update(new T001_PACASEGURADO()
                     {
@@ -206,7 +206,7 @@ namespace HistClinica.Repositories.Repositories
                     });
                     await Save();
                 }
-                else if (Persona.paciente.idTipoPaciente == 152)//Convenio
+                else if (Persona.paciente.idTipoPaciente == 121)//Convenio
                 {
                     _context.Update(new T001_PACCONVENIO()
                     {

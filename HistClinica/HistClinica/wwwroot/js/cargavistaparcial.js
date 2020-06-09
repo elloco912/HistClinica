@@ -1,4 +1,12 @@
-﻿function Cargarmodal() {
+﻿$(document).on('change', '#idmedico', function (event) {
+
+		console.log("entro");
+		BuscarCronograma();
+
+});
+
+
+function Cargarmodal() {
 		var id = $(this).closest("tr").find("td").eq(0).html();
 		$.ajax({
 			type: "GET",
@@ -82,4 +90,23 @@ function BuscarCronograma() {
 				alert(response.responseText);
 			}
 		});
+}
+
+function CargaModalCitas() {
+	$.ajax({
+		type: "GET",
+		url: "/Cita/Registro",
+		contentType: "application/json; charset=utf-8",
+		dataType: "html",
+		success: function (response) {
+			$('#modalcitas').html(response);
+			$('#modalcitas').modal('show');
+		},
+		failure: function (response) {
+			alert(response.responseText);
+		},
+		error: function (response) {
+			alert(response.responseText);
+		}
+	});
 }

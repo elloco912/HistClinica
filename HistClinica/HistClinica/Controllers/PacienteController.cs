@@ -3,6 +3,7 @@ using HistClinica.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace HistClinica.Controllers
@@ -28,6 +29,13 @@ namespace HistClinica.Controllers
 
         public IActionResult Index()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Index(int dni)
+        {
+            PersonaDTO personaDTO = await _pacienteRepository.GetByDni(dni);
             return View();
         }
 
@@ -185,5 +193,6 @@ namespace HistClinica.Controllers
             await _pacienteRepository.DeletePaciente(id);
             return RedirectToAction(nameof(Index));
         }
+
     }
 }
