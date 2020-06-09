@@ -161,7 +161,6 @@ namespace HistClinica.Repositories.Repositories
             }
             catch (Exception ex)
             {
-
                 return "Error en el guardado " + ex.StackTrace;
             }
         }
@@ -268,7 +267,6 @@ namespace HistClinica.Repositories.Repositories
             }
             catch (Exception ex)
             {
-
                 return "Error en el guardado " + ex.StackTrace;
             }
         }

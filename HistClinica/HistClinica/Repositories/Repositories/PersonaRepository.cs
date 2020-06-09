@@ -101,12 +101,12 @@ namespace HistClinica.Repositories.Repositories
                     nroVia = Persona.nroVia,
                     razonSocial = Persona.razonSocial,
                     tpPersona = Persona.tpPersona,
-                    idFactorrh = int.Parse(Persona.idFactorrh),
-                    interior = int.Parse(Persona.interior),
+                    idFactorrh = Persona.idFactorrh,
+                    interior = Persona.interior,
                     nombreVia = Persona.nombreVia,
-                    nroBlock = int.Parse(Persona.nroBlock),
-                    nroDpto = int.Parse(Persona.nroDpto),
-                    nroLote = int.Parse(Persona.nroLote)
+                    nroBlock = Persona.nroBlock,
+                    nroDpto = Persona.nroDpto,
+                    nroLote = Persona.nroLote
                 });
                 await Save();
                 idPersona = (await _context.T000_PERSONA
@@ -115,7 +115,7 @@ namespace HistClinica.Repositories.Repositories
                 {
                     await _empleadoRepository.InsertEmpleado(Persona, idPersona);
                     idEmpleado = await _empleadoRepository.GetIdEmpleado(idPersona);
-                    if (Persona.personal.idTipoEmpleado == 2)
+                    if (Persona.personal.idTipoEmpleado == 109)
                     {
                         await _medicoRepository.InsertMedico(Persona, idPersona, idEmpleado);
                     }
@@ -175,12 +175,12 @@ namespace HistClinica.Repositories.Repositories
                     nroVia = Persona.nroVia,
                     razonSocial = Persona.razonSocial,
                     tpPersona = Persona.tpPersona,
-                    idFactorrh = int.Parse(Persona.idFactorrh),
-                    interior = int.Parse(Persona.interior),
+                    idFactorrh = Persona.idFactorrh,
+                    interior = Persona.interior,
                     nombreVia = Persona.nombreVia,
-                    nroBlock = int.Parse(Persona.nroBlock),
-                    nroDpto = int.Parse(Persona.nroDpto),
-                    nroLote = int.Parse(Persona.nroLote)
+                    nroBlock = Persona.nroBlock,
+                    nroDpto = Persona.nroDpto,
+                    nroLote = Persona.nroLote
                 });
                 await Save();
                 if (Persona.personal.idTipoEmpleado != null)
@@ -229,7 +229,7 @@ namespace HistClinica.Repositories.Repositories
         }
         public async Task<PersonaDTO> GetById(int? id)
         {
-            PersonaDTO Persona;
+            PersonaDTO Persona = new PersonaDTO();
             Persona = await (from p in _context.T000_PERSONA
                              join e in _context.T120_EMPLEADO on p.idPersona equals e.idPersona
                              where p.idPersona == id
@@ -253,13 +253,16 @@ namespace HistClinica.Repositories.Repositories
                                           fechaIngreso = e.fecIngreso,
                                           cargo = e.cargo
                                       }).FirstOrDefaultAsync();
-            if (Persona.personal.idTipoEmpleado != 1)
+            if (Persona.personal.idTipoEmpleado != 109)
             {
-                var personaTemporal = await (from m in _context.T212_MEDICO
+                PersonaDTO.Personal personaTemporal = new PersonaDTO.Personal();
+                personaTemporal = await (from m in _context.T212_MEDICO
                                              where m.idEmpleado == Persona.personal.idEmpleado
                                              select new PersonaDTO.Personal
                                              {
-                                                 idEspecialidad = m.idEspecialidad,
+                                                 idEspecialidad = (from tb in _context.D00_TBDETALLE
+                                                                   where m.idEspecialidad == tb.idDet
+                                                                   select m.idEspecialidad).FirstOrDefault(),
                                                  idMedico = m.idMedico,
                                                  numeroColegio = m.nroColegio
                                              }).FirstOrDefaultAsync();

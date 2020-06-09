@@ -5,6 +5,7 @@ namespace HistClinica.DTO
 {
     public class PersonaDTO
     {
+        #region Persona
         public int? idPersona { get; set; }
         public string apellidoPaterno { get; set; }
         public string apellidoMaterno { get; set; }
@@ -33,7 +34,7 @@ namespace HistClinica.DTO
         public int? idemprConvenio { get; set; }
         public int? idEstCivil { get; set; }
         public int? idEtnico { get; set; }
-        public string idFactorrh { get; set; }
+        public int? idFactorrh { get; set; }
         public int? idgpoSangre { get; set; }
         public int? idGrdInstruc { get; set; }
         public int? idOcupacion { get; set; }
@@ -44,23 +45,23 @@ namespace HistClinica.DTO
         public int? idtipoVia { get; set; }
         public int? idUbigeoNace { get; set; }
         public int? idUbigeoResi { get; set; }
-        public string interior { get; set; }
+        public int? interior { get; set; }
         public int? manzana { get; set; }
         public string nombreVia { get; set; }
-        public string nroBlock { get; set; }
-        public string nroDpto { get; set; }
+        public int? nroBlock { get; set; }
+        public int? nroDpto { get; set; }
         public int? nroEtapa { get; set; }
         public int? nroKm { get; set; }
-        public string nroLote { get; set; }
+        public int? nroLote { get; set; }
         public int? nroVia { get; set; }
         public string razonSocial { get; set; }
         public int? tpPersona { get; set; }
         public Personal personal { get; set; }
         public Paciente paciente { get; set; }
-
+        #endregion Persona
+        #region Personal
         public class Personal
         {
-            #region Personal
             public int? idEmpleado { get; set; }
             public int? idMedico { get; set; }
             public string codMedico { get; set; }
@@ -78,11 +79,11 @@ namespace HistClinica.DTO
             public string genero { get; set; }
             public double? precio { get; set; }
             public int? salario { get; set; }
-            #endregion
         }
+        #endregion
+        #region Paciente
         public class Paciente
         {
-            #region Paciente
             public int? idPaciente { get; set; }
             public int? idAsegurado { get; set; }
             public int? idConvenio { get; set; }
@@ -94,8 +95,8 @@ namespace HistClinica.DTO
             public string codPaciente { get; set; }
             public string descripcion { get; set; }
             public int? nrohc { get; set; }
-            public int idestado { get; set; }
-            public int estadoPaciente { get; set; }
+            public int? idestado { get; set; }
+            public int? estadoPaciente { get; set; }
             #region Ubicacion
             public int? idDepartamentoUbicacion { get; set; }
             public int? idProvinciaUbicacion { get; set; }
@@ -185,7 +186,7 @@ namespace HistClinica.DTO
             public int? edadAcompañante { get; set; }
             public int? estadoAcompañante { get; set; }
             #endregion
-            #endregion Paciente
         }
+        #endregion Paciente
     }
 }
