@@ -1,5 +1,3 @@
-using System;
-
 namespace HistClinica.Models
 {
     public class ErrorViewModel

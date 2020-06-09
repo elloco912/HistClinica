@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HistClinica.Data;
+﻿using HistClinica.Data;
 using HistClinica.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace HistClinica.Controllers
 {
@@ -27,7 +24,7 @@ namespace HistClinica.Controllers
             var user = _context.D001_USUARIO.Where(u => u.loginUser.Equals(usu.loginUser) && u.claveUser.Equals(usu.claveUser)).FirstOrDefault();
             if (user != null)
             {
-               return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
             }
             return View();
         }

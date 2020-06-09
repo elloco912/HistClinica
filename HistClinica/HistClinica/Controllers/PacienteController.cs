@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using HistClinica.Data;
-using HistClinica.Models;
+﻿using HistClinica.DTO;
 using HistClinica.Repositories.Interfaces;
-using HistClinica.DTO;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Threading.Tasks;
 
 namespace HistClinica.Controllers
 {
@@ -18,14 +13,14 @@ namespace HistClinica.Controllers
         private readonly IPacienteRepository _pacienteRepository;
         private readonly IUtilRepository _utilrepository;
 
-        public PacienteController(IPersonaRepository personaRepository, IPacienteRepository pacienteRepository,IUtilRepository utilrepository)
+        public PacienteController(IPersonaRepository personaRepository, IPacienteRepository pacienteRepository, IUtilRepository utilrepository)
         {
             _personaRepository = personaRepository;
             _pacienteRepository = pacienteRepository;
             _utilrepository = utilrepository;
         }
 
-       // GET: Paciente
+        // GET: Paciente
         //public async Task<IActionResult> Index()
         //{
         //    return View(await _pacienteRepository.GetAllPacientes());
@@ -135,9 +130,9 @@ namespace HistClinica.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, PersonaDTO paciente)
+        public async Task<IActionResult> Edit(int id, PersonaDTO persona)
         {
-            if (id != paciente.idPaciente)
+            if (id != persona.paciente.idPaciente)
             {
                 return NotFound();
             }
@@ -146,11 +141,11 @@ namespace HistClinica.Controllers
             {
                 try
                 {
-                    await _personaRepository.UpdatePersona(paciente);
+                    await _personaRepository.UpdatePersona(persona);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!(await _pacienteRepository.PacienteExists(paciente.idPaciente)))
+                    if (!(await _pacienteRepository.PacienteExists(persona.paciente.idPaciente)))
                     {
                         return NotFound();
                     }
@@ -161,7 +156,7 @@ namespace HistClinica.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(paciente);
+            return View(persona);
         }
 
         // GET: Paciente/Delete/5

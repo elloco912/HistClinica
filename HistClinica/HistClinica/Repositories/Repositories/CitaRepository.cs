@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HistClinica.Repositories.Repositories
 {
-    public class CitaRepository: ICitaRepository
+    public class CitaRepository : ICitaRepository
     {
         private readonly ClinicaServiceContext _context;
         public CitaRepository(ClinicaServiceContext context)
@@ -81,33 +81,33 @@ namespace HistClinica.Repositories.Repositories
         public async Task<List<T068_CITA>> GetAllCitas()
         {
             List<T068_CITA> Citas = await (from c in _context.T068_CITA
-                                            select new T068_CITA
-                                            {
-                                                idCita = c.idCita,
-                                                codCita = c.codCita,
-                                                descripcion = c.descripcion,
-                                                coa = c.coa,
-                                                descuento = c.descuento,
-                                                ejecutado = c.ejecutado,
-                                                estadoReprogram = c.estadoReprogram,
-                                                fechaCita = c.fechaCita,
-                                                idConsultorio = c.idConsultorio,
-                                                idEmpleado = c.idEmpleado,
-                                                idEstadoCita = c.idEstadoCita,
-                                                idEstaGralPac = c.idEstaGralPac,
-                                                idEstAtencion = c.idEstAtencion,
-                                                idPaciente = c.idPaciente,
-                                                idProgramMedica = c.idProgramMedica,
-                                                idTpAtencion = c.idTpAtencion,
-                                                igv = c.igv,
-                                                nroCita = c.nroCita,
-                                                nroHC = c.nroHC,
-                                                precio = c.precio,
-                                                prioridad = c.prioridad,
-                                                servicio = c.servicio,
-                                                tpAtencion = c.tpAtencion,
-                                                ultCie10 = c.ultCie10
-                                            }).ToListAsync();
+                                           select new T068_CITA
+                                           {
+                                               idCita = c.idCita,
+                                               codCita = c.codCita,
+                                               descripcion = c.descripcion,
+                                               coa = c.coa,
+                                               descuento = c.descuento,
+                                               ejecutado = c.ejecutado,
+                                               estadoReprogram = c.estadoReprogram,
+                                               fechaCita = c.fechaCita,
+                                               idConsultorio = c.idConsultorio,
+                                               idEmpleado = c.idEmpleado,
+                                               idEstadoCita = c.idEstadoCita,
+                                               idEstaGralPac = c.idEstaGralPac,
+                                               idEstAtencion = c.idEstAtencion,
+                                               idPaciente = c.idPaciente,
+                                               idProgramMedica = c.idProgramMedica,
+                                               idTpAtencion = c.idTpAtencion,
+                                               igv = c.igv,
+                                               nroCita = c.nroCita,
+                                               nroHC = c.nroHC,
+                                               precio = c.precio,
+                                               prioridad = c.prioridad,
+                                               servicio = c.servicio,
+                                               tpAtencion = c.tpAtencion,
+                                               ultCie10 = c.ultCie10
+                                           }).ToListAsync();
 
             return Citas;
         }
