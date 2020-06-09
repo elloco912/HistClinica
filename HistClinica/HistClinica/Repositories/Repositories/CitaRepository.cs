@@ -1,4 +1,5 @@
 ﻿using HistClinica.Data;
+using HistClinica.DTO;
 using HistClinica.Models;
 using HistClinica.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -50,11 +51,18 @@ namespace HistClinica.Repositories.Repositories
             _context.T068_CITA.Remove(Cita);
             await Save();
         }
-        public async Task<string> InsertCita(T068_CITA Cita)
+        public async Task<string> InsertCita(CitaDTO Cita)
         {
             try
             {
-                await _context.T068_CITA.AddAsync(Cita);
+                await _context.T068_CITA.AddAsync(new T068_CITA()
+                {
+                    idEmpleado = (from m in _context.T212_MEDICO 
+                                  join e in _context.T120_EMPLEADO on m.idEmpleado equals e.idEmpleado
+                                  select m.idMedico).FirstOrDefault(),
+                    idPaciente = Cita.idPaciente,
+                    fechaCita = Cita.fecha
+                });
                 await Save();
                 return "Ingreso Exitoso";
             }

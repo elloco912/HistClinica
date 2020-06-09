@@ -222,7 +222,7 @@ namespace HistClinica.Repositories.Repositories
             {
                 Personas[i].personal = await (from e in _context.T120_EMPLEADO
                                               where e.idPersona == Personas[i].idPersona
-                                              select new PersonaDTO.Personal
+                                              select new PersonalDTO
                                               {
                                                   fechaIngreso = e.fecIngreso,
                                                   cargo = e.cargo
@@ -250,7 +250,7 @@ namespace HistClinica.Repositories.Repositories
                              }).FirstOrDefaultAsync();
             Persona.personal = await (from e in _context.T120_EMPLEADO
                                       where e.idPersona == Persona.idPersona
-                                      select new PersonaDTO.Personal
+                                      select new PersonalDTO
                                       {
                                           idEmpleado = e.idEmpleado,
                                           idTipoEmpleado = e.idtpEmpleado,
@@ -259,10 +259,10 @@ namespace HistClinica.Repositories.Repositories
                                       }).FirstOrDefaultAsync();
             if (Persona.personal.idTipoEmpleado != 109)
             {
-                PersonaDTO.Personal personaTemporal = new PersonaDTO.Personal();
+                PersonalDTO personaTemporal = new PersonalDTO();
                 personaTemporal = await (from m in _context.T212_MEDICO
                                              where m.idEmpleado == Persona.personal.idEmpleado
-                                             select new PersonaDTO.Personal
+                                             select new PersonalDTO
                                              {
                                                  idEspecialidad = (from tb in _context.D00_TBDETALLE
                                                                    where m.idEspecialidad == tb.idDet
