@@ -203,9 +203,11 @@ namespace HistClinica.Repositories.Repositories
                 return "Error en el guardado " + ex.StackTrace;
             }
         }
-        public async Task<List<PersonaDTO>> GetAllPersonas()
+        public async Task<List<PersonaDTO>> GetAllPersonal()
         {
             List<PersonaDTO> Personas = await (from p in _context.T000_PERSONA
+                                               join e in _context.T120_EMPLEADO on p.idPersona equals e.idPersona
+                                               where e.idtpEmpleado != null
                                                select new PersonaDTO
                                                {
                                                    idPersona = p.idPersona,
@@ -215,6 +217,7 @@ namespace HistClinica.Repositories.Repositories
                                                    apellidoMaterno = p.apeMaterno,
                                                    telefono = p.telefono
                                                }).ToListAsync();
+
             for (int i = 0; i < Personas.Count; i++)
             {
                 Personas[i].personal = await (from e in _context.T120_EMPLEADO
@@ -227,6 +230,7 @@ namespace HistClinica.Repositories.Repositories
             }
             return Personas;
         }
+
         public async Task<PersonaDTO> GetById(int? id)
         {
             PersonaDTO Persona = new PersonaDTO();

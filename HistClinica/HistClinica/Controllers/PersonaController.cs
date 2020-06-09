@@ -27,7 +27,7 @@ namespace HistClinica.Controllers
         // GET: Persona
         public async Task<IActionResult> Index()
         {
-            return View(await _personaRepository.GetAllPersonas());
+            return View(await _personaRepository.GetAllPersonal());
         }
 
         // GET: Persona/Details/5
