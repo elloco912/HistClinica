@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace HistClinica.DTO
 {
@@ -104,9 +105,10 @@ namespace HistClinica.DTO
             public int? numeroDepartamentoUbicacion { get; set; }
             public int? interiorUbicacion { get; set; }
             public int? numeroLoteUbicacion { get; set; }
-            public Cita cita { get; set; }
+            public List<Cita> cita { get; set; }
             public class Cita
             {
+                public int? idCita { get; set; }
                 public int? nroCita { get; set; }
                 public string tipo { get; set; }
                 public string fecha { get; set; }
