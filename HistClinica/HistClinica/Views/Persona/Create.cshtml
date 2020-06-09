@@ -28,7 +28,7 @@
 									<label>TIPO DE EMPLEADO</label>
 								</div>
 								<div class="form-group">
-									@Html.DropDownListFor(m => m.idTipoEmpleado, new SelectList(ViewBag.lsttipoempleado, "idtpEmpleado", "Descripcion"), new { @class = "form-control" })
+									@Html.DropDownListFor(m => m.personal.idTipoEmpleado, new SelectList(ViewBag.lsttipoempleado, "idtpEmpleado", "Descripcion"), new { @class = "form-control" })
 								</div>
 								<div class="form-group">
 									<label for="txtNombres">NOMBRES</label>
@@ -46,7 +46,7 @@
 									<label for="txtNroColegio">N° DE COLEGIO</label>
 								</div>
 								<div class="form-group">
-									@Html.TextBoxFor(m => m.numeroColegio, new { @class = "form-control" })
+									@Html.TextBoxFor(m => m.personal.numeroColegio, new { @class = "form-control" })
 								</div>
 								<div class="form-group">
 									<label for="txtruc">N° DE RUC</label>
@@ -58,7 +58,7 @@
 									<label for="txtespecialidad">ESPECIALIDAD</label>
 								</div>
 								<div class="form-group">
-									@Html.DropDownListFor(m => m.idEspecialidad, new SelectList(ViewBag.listaespecialidades, "idEspecialidad", "descripcion"), new { @class = "form-control" })
+									@Html.DropDownListFor(m => m.personal.idEspecialidad, new SelectList(ViewBag.listaespecialidades, "idEspecialidad", "descripcion"), new { @class = "form-control" })
 								</div>
 							</div>
 						</div>
@@ -70,7 +70,7 @@
 									<label for="txtarea">AREA</label>
 								</div>
 								<div class="form-group">
-									@Html.TextBoxFor(m => m.area, new { @class = "form-control" })
+									@Html.TextBoxFor(m => m.personal.area, new { @class = "form-control" })
 								</div>
 								<div class="form-group">
 									<label for="txtApPaterno">APELLIDOS</label>
@@ -82,13 +82,13 @@
 									<label id="txtfecingresopersonal">FECHA INGRESO</label>
 								</div>
 								<div class="form-group">
-									@Html.TextBoxFor(m => m.fechaIngreso, new { @class = "form-control", @type = "Date" })
+									@Html.TextBoxFor(m => m.personal.fechaIngreso, new { @class = "form-control", @type = "Date" })
 								</div>
 								<div class="form-group">
 									<label for="txtcargo">CARGO</label>
 								</div>
 								<div class="form-group">
-									@Html.TextBoxFor(m => m.cargo, new { @class = "form-control" })
+									@Html.TextBoxFor(m => m.personal.cargo, new { @class = "form-control" })
 								</div>
 								<div class="form-group">
 									<label for="txtTelefono">TELÉFONO</label>

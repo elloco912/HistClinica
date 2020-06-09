@@ -14,14 +14,14 @@
 							<div class="col-md-6">
 								<div class="box box-primary">
 									@Html.HiddenFor(m => m.idPersona)
-									@Html.HiddenFor(m => m.idMedico)
-									@Html.HiddenFor(m => m.idEmpleado)
+									@Html.HiddenFor(m => m.personal.idMedico)
+									@Html.HiddenFor(m => m.personal.idEmpleado)
 									<div class="box-body">
 										<div class="form-group">
 											<label>TIPO DE EMPLEADO</label>
 										</div>
 										<div class="form-group">
-											@Html.DropDownListFor(m => m.idTipoEmpleado, new SelectList(ViewBag.lsttipoempleado, "idtpEmpleado", "Descripcion"), new { @class = "form-control" })
+											@Html.DropDownListFor(m => m.personal.idTipoEmpleado, new SelectList(ViewBag.lsttipoempleado, "idtpEmpleado", "Descripcion"), new { @class = "form-control" })
 										</div>
 										<div class="form-group">
 											<label for="txtNombres">NOMBRES</label>
@@ -39,7 +39,7 @@
 											<label for="txtNroColegio">N° DE COLEGIO</label>
 										</div>
 										<div class="form-group">
-											@Html.EditorFor(m => m.numeroColegio, new { htmlAttributes = new { @class = "form-control" } })
+											@Html.EditorFor(m => m.personal.numeroColegio, new { htmlAttributes = new { @class = "form-control" } })
 										</div>
 										<div class="form-group">
 											<label for="txtruc">N° DE RUC</label>
@@ -51,7 +51,7 @@
 											<label for="txtespecialidad">ESPECIALIDAD</label>
 										</div>
 										<div class="form-group">
-											@Html.DropDownListFor(m => m.idEspecialidad, new SelectList(ViewBag.listaespecialidades, "idEspecialidad", "descripcion"), new { @class = "form-control" })
+											@Html.DropDownListFor(m => m.personal.idEspecialidad, new SelectList(ViewBag.listaespecialidades, "idEspecialidad", "descripcion"), new { @class = "form-control" })
 										</div>
 									</div>
 								</div>
@@ -63,7 +63,7 @@
 											<label for="txtarea">AREA</label>
 										</div>
 										<div class="form-group">
-											@Html.EditorFor(m => m.area, new { htmlAttributes = new { @class = "form-control" } })
+											@Html.EditorFor(m => m.personal.area, new { htmlAttributes = new { @class = "form-control" } })
 										</div>
 										<div class="form-group">
 											<label for="txtApPaterno">APELLIDOS</label>
@@ -75,13 +75,13 @@
 											<label id="txtfecingresopersonal">FECHA INGRESO</label>
 										</div>
 										<div class="form-group">
-											@Html.EditorFor(m => m.fechaIngreso, new { htmlAttributes = new { @class = "form-control", @type = "Date" } })
+											@Html.EditorFor(m => m.personal.fechaIngreso, new { htmlAttributes = new { @class = "form-control", @type = "Date" } })
 										</div>
 										<div class="form-group">
 											<label for="txtcargo">CARGO</label>
 										</div>
 										<div class="form-group">
-											@Html.EditorFor(m => m.cargo, new { htmlAttributes = new { @class = "form-control" } })
+											@Html.EditorFor(m => m.personal.cargo, new { htmlAttributes = new { @class = "form-control" } })
 										</div>
 										<div class="form-group">
 											<label for="txtTelefono">TELÉFONO</label>

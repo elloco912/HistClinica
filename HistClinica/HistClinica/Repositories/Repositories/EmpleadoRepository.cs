@@ -4,13 +4,12 @@ using HistClinica.Models;
 using HistClinica.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace HistClinica.Repositories.Repositories
 {
-    public class EmpleadoRepository: IEmpleadoRepository
+    public class EmpleadoRepository : IEmpleadoRepository
     {
         private readonly ClinicaServiceContext _context;
         public EmpleadoRepository(ClinicaServiceContext context)
@@ -51,15 +50,15 @@ namespace HistClinica.Repositories.Repositories
                 T120_EMPLEADO Empleado = new T120_EMPLEADO
                 {
                     idPersona = idPersona,
-                    cargo = Persona.cargo,
-                    codEmpleado = Persona.codEmpleado,
-                    descArea = Persona.descArea,
-                    estado = Persona.estadoPersonal,
-                    fecIngreso = Persona.fechaIngreso,
-                    genero = Persona.genero,
-                    idtpEmpleado = Persona.idTipoEmpleado,
-                    precio = Persona.precio,
-                    salario = Persona.salario
+                    cargo = Persona.personal.cargo,
+                    codEmpleado = Persona.personal.codEmpleado,
+                    descArea = Persona.personal.descArea,
+                    estado = Persona.personal.estadoPersonal,
+                    fecIngreso = Persona.personal.fechaIngreso,
+                    genero = Persona.personal.genero,
+                    idtpEmpleado = Persona.personal.idTipoEmpleado,
+                    precio = Persona.personal.precio,
+                    salario = Persona.personal.salario
                 };
                 await _context.T120_EMPLEADO.AddAsync(Empleado);
                 await Save();
@@ -77,16 +76,16 @@ namespace HistClinica.Repositories.Repositories
                 T120_EMPLEADO Empleado = new T120_EMPLEADO
                 {
                     idPersona = Persona.idPersona,
-                    idEmpleado = (int)Persona.idTipoEmpleado,
-                    cargo = Persona.cargo,
-                    codEmpleado = Persona.codEmpleado,
-                    descArea = Persona.descArea,
-                    estado = Persona.estadoPersonal,
-                    fecIngreso = Persona.fechaIngreso,
-                    genero = Persona.genero,
-                    idtpEmpleado = Persona.idTipoEmpleado,
-                    precio = Persona.precio,
-                    salario = Persona.salario
+                    idEmpleado = (int)Persona.personal.idTipoEmpleado,
+                    cargo = Persona.personal.cargo,
+                    codEmpleado = Persona.personal.codEmpleado,
+                    descArea = Persona.personal.descArea,
+                    estado = Persona.personal.estadoPersonal,
+                    fecIngreso = Persona.personal.fechaIngreso,
+                    genero = Persona.personal.genero,
+                    idtpEmpleado = Persona.personal.idTipoEmpleado,
+                    precio = Persona.personal.precio,
+                    salario = Persona.personal.salario
                 };
                 _context.Update(Empleado);
                 await Save();
@@ -101,8 +100,8 @@ namespace HistClinica.Repositories.Repositories
         public async Task<int> GetIdEmpleado(int? id)
         {
             int idEmpleado = await (from p in _context.T120_EMPLEADO
-                                  where p.idPersona == id
-                                  select p.idEmpleado).FirstOrDefaultAsync();
+                                    where p.idPersona == id
+                                    select p.idEmpleado).FirstOrDefaultAsync();
             return idEmpleado;
         }
     }

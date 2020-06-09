@@ -1,14 +1,12 @@
-﻿using System;
+﻿using HistClinica.Data;
+using HistClinica.DTO;
+using HistClinica.Models;
+using HistClinica.Repositories.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using HistClinica.Data;
-using HistClinica.Models;
-using HistClinica.Repositories.Interfaces;
-using HistClinica.DTO;
 
 namespace HistClinica.Controllers
 {
@@ -17,7 +15,7 @@ namespace HistClinica.Controllers
         private readonly ClinicaServiceContext _context;
         private readonly IPersonaRepository _personaRepository;
 
-        public PersonaController(IPersonaRepository personaRepository,ClinicaServiceContext contexto)
+        public PersonaController(IPersonaRepository personaRepository, ClinicaServiceContext contexto)
         {
             _context = contexto;
             _personaRepository = personaRepository;
@@ -97,8 +95,8 @@ namespace HistClinica.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id,PersonaDTO personaDTO)
-        {       
+        public async Task<IActionResult> Edit(int id, PersonaDTO personaDTO)
+        {
             if (personaDTO != null)
             {
                 try
@@ -139,8 +137,8 @@ namespace HistClinica.Controllers
         }
 
         // POST: Persona/Delete/5
-      //  [HttpPost, ActionName("Delete")]
-       // [ValidateAntiForgeryToken]
+        //  [HttpPost, ActionName("Delete")]
+        // [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var persona = await _personaRepository.GetById(id);

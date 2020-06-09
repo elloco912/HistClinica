@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HistClinica.Data;
+﻿using HistClinica.Data;
 using HistClinica.Models;
 using HistClinica.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace HistClinica.Controllers
 {
@@ -22,7 +21,7 @@ namespace HistClinica.Controllers
         public async Task<IActionResult> Index()
         {
 
-            string[] horas = new string[] {"1:00","2:00","3:00","4:00","5:00","6:00","7:00","8:00","9:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00","24:00"};
+            string[] horas = new string[] { "1:00", "2:00", "3:00", "4:00", "5:00", "6:00", "7:00", "8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00", "24:00" };
 
 
             //combo consultorios
@@ -110,7 +109,7 @@ namespace HistClinica.Controllers
 
             D012_CRONOMEDICO cronoMedico = await cronogramaRepository.GetByIdCrono(id);
 
-            return PartialView("Edit",cronoMedico);
+            return PartialView("Edit", cronoMedico);
 
         }
 
@@ -145,7 +144,7 @@ namespace HistClinica.Controllers
 
             return PartialView(cronograma);
         }
-        
+
         public async Task<IActionResult> ConsultarCronogramapost(int id)
         {
             var medico = from per in _context.T000_PERSONA
