@@ -27,7 +27,7 @@ namespace HistClinica.Controllers
         // GET: Persona
         public async Task<IActionResult> Index()
         {
-            return View(await _personaRepository.GetAllPersonas());
+            return View(await _personaRepository.GetAllPersonal());
         }
 
         // GET: Persona/Details/5
@@ -50,13 +50,11 @@ namespace HistClinica.Controllers
         // GET: Persona/Create
         public async Task<IActionResult> Create()
         {
-            var lespecialidads = new Object();
-            lespecialidads = await _utilrepository.GetTipo("Especialidad");
+            var lespecialidads = await _utilrepository.GetTipo("Especialidad");
             ViewBag.listaespecialidades = lespecialidads;
 
             //combo tipo de empleado
-            var tipoEmpleados = new Object();
-            tipoEmpleados = await _utilrepository.GetTipo("Tipo Empleado");
+            var tipoEmpleados = await _utilrepository.GetTipo("Tipo Empleado");
             ViewBag.lsttipoempleado = tipoEmpleados;
             return View();
         }
@@ -82,13 +80,11 @@ namespace HistClinica.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         public async Task<IActionResult> Editar(int idpersona)
         {
-            var lespecialidads = new Object();
-            lespecialidads = await _utilrepository.GetTipo("Especialidad");
+            var lespecialidads = await _utilrepository.GetTipo("Especialidad");
             ViewBag.listaespecialidades = lespecialidads;
 
             //combo tipo de empleado
-            var tipoEmpleados = new Object();
-            tipoEmpleados = await _utilrepository.GetTipo("Tipo Empleado");
+            var tipoEmpleados = await _utilrepository.GetTipo("Tipo Empleado");
             ViewBag.lsttipoempleado = tipoEmpleados;
 
             PersonaDTO persona = await _personaRepository.GetById(idpersona);

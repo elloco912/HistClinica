@@ -161,7 +161,6 @@ namespace HistClinica.Repositories.Repositories
             }
             catch (Exception ex)
             {
-
                 return "Error en el guardado " + ex.StackTrace;
             }
         }
@@ -268,7 +267,6 @@ namespace HistClinica.Repositories.Repositories
             }
             catch (Exception ex)
             {
-
                 return "Error en el guardado " + ex.StackTrace;
             }
         }
@@ -313,31 +311,39 @@ namespace HistClinica.Repositories.Repositories
                                              descripcionOcupacion = det.descripcion,
                                              paciente = new PersonaDTO.Paciente()
                                              {
-                                                 cita = (   from c in _context.T068_CITA
-                                                            select new PersonaDTO.Paciente.Cita
-                                                            {
-                                                                nroCita = c.nroCita,
-                                                                tipo = "", //Tipo Cita?
-                                                                fecha = (c.fechaCita).Value.Date.ToString(),
-                                                                hora = (c.fechaCita).Value.ToLocalTime().ToString(),
-                                                                producto = "",//Producto?
-                                                                descripcion = c.descripcion,
-                                                                medico = (from e in _context.T120_EMPLEADO
-                                                                            join p in _context.T000_PERSONA on e.idPersona equals p.idPersona
-                                                                            where e.idEmpleado == c.idEmpleado
-                                                                            select (p.nombres + ' ' + p.apePaterno + ' ' + p.apeMaterno)).FirstOrDefault(),
-                                                                idEspecialidad = (from e in _context.T120_EMPLEADO
-                                                                                    join m in _context.T212_MEDICO on e.idEmpleado equals m.idEmpleado 
-                                                                                    where e.idEmpleado == c.idEmpleado
-                                                                                    select m.idEspecialidad).FirstOrDefault(),
-                                                                precio = c.precio,
-                                                                igv = c.igv,
-                                                                estado = (from ec in _context.T109_ESTADOCITA where ec.idEstadoCita == c.idEstadoCita select ec.estado).FirstOrDefault(),
-                                                                estadoPago = ""//Estado Pago?
-                                                            }).FirstOrDefault()
+                                                 idPaciente = (from pa in _context.T001_PACIENTE
+                                                               where pa.idPersona == p.idPersona
+                                                               select pa.idPaciente).FirstOrDefault(),
                                              }
                                          }).FirstOrDefaultAsync();
-            Persona.paciente.cita.especialidad = (from tb in _context.D00_TBDETALLE where tb.idDet == Persona.paciente.cita.idEspecialidad select tb.descripcion).FirstOrDefault();
+            Persona.paciente.cita = (from c in _context.T068_CITA
+                                     where c.idPaciente == Persona.paciente.idPaciente
+                                     select new PersonaDTO.Paciente.Cita
+                                     {
+                                         idCita = c.idCita,
+                                         nroCita = c.nroCita,
+                                         tipo = "Examen", //Tipo Cita? idTpAtencion
+                                         fecha = (c.fechaCita).Value.Date.ToString(),
+                                         hora = (c.fechaCita).Value.ToLocalTime().ToString(),
+                                         producto = "0000",//Producto?
+                                         descripcion = c.descripcion,
+                                         medico = (from e in _context.T120_EMPLEADO
+                                                   join p in _context.T000_PERSONA on e.idPersona equals p.idPersona
+                                                   where e.idEmpleado == c.idEmpleado
+                                                   select (p.nombres + ' ' + p.apePaterno + ' ' + p.apeMaterno)).FirstOrDefault(),
+                                         idEspecialidad = (from e in _context.T120_EMPLEADO
+                                                           join m in _context.T212_MEDICO on e.idEmpleado equals m.idEmpleado
+                                                           where e.idEmpleado == c.idEmpleado
+                                                           select m.idEspecialidad).FirstOrDefault(),
+                                         precio = c.precio,
+                                         igv = c.igv,
+                                         estado = (from ec in _context.T109_ESTADOCITA where ec.idEstadoCita == c.idEstadoCita select ec.estado).FirstOrDefault(),
+                                         estadoPago = "Pendiente"//Estado Pago?
+                                     }).ToList();
+            for (int i = 0; i < Persona.paciente.cita.Count; i++)
+            {
+                Persona.paciente.cita[i].especialidad = (from tb in _context.D00_TBDETALLE where tb.idDet == Persona.paciente.cita[i].idEspecialidad select tb.descripcion).FirstOrDefault();
+            }
             return Persona;
         }
     }
