@@ -1,18 +1,20 @@
-﻿using HistClinica.Models;
+﻿using HistClinica.Data;
+using HistClinica.Models;
 using HistClinica.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Threading.Tasks;
 
 namespace HistClinica.Controllers
 {
     public class CitaController : Controller
     {
-        private readonly ICitaRepository _repository;
         private readonly ClinicaServiceContext _context;
+        private readonly ICitaRepository _repository;
         private readonly IUtilRepository _utilrepository;
 
-        public CitaController(ICitaRepository repository, IUtilRepository utilRepository,ClinicaServiceContext clinicaService)
+        public CitaController(ClinicaServiceContext clinicaService,ICitaRepository repository, IUtilRepository utilRepository)
         {
             _repository = repository;
             _context = clinicaService;
@@ -151,15 +153,7 @@ namespace HistClinica.Controllers
             lespecialidads = await _utilrepository.GetTipo("Especialidad");
             ViewBag.listaespecialidades = lespecialidads;
 
-            var medico = from per in _context.T000_PERSONA
-                         join e in _context.T120_EMPLEADO on per.idPersona
-                         equals e.idPersona
-                         join med in _context.T212_MEDICO on e.idPersona equals med.idPersona
-                         select new
-                         {
-                             idMedico = med.idMedico,
-                             nombres = per.nombres + " " + per.apePaterno + " " + per.apeMaterno
-                         };
+            var medico = _utilrepository.GetMedicos();
             ViewBag.listamedicos = medico;
             return PartialView();
         }

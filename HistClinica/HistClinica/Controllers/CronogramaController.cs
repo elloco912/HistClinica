@@ -166,15 +166,7 @@ namespace HistClinica.Controllers
         
         public async Task<IActionResult> ConsultarCronogramapost(int id)
         {
-            var medico = from per in _context.T000_PERSONA
-                         join e in _context.T120_EMPLEADO on per.idPersona
-                         equals e.idPersona
-                         join med in _context.T212_MEDICO on e.idPersona equals med.idPersona
-                         select new
-                         {
-                             idMedico = med.idMedico,
-                             nombres = per.nombres + " " + per.apePaterno + " " + per.apeMaterno
-                         };
+            var medico = _utilrepository.GetMedicos();
             ViewBag.listamedicos = medico;
 
             List<CronogramaDTO> cronograma = new List<CronogramaDTO>();

@@ -1,4 +1,4 @@
-﻿@model HistClinica.Models.T001_PACIENTE
+﻿@model HistClinica.DTO.PersonaDTO
 
 @{
 	ViewBag.Title = "ProgramarCitaAdmision";
@@ -18,21 +18,24 @@
 	</div>
 	<div class="row" style="padding-top:30px;">
 		<div class="col-sm-4">
-			<div class="row">
-				<div class="col-sm-3">
-					<select class="form-control">
-						<option value="value">DNI</option>
-					</select>
+			@using (Html.BeginForm())
+			{
+				<div class="row">
+					<div class="col-sm-3">
+						<select class="form-control">
+							<option value="value">DNI</option>
+						</select>
+					</div>
+					<div class="col-sm-4">
+						<input type="text" id="dni" name="dni" class="form-control"/>
+					</div>
+					<div class="col-sm-5">
+						<button class="btn btn-info" type="submit" id="btnBuscar"><i class="fas fa-search"></i></button>
+						<a class="btn btn-primary" type="submit" asp-action="Create" asp-controller="Paciente"><i class="fas fa-user-plus"></i></a>
+						<button class="btn btn-secondary" type="submit" onclick="return getbyID();"><i class="fas fa-edit"></i></button>
+					</div>
 				</div>
-				<div class="col-sm-4">
-					<input type="text" name="dni" value="" class="form-control" />
-				</div>
-				<div class="col-sm-5">
-					<a class="btn btn-info" type="submit" asp-action="GetByDni" asp-route-id="dni" id="btnBuscar"><i class="fas fa-search"></i></a>
-					<a class="btn btn-primary" type="submit" asp-action="Create" asp-controller="Paciente"><i class="fas fa-user-plus"></i></a>
-					<button class="btn btn-secondary" type="submit" onclick="return getbyID();"><i class="fas fa-edit"></i></button>
-				</div>
-			</div>
+			}
 			<div class="row" style="padding-top: 10px;">
 				<div class="col-sm-4">
 					<label>Atencion</label>

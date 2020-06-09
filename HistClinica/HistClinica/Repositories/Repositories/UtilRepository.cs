@@ -45,6 +45,20 @@ on td.idDet equals med.idEspecialidad
 			return medico;
 		}
 
+		public async Task<object> GetMedicos()
+		{
+			var medico = await (from per in _context.T000_PERSONA
+						 join e in _context.T120_EMPLEADO on per.idPersona
+						 equals e.idPersona
+						 join med in _context.T212_MEDICO on e.idPersona equals med.idPersona
+						 select new
+						 {
+							 idMedico = med.idMedico,
+							 nombres = per.nombres + " " + per.apePaterno + " " + per.apeMaterno
+						 }).ToListAsync();
+			return medico;
+		}
+
 		public async Task<object> GetTipo(string nombretipo)
 		{
 			var combo = await (from tg in _context.D00_TBGENERAL
