@@ -59,7 +59,7 @@ namespace HistClinica.Repositories.Repositories
             int? idPaciente = null;
             try
             {
-                if (Persona.paciente.idTipoPaciente == 151)//Compañia
+                if (Persona.paciente.idTipoPaciente == 120)//Compañia
                 {
                     await _context.T001_PACASEGURADO.AddAsync(new T001_PACASEGURADO()
                     {
@@ -97,7 +97,7 @@ namespace HistClinica.Repositories.Repositories
                     idAsegurado = (await _context.T001_PACASEGURADO
                     .FirstOrDefaultAsync(p => p.dniContratante == Persona.numeroDocumento)).idAsegurado;
                 }
-                else if (Persona.paciente.idTipoPaciente == 152)//Convenio
+                else if (Persona.paciente.idTipoPaciente == 121)//Convenio
                 {
                     await _context.T001_PACCONVENIO.AddAsync(new T001_PACCONVENIO()
                     {

@@ -153,7 +153,7 @@ namespace HistClinica.Controllers
             lespecialidads = await _utilrepository.GetTipo("Especialidad");
             ViewBag.listaespecialidades = lespecialidads;
 
-            var medico = _utilrepository.GetMedicos();
+            var medico = await _utilrepository.GetMedicos();
             ViewBag.listamedicos = medico;
             return PartialView();
         }
