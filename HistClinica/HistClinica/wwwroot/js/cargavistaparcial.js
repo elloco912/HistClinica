@@ -7,6 +7,7 @@
 
 
 function Cargarmodal() {
+	$("#cronogramagrid .edit").click(function () {
 		var id = $(this).closest("tr").find("td").eq(0).html();
 		$.ajax({
 			type: "GET",
@@ -25,6 +26,7 @@ function Cargarmodal() {
 				alert(response.responseText);
 			}
 		});
+	});
 }
 
 function CargarmodalPersona() {
