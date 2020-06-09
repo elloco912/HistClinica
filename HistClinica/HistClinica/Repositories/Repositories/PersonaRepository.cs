@@ -111,7 +111,7 @@ namespace HistClinica.Repositories.Repositories
                 await Save();
                 idPersona = (await _context.T000_PERSONA
                     .FirstOrDefaultAsync(p => p.dniPersona == Persona.numeroDocumento)).idPersona;
-                if (Persona.personal.idTipoEmpleado != null)
+                if (Persona.personal != null)
                 {
                     await _empleadoRepository.InsertEmpleado(Persona, idPersona);
                     idEmpleado = await _empleadoRepository.GetIdEmpleado(idPersona);
