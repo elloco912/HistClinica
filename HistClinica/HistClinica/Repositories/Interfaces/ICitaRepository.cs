@@ -1,4 +1,5 @@
-﻿using HistClinica.Models;
+﻿using HistClinica.DTO;
+using HistClinica.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -9,7 +10,7 @@ namespace HistClinica.Repositories.Interfaces
         Task<List<T068_CITA>> GetAllCitas();
         Task<T068_CITA> GetById(int? Id);
         //Operaciones Transaccionales
-        Task<string> InsertCita(T068_CITA Cita);
+        Task<string> InsertCita(CitaDTO Cita);
         Task<string> UpdateCita(T068_CITA Cita);
         Task DeleteCita(int CitaID);
         Task<bool> CitaExists(int? id);

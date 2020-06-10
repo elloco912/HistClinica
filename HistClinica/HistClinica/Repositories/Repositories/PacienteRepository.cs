@@ -308,7 +308,7 @@ namespace HistClinica.Repositories.Repositories
                                              correo = p.correo,
                                              edad = p.edad,
                                              descripcionOcupacion = (from det in _context.D00_TBDETALLE where det.idDet == p.idOcupacion select det.descripcion).FirstOrDefault(),
-                                             paciente = new PersonaDTO.Paciente()
+                                             paciente = new PacienteDTO()
                                              {
                                                  idPaciente = (from pa in _context.T001_PACIENTE
                                                                where pa.idPersona == p.idPersona
@@ -317,7 +317,7 @@ namespace HistClinica.Repositories.Repositories
                                          }).FirstOrDefaultAsync();
             Persona.paciente.cita = (from c in _context.T068_CITA
                                      where c.idPaciente == Persona.paciente.idPaciente
-                                     select new PersonaDTO.Paciente.Cita
+                                     select new CitaDTO
                                      {
                                          idCita = c.idCita,
                                          nroCita = c.nroCita,
