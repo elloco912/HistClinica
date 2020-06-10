@@ -1,4 +1,5 @@
 ﻿using HistClinica.Data;
+using HistClinica.Models;
 using HistClinica.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -15,6 +16,31 @@ namespace HistClinica.Repositories.Repositories
 			_context = contexto;
 		}
 
+		public async Task<object> GetCronograma()
+		{
+			var cronograma = await(from cro in _context.D012_CRONOMEDICO
+								   join med in _context.T212_MEDICO on cro.idMedico equals med.idMedico
+								   select new
+								   {
+									   idprogramMed = cro.idProgramMedica,
+									   fecprogram = cro.fecProgramMedica
+								   }).ToListAsync();
+			return cronograma;
+		}
+
+		public async Task<object> GetCronogramaByMedico(int id)
+		{
+			var cronograma = await (from cro in _context.D012_CRONOMEDICO
+									join med in _context.T212_MEDICO on cro.idMedico equals med.idMedico
+									where med.idMedico == id
+									select new
+									{
+										idprogramMed = cro.idProgramMedica,
+										fecprogram = cro.fecProgramMedica
+									}).ToListAsync();
+			return cronograma;
+		}
+
 		public async Task<object> GetEspecialidad(int id)
 		{
 			var combo = await(from td in _context.D00_TBDETALLE
@@ -27,6 +53,29 @@ on td.idDet equals med.idEspecialidad
 								  descripcion = td.descripcion
 							  }).ToListAsync();
 			return combo;
+		}
+
+		public async Task<object> GetHoras()
+		{
+			var horas = await (from cro in _context.D012_CRONOMEDICO
+							   select new
+							   {
+								   id = cro.idProgramMedica,
+								   hora = cro.hrInicio + " - " + cro.hrFin
+							   }).ToListAsync();
+			return horas;
+		}
+
+		public async Task<object> GetHorasByCronograma(int id)
+		{
+			var horas = await(from cro in _context.D012_CRONOMEDICO
+								   where cro.idProgramMedica == id
+								   select new
+								   {
+									   id = cro.idProgramMedica,
+									   hora = cro.hrInicio + " - " + cro.hrFin
+								   }).ToListAsync();
+			return horas;
 		}
 
 		public async Task<object> GetMedicoByEspecialidad(int id)

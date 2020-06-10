@@ -182,12 +182,7 @@ D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\staticwebassets\H
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.dll
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.pdb
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.genruntimeconfig.cache
-C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.csproj.CoreCompileInputs.cache
-C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.RazorAssemblyInfo.cache
-C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.RazorAssemblyInfo.cs
-C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.AssemblyInfoInputs.cache
-C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.AssemblyInfo.cs
+D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cita\Registro.cshtml.g.cs
 C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
@@ -324,6 +319,12 @@ C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\bin\Debug\netcoreapp3.
 C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.RazorAssemblyInfo.cache
+C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.RazorAssemblyInfo.cs
+C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.AssemblyInfo.cs
 C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.TagHelpers.input.cache
 C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.TagHelpers.output.cache
 C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.RazorCoreGenerate.cache
@@ -360,5 +361,3 @@ C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.
 C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.dll
 C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.pdb
 C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.genruntimeconfig.cache
-C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.csprojAssemblyReference.cache
-D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cita\Registro.cshtml.g.cs

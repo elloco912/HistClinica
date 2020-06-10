@@ -147,6 +147,18 @@ namespace HistClinica.Controllers
             return Json(medico);
         }
 
+        public async Task<JsonResult> GetCronogramaByMedico(int id)
+        {
+            var cronograma = await _utilrepository.GetCronogramaByMedico(id);
+            return Json(cronograma);
+        }
+
+        public async Task<JsonResult> GetHorasByCronograma(int id)
+        {
+            var horas = await _utilrepository.GetHorasByCronograma(id);
+            return Json(horas);
+        }
+
         public async Task<IActionResult> Registro()
         {
             var lespecialidads = new Object();
@@ -155,6 +167,12 @@ namespace HistClinica.Controllers
 
             var medico = await _utilrepository.GetMedicos();
             ViewBag.listamedicos = medico;
+
+            var lcronograma = await _utilrepository.GetCronograma();
+            ViewBag.lcronograma = lcronograma;
+
+            var lhoras = await _utilrepository.GetHoras();
+            ViewBag.lhoras = lhoras;
             return PartialView();
         }
     }

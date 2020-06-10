@@ -36,7 +36,7 @@ namespace HistClinica.Controllers
         public async Task<IActionResult> Index(int dni)
         {
             PersonaDTO personaDTO = await _pacienteRepository.GetByDni(dni);
-            return View();
+            return View(personaDTO);
         }
 
         // GET: Paciente/Details/5

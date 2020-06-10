@@ -41,7 +41,11 @@
 									<label>Medico</label>
 								</div>
 								<div class="col-sm-8">
-									@Html.DropDownList("especialidad", new SelectList(ViewBag.listamedicos, "idMedico", "nombres"), "Seleccione", new { @class = "form-control", id="medico" })
+									@Html.DropDownList("medico", new SelectList(ViewBag.listamedicos, "idMedico", "nombres"), "Seleccione", new { @class = "form-control",
+								   data_cascade_combo_medico = "#fecate",
+								   data_cascade_combo_source_medico = Url.Action("GetCronogramaByMedico", "Cita"),
+								   data_cascade_combo_param_name_medico = "id"
+							   })
 								</div>
 							</div>
 						</div>
@@ -53,9 +57,13 @@
 									<label>Fecha Atencion</label>
 								</div>
 								<div class="col-sm-8">
-									<select class="form-control">
-										<option>15/10/2020</option>
-									</select>
+									@Html.DropDownList("fecate", new SelectList(ViewBag.lcronograma, "idprogramMed", "fecprogram"), "Seleccione", new
+									{
+										@class = "form-control",
+								   data_cascade_combofec = "#hora",
+								   data_cascade_combo_sourcefec = Url.Action("GetHorasByCronograma", "Cita"),
+								   data_cascade_combo_param_namefec = "id"
+							   })
 								</div>
 							</div>
 						</div>
@@ -65,9 +73,7 @@
 									<label>Hora</label>
 								</div>
 								<div class="col-sm-8">
-									<select class="form-control">
-										<option>9:00 - 13:00</option>
-									</select>
+									@Html.DropDownList("hora", new SelectList(ViewBag.lhoras, "id", "hora"), "Seleccione", new { @class = "form-control", @id="hora"})
 								</div>
 							</div>
 						</div>
