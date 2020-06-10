@@ -60,7 +60,7 @@ namespace HistClinica.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CitaDTO Cita)
         {
-            if (ModelState.IsValid)
+            if (Cita != null)
             {
                 await _repository.InsertCita(Cita);
                 return RedirectToAction(nameof(Index));
@@ -177,6 +177,17 @@ namespace HistClinica.Controllers
             var lhoras = await _utilrepository.GetHoras();
             ViewBag.lhoras = lhoras;
             return PartialView();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Registro(CitaDTO Cita)
+        {
+            if (Cita != null)
+            {
+                await _repository.InsertCita(Cita);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(Cita);
         }
 
         public async Task<JsonResult> BuscarDni(int dni)

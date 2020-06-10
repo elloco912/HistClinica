@@ -124,6 +124,9 @@ function BuscarPaciente() {
 		success: function (response) {
 			console.log(response);
 			$('#modalcitas #nombrepaciente').val(response.primerNombre + ' ' + response.apellidoPaterno + ' ' + response.apellidoMaterno);
+			console.log(response.paciente.idPaciente);
+			$('#modalcitas #idpaciente').val(response.paciente.idPaciente);
+
 		},
 		failure: function (response) {
 			alert(response.responseText);

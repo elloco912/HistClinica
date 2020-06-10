@@ -324,7 +324,7 @@ namespace HistClinica.Repositories.Repositories
                                          tipo = "Examen", //Tipo Cita? idTpAtencion
                                      //    fecha = (c.fechaCita).Value.Date.ToString(),
                                          hora = (c.fechaCita).Value.ToLocalTime().ToString(),
-                                         producto = "0000",//Producto?
+                                      //   producto = "0000",//Producto?
                                          descripcion = c.descripcion,
                                          medico = (from e in _context.T120_EMPLEADO
                                                    join p in _context.T000_PERSONA on e.idPersona equals p.idPersona

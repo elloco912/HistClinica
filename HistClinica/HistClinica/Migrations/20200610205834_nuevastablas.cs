@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HistClinica.Migrations
 {
-    public partial class nuevamigracion : Migration
+    public partial class nuevastablas : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -137,6 +137,26 @@ namespace HistClinica.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_D012_CRONOMEDICO", x => x.idProgramMedica);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "D015_PAGO",
+                columns: table => new
+                {
+                    idPago = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    codTransaccion = table.Column<string>(nullable: true),
+                    codTransacRetorno = table.Column<string>(nullable: true),
+                    idFormaPago = table.Column<int>(nullable: true),
+                    monto = table.Column<double>(nullable: true),
+                    fecRegistro = table.Column<DateTime>(nullable: true),
+                    fecOkPasarela = table.Column<DateTime>(nullable: true),
+                    idCita = table.Column<int>(nullable: true),
+                    estado = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_D015_PAGO", x => x.idPago);
                 });
 
             migrationBuilder.CreateTable(
@@ -333,7 +353,8 @@ namespace HistClinica.Migrations
                     idConsultorio = table.Column<int>(nullable: true),
                     idProgramMedica = table.Column<int>(nullable: true),
                     idTpAtencion = table.Column<int>(nullable: true),
-                    idEstAtencion = table.Column<int>(nullable: true)
+                    idEstAtencion = table.Column<int>(nullable: true),
+                    idservicioCli = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -415,6 +436,20 @@ namespace HistClinica.Migrations
                 {
                     table.PrimaryKey("PK_T212_MEDICO", x => x.idMedico);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "T218_SERVICIOSCLI",
+                columns: table => new
+                {
+                    idservicioCli = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    descripcion = table.Column<string>(nullable: true),
+                    estado = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_T218_SERVICIOSCLI", x => x.idservicioCli);
+                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -439,6 +474,9 @@ namespace HistClinica.Migrations
 
             migrationBuilder.DropTable(
                 name: "D012_CRONOMEDICO");
+
+            migrationBuilder.DropTable(
+                name: "D015_PAGO");
 
             migrationBuilder.DropTable(
                 name: "D015_TPEMPLEADO");
@@ -469,6 +507,9 @@ namespace HistClinica.Migrations
 
             migrationBuilder.DropTable(
                 name: "T212_MEDICO");
+
+            migrationBuilder.DropTable(
+                name: "T218_SERVICIOSCLI");
         }
     }
 }

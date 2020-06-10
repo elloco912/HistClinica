@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HistClinica.Migrations
 {
     [DbContext(typeof(ClinicaServiceContext))]
-    [Migration("20200609010548_nuevamigracion")]
-    partial class nuevamigracion
+    [Migration("20200610205834_nuevastablas")]
+    partial class nuevastablas
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -248,6 +248,42 @@ namespace HistClinica.Migrations
                     b.HasKey("idProgramMedica");
 
                     b.ToTable("D012_CRONOMEDICO");
+                });
+
+            modelBuilder.Entity("HistClinica.Models.D015_PAGO", b =>
+                {
+                    b.Property<int>("idPago")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("codTransacRetorno")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("codTransaccion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("estado")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("fecOkPasarela")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("fecRegistro")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("idCita")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("idFormaPago")
+                        .HasColumnType("int");
+
+                    b.Property<double?>("monto")
+                        .HasColumnType("float");
+
+                    b.HasKey("idPago");
+
+                    b.ToTable("D015_PAGO");
                 });
 
             modelBuilder.Entity("HistClinica.Models.D015_TPEMPLEADO", b =>
@@ -680,6 +716,9 @@ namespace HistClinica.Migrations
                     b.Property<int?>("idTpAtencion")
                         .HasColumnType("int");
 
+                    b.Property<int?>("idservicioCli")
+                        .HasColumnType("int");
+
                     b.Property<double?>("igv")
                         .HasColumnType("float");
 
@@ -839,6 +878,24 @@ namespace HistClinica.Migrations
                     b.HasKey("idMedico");
 
                     b.ToTable("T212_MEDICO");
+                });
+
+            modelBuilder.Entity("HistClinica.Models.T218_SERVICIOSCLI", b =>
+                {
+                    b.Property<int>("idservicioCli")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("descripcion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("estado")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("idservicioCli");
+
+                    b.ToTable("T218_SERVICIOSCLI");
                 });
 #pragma warning restore 612, 618
         }

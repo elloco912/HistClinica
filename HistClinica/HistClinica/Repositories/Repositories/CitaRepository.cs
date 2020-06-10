@@ -57,7 +57,7 @@ namespace HistClinica.Repositories.Repositories
             {
                 await _context.T068_CITA.AddAsync(new T068_CITA()
                 {
-                    idEmpleado = Cita.idEmpleado,
+                    idEmpleado = 1,
                     idPaciente = Cita.idPaciente,
                     idProgramMedica = Cita.idProgramMedica,
                     fechaCita = DateTime.Parse(Cita.fecha)
