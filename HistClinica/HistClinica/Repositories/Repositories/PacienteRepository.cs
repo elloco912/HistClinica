@@ -343,7 +343,9 @@ namespace HistClinica.Repositories.Repositories
                                          precio = c.precio,
                                          igv = c.igv,
                                          estado = (from ec in _context.T109_ESTADOCITA where ec.idEstadoCita == c.idEstadoCita select ec.estado).FirstOrDefault(),
-                                         estadoPago = "Pendiente"//Pago
+                                         estadoPago = (from ep in _context.D015_PAGO
+                                                       where ep.idCita == c.idCita
+                                                       select ep.estado).FirstOrDefault()
                                      }).ToList();
             for (int i = 0; i < Persona.paciente.cita.Count; i++)
             {

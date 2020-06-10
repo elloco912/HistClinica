@@ -57,11 +57,19 @@ namespace HistClinica.Repositories.Repositories
             {
                 await _context.T068_CITA.AddAsync(new T068_CITA()
                 {
-                    idEmpleado = (from m in _context.T212_MEDICO 
-                                  join e in _context.T120_EMPLEADO on m.idEmpleado equals e.idEmpleado
-                                  select m.idMedico).FirstOrDefault(),
+                    idEmpleado = Cita.idEmpleado,
                     idPaciente = Cita.idPaciente,
+                    idProgramMedica = Cita.idProgramMedica,
                     fechaCita = DateTime.Parse(Cita.fecha)
+                });
+                await Save();
+
+                await _context.D015_PAGO.AddAsync(new D015_PAGO()
+                {
+                    monto = Cita.total,
+                    fecRegistro = DateTime.Parse(Cita.fecha + " " + Cita.hora),
+                    idCita = 0, //idCita
+                    estado = "Pendiente"
                 });
                 await Save();
                 return "Ingreso Exitoso";
