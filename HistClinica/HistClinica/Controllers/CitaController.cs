@@ -1,4 +1,5 @@
 ﻿using HistClinica.Data;
+using HistClinica.DTO;
 using HistClinica.Models;
 using HistClinica.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -57,14 +58,14 @@ namespace HistClinica.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("idCita,codCita,nroCita,descripcion,fechaCita,ultCie10,servicio,tpAtencion,nroHC,idEstadoCita,idEstaGralPac,estadoReprogram,ejecutado,prioridad,precio,descuento,coa,igv,idPaciente,idEmpleado,idConsultorio,idProgramMedica,idTpAtencion,idEstAtencion")] T068_CITA t068_CITA)
+        public async Task<IActionResult> Create(CitaDTO Cita)
         {
             if (ModelState.IsValid)
             {
-                await _repository.InsertCita(t068_CITA);
+                await _repository.InsertCita(Cita);
                 return RedirectToAction(nameof(Index));
             }
-            return View(t068_CITA);
+            return View(Cita);
         }
 
         // GET: Cita/Edit/5
