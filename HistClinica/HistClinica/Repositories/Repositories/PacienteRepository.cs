@@ -322,7 +322,7 @@ namespace HistClinica.Repositories.Repositories
                                          idCita = c.idCita,
                                          nroCita = c.nroCita,
                                          tipo = "Examen", //Tipo Cita? idTpAtencion
-                                         fecha = (c.fechaCita).Value.Date.ToString(),
+                                     //    fecha = (c.fechaCita).Value.Date.ToString(),
                                          hora = (c.fechaCita).Value.ToLocalTime().ToString(),
                                          producto = "0000",//Producto?
                                          descripcion = c.descripcion,

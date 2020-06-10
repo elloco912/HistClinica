@@ -112,3 +112,24 @@ function CargaModalCitas() {
 		}
 	});
 }
+
+function BuscarPaciente() {
+	var id = $('#modalcitas #dni').val();
+	$.ajax({
+		type: "GET",
+		url: "/Cita/BuscarDni",
+		data: { dni: id },
+		contentType: "application/json; charset=utf-8",
+		dataType: "Json",
+		success: function (response) {
+			console.log(response);
+			$('#modalcitas #nombrepaciente').val(response.primerNombre + ' ' + response.apellidoPaterno + ' ' + response.apellidoMaterno);
+		},
+		failure: function (response) {
+			alert(response.responseText);
+		},
+		error: function (response) {
+			alert(response.responseText);
+		}
+	});
+}

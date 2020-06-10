@@ -10,15 +10,17 @@ namespace HistClinica.Controllers
 {
     public class CitaController : Controller
     {
+        private readonly IPacienteRepository _pacienteRepository;
         private readonly ClinicaServiceContext _context;
         private readonly ICitaRepository _repository;
         private readonly IUtilRepository _utilrepository;
 
-        public CitaController(ClinicaServiceContext clinicaService,ICitaRepository repository, IUtilRepository utilRepository)
+        public CitaController(ClinicaServiceContext clinicaService,ICitaRepository repository, IUtilRepository utilRepository, IPacienteRepository pacienterepository)
         {
             _repository = repository;
             _context = clinicaService;
             _utilrepository = utilRepository;
+            _pacienteRepository = pacienterepository;
         }
 
         // GET: Cita
@@ -174,6 +176,12 @@ namespace HistClinica.Controllers
             var lhoras = await _utilrepository.GetHoras();
             ViewBag.lhoras = lhoras;
             return PartialView();
+        }
+
+        public async Task<JsonResult> BuscarDni(int dni)
+        {
+            var personaDTO = await _pacienteRepository.GetByDni(dni);
+            return Json(personaDTO);
         }
     }
 }
