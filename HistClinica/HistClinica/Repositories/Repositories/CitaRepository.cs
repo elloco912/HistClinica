@@ -61,7 +61,7 @@ namespace HistClinica.Repositories.Repositories
                                   join e in _context.T120_EMPLEADO on m.idEmpleado equals e.idEmpleado
                                   select m.idMedico).FirstOrDefault(),
                     idPaciente = Cita.idPaciente,
-                    fechaCita = Cita.fecha
+                    fechaCita = DateTime.Parse(Cita.fecha)
                 });
                 await Save();
                 return "Ingreso Exitoso";

@@ -26,6 +26,7 @@ namespace HistClinica.Data
         public DbSet<D010_PACACOMPANA> D010_PACACOMPANA { get; set; }
         public DbSet<T001_PACASEGURADO> T001_PACASEGURADO { get; set; }
         public DbSet<T001_PACCONVENIO> T001_PACCONVENIO { get; set; }
+        public DbSet<T218_SERVICIOSCLI> T218_SERVICIOSCLI { get; set; }
 
     }
 }

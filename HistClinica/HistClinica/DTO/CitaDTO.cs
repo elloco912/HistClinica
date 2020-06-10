@@ -10,9 +10,9 @@ namespace HistClinica.DTO
         public int? idCita { get; set; }
         public int? nroCita { get; set; }
         public string tipo { get; set; }
-        public DateTime? fecha { get; set; }
+        public string fecha { get; set; }
         public string hora { get; set; }
-        public string producto { get; set; }
+        public string consultorio { get; set; }
         public string descripcion { get; set; }
         public string medico { get; set; }
         public int? idMedico { get; set; }

@@ -30,5 +30,6 @@ namespace HistClinica.Models
         public int? idProgramMedica { get; set; }
         public int? idTpAtencion { get; set; }
         public int? idEstAtencion { get; set; }
+        public int? idservicioCli { get; set; }
     }
 }

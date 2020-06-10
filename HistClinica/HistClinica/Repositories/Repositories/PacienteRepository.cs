@@ -321,11 +321,17 @@ namespace HistClinica.Repositories.Repositories
                                      {
                                          idCita = c.idCita,
                                          nroCita = c.nroCita,
-                                         tipo = "Examen", //Tipo Cita? idTpAtencion
+                                         tipo = (from tb in _context.D00_TBDETALLE 
+                                                 where tb.idDet == c.idTpAtencion 
+                                                 select tb.descripcion).FirstOrDefault(),
                                          fecha = (c.fechaCita).Value.Date.ToString(),
                                          hora = (c.fechaCita).Value.ToLocalTime().ToString(),
-                                         producto = "0000",//Producto?
-                                         descripcion = c.descripcion,
+                                         consultorio = (from co in _context.D008_CONSULTORIO
+                                                        where co.idConsultorio == c.idConsultorio
+                                                        select co.descripcion).FirstOrDefault(),
+                                         descripcion = (from sc in _context.T218_SERVICIOSCLI
+                                                        where sc.idservicioCli == c.idservicioCli
+                                                        select sc.descripcion).FirstOrDefault(),
                                          medico = (from e in _context.T120_EMPLEADO
                                                    join p in _context.T000_PERSONA on e.idPersona equals p.idPersona
                                                    where e.idEmpleado == c.idEmpleado
@@ -337,7 +343,7 @@ namespace HistClinica.Repositories.Repositories
                                          precio = c.precio,
                                          igv = c.igv,
                                          estado = (from ec in _context.T109_ESTADOCITA where ec.idEstadoCita == c.idEstadoCita select ec.estado).FirstOrDefault(),
-                                         estadoPago = "Pendiente"//Estado Pago?
+                                         estadoPago = "Pendiente"//Pago
                                      }).ToList();
             for (int i = 0; i < Persona.paciente.cita.Count; i++)
             {
