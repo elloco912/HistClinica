@@ -60,15 +60,14 @@ namespace HistClinica.Repositories.Repositories
                     idEmpleado = Cita.idEmpleado,
                     idPaciente = Cita.idPaciente,
                     idProgramMedica = Cita.idProgramMedica,
-                    fechaCita = DateTime.Parse(Cita.fecha)
+                    fechaCita = DateTime.Parse(Cita.fecha + " " + Cita.hora)
                 });
                 await Save();
-
                 await _context.D015_PAGO.AddAsync(new D015_PAGO()
                 {
                     monto = Cita.total,
-                    fecRegistro = DateTime.Parse(Cita.fecha + " " + Cita.hora),
-                    idCita = 0, //idCita
+                    fecRegistro = DateTime.Now,
+                    idCita = 99, //idCita
                     estado = "Pendiente"
                 });
                 await Save();

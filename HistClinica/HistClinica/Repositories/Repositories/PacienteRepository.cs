@@ -325,7 +325,7 @@ namespace HistClinica.Repositories.Repositories
                                                  where tb.idDet == c.idTpAtencion
                                                  select tb.descripcion).FirstOrDefault(),
                                          fecha = (c.fechaCita).Value.Date.ToString(),
-                                         hora = (c.fechaCita).Value.ToLocalTime().ToString(),
+                                         hora = (c.fechaCita).Value.ToString("H:mm"),
                                          consultorio = (from co in _context.D008_CONSULTORIO
                                                         where co.idConsultorio == c.idConsultorio
                                                         select co.descripcion).FirstOrDefault(),
