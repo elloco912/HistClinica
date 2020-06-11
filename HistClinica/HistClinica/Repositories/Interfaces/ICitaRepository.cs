@@ -11,7 +11,8 @@ namespace HistClinica.Repositories.Interfaces
         Task<T068_CITA> GetById(int? Id);
         //Operaciones Transaccionales
         Task<string> InsertCita(CitaDTO Cita);
-        Task<string> UpdateCita(T068_CITA Cita);
+        Task<string> AnularCita(int? CitaID);
+        Task<string> ReprogramarCita(int? CitaID,int? CronoMedicoID);
         Task DeleteCita(int CitaID);
         Task<bool> CitaExists(int? id);
         Task Save();
