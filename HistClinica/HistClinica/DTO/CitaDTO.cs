@@ -16,6 +16,8 @@ namespace HistClinica.DTO
         public string descripcion { get; set; }
         public string medico { get; set; }
         public int? idPaciente { get; set; }
+        public string nombrePaciente { get; set; }
+        public int? dniPaciente { get; set; }
         public int? idEmpleado { get; set; }
         public int? idProgramMedica { get; set; }
         public int? idEspecialidad { get; set; }
