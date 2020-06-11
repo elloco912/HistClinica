@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 
 namespace HistClinica.Repositories.Repositories
@@ -148,41 +149,33 @@ namespace HistClinica.Repositories.Repositories
                                                prioridad = c.prioridad,
                                                servicio = c.servicio,
                                                tpAtencion = c.tpAtencion,
-                                               ultCie10 = c.ultCie10
+                                               ultCie10 = c.ultCie10,
+                                               idservicioCli = c.idservicioCli
                                            }).ToListAsync();
 
             return Citas;
         }
-        public async Task<T068_CITA> GetById(int? Id)
+        public async Task<CitaDTO> GetById(int? Id)
         {
-            T068_CITA Cita = await (from c in _context.T068_CITA
+            CitaDTO Cita = await (from c in _context.T068_CITA
                                     where c.idCita == Id
-                                    select new T068_CITA
+                                    select new CitaDTO
                                     {
                                         idCita = c.idCita,
-                                        codCita = c.codCita,
                                         descripcion = c.descripcion,
-                                        coa = c.coa,
-                                        descuento = c.descuento,
-                                        ejecutado = c.ejecutado,
-                                        estadoReprogram = c.estadoReprogram,
-                                        fechaCita = c.fechaCita,
-                                        idConsultorio = c.idConsultorio,
-                                        idEmpleado = c.idEmpleado,
-                                        idEstadoCita = c.idEstadoCita,
-                                        idEstaGralPac = c.idEstaGralPac,
-                                        idEstAtencion = c.idEstAtencion,
                                         idPaciente = c.idPaciente,
+                                        nombrePaciente = (from p in _context.T001_PACIENTE
+                                                          join pe in _context.T000_PERSONA on p.idPersona equals pe.idPersona 
+                                                          where p.idPaciente == c.idPaciente
+                                                          select pe.nombres).FirstOrDefault(),
+                                        dniPaciente = (from p in _context.T001_PACIENTE
+                                                          join pe in _context.T000_PERSONA on p.idPersona equals pe.idPersona
+                                                          where p.idPaciente == c.idPaciente
+                                                          select pe.dniPersona).FirstOrDefault(),
                                         idProgramMedica = c.idProgramMedica,
-                                        idTpAtencion = c.idTpAtencion,
                                         igv = c.igv,
                                         nroCita = c.nroCita,
-                                        nroHC = c.nroHC,
-                                        precio = c.precio,
-                                        prioridad = c.prioridad,
-                                        servicio = c.servicio,
-                                        tpAtencion = c.tpAtencion,
-                                        ultCie10 = c.ultCie10
+                                        precio = c.precio
                                     }).FirstOrDefaultAsync();
             return Cita;
         }

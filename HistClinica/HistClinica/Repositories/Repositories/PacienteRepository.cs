@@ -332,14 +332,14 @@ namespace HistClinica.Repositories.Repositories
                                          descripcion = (from sc in _context.T218_SERVICIOSCLI
                                                         where sc.idservicioCli == c.idservicioCli
                                                         select sc.descripcion).FirstOrDefault(),
-                                         medico = (from e in _context.T120_EMPLEADO
-                                                   join p in _context.T000_PERSONA on e.idPersona equals p.idPersona
-                                                   where e.idEmpleado == c.idEmpleado
-                                                   select (p.nombres + ' ' + p.apePaterno + ' ' + p.apeMaterno)).FirstOrDefault(),
-                                         idEspecialidad = (from e in _context.T120_EMPLEADO
-                                                           join m in _context.T212_MEDICO on e.idEmpleado equals m.idEmpleado
-                                                           where e.idEmpleado == c.idEmpleado
-                                                           select m.idEspecialidad).FirstOrDefault(),
+                                         //medico = (from e in _context.T120_EMPLEADO
+                                         //          join p in _context.T000_PERSONA on e.idPersona equals p.idPersona
+                                         //          where e.idEmpleado == c.idEmpleado
+                                         //          select (p.nombres + ' ' + p.apePaterno + ' ' + p.apeMaterno)).FirstOrDefault(),
+                                         //especialidad = (from tb in _context.D00_TBDETALLE
+                                         //                  join m in _context.T212_MEDICO on c.idEmpleado equals m.idEmpleado
+                                         //                  where tb.idDet == m.idEspecialidad
+                                         //                  select tb.descripcion).FirstOrDefault(),
                                          precio = c.precio,
                                          igv = c.igv,
                                          estado = (from ec in _context.T109_ESTADOCITA where ec.idEstadoCita == c.idEstadoCita select ec.estado).FirstOrDefault(),
@@ -347,10 +347,10 @@ namespace HistClinica.Repositories.Repositories
                                                        where ep.idCita == c.idCita
                                                        select ep.estado).FirstOrDefault()
                                      }).ToList();
-            for (int i = 0; i < Persona.paciente.cita.Count; i++)
-            {
-                Persona.paciente.cita[i].especialidad = (from tb in _context.D00_TBDETALLE where tb.idDet == Persona.paciente.cita[i].idEspecialidad select tb.descripcion).FirstOrDefault();
-            }
+            //for (int i = 0; i < Persona.paciente.cita.Count; i++)
+            //{
+            //    Persona.paciente.cita[i].especialidad = (from tb in _context.D00_TBDETALLE where tb.idDet == Persona.paciente.cita[i].idEspecialidad select tb.descripcion).FirstOrDefault();
+            //}
             return Persona;
         }
     }

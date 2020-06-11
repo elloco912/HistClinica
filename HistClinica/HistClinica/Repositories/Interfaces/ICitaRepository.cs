@@ -8,7 +8,7 @@ namespace HistClinica.Repositories.Interfaces
     public interface ICitaRepository
     {
         Task<List<T068_CITA>> GetAllCitas();
-        Task<T068_CITA> GetById(int? Id);
+        Task<CitaDTO> GetById(int? Id);
         //Operaciones Transaccionales
         Task<string> InsertCita(CitaDTO Cita);
         Task<string> AnularCita(int? CitaID);
