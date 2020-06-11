@@ -18,13 +18,13 @@ namespace HistClinica.Repositories.Repositories
 
 		public async Task<object> GetCronograma()
 		{
-			var cronograma = await(from cro in _context.D012_CRONOMEDICO
-								   join med in _context.T212_MEDICO on cro.idMedico equals med.idMedico
-								   select new
-								   {
-									   idprogramMed = cro.idProgramMedica,
-									   fecprogram = cro.fecProgramMedica
-								   }).ToListAsync();
+			var cronograma = await (from cro in _context.D012_CRONOMEDICO
+									join med in _context.T212_MEDICO on cro.idMedico equals med.idMedico
+									select new
+									{
+										idprogramMed = cro.idProgramMedica,
+										fecprogram = cro.fecProgramMedica.Value.ToShortDateString()
+									}).ToListAsync();
 			return cronograma;
 		}
 
@@ -36,7 +36,7 @@ namespace HistClinica.Repositories.Repositories
 									select new
 									{
 										idprogramMed = cro.idProgramMedica,
-										fecprogram = cro.fecProgramMedica
+										fecprogram = cro.fecProgramMedica.Value.ToShortDateString()
 									}).ToListAsync();
 			return cronograma;
 		}

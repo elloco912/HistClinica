@@ -11,10 +11,13 @@
 					<div class="row pb-3">
 						<div class="col-sm-6">
 							<div class="form-check form-check-inline">
-								@Html.RadioButtonFor(m => m.tipo, "Consulta")
+								<input type="hidden" name="name" value="2" asp-for="idEmpleado" />
+								@Html.RadioButtonFor(m => m.tipo, "Consulta", new { @class= "form-check-input" })
+								<label class="form-check-label" for="inlineRadio1">Consulta</label>
 							</div>
 							<div class="form-check form-check-inline">
-								@Html.RadioButtonFor(m => m.tipo, "Procedimiento")
+								@Html.RadioButtonFor(m => m.tipo, "Procedimiento", new { @class= "form-check-input" })
+								<label class="form-check-label" for="inlineRadio2">Procedimiento</label>
 							</div>
 						</div>
 						<div class="col-sm-6"></div>
@@ -40,7 +43,7 @@
 									<label>Medico</label>
 								</div>
 								<div class="col-sm-8">
-									@Html.DropDownList("medico", new SelectList(ViewBag.listamedicos, "idMedico", "nombres"), "Seleccione", new { @class = "form-control",
+									@Html.DropDownListFor(m => m.idEmpleado, new SelectList(ViewBag.listamedicos, "idMedico", "nombres"), "Seleccione", new { @class = "form-control", @id="medico",
 								   data_cascade_combo_medico = "#fecate",
 								   data_cascade_combo_source_medico = Url.Action("GetCronogramaByMedico", "Cita"),
 								   data_cascade_combo_param_name_medico = "id"
@@ -57,13 +60,15 @@
 								</div>
 								<div class="col-sm-8">
 									@Html.DropDownListFor(m => m.idProgramMedica, new SelectList(ViewBag.lcronograma, "idprogramMed", "fecprogram"), "Seleccione", new
-									{
-										@class = "form-control",
+							   {
+								   @class = "form-control",
 								   data_cascade_combofec = "#hora",
 								   data_cascade_combo_sourcefec = Url.Action("GetHorasByCronograma", "Cita"),
-								   data_cascade_combo_param_namefec = "id"
+								   data_cascade_combo_param_namefec = "id",
+								   @id= "fecate"
 							   })
 								</div>
+								<input type="hidden" id="desfecha" asp-for="fecha" />
 							</div>
 						</div>
 						<div class="col-sm-6">
@@ -72,7 +77,8 @@
 									<label>Hora</label>
 								</div>
 								<div class="col-sm-8">
-									@Html.DropDownList("hora", new SelectList(ViewBag.lhoras, "id", "hora"), "Seleccione", new { @class = "form-control", @id="hora"})
+									<input type="hidden" id="deshora" asp-for="hora"/>
+									@Html.DropDownListFor(m => m.hora, new SelectList(ViewBag.lhoras, "id", "hora"), "Seleccione", new { @class = "form-control", @id = "hora" })
 								</div>
 							</div>
 						</div>

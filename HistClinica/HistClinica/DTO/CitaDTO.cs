@@ -25,6 +25,5 @@ namespace HistClinica.DTO
         public double? total { get; set; }
         public string estado { get; set; }
         public string estadoPago { get; set; }
-
     }
 }
