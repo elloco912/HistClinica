@@ -195,5 +195,23 @@ namespace HistClinica.Controllers
             var personaDTO = await _pacienteRepository.GetByDni(dni);
             return Json(personaDTO);
         }
+
+        public async Task<IActionResult> ReprogramarCita()
+        {
+            var lespecialidads = new Object();
+            lespecialidads = await _utilrepository.GetTipo("Especialidad");
+            ViewBag.listaespecialidades = lespecialidads;
+
+            var medico = await _utilrepository.GetMedicos();
+            ViewBag.listamedicos = medico;
+
+            var lcronograma = await _utilrepository.GetCronograma();
+            ViewBag.lcronograma = lcronograma;
+
+            var lhoras = await _utilrepository.GetHoras();
+            ViewBag.lhoras = lhoras;
+
+            return PartialView();
+        }
     }
 }
