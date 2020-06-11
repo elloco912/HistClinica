@@ -16,5 +16,6 @@ namespace HistClinica.Repositories.Interfaces
 		Task<object> GetHorasByCronograma(int id);
 		Task<object> GetHoras();
 		Task<object> GetCronograma();
+		Task<List<T109_ESTADOCITA>> getEstadoCita();
 	}
 }
