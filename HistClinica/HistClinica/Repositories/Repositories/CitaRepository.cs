@@ -174,6 +174,14 @@ namespace HistClinica.Repositories.Repositories
                                                           where p.idPaciente == c.idPaciente
                                                           select pe.dniPersona).FirstOrDefault(),
                                         idProgramMedica = c.idProgramMedica,
+                                        idEspecialidad = (from cm in _context.D012_CRONOMEDICO
+                                                        join m in _context.T212_MEDICO on cm.idMedico equals m.idMedico
+                                                        where cm.idProgramMedica == c.idProgramMedica
+                                                        select m.idEspecialidad).FirstOrDefault(),
+                                        idmedico = (from cm in _context.D012_CRONOMEDICO
+                                                    join m in _context.T212_MEDICO on cm.idMedico equals m.idMedico
+                                                    where cm.idProgramMedica == c.idProgramMedica
+                                                    select m.idMedico).FirstOrDefault(),
                                         igv = c.igv,
                                         nroCita = c.nroCita,
                                         precio = c.precio

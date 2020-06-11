@@ -332,14 +332,16 @@ namespace HistClinica.Repositories.Repositories
                                          descripcion = (from sc in _context.T218_SERVICIOSCLI
                                                         where sc.idservicioCli == c.idservicioCli
                                                         select sc.descripcion).FirstOrDefault(),
-                                         //medico = (from e in _context.T120_EMPLEADO
-                                         //          join p in _context.T000_PERSONA on e.idPersona equals p.idPersona
-                                         //          where e.idEmpleado == c.idEmpleado
-                                         //          select (p.nombres + ' ' + p.apePaterno + ' ' + p.apeMaterno)).FirstOrDefault(),
-                                         //especialidad = (from tb in _context.D00_TBDETALLE
-                                         //                  join m in _context.T212_MEDICO on c.idEmpleado equals m.idEmpleado
-                                         //                  where tb.idDet == m.idEspecialidad
-                                         //                  select tb.descripcion).FirstOrDefault(),
+                                         medico = (from cm in _context.D012_CRONOMEDICO
+                                                   join m in _context.T212_MEDICO on cm.idMedico equals m.idMedico
+                                                   join p in _context.T000_PERSONA on m.idPersona equals p.idPersona
+                                                   where cm.idProgramMedica == c.idProgramMedica
+                                                   select (p.nombres + ' ' + p.apePaterno + ' ' + p.apeMaterno)).FirstOrDefault(),
+                                         especialidad = (from tb in _context.D00_TBDETALLE
+                                                         join cm in _context.D012_CRONOMEDICO on c.idProgramMedica equals cm.idProgramMedica
+                                                         join m in _context.T212_MEDICO on cm.idMedico equals m.idMedico
+                                                         where tb.idDet == m.idEspecialidad
+                                                         select tb.descripcion).FirstOrDefault(),
                                          precio = c.precio,
                                          igv = c.igv,
                                          estado = (from ec in _context.T109_ESTADOCITA where ec.idEstadoCita == c.idEstadoCita select ec.estado).FirstOrDefault(),
