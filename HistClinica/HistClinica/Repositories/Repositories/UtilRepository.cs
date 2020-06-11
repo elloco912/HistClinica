@@ -55,6 +55,14 @@ on td.idDet equals med.idEspecialidad
 			return combo;
 		}
 
+		public async Task<List<T109_ESTADOCITA>> getEstadoCita()
+		{
+
+			List<T109_ESTADOCITA> estado = await (from e in _context.T109_ESTADOCITA
+											select e).ToListAsync();
+			return estado;
+		}
+
 		public async Task<object> GetHoras()
 		{
 			var horas = await (from cro in _context.D012_CRONOMEDICO

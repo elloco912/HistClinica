@@ -76,12 +76,29 @@ namespace HistClinica.Controllers
                 return NotFound();
             }
 
+            var lespecialidads = new Object();
+            lespecialidads = await _utilrepository.GetTipo("Especialidad");
+            ViewBag.listaespecialidades = lespecialidads;
+
+            var medico = await _utilrepository.GetMedicos();
+            ViewBag.listamedicos = medico;
+
+            var lcronograma = await _utilrepository.GetCronograma();
+            ViewBag.lcronograma = lcronograma;
+
+            var lhoras = await _utilrepository.GetHoras();
+            ViewBag.lhoras = lhoras;
+
+            var lestado = await _utilrepository.getEstadoCita();
+            ViewBag.lestado = lestado;
+
             var t068_CITA = await _repository.GetById(id);
             if (t068_CITA == null)
             {
                 return NotFound();
             }
-            return View(t068_CITA);
+            return PartialView(t068_CITA);
+
         }
 
         // POST: Cita/Edit/5
@@ -108,7 +125,7 @@ namespace HistClinica.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index","Paciente");
             }
             return View();
         }
@@ -191,22 +208,16 @@ namespace HistClinica.Controllers
             return Json(personaDTO);
         }
 
-        public async Task<IActionResult> ReprogramarCita()
+
+        public async Task<IActionResult> AnularCita(int id)
         {
-            var lespecialidads = new Object();
-            lespecialidads = await _utilrepository.GetTipo("Especialidad");
-            ViewBag.listaespecialidades = lespecialidads;
-
-            var medico = await _utilrepository.GetMedicos();
-            ViewBag.listamedicos = medico;
-
-            var lcronograma = await _utilrepository.GetCronograma();
-            ViewBag.lcronograma = lcronograma;
-
-            var lhoras = await _utilrepository.GetHoras();
-            ViewBag.lhoras = lhoras;
-
-            return PartialView();
+            return View();
         }
+        public async Task<IActionResult> AnularCita(int? id)
+        {
+            await _repository.AnularCita(id);
+            return RedirectToAction("Index", "Paciente");
+        }
+
     }
 }

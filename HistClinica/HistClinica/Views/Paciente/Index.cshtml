@@ -137,7 +137,7 @@
 			</div>
 			<div class="row" style="padding-top: 80px;">
 				<div class="col-sm-12">
-					<table class="table table-bordered table-responsive table-hover">
+					<table class="table table-bordered table-responsive table-hover" id="citagrid">
 						<thead>
 							<tr>
 								<th>#</th>
@@ -179,7 +179,7 @@
 											<td>@item.estadoPago</td>
 											<td>@item.precio</td>
 											<td>
-												<button title="Reprogramar" class="btn btn-primary"><i class="fas fa-address-book"></i></button>
+												<button onclick="CargarModalReprogramar();" title="Reprogramar" class="edit btn btn-primary"><i class="fas fa-address-book"></i></button>
 												<button title="Consultar" class="btn btn-primary">
 													<i class="fa fa-search" aria-hidden="true"></i>
 												</button>
@@ -217,7 +217,9 @@
 <div class="modal fade" id="modalcitas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 
 </div>
+<div class="modal fade" id="modalreprogramar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 
+</div>
 
 <div id="modalcronograma" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
 </div>
