@@ -89,22 +89,17 @@ namespace HistClinica.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("idCita,codCita,nroCita,descripcion,fechaCita,ultCie10,servicio,tpAtencion,nroHC,idEstadoCita,idEstaGralPac,estadoReprogram,ejecutado,prioridad,precio,descuento,coa,igv,idPaciente,idEmpleado,idConsultorio,idProgramMedica,idTpAtencion,idEstAtencion")] T068_CITA t068_CITA)
+        public async Task<IActionResult> Edit(int id,int? CronoMedicoID)
         {
-            if (id != t068_CITA.idCita)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
+            if (id != 0)
             {
                 try
                 {
-                    await _repository.UpdateCita(t068_CITA);
+                    await _repository.ReprogramarCita(id, CronoMedicoID);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!await _repository.CitaExists(t068_CITA.idCita))
+                    if (!await _repository.CitaExists(id))
                     {
                         return NotFound();
                     }
@@ -115,7 +110,7 @@ namespace HistClinica.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(t068_CITA);
+            return View();
         }
 
         // GET: Cita/Delete/5

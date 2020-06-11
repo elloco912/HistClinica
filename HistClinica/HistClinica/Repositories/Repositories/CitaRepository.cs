@@ -60,7 +60,10 @@ namespace HistClinica.Repositories.Repositories
                     idEmpleado = Cita.idEmpleado,
                     idPaciente = Cita.idPaciente,
                     idProgramMedica = Cita.idProgramMedica,
-                    fechaCita = DateTime.Parse(Cita.fecha + " " + Cita.hora)
+                    fechaCita = DateTime.Parse(Cita.fecha + " " + Cita.hora),
+                    idEstadoCita = (from ec in _context.T109_ESTADOCITA
+                                    where ec.estado == "RESERVADO"
+                                    select ec.idEstadoCita).FirstOrDefault()
                 });
                 await Save();
                 await _context.D015_PAGO.AddAsync(new D015_PAGO()
@@ -75,21 +78,45 @@ namespace HistClinica.Repositories.Repositories
             }
             catch (Exception ex)
             {
-
                 return "Error en el guardado " + ex.StackTrace;
             }
         }
-        public async Task<string> UpdateCita(T068_CITA Cita)
+        public async Task<string> AnularCita(int? CitaID)
         {
             try
             {
+                T068_CITA Cita = (from c in _context.T068_CITA
+                                  where c.idCita == CitaID
+                                  select c).FirstOrDefault();
+                Cita.idEstadoCita = (from ec in _context.T109_ESTADOCITA
+                                     where ec.estado ==  "ANULADO"
+                                     select ec.idEstadoCita).FirstOrDefault();
                 _context.Entry(Cita).State = EntityState.Modified;
                 await Save();
                 return "Actualizacion Exitosa";
             }
             catch (Exception ex)
             {
-
+                return "Error en el guardado " + ex.StackTrace;
+            }
+        }
+        public async Task<string> ReprogramarCita(int? CitaID,int? CronoMedicoID)
+        {
+            try
+            {
+                T068_CITA Cita = (from c in _context.T068_CITA
+                                  where c.idCita == CitaID
+                                  select c).FirstOrDefault();
+                Cita.idProgramMedica = CronoMedicoID;
+                Cita.idEstadoCita = (from ec in _context.T109_ESTADOCITA
+                                     where ec.estado == "REPROGRAMADO"
+                                     select ec.idEstadoCita).FirstOrDefault();
+                _context.Entry(Cita).State = EntityState.Modified;
+                await Save();
+                return "Actualizacion Exitosa";
+            }
+            catch (Exception ex)
+            {
                 return "Error en el guardado " + ex.StackTrace;
             }
         }
