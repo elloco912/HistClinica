@@ -115,6 +115,7 @@ function CargaModalCitas() {
 
 function BuscarPaciente() {
 	var id = $('#modalcitas #dni').val();
+	var idEmpleado = $("#modalcitas #medico option:selected").val();
 	$.ajax({
 		type: "GET",
 		url: "/Cita/BuscarDni",
@@ -136,3 +137,33 @@ function BuscarPaciente() {
 		}
 	});
 }
+
+/*
+function RegistrarCita() {
+	var idempleado = $("#modalcitas #medico option:selected").val();
+	var idprogramMedica = $("#modalcitas #idProgramMedica option:selected").val();
+	var fecCita = $("#modalcitas #idProgramMedica option:selected").text();
+	var idpaciente = $('#modalcitas #idpaciente').val();
+	var hor = $("#modalcitas #hora option:selected").text();
+	var citaObj = {
+		idEmpleado : idempleado,
+		idProgramMedica : idprogramMedica,
+		fechaCita : fecCita,
+		idPaciente : idpaciente,
+		hora : hor
+	};
+	$.ajax({
+		url: "/Cita/Registro",
+		data: JSON.stringify(citaObj),
+		type: "POST",
+		contentType: "application/json;charset=utf-8",
+		dataType: "json",
+		success: function (result) {
+	        
+		},
+		error: function (errormessage) {
+			alert(errormessage.responseText);
+		}
+	});
+}
+*/

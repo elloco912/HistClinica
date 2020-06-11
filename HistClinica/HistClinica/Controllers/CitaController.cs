@@ -180,14 +180,14 @@ namespace HistClinica.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Registro(CitaDTO Cita)
+        public async Task<IActionResult> Registro(CitaDTO cita)
         {
-            if (Cita != null)
+            if (cita != null)
             {
-                await _repository.InsertCita(Cita);
-                return RedirectToAction(nameof(Index));
+                await _repository.InsertCita(cita);
+                return RedirectToAction("Index","Paciente");
             }
-            return View(Cita);
+            return View(cita);
         }
 
         public async Task<JsonResult> BuscarDni(int dni)

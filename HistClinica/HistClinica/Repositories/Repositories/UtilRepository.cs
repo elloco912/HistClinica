@@ -36,7 +36,7 @@ namespace HistClinica.Repositories.Repositories
 									select new
 									{
 										idprogramMed = cro.idProgramMedica,
-										fecprogram = cro.fecProgramMedica
+										fecprogram = cro.fecProgramMedica.Value.ToShortDateString()
 									}).ToListAsync();
 			return cronograma;
 		}
