@@ -106,13 +106,13 @@ namespace HistClinica.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id,int? CronoMedicoID)
+        public async Task<IActionResult> Edit(int id,int? CronoMedicoID,string motivoReprograma)
         {
             if (id != 0)
             {
                 try
                 {
-                    await _repository.ReprogramarCita(id, CronoMedicoID);
+                    await _repository.ReprogramarCita(id, CronoMedicoID, motivoReprograma);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -213,9 +213,9 @@ namespace HistClinica.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> AnularCita(int? id)
+        public async Task<IActionResult> AnularCita(int? id, string motivoAnula)
         {
-            await _repository.AnularCita(id);
+            await _repository.AnularCita(id, motivoAnula);
             return RedirectToAction("Index", "Paciente");
         }
 
