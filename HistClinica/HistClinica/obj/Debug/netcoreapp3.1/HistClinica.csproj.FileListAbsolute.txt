@@ -328,6 +328,7 @@ C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.
 C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.TagHelpers.input.cache
 C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.TagHelpers.output.cache
 C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.RazorCoreGenerate.cache
+C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cita\AnularCita.cshtml.g.cs
 C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cita\Create.cshtml.g.cs
 C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cita\Delete.cshtml.g.cs
 C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cita\Details.cshtml.g.cs
@@ -362,4 +363,4 @@ C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.
 C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.pdb
 C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.genruntimeconfig.cache
 C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.csprojAssemblyReference.cache
-C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cita\Anular.cshtml.g.cs
+C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Persona\Asignar.cshtml.g.cs

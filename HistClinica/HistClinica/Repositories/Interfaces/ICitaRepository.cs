@@ -12,7 +12,7 @@ namespace HistClinica.Repositories.Interfaces
         //Operaciones Transaccionales
         Task<string> InsertCita(CitaDTO Cita);
         Task<string> AnularCita(int? CitaID);
-        Task<string> ReprogramarCita(int? CitaID,int? CronoMedicoID);
+        Task<string> ReprogramarCita(CitaDTO cita);
         Task DeleteCita(int CitaID);
         Task<bool> CitaExists(int? id);
         Task Save();

@@ -47,6 +47,8 @@ namespace HistClinica.Controllers
             return View(t068_CITA);
         }
 
+
+
         // GET: Cita/Create
         public IActionResult Create()
         {
@@ -106,17 +108,17 @@ namespace HistClinica.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id,int? CronoMedicoID)
+        public async Task<IActionResult> Edit(CitaDTO cita)
         {
-            if (id != 0)
+            if (cita.idCita != 0)
             {
                 try
                 {
-                    await _repository.ReprogramarCita(id, CronoMedicoID);
+                    await _repository.ReprogramarCita(cita);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!await _repository.CitaExists(id))
+                    if (!await _repository.CitaExists(cita.idCita))
                     {
                         return NotFound();
                     }
@@ -211,11 +213,17 @@ namespace HistClinica.Controllers
 
         public async Task<IActionResult> AnularCita(int id)
         {
-            return View();
+            var t068_CITA = await _repository.GetById(id);
+            if (t068_CITA == null)
+            {
+                return NotFound();
+            }
+            return PartialView(t068_CITA);
         }
-        public async Task<IActionResult> AnularCita(int? id)
+        [HttpPost]
+        public async Task<IActionResult> AnularCita(CitaDTO cita)
         {
-            await _repository.AnularCita(id);
+            await _repository.AnularCita(cita.idCita);
             return RedirectToAction("Index", "Paciente");
         }
 
