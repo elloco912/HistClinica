@@ -55,6 +55,7 @@ namespace HistClinica.Repositories.Repositories
         }
         public async Task<string> InsertCita(CitaDTO Cita)
         {
+            int idCita = 0;
             try
             {
                 await _context.T068_CITA.AddAsync(new T068_CITA()
@@ -68,11 +69,15 @@ namespace HistClinica.Repositories.Repositories
                                     select ec.idEstadoCita).FirstOrDefault()
                 });
                 await Save();
+                idCita = (from c in _context.T068_CITA
+                          where c.idPaciente == Cita.idPaciente
+                          && c.idProgramMedica == Cita.idProgramMedica
+                          select c.idCita).FirstOrDefault();
                 await _context.D015_PAGO.AddAsync(new D015_PAGO()
                 {
                     monto = Cita.total,
                     fecRegistro = DateTime.Now,
-                    idCita = 99, //idCita
+                    idCita = idCita, 
                     estado = "Pendiente"
                 });
                 await Save();
@@ -83,7 +88,7 @@ namespace HistClinica.Repositories.Repositories
                 return "Error en el guardado " + ex.StackTrace;
             }
         }
-        public async Task<string> AnularCita(int? CitaID)
+        public async Task<string> AnularCita(int? CitaID,string motivoAnula)
         {
             try
             {
@@ -93,6 +98,7 @@ namespace HistClinica.Repositories.Repositories
                 Cita.idEstadoCita = (from ec in _context.T109_ESTADOCITA
                                      where ec.estado ==  "ANULADO"
                                      select ec.idEstadoCita).FirstOrDefault();
+                Cita.motivoAnula = motivoAnula;
                 _context.Entry(Cita).State = EntityState.Modified;
                 await Save();
                 return "Actualizacion Exitosa";
@@ -102,17 +108,18 @@ namespace HistClinica.Repositories.Repositories
                 return "Error en el guardado " + ex.StackTrace;
             }
         }
-        public async Task<string> ReprogramarCita(CitaDTO cita)
+        public async Task<string> ReprogramarCita(int? CitaID,int? CronoMedicoID,string motivoReprograma)
         {
             try
             {
                 T068_CITA Cita = (from c in _context.T068_CITA
-                                  where c.idCita == cita.idCita
+                                  where c.idCita == CitaID
                                   select c).FirstOrDefault();
-                Cita.idProgramMedica = cita.idProgramMedica;
+                Cita.idProgramMedica = CronoMedicoID;
                 Cita.idEstadoCita = (from ec in _context.T109_ESTADOCITA
                                      where ec.estado == "REPROGRAMADO"
                                      select ec.idEstadoCita).FirstOrDefault();
+                Cita.motivoRepro = motivoReprograma;
                 _context.Entry(Cita).State = EntityState.Modified;
                 await Save();
                 return "Actualizacion Exitosa";
@@ -139,17 +146,16 @@ namespace HistClinica.Repositories.Repositories
                                                idEmpleado = c.idEmpleado,
                                                idEstadoCita = c.idEstadoCita,
                                                idEstaGralPac = c.idEstaGralPac,
-                                               idEstAtencion = c.idEstAtencion,
+                                               //idEstAtencion = c.idEstAtencion,
                                                idPaciente = c.idPaciente,
                                                idProgramMedica = c.idProgramMedica,
-                                               idTpAtencion = c.idTpAtencion,
+                                               tpAtencion = c.tpAtencion,
                                                igv = c.igv,
                                                nroCita = c.nroCita,
                                                nroHC = c.nroHC,
                                                precio = c.precio,
                                                prioridad = c.prioridad,
-                                               servicio = c.servicio,
-                                               tpAtencion = c.tpAtencion,
+                                               //servicio = c.servicio,
                                                ultCie10 = c.ultCie10,
                                                idservicioCli = c.idservicioCli
                                            }).ToListAsync();
@@ -174,6 +180,14 @@ namespace HistClinica.Repositories.Repositories
                                                           where p.idPaciente == c.idPaciente
                                                           select pe.dniPersona).FirstOrDefault(),
                                         idProgramMedica = c.idProgramMedica,
+                                        idEspecialidad = (from cm in _context.D012_CRONOMEDICO
+                                                        join m in _context.T212_MEDICO on cm.idMedico equals m.idMedico
+                                                        where cm.idProgramMedica == c.idProgramMedica
+                                                        select m.idEspecialidad).FirstOrDefault(),
+                                        idmedico = (from cm in _context.D012_CRONOMEDICO
+                                                    join m in _context.T212_MEDICO on cm.idMedico equals m.idMedico
+                                                    where cm.idProgramMedica == c.idProgramMedica
+                                                    select m.idMedico).FirstOrDefault(),
                                         igv = c.igv,
                                         nroCita = c.nroCita,
                                         precio = c.precio
