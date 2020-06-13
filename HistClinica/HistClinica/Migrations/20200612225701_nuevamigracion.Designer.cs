@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HistClinica.Migrations
 {
     [DbContext(typeof(ClinicaServiceContext))]
-    [Migration("20200610205834_nuevastablas")]
-    partial class nuevastablas
+    [Migration("20200612225701_nuevamigracion")]
+    partial class nuevamigracion
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -686,6 +686,9 @@ namespace HistClinica.Migrations
                     b.Property<string>("ejecutado")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("estado")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("estadoReprogram")
                         .HasColumnType("nvarchar(max)");
 
@@ -696,9 +699,6 @@ namespace HistClinica.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("idEmpleado")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("idEstAtencion")
                         .HasColumnType("int");
 
                     b.Property<int?>("idEstaGralPac")
@@ -713,14 +713,17 @@ namespace HistClinica.Migrations
                     b.Property<int?>("idProgramMedica")
                         .HasColumnType("int");
 
-                    b.Property<int?>("idTpAtencion")
-                        .HasColumnType("int");
-
                     b.Property<int?>("idservicioCli")
                         .HasColumnType("int");
 
                     b.Property<double?>("igv")
                         .HasColumnType("float");
+
+                    b.Property<string>("motivoAnula")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("motivoRepro")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("nroCita")
                         .HasColumnType("int");
@@ -734,11 +737,11 @@ namespace HistClinica.Migrations
                     b.Property<string>("prioridad")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("servicio")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("tipoCita")
+                        .HasColumnType("int");
 
-                    b.Property<string>("tpAtencion")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("tpAtencion")
+                        .HasColumnType("int");
 
                     b.Property<string>("ultCie10")
                         .HasColumnType("nvarchar(max)");

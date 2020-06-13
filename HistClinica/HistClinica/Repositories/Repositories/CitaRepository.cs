@@ -108,18 +108,18 @@ namespace HistClinica.Repositories.Repositories
                 return "Error en el guardado " + ex.StackTrace;
             }
         }
-        public async Task<string> ReprogramarCita(int? CitaID,int? CronoMedicoID,string motivoReprograma)
+        public async Task<string> ReprogramarCita(CitaDTO cita)
         {
             try
             {
                 T068_CITA Cita = (from c in _context.T068_CITA
-                                  where c.idCita == CitaID
+                                  where c.idCita == cita.idCita
                                   select c).FirstOrDefault();
-                Cita.idProgramMedica = CronoMedicoID;
+                Cita.idProgramMedica = cita.idProgramMedica;
                 Cita.idEstadoCita = (from ec in _context.T109_ESTADOCITA
                                      where ec.estado == "REPROGRAMADO"
                                      select ec.idEstadoCita).FirstOrDefault();
-                Cita.motivoRepro = motivoReprograma;
+                Cita.motivoRepro = cita.motivoreprogramacion;
                 _context.Entry(Cita).State = EntityState.Modified;
                 await Save();
                 return "Actualizacion Exitosa";

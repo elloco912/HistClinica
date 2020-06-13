@@ -364,3 +364,4 @@ C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.
 C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.genruntimeconfig.cache
 C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.csprojAssemblyReference.cache
 C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Persona\Asignar.cshtml.g.cs
+C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Panel\Index.cshtml.g.cs
