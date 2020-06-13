@@ -52,7 +52,7 @@ namespace HistClinica.Controllers
                          select new
                          {
                              idMedico = med.idMedico,
-                             nombres = per.nombres + " " + per.apePaterno + " " + per.apeMaterno
+                             nombres = per.primerNombre + " " + per.segundoNombre + " " + per.apePaterno + " " + per.apeMaterno
                          };
             ViewBag.listamedicos = medico;
 
@@ -116,7 +116,7 @@ namespace HistClinica.Controllers
                          select new
                          {
                              idMedico = med.idMedico,
-                             nombres = per.nombres + " " + per.apePaterno + " " + per.apeMaterno
+                             nombres = per.primerNombre + " " + per.segundoNombre + " " + per.apePaterno + " " + per.apeMaterno
                          };
             ViewBag.listamedicos = medico;
 

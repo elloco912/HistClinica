@@ -97,7 +97,7 @@ on td.idDet equals med.idEspecialidad
 								select new
 								{
 									idMedico = med.idMedico,
-									nombres = per.nombres + ' ' + per.apePaterno + ' ' + per.apeMaterno
+									nombres = per.primerNombre + " " + per.segundoNombre + " " + per.apePaterno + " " + per.apeMaterno
 								}).ToListAsync();
 			return medico;
 		}
@@ -111,7 +111,7 @@ on td.idDet equals med.idEspecialidad
 						 select new
 						 {
 							 idMedico = med.idMedico,
-							 nombres = per.nombres + " " + per.apePaterno + " " + per.apeMaterno
+							 nombres = per.primerNombre + " " + per.segundoNombre + " " + per.apePaterno + " " + per.apeMaterno
 						 }).ToListAsync();
 			return medico;
 		}
