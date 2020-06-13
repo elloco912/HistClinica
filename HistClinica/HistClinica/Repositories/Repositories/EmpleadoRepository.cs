@@ -39,6 +39,8 @@ namespace HistClinica.Repositories.Repositories
             await _context.SaveChangesAsync();
         }
 
+
+
         public async Task<bool> EmpleadoExists(int? id)
         {
             return await _context.T120_EMPLEADO.AnyAsync(e => e.idEmpleado == id);
@@ -103,6 +105,24 @@ namespace HistClinica.Repositories.Repositories
                                     where p.idPersona == id
                                     select p.idEmpleado).FirstOrDefaultAsync();
             return idEmpleado;
+        }
+
+        public async Task<PersonaDTO> GetById(int? id)
+        {
+            PersonaDTO personaDTO = await (from p in _context.T000_PERSONA
+                                     join e in _context.T120_EMPLEADO on p.idPersona equals e.idPersona
+                                     select new PersonaDTO
+                                     {
+                                         primerNombre = p.primerNombre,
+                                         segundoNombre = p.segundoNombre,
+                                         numeroDocumento = p.dniPersona,
+                                         personal = new PersonalDTO
+                                         {
+                                             idEmpleado = e.idEmpleado,
+                                             idTipoEmpleado = e.idtpEmpleado
+                                         }
+                                     }).FirstOrDefaultAsync(); 
+            return personaDTO;
         }
     }
 }

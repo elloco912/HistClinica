@@ -63,7 +63,8 @@ namespace HistClinica.Repositories.Repositories
             {
                 await _context.T000_PERSONA.AddAsync(new T000_PERSONA()
                 {
-                    nombres = Persona.primerNombre + " " + Persona.segundoNombre,
+                    primerNombre = Persona.primerNombre,
+                    segundoNombre = Persona.segundoNombre,
                     apePaterno = Persona.apellidoPaterno,
                     apeMaterno = Persona.apellidoMaterno,
                     dniPersona = Persona.numeroDocumento,
@@ -137,7 +138,8 @@ namespace HistClinica.Repositories.Repositories
             {
                 _context.Update(new T000_PERSONA()
                 {
-                    nombres = Persona.primerNombre + " " + Persona.segundoNombre,
+                    primerNombre = Persona.primerNombre,
+                    segundoNombre = Persona.segundoNombre,
                     apePaterno = Persona.apellidoPaterno,
                     apeMaterno = Persona.apellidoMaterno,
                     dniPersona = Persona.numeroDocumento,
@@ -211,8 +213,8 @@ namespace HistClinica.Repositories.Repositories
                                                select new PersonaDTO
                                                {
                                                    idPersona = p.idPersona,
-                                                   primerNombre = p.nombres,
-                                                   segundoNombre = "",
+                                                   primerNombre = p.primerNombre,
+                                                   segundoNombre = p.segundoNombre,
                                                    apellidoPaterno = p.apePaterno,
                                                    apellidoMaterno = p.apeMaterno,
                                                    telefono = p.telefono
@@ -240,8 +242,8 @@ namespace HistClinica.Repositories.Repositories
                              select new PersonaDTO
                              {
                                  idPersona = p.idPersona,
-                                 primerNombre = p.nombres,
-                                 segundoNombre = "",
+                                 primerNombre = p.primerNombre,
+                                 segundoNombre = p.segundoNombre,
                                  apellidoPaterno = p.apePaterno,
                                  apellidoMaterno = p.apeMaterno,
                                  telefono = p.telefono,

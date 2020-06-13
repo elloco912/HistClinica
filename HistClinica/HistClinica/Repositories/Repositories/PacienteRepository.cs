@@ -254,7 +254,7 @@ namespace HistClinica.Repositories.Repositories
                 {
                     tpDocumento = Persona.paciente.idTipoDocumentoAcompañante.ToString(),
                     dniAcom = Persona.paciente.numeroDocumentoAcompañante,
-                    nombresAcom = Persona.primerNombre + " " + Persona.segundoNombre,
+                    nombresAcom = Persona.paciente.primerNombreAcompañante + " " + Persona.paciente.segundoNombreAcompañante,
                     apePatAcom = Persona.apellidoPaterno,
                     apeMatAcom = Persona.apellidoMaterno,
                     parentesco = Persona.paciente.idParentescoAcompañante.ToString(),
@@ -301,7 +301,8 @@ namespace HistClinica.Repositories.Repositories
                                          where p.dniPersona == Dni
                                          select new PersonaDTO
                                          {
-                                             primerNombre = p.nombres,
+                                             primerNombre = p.primerNombre,
+                                             segundoNombre = p.segundoNombre,
                                              apellidoPaterno = p.apePaterno,
                                              apellidoMaterno = p.apeMaterno,
                                              numeroDocumento = p.dniPersona,
@@ -336,7 +337,7 @@ namespace HistClinica.Repositories.Repositories
                                                    join m in _context.T212_MEDICO on cm.idMedico equals m.idMedico
                                                    join p in _context.T000_PERSONA on m.idPersona equals p.idPersona
                                                    where cm.idProgramMedica == c.idProgramMedica
-                                                   select (p.nombres + ' ' + p.apePaterno + ' ' + p.apeMaterno)).FirstOrDefault(),
+                                                   select (p.primerNombre + " " + p.segundoNombre + " " + p.apePaterno + " " + p.apeMaterno)).FirstOrDefault(),
                                          especialidad = (from tb in _context.D00_TBDETALLE
                                                          join cm in _context.D012_CRONOMEDICO on c.idProgramMedica equals cm.idProgramMedica
                                                          join m in _context.T212_MEDICO on cm.idMedico equals m.idMedico

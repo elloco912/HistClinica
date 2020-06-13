@@ -8,7 +8,8 @@ namespace HistClinica.Models
         public int idPersona { get; set; }
         public string apePaterno { get; set; }
         public string apeMaterno { get; set; }
-        public string nombres { get; set; }
+        public string primerNombre { get; set; }
+        public string segundoNombre { get; set; }
         public int? idtpDocumento { get; set; }
         public int? dniPersona { get; set; }
         public int? idSexo { get; set; }
