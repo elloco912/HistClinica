@@ -28,5 +28,7 @@ namespace HistClinica.DTO
         public double? total { get; set; }
         public string estado { get; set; }
         public string estadoPago { get; set; }
+        public string motivoreprogramacion { get; set; }
+        public string motivoanulacion { get; set; }
     }
 }

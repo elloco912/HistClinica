@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HistClinica.Migrations
 {
-    public partial class nuevastablas : Migration
+    public partial class nuevamigracion : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -336,8 +336,7 @@ namespace HistClinica.Migrations
                     descripcion = table.Column<string>(nullable: true),
                     fechaCita = table.Column<DateTime>(nullable: true),
                     ultCie10 = table.Column<string>(nullable: true),
-                    servicio = table.Column<string>(nullable: true),
-                    tpAtencion = table.Column<string>(nullable: true),
+                    tpAtencion = table.Column<int>(nullable: true),
                     nroHC = table.Column<int>(nullable: true),
                     idEstadoCita = table.Column<int>(nullable: true),
                     idEstaGralPac = table.Column<int>(nullable: true),
@@ -348,13 +347,15 @@ namespace HistClinica.Migrations
                     descuento = table.Column<double>(nullable: true),
                     coa = table.Column<double>(nullable: true),
                     igv = table.Column<double>(nullable: true),
+                    tipoCita = table.Column<int>(nullable: true),
+                    motivoRepro = table.Column<string>(nullable: true),
+                    motivoAnula = table.Column<string>(nullable: true),
                     idPaciente = table.Column<int>(nullable: true),
                     idEmpleado = table.Column<int>(nullable: true),
                     idConsultorio = table.Column<int>(nullable: true),
                     idProgramMedica = table.Column<int>(nullable: true),
-                    idTpAtencion = table.Column<int>(nullable: true),
-                    idEstAtencion = table.Column<int>(nullable: true),
-                    idservicioCli = table.Column<int>(nullable: true)
+                    idservicioCli = table.Column<int>(nullable: true),
+                    estado = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

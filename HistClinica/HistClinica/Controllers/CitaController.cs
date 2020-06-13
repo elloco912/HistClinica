@@ -223,7 +223,7 @@ namespace HistClinica.Controllers
         [HttpPost]
         public async Task<IActionResult> AnularCita(CitaDTO cita)
         {
-            await _repository.AnularCita(cita.idCita);
+            await _repository.AnularCita(cita.idCita, cita.motivoanulacion);
             return RedirectToAction("Index", "Paciente");
         }
 
