@@ -138,6 +138,29 @@ function BuscarPaciente() {
 	});
 }
 
+function CargarModalAnular() {
+	$("#citagrid .anular").click(function () {
+		var id = $(this).closest("tr").find("td").eq(0).html();
+		$.ajax({
+			type: "GET",
+			url: "/Cita/AnularCita",
+			data: { id: id },
+			contentType: "application/json; charset=utf-8",
+			dataType: "html",
+			success: function (response) {
+				$('#modalanular').html(response);
+				$('#modalanular').modal('show');
+			},
+			failure: function (response) {
+				alert(response.responseText);
+			},
+			error: function (response) {
+				alert(response.responseText);
+			}
+		});
+	});
+}
+
 function CargarModalReprogramar() {
 	$("#citagrid .edit").click(function () {
 			var id = $(this).closest("tr").find("td").eq(0).html();
