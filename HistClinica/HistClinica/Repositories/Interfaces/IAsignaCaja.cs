@@ -7,7 +7,7 @@ namespace HistClinica.Repositories.Interfaces
 {
     public interface IAsignaCaja
     {
-        Task<string> InsertAsignaCaja(int idCaja,int idEmpleado);
+        Task<string> InsertAsignaCaja(int? idCaja,int? idEmpleado);
         Task<bool> AsignaCajaExists(int? id);
         Task Save();
     }

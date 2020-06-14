@@ -43,7 +43,7 @@ namespace HistClinica.Repositories.Repositories
         {
             return await _context.T068_CITA.AnyAsync(e => e.idCita == id);
         }
-        public async Task<string> InsertAsignaCaja(int idCaja, int idEmpleado)
+        public async Task<string> InsertAsignaCaja(int? idCaja, int? idEmpleado)
         {
             try
             {

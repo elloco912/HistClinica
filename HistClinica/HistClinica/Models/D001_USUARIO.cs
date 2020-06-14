@@ -8,7 +8,7 @@ namespace HistClinica.Models
         public int idUsuario { get; set; }
         public string loginUser { get; set; }
         public string claveUser { get; set; }
-        public int idEmpleado { get; set; }
+        public int? idEmpleado { get; set; }
         public string estado { get; set; }
         public string usuRegistra { get; set; }
         public string fechaRegistra { get; set; }

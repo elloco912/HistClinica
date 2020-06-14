@@ -17,13 +17,18 @@ namespace HistClinica.Controllers
         private readonly IPersonaRepository _personaRepository;
         private readonly IUtilRepository _utilrepository;
         private readonly IEmpleadoRepository _empleadorepository;
+        private readonly IAsignaCaja _asignaCajaRepository;
+        private readonly IUsuarioRepository _usuarioRepository;
 
-        public PersonaController(IPersonaRepository personaRepository,ClinicaServiceContext contexto,IUtilRepository utilRepository,IEmpleadoRepository empleadoRepository)
+        public PersonaController(IPersonaRepository personaRepository,ClinicaServiceContext contexto,IUtilRepository utilRepository,
+                                IEmpleadoRepository empleadoRepository, IAsignaCaja asignaCajaRepository, IUsuarioRepository usuarioRepository)
         {
             _context = contexto;
             _personaRepository = personaRepository;
             _utilrepository = utilRepository;
             _empleadorepository = empleadoRepository;
+            _asignaCajaRepository = asignaCajaRepository;
+            _usuarioRepository = usuarioRepository;
         }
 
         // GET: Persona
@@ -154,6 +159,39 @@ namespace HistClinica.Controllers
 
             PersonaDTO persona = await _empleadorepository.GetById(id);
             return PartialView(persona);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Asignar(int? idEmpleado,int? idCaja, string claveUser,string usuRegistra)
+        {
+            if (idEmpleado != null)
+            {
+                try
+                {
+                    if(idCaja != null)
+                    {
+                        await _asignaCajaRepository.InsertAsignaCaja(idCaja,idEmpleado);
+                    }
+                    if(claveUser != null)
+                    {
+                        await _usuarioRepository.InsertUsuario(claveUser,usuRegistra,idEmpleado);
+                    }
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (await _usuarioRepository.UsuarioExists(idEmpleado))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View();
         }
     }
 }
