@@ -8,7 +8,7 @@ namespace HistClinica.Repositories.Interfaces
 {
     public interface IUsuarioRepository
     {
-        Task<string> InsertUsuario(UsuarioDTO Usuario,int idEmpleado);
+        Task<string> InsertUsuario(string claveUser,string usuRegistra,int idEmpleado);
         Task<bool> UsuarioExists(int? id);
         Task Save();
     }

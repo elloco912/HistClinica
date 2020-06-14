@@ -44,7 +44,7 @@ namespace HistClinica.Repositories.Repositories
         {
             return await _context.T068_CITA.AnyAsync(e => e.idCita == id);
         }
-        public async Task<string> InsertUsuario(UsuarioDTO Usuario,int idEmpleado)
+        public async Task<string> InsertUsuario(string claveUser, string usuRegistra, int idEmpleado)
         {
             try
             {
@@ -57,8 +57,8 @@ namespace HistClinica.Repositories.Repositories
                     idEmpleado = idEmpleado,
                     fechaRegistra = DateTime.Now.ToString(),
                     loginUser = persona.primerNombre.Substring(0,1) + persona.apePaterno + persona.fecNacimiento.Substring(0,2),
-                    claveUser = Usuario.claveUser,
-                    usuRegistra = Usuario.usuRegistra,
+                    claveUser = claveUser,
+                    usuRegistra = usuRegistra,
                     estado = "ACTIVO"
                 });
                 await Save();
