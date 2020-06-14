@@ -183,3 +183,26 @@ function CargarModalReprogramar() {
 			});
 		});
 }
+
+function CargarModalAsignarUsuario() {
+	$("#personalgrid .asig").click(function () {
+		var id = $(this).closest("tr").find("td").eq(0).html();
+		$.ajax({
+			type: "GET",
+			url: "/Persona/Asignar",
+			data: { id: id },
+			contentType: "application/json; charset=utf-8",
+			dataType: "html",
+			success: function (response) {
+				$('#modalasignar').html(response);
+				$('#modalasignar').modal('show');
+			},
+			failure: function (response) {
+				alert(response.responseText);
+			},
+			error: function (response) {
+				alert(response.responseText);
+			}
+		});
+	});
+}

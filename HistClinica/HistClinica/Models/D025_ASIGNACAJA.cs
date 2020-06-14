@@ -10,7 +10,6 @@ namespace HistClinica.Models
 	{
 		[Key]
 		public int? idCaja { get; set; }
-		[Key]
 		public int? idEmpleado { get; set; }
 	}
 }
