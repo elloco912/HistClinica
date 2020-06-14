@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HistClinica.Migrations
 {
-    public partial class nuevamigracion : Migration
+    public partial class nueva : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -51,7 +51,7 @@ namespace HistClinica.Migrations
                     loginUser = table.Column<string>(nullable: true),
                     claveUser = table.Column<string>(nullable: true),
                     idEmpleado = table.Column<int>(nullable: false),
-                    estado = table.Column<string>(nullable: false),
+                    estado = table.Column<string>(nullable: true),
                     usuRegistra = table.Column<string>(nullable: true),
                     fechaRegistra = table.Column<string>(nullable: true),
                     usuMod = table.Column<string>(nullable: true),
@@ -173,6 +173,33 @@ namespace HistClinica.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "D024_CAJA",
+                columns: table => new
+                {
+                    idCaja = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    nroCaja = table.Column<int>(nullable: true),
+                    estado = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_D024_CAJA", x => x.idCaja);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "D025_ASIGNACAJA",
+                columns: table => new
+                {
+                    idCaja = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    idEmpleado = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_D025_ASIGNACAJA", x => x.idCaja);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "T000_PERSONA",
                 columns: table => new
                 {
@@ -180,7 +207,8 @@ namespace HistClinica.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     apePaterno = table.Column<string>(nullable: true),
                     apeMaterno = table.Column<string>(nullable: true),
-                    nombres = table.Column<string>(nullable: true),
+                    primerNombre = table.Column<string>(nullable: true),
+                    segundoNombre = table.Column<string>(nullable: true),
                     idtpDocumento = table.Column<int>(nullable: true),
                     dniPersona = table.Column<int>(nullable: true),
                     idSexo = table.Column<int>(nullable: true),
@@ -481,6 +509,12 @@ namespace HistClinica.Migrations
 
             migrationBuilder.DropTable(
                 name: "D015_TPEMPLEADO");
+
+            migrationBuilder.DropTable(
+                name: "D024_CAJA");
+
+            migrationBuilder.DropTable(
+                name: "D025_ASIGNACAJA");
 
             migrationBuilder.DropTable(
                 name: "T000_PERSONA");

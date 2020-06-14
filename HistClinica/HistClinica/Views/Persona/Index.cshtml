@@ -68,7 +68,7 @@
 						<td>@item.personal.cargo</td>
 						<td>
 							<button title="Editar" type="submit" onclick="CargarmodalPersona();" class="edit btn btn-primary"><i class="fas fa-edit"></i></button>
-							<button title="Asignar" type="submit" class="edit btn btn-primary" data-target="#modalasignar" data-toggle="modal"><i class="fas fa-id-badge"></i></button>
+							<button title="Asignar" type="submit" class="asig btn btn-primary" onclick="CargarModalAsignarUsuario()"><i class="fas fa-id-badge"></i></button>
 							<a type="submit" asp-action="DeleteConfirmed" asp-route-id="@item.idPersona" class="btn btn-danger"><i class="fas fa-minus"></i></a>
 						</td>
 					</tr>
@@ -104,109 +104,6 @@
 
 
 <div class="modal fade" id="modalasignar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content" style="width: 1200px;position: relative;right: 302px;">
-			<div class="container">
-				<div class="col-sm-12">
-					<div class="row">
-						<div class="col-sm-12">
-							<h2 style="text-align: left">Asignar Usuario</h2>
-						</div>
-					</div>
-				</div>
-
-			</div>
-
-
-			<div class="container">
-				<div class="col-sm-12">
-					<div class="row">
-						<div class="col-md-6">
-							<div class="box box-primary">
-								<div class="box-body">
-									<div class="form-group">
-										<label>CODIGO</label>
-									</div>
-									<div class="form-group">
-										<input id="txtCodigo" Text="" class="form-control" size="60" maxlength="60">
-									</div>
-									<div class="form-group">
-										<label>TIPO</label>
-									</div>
-									<div class="form-group">
-										<input id="txtTipo" Text="" class="form-control" size="60" maxlength="60">
-									</div>
-									<div class="form-group">
-										<label>AFILIA EN CAJA</label>
-									</div>
-									<div class="form-group">
-										<select class="form-control">
-											<option>Si</option>
-											<option>No</option>
-										</select>
-									</div>
-									<div class="form-group">
-										<label>CLAVE </label>
-									</div>
-									<div class="form-group">
-										<input ID="txtClave" Text="" class="form-control" size="60" maxlength="60">
-									</div>
-									<div class="form-group">
-										<button class="btn btn-primary">Asignar modulo</button>
-									</div>
-
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="box box-primary">
-								<div class="box-body">
-									<div class="form-group">
-										<label>NOMBRE USUARIO</label>
-									</div>
-									<div class="form-group">
-										<input type="text" name="" class="form-control">
-									</div>
-									<div class="form-group">
-										<label>NUMERO DE DOCUMENTO</label>
-									</div>
-									<div class="form-group">
-										<input type="text" name="" class="form-control">
-									</div>
-									<div class="form-group">
-										<label>CAJA </label>
-									</div>
-									<div class="form-group">
-										<select class="form-control">
-											<option>Caja 1</option>
-										</select>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div align="right" style="padding-bottom: 20px;">
-					<table>
-						<tr>
-							<td>
-								<button type="button" class="btn btn-primary" style="width: 112px;font-size: 16px;">Guardar </button>
-							</td>
-							<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-							<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-
-							<td>
-								<button type="button" class="btn btn-dark" style="width: 112px;font-size: 16px;">Salir</button>
-							</td>
-						</tr>
-					</table>
-				</div>
-
-			</div>
-
-		</div>
-	</div>
 </div>
 <div class="modal fade" id="modaleditar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 

@@ -16,12 +16,14 @@ namespace HistClinica.Controllers
         private readonly ClinicaServiceContext _context;
         private readonly IPersonaRepository _personaRepository;
         private readonly IUtilRepository _utilrepository;
+        private readonly IEmpleadoRepository _empleadorepository;
 
-        public PersonaController(IPersonaRepository personaRepository,ClinicaServiceContext contexto,IUtilRepository utilRepository)
+        public PersonaController(IPersonaRepository personaRepository,ClinicaServiceContext contexto,IUtilRepository utilRepository,IEmpleadoRepository empleadoRepository)
         {
             _context = contexto;
             _personaRepository = personaRepository;
             _utilrepository = utilRepository;
+            _empleadorepository = empleadoRepository;
         }
 
         // GET: Persona
@@ -143,6 +145,15 @@ namespace HistClinica.Controllers
             var persona = await _personaRepository.GetById(id);
             await _personaRepository.DeletePersona(id);
             return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Asignar(int? id)
+        {
+            var tipoEmpleados = await _utilrepository.GetTipo("Tipo Empleado");
+            ViewBag.lsttipoempleado = tipoEmpleados;
+
+            PersonaDTO persona = await _empleadorepository.GetById(id);
+            return PartialView(persona);
         }
     }
 }
