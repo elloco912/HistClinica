@@ -58,6 +58,7 @@ namespace HistClinica.DTO
         public int? tpPersona { get; set; }
         public PersonalDTO personal { get; set; }
         public PacienteDTO paciente { get; set; }
+        public AsignacionDTO asignacion { get; set; }
         #endregion Persona
     }
 }
