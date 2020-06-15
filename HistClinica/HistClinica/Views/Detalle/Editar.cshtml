@@ -1,0 +1,57 @@
+﻿@model HistClinica.DTO.DetalleDTO
+
+@{
+    ViewData["Title"] = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Editar detalle</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        
+        <form asp-action="Agregar" asp-controller="Detalle" id="frmEnviar">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="idDet" class="control-label"></label>
+                <input asp-for="idDet" class="form-control" />
+                <span asp-validation-for="idDet" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="coddetTab" class="control-label"></label>
+                <input asp-for="coddetTab" class="form-control" />
+                <span asp-validation-for="coddetTab" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="descripcion" class="control-label"></label>
+                <input asp-for="descripcion" class="form-control" />
+                <span asp-validation-for="descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="button" value="Guardar" class="btn btn-primary" onclick="Abrir()" />
+                <a asp-action="Index" class="btn btn-danger">Regresar</a>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="~/js/sweetalert.js"></script>
+<script src="~/js/generic.js"></script>
+
+<script>
+    function Abrir() {
+        mostrarModal().then(res => {
+            if (res.value) {
+
+                var frmEnviar = document.getElementById("frmEnviar");
+                frmEnviar.submit();
+            }
+
+        })
+
+    }
+
+
+</script>
+

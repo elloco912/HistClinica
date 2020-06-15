@@ -48,15 +48,15 @@ namespace HistClinica.Repositories.Repositories
         {
             try
             {
-                string login = await (from p in _context.T000_PERSONA
+                T000_PERSONA Persona = await (from p in _context.T000_PERSONA
                                             join e in _context.T120_EMPLEADO on p.idPersona equals e.idPersona
                                             where e.idEmpleado == persona.personal.idEmpleado
-                                              select p.primerNombre.Substring(0, 1) + p.apePaterno + p.fecNacimiento.Substring(0, 2)).FirstOrDefaultAsync();
+                                              select p).FirstOrDefaultAsync();
                 await _context.D001_USUARIO.AddAsync(new D001_USUARIO()
                 {
                     idEmpleado = persona.personal.idEmpleado,
                     fechaRegistra = DateTime.Now.ToString(),
-                    loginUser = login,
+                    loginUser = Persona.primerNombre.Substring(0, 1) + Persona.apePaterno + Persona.fecNacimiento.Substring(0, 2),
                     claveUser = persona.asignacion.claveUser,
                     usuRegistra = persona.asignacion.usuRegistra,
                     estado = "ACTIVO"
