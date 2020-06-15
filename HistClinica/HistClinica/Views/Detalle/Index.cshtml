@@ -1,0 +1,86 @@
+﻿@using HistClinica.DTO;
+@model IEnumerable<DetalleDTO>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string nombreDetalle = ViewBag.nombreDetalle;
+}
+
+<a class="btn btn-primary" asp-action="Agregar" asp-controller="Detalle">
+    Agregar
+</a>
+
+
+<form asp-controller="Detalle" asp-action="Index" method="post" class="mb-2"
+      style="display:grid;grid-template-columns:1fr 2fr 1fr 1fr" id="frmFormulario">
+
+    <label>Ingrese nombre Codigo</label>
+    <input type="text" id="nombre" class="form form-control" name="coddetTab" value="@nombreDetalle" />
+    <input type="submit" value="Buscar" class="btn btn-primary" />
+    @*<input type="button" value="Limpiar" class="btn btn-danger" onclick="Limpiar()" />*@
+
+</form>
+
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+
+
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.idDet)</th>
+            <th>@Html.DisplayNameFor(model => model.coddetTab)</th>
+            <th>@Html.DisplayNameFor(model => model.descripcion)</th>
+            <th>Acciones</th>
+
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (DetalleDTO oDetalle in Model)
+        {
+            <tr>
+                <td>@oDetalle.idDet</td>
+                <td>@oDetalle.coddetTab</td>
+                <td>@oDetalle.descripcion</td>
+                <td>
+                    <button onclick="EliminarDetalle(@oDetalle.idDet)" class="btn btn-danger">Eliminar</button>
+                    <a class="fa fa-edit btn btn-primary" aria-hidden="true"
+                       asp-controller="Detalle" asp-action="Editar"
+                       asp-route-idDet="@oDetalle.idDet">
+
+                    </a>
+                </td>
+            </tr>
+
+        }
+
+    </tbody>
+
+
+</table>
+<form asp-action="Eliminar" asp-controller="Detalle" method="post" id="frmEliminar">
+
+    <input  id="txtId" name="idDet" type="hidden"/>
+</form>
+<script src="~/js/sweetalert.js"></script>
+<script src="~/js/generic.js"></script>
+<script>
+
+    function EliminarDetalle(idDetalle) {
+
+        document.getElementById("txtId").value = idDetalle;
+        mostrarModal().then(res => {
+            if (res.value) {
+                var frmEliminar = document.getElementById("frmEliminar");
+                frmEliminar.submit();
+                
+            }
+
+        })
+    }
+
+</script>
