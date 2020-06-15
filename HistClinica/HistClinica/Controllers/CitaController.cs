@@ -1,23 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using HistClinica.Data;
+﻿using HistClinica.Data;
+using HistClinica.DTO;
 using HistClinica.Models;
 using HistClinica.Repositories.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Threading.Tasks;
 
 namespace HistClinica.Controllers
 {
     public class CitaController : Controller
     {
+        private readonly IPacienteRepository _pacienteRepository;
+        private readonly ClinicaServiceContext _context;
         private readonly ICitaRepository _repository;
+        private readonly IUtilRepository _utilrepository;
 
-        public CitaController(ICitaRepository repository)
+        public CitaController(ClinicaServiceContext clinicaService,ICitaRepository repository, IUtilRepository utilRepository, IPacienteRepository pacienterepository)
         {
             _repository = repository;
+            _context = clinicaService;
+            _utilrepository = utilRepository;
+            _pacienteRepository = pacienterepository;
         }
 
         // GET: Cita
@@ -43,6 +47,8 @@ namespace HistClinica.Controllers
             return View(t068_CITA);
         }
 
+
+
         // GET: Cita/Create
         public IActionResult Create()
         {
@@ -54,14 +60,14 @@ namespace HistClinica.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("idCita,codCita,nroCita,descripcion,fechaCita,ultCie10,servicio,tpAtencion,nroHC,idEstadoCita,idEstaGralPac,estadoReprogram,ejecutado,prioridad,precio,descuento,coa,igv,idPaciente,idEmpleado,idConsultorio,idProgramMedica,idTpAtencion,idEstAtencion")] T068_CITA t068_CITA)
+        public async Task<IActionResult> Create(CitaDTO Cita)
         {
-            if (ModelState.IsValid)
+            if (Cita != null)
             {
-                await _repository.InsertCita(t068_CITA);
+                await _repository.InsertCita(Cita);
                 return RedirectToAction(nameof(Index));
             }
-            return View(t068_CITA);
+            return View(Cita);
         }
 
         // GET: Cita/Edit/5
@@ -72,12 +78,29 @@ namespace HistClinica.Controllers
                 return NotFound();
             }
 
+            var lespecialidads = new Object();
+            lespecialidads = await _utilrepository.GetTipo("Especialidad");
+            ViewBag.listaespecialidades = lespecialidads;
+
+            var medico = await _utilrepository.GetMedicos();
+            ViewBag.listamedicos = medico;
+
+            var lcronograma = await _utilrepository.GetCronograma();
+            ViewBag.lcronograma = lcronograma;
+
+            var lhoras = await _utilrepository.GetHoras();
+            ViewBag.lhoras = lhoras;
+
+            var lestado = await _utilrepository.getEstadoCita();
+            ViewBag.lestado = lestado;
+
             var t068_CITA = await _repository.GetById(id);
             if (t068_CITA == null)
             {
                 return NotFound();
             }
-            return View(t068_CITA);
+            return PartialView(t068_CITA);
+
         }
 
         // POST: Cita/Edit/5
@@ -85,22 +108,17 @@ namespace HistClinica.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("idCita,codCita,nroCita,descripcion,fechaCita,ultCie10,servicio,tpAtencion,nroHC,idEstadoCita,idEstaGralPac,estadoReprogram,ejecutado,prioridad,precio,descuento,coa,igv,idPaciente,idEmpleado,idConsultorio,idProgramMedica,idTpAtencion,idEstAtencion")] T068_CITA t068_CITA)
+        public async Task<IActionResult> Edit(CitaDTO cita)
         {
-            if (id != t068_CITA.idCita)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
+            if (cita.idCita != 0)
             {
                 try
                 {
-                    await _repository.UpdateCita(t068_CITA);
+                    await _repository.ReprogramarCita(cita);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!await _repository.CitaExists(t068_CITA.idCita))
+                    if (!await _repository.CitaExists(cita.idCita))
                     {
                         return NotFound();
                     }
@@ -109,9 +127,9 @@ namespace HistClinica.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index","Paciente");
             }
-            return View(t068_CITA);
+            return View();
         }
 
         // GET: Cita/Delete/5
@@ -139,5 +157,75 @@ namespace HistClinica.Controllers
             await _repository.DeleteCita(id);
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<JsonResult> GetMedicoByEsp(int id)
+        {
+            var medico = await _utilrepository.GetMedicoByEspecialidad(id);
+            return Json(medico);
+        }
+
+        public async Task<JsonResult> GetCronogramaByMedico(int id)
+        {
+            var cronograma = await _utilrepository.GetCronogramaByMedico(id);
+            return Json(cronograma);
+        }
+
+        public async Task<JsonResult> GetHorasByCronograma(int id)
+        {
+            var horas = await _utilrepository.GetHorasByCronograma(id);
+            return Json(horas);
+        }
+
+        public async Task<IActionResult> Registro()
+        {
+            var lespecialidads = new Object();
+            lespecialidads = await _utilrepository.GetTipo("Especialidad");
+            ViewBag.listaespecialidades = lespecialidads;
+
+            var medico = await _utilrepository.GetMedicos();
+            ViewBag.listamedicos = medico;
+
+            var lcronograma = await _utilrepository.GetCronograma();
+            ViewBag.lcronograma = lcronograma;
+
+            var lhoras = await _utilrepository.GetHoras();
+            ViewBag.lhoras = lhoras;
+            return PartialView();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Registro(CitaDTO cita)
+        {
+            if (cita != null)
+            {
+                await _repository.InsertCita(cita);
+                return RedirectToAction("Index","Paciente");
+            }
+            return View(cita);
+        }
+
+        public async Task<JsonResult> BuscarDni(int dni)
+        {
+            var personaDTO = await _pacienteRepository.GetByDni(dni);
+            return Json(personaDTO);
+        }
+
+
+        public async Task<IActionResult> AnularCita(int id)
+        {
+            var t068_CITA = await _repository.GetById(id);
+            if (t068_CITA == null)
+            {
+                return NotFound();
+            }
+            return PartialView(t068_CITA);
+        }
+        [HttpPost]
+        public async Task<IActionResult> AnularCita(CitaDTO cita)
+        {
+            await _repository.AnularCita(cita.idCita, cita.motivoanulacion);
+            return RedirectToAction("Index", "Paciente");
+        }
+
     }
 }

@@ -1,15 +1,12 @@
 ﻿using HistClinica.DTO;
-using HistClinica.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace HistClinica.Repositories.Interfaces
 {
     public interface IPersonaRepository
     {
-        Task<List<PersonaDTO>> GetAllPersonas();
+        Task<List<PersonaDTO>> GetAllPersonal();
         Task<PersonaDTO> GetById(int? PersonaID);
         //Operaciones Transaccionales
         Task<string> InsertPersona(PersonaDTO Persona);

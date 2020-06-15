@@ -1,12 +1,12 @@
 ﻿using HistClinica.Data;
+using HistClinica.DTO;
+using HistClinica.Models;
 using HistClinica.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using HistClinica.Models;
 using System.Threading.Tasks;
-using HistClinica.DTO;
 
 namespace HistClinica.Repositories.Repositories
 {
@@ -45,16 +45,15 @@ namespace HistClinica.Repositories.Repositories
         {
             await _context.SaveChangesAsync();
         }
-
         public async Task<bool> PersonaExists(int? id)
         {
             return await _context.T000_PERSONA.AnyAsync(e => e.idPersona == id);
         }
-
         public async Task DeletePersona(int PersonaID)
         {
             T000_PERSONA Persona = await _context.T000_PERSONA.FindAsync(PersonaID);
             _context.T000_PERSONA.Remove(Persona);
+            await Save();
         }
         public async Task<string> InsertPersona(PersonaDTO Persona)
         {
@@ -64,7 +63,8 @@ namespace HistClinica.Repositories.Repositories
             {
                 await _context.T000_PERSONA.AddAsync(new T000_PERSONA()
                 {
-                    nombres = Persona.primerNombre + " " + Persona.segundoNombre,
+                    primerNombre = Persona.primerNombre,
+                    segundoNombre = Persona.segundoNombre,
                     apePaterno = Persona.apellidoPaterno,
                     apeMaterno = Persona.apellidoMaterno,
                     dniPersona = Persona.numeroDocumento,
@@ -78,14 +78,13 @@ namespace HistClinica.Repositories.Repositories
                     edad = Persona.edad,
                     estado = Persona.estado,
                     estadoRuc = Persona.estadoRuc,
-                    fecNacimiento = Persona.fechaNacimiento,
+                    fecNacimiento = Persona.fecNacimiento,
                     fotografia = Persona.fotografia,
                     idciaSeguro = Persona.idciaSeguro,
                     iddatoSiteds = Persona.iddatoSiteds,
                     idemprConvenio = Persona.idemprConvenio,
                     idEstCivil = Persona.idEstCivil,
                     idEtnico = Persona.idEtnico,
-                    idFactorrh = Persona.idFactorRrh,
                     idgpoSangre = Persona.idgpoSangre,
                     idGrdInstruc = Persona.idGrdInstruc,
                     idOcupacion = Persona.idOcupacion,
@@ -97,26 +96,27 @@ namespace HistClinica.Repositories.Repositories
                     idtpDocumento = Persona.idTipoDocumento,
                     idUbigeoNace = Persona.idUbigeoNace,
                     idUbigeoResi = Persona.idUbigeoResi,
-                    interior = Persona.interiorUbicacion,
                     manzana = Persona.manzana,
-                    nombreVia = Persona.nombreViaUbicacion,
-                    nroBlock = Persona.numeroUbicacion,
-                    nroDpto = Persona.numeroDepartamentoUbicacion,
                     nroEtapa = Persona.nroEtapa,
                     nroKm = Persona.nroKm,
-                    nroLote = Persona.numeroLoteUbicacion,
                     nroVia = Persona.nroVia,
                     razonSocial = Persona.razonSocial,
-                    tpPersona = Persona.tpPersona
+                    tpPersona = Persona.tpPersona,
+                    idFactorrh = Persona.idFactorrh,
+                    interior = Persona.interior,
+                    nombreVia = Persona.nombreVia,
+                    nroBlock = Persona.nroBlock,
+                    nroDpto = Persona.nroDpto,
+                    nroLote = Persona.nroLote
                 });
                 await Save();
                 idPersona = (await _context.T000_PERSONA
                     .FirstOrDefaultAsync(p => p.dniPersona == Persona.numeroDocumento)).idPersona;
-                if (Persona.idTipoEmpleado != null)
+                if (Persona.personal != null)
                 {
                     await _empleadoRepository.InsertEmpleado(Persona, idPersona);
                     idEmpleado = await _empleadoRepository.GetIdEmpleado(idPersona);
-                    if (Persona.idTipoEmpleado == 109)
+                    if (Persona.personal.idTipoEmpleado == 109)
                     {
                         await _medicoRepository.InsertMedico(Persona, idPersona, idEmpleado);
                     }
@@ -138,8 +138,8 @@ namespace HistClinica.Repositories.Repositories
             {
                 _context.Update(new T000_PERSONA()
                 {
-                    idPersona = (int)Persona.idPersona,
-                    nombres = Persona.primerNombre + " " + Persona.segundoNombre,
+                    primerNombre = Persona.primerNombre,
+                    segundoNombre = Persona.segundoNombre,
                     apePaterno = Persona.apellidoPaterno,
                     apeMaterno = Persona.apellidoMaterno,
                     dniPersona = Persona.numeroDocumento,
@@ -153,14 +153,13 @@ namespace HistClinica.Repositories.Repositories
                     edad = Persona.edad,
                     estado = Persona.estado,
                     estadoRuc = Persona.estadoRuc,
-                    fecNacimiento = Persona.fechaNacimiento,
+                    fecNacimiento = Persona.fecNacimiento,
                     fotografia = Persona.fotografia,
                     idciaSeguro = Persona.idciaSeguro,
                     iddatoSiteds = Persona.iddatoSiteds,
                     idemprConvenio = Persona.idemprConvenio,
                     idEstCivil = Persona.idEstCivil,
                     idEtnico = Persona.idEtnico,
-                    idFactorrh = Persona.idFactorRrh,
                     idgpoSangre = Persona.idgpoSangre,
                     idGrdInstruc = Persona.idGrdInstruc,
                     idOcupacion = Persona.idOcupacion,
@@ -172,23 +171,24 @@ namespace HistClinica.Repositories.Repositories
                     idtpDocumento = Persona.idTipoDocumento,
                     idUbigeoNace = Persona.idUbigeoNace,
                     idUbigeoResi = Persona.idUbigeoResi,
-                    interior = Persona.interiorUbicacion,
                     manzana = Persona.manzana,
-                    nombreVia = Persona.nombreViaUbicacion,
-                    nroBlock = Persona.numeroUbicacion,
-                    nroDpto = Persona.numeroDepartamentoUbicacion,
                     nroEtapa = Persona.nroEtapa,
                     nroKm = Persona.nroKm,
-                    nroLote = Persona.numeroLoteUbicacion,
                     nroVia = Persona.nroVia,
                     razonSocial = Persona.razonSocial,
-                    tpPersona = Persona.tpPersona
+                    tpPersona = Persona.tpPersona,
+                    idFactorrh = Persona.idFactorrh,
+                    interior = Persona.interior,
+                    nombreVia = Persona.nombreVia,
+                    nroBlock = Persona.nroBlock,
+                    nroDpto = Persona.nroDpto,
+                    nroLote = Persona.nroLote
                 });
                 await Save();
-                if (Persona.idTipoEmpleado != null)
+                if (Persona.personal.idTipoEmpleado != null)
                 {
                     await _empleadoRepository.UpdateEmpleado(Persona);
-                    if (Persona.idTipoEmpleado == 109)
+                    if (Persona.personal.idTipoEmpleado == 2)
                     {
                         await _medicoRepository.UpdateMedico(Persona);
                     }
@@ -205,62 +205,76 @@ namespace HistClinica.Repositories.Repositories
                 return "Error en el guardado " + ex.StackTrace;
             }
         }
-        public async Task<List<PersonaDTO>> GetAllPersonas()
+        public async Task<List<PersonaDTO>> GetAllPersonal()
         {
             List<PersonaDTO> Personas = await (from p in _context.T000_PERSONA
                                                join e in _context.T120_EMPLEADO on p.idPersona equals e.idPersona
+                                               where e.idtpEmpleado != null
                                                select new PersonaDTO
                                                {
                                                    idPersona = p.idPersona,
-                                                   primerNombre = p.nombres,
-                                                   segundoNombre = "",
+                                                   primerNombre = p.primerNombre,
+                                                   segundoNombre = p.segundoNombre,
                                                    apellidoPaterno = p.apePaterno,
                                                    apellidoMaterno = p.apeMaterno,
-                                                   fechaIngreso = e.fecIngreso,
-                                                   telefono = p.telefono,
-                                                   cargo = e.cargo
+                                                   telefono = p.telefono
                                                }).ToListAsync();
 
+            for (int i = 0; i < Personas.Count; i++)
+            {
+                Personas[i].personal = await (from e in _context.T120_EMPLEADO
+                                              where e.idPersona == Personas[i].idPersona
+                                              select new PersonalDTO
+                                              {
+                                                  fechaIngreso = e.fecIngreso,
+                                                  cargo = e.cargo
+                                              }).FirstOrDefaultAsync();
+            }
             return Personas;
         }
+
         public async Task<PersonaDTO> GetById(int? id)
         {
-            PersonaDTO Persona;
+            PersonaDTO Persona = new PersonaDTO();
             Persona = await (from p in _context.T000_PERSONA
                              join e in _context.T120_EMPLEADO on p.idPersona equals e.idPersona
                              where p.idPersona == id
                              select new PersonaDTO
                              {
                                  idPersona = p.idPersona,
-                                 primerNombre = p.nombres,
-                                 segundoNombre = "",
+                                 primerNombre = p.primerNombre,
+                                 segundoNombre = p.segundoNombre,
                                  apellidoPaterno = p.apePaterno,
                                  apellidoMaterno = p.apeMaterno,
-                                 fechaIngreso = e.fecIngreso,
                                  telefono = p.telefono,
-                                 cargo = e.cargo,
-                                 area = e.descArea,
                                  numeroDocumento = (int)p.dniPersona,
-                                 idEmpleado = e.idEmpleado,
-                                 idEspecialidad = 0,
-                                 idMedico = 0,
-                                 idTipoEmpleado = e.idtpEmpleado,
-                                 numeroColegio = 0,
                                  ruc = p.nroRuc
                              }).FirstOrDefaultAsync();
-            if (Persona.idTipoEmpleado != 1)
+            Persona.personal = await (from e in _context.T120_EMPLEADO
+                                      where e.idPersona == Persona.idPersona
+                                      select new PersonalDTO
+                                      {
+                                          idEmpleado = e.idEmpleado,
+                                          idTipoEmpleado = e.idtpEmpleado,
+                                          fechaIngreso = e.fecIngreso,
+                                          cargo = e.cargo
+                                      }).FirstOrDefaultAsync();
+            if (Persona.personal.idTipoEmpleado != 109)
             {
-                var personaTemporal = await (from m in _context.T212_MEDICO
-                                             where m.idEmpleado == Persona.idEmpleado
-                                             select new PersonaDTO
+                PersonalDTO personaTemporal = new PersonalDTO();
+                personaTemporal = await (from m in _context.T212_MEDICO
+                                             where m.idEmpleado == Persona.personal.idEmpleado
+                                             select new PersonalDTO
                                              {
-                                                 idEspecialidad = m.idEspecialidad,
+                                                 idEspecialidad = (from tb in _context.D00_TBDETALLE
+                                                                   where m.idEspecialidad == tb.idDet
+                                                                   select m.idEspecialidad).FirstOrDefault(),
                                                  idMedico = m.idMedico,
                                                  numeroColegio = m.nroColegio
                                              }).FirstOrDefaultAsync();
-                Persona.idEspecialidad = personaTemporal.idEspecialidad;
-                Persona.idMedico = personaTemporal.idMedico;
-                Persona.numeroColegio = personaTemporal.numeroColegio;
+                Persona.personal.idEspecialidad = personaTemporal.idEspecialidad;
+                Persona.personal.idMedico = personaTemporal.idMedico;
+                Persona.personal.numeroColegio = personaTemporal.numeroColegio;
             }
             return Persona;
         }

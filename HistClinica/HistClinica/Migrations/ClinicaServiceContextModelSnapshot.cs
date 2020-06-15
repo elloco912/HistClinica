@@ -54,8 +54,7 @@ namespace HistClinica.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("estado")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(1)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("fechaMod")
                         .HasColumnType("nvarchar(max)");
@@ -255,8 +254,8 @@ namespace HistClinica.Migrations
                     b.Property<int?>("idEspecialidad")
                         .HasColumnType("int");
 
-                    b.Property<string>("idEstado")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("idEstado")
+                        .HasColumnType("int");
 
                     b.Property<int?>("idMedico")
                         .HasColumnType("int");
@@ -272,6 +271,42 @@ namespace HistClinica.Migrations
                     b.ToTable("D012_CRONOMEDICO");
                 });
 
+            modelBuilder.Entity("HistClinica.Models.D015_PAGO", b =>
+                {
+                    b.Property<int>("idPago")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("codTransacRetorno")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("codTransaccion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("estado")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("fecOkPasarela")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("fecRegistro")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("idCita")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("idFormaPago")
+                        .HasColumnType("int");
+
+                    b.Property<double?>("monto")
+                        .HasColumnType("float");
+
+                    b.HasKey("idPago");
+
+                    b.ToTable("D015_PAGO");
+                });
+
             modelBuilder.Entity("HistClinica.Models.D015_TPEMPLEADO", b =>
                 {
                     b.Property<int>("idtpEmpleado")
@@ -285,6 +320,39 @@ namespace HistClinica.Migrations
                     b.HasKey("idtpEmpleado");
 
                     b.ToTable("D015_TPEMPLEADO");
+                });
+
+            modelBuilder.Entity("HistClinica.Models.D024_CAJA", b =>
+                {
+                    b.Property<int>("idCaja")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("estado")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("nroCaja")
+                        .HasColumnType("int");
+
+                    b.HasKey("idCaja");
+
+                    b.ToTable("D024_CAJA");
+                });
+
+            modelBuilder.Entity("HistClinica.Models.D025_ASIGNACAJA", b =>
+                {
+                    b.Property<int?>("idCaja")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("idEmpleado")
+                        .HasColumnType("int");
+
+                    b.HasKey("idCaja");
+
+                    b.ToTable("D025_ASIGNACAJA");
                 });
 
             modelBuilder.Entity("HistClinica.Models.T000_PERSONA", b =>
@@ -393,9 +461,6 @@ namespace HistClinica.Migrations
                     b.Property<string>("nombreVia")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("nombres")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("nroBlock")
                         .HasColumnType("int");
 
@@ -417,7 +482,13 @@ namespace HistClinica.Migrations
                     b.Property<int?>("nroVia")
                         .HasColumnType("int");
 
+                    b.Property<string>("primerNombre")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("razonSocial")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("segundoNombre")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("telefono")
@@ -672,6 +743,9 @@ namespace HistClinica.Migrations
                     b.Property<string>("ejecutado")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("estado")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("estadoReprogram")
                         .HasColumnType("nvarchar(max)");
 
@@ -682,9 +756,6 @@ namespace HistClinica.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("idEmpleado")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("idEstAtencion")
                         .HasColumnType("int");
 
                     b.Property<int?>("idEstaGralPac")
@@ -699,11 +770,17 @@ namespace HistClinica.Migrations
                     b.Property<int?>("idProgramMedica")
                         .HasColumnType("int");
 
-                    b.Property<int?>("idTpAtencion")
+                    b.Property<int?>("idservicioCli")
                         .HasColumnType("int");
 
                     b.Property<double?>("igv")
                         .HasColumnType("float");
+
+                    b.Property<string>("motivoAnula")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("motivoRepro")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("nroCita")
                         .HasColumnType("int");
@@ -717,11 +794,11 @@ namespace HistClinica.Migrations
                     b.Property<string>("prioridad")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("servicio")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("tipoCita")
+                        .HasColumnType("int");
 
-                    b.Property<string>("tpAtencion")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("tpAtencion")
+                        .HasColumnType("int");
 
                     b.Property<string>("ultCie10")
                         .HasColumnType("nvarchar(max)");
@@ -861,6 +938,24 @@ namespace HistClinica.Migrations
                     b.HasKey("idMedico");
 
                     b.ToTable("T212_MEDICO");
+                });
+
+            modelBuilder.Entity("HistClinica.Models.T218_SERVICIOSCLI", b =>
+                {
+                    b.Property<int>("idservicioCli")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("descripcion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("estado")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("idservicioCli");
+
+                    b.ToTable("T218_SERVICIOSCLI");
                 });
 #pragma warning restore 612, 618
         }

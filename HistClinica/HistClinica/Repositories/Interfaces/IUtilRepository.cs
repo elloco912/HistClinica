@@ -9,5 +9,13 @@ namespace HistClinica.Repositories.Interfaces
 	public interface IUtilRepository
 	{
 		Task<object> GetTipo(string nombretipo);
+		Task<object> GetEspecialidad(int id);
+		Task<object> GetMedicoByEspecialidad(int id);
+		Task<object> GetMedicos();
+		Task<object> GetCronogramaByMedico(int id);
+		Task<object> GetHorasByCronograma(int id);
+		Task<object> GetHoras();
+		Task<object> GetCronograma();
+		Task<List<T109_ESTADOCITA>> getEstadoCita();
 	}
 }

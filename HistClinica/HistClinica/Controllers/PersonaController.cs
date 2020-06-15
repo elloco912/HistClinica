@@ -1,14 +1,13 @@
-﻿using System;
+﻿using HistClinica.Data;
+using HistClinica.DTO;
+using HistClinica.Models;
+using HistClinica.Repositories.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using HistClinica.Data;
-using HistClinica.Models;
-using HistClinica.Repositories.Interfaces;
-using HistClinica.DTO;
 
 namespace HistClinica.Controllers
 {
@@ -17,18 +16,25 @@ namespace HistClinica.Controllers
         private readonly ClinicaServiceContext _context;
         private readonly IPersonaRepository _personaRepository;
         private readonly IUtilRepository _utilrepository;
+        private readonly IEmpleadoRepository _empleadorepository;
+        private readonly IAsignaCaja _asignaCajaRepository;
+        private readonly IUsuarioRepository _usuarioRepository;
 
-        public PersonaController(IPersonaRepository personaRepository,ClinicaServiceContext contexto,IUtilRepository utilRepository)
+        public PersonaController(IPersonaRepository personaRepository,ClinicaServiceContext contexto,IUtilRepository utilRepository,
+                                IEmpleadoRepository empleadoRepository, IAsignaCaja asignaCajaRepository, IUsuarioRepository usuarioRepository)
         {
             _context = contexto;
             _personaRepository = personaRepository;
             _utilrepository = utilRepository;
+            _empleadorepository = empleadoRepository;
+            _asignaCajaRepository = asignaCajaRepository;
+            _usuarioRepository = usuarioRepository;
         }
 
         // GET: Persona
         public async Task<IActionResult> Index()
         {
-            return View(await _personaRepository.GetAllPersonas());
+            return View(await _personaRepository.GetAllPersonal());
         }
 
         // GET: Persona/Details/5
@@ -51,13 +57,11 @@ namespace HistClinica.Controllers
         // GET: Persona/Create
         public async Task<IActionResult> Create()
         {
-            var lespecialidads = new Object();
-            lespecialidads = await _utilrepository.GetTipo("Especialidad");
+            var lespecialidads = await _utilrepository.GetTipo("Especialidad");
             ViewBag.listaespecialidades = lespecialidads;
 
             //combo tipo de empleado
-            var tipoEmpleados = new Object();
-            tipoEmpleados = await _utilrepository.GetTipo("Tipo Empleado");
+            var tipoEmpleados = await _utilrepository.GetTipo("Tipo Empleado");
             ViewBag.lsttipoempleado = tipoEmpleados;
             return View();
         }
@@ -83,13 +87,11 @@ namespace HistClinica.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         public async Task<IActionResult> Editar(int idpersona)
         {
-            var lespecialidads = new Object();
-            lespecialidads = await _utilrepository.GetTipo("Especialidad");
+            var lespecialidads = await _utilrepository.GetTipo("Especialidad");
             ViewBag.listaespecialidades = lespecialidads;
 
             //combo tipo de empleado
-            var tipoEmpleados = new Object();
-            tipoEmpleados = await _utilrepository.GetTipo("Tipo Empleado");
+            var tipoEmpleados = await _utilrepository.GetTipo("Tipo Empleado");
             ViewBag.lsttipoempleado = tipoEmpleados;
 
             PersonaDTO persona = await _personaRepository.GetById(idpersona);
@@ -99,8 +101,8 @@ namespace HistClinica.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id,PersonaDTO personaDTO)
-        {       
+        public async Task<IActionResult> Edit(int id, PersonaDTO personaDTO)
+        {
             if (personaDTO != null)
             {
                 try
@@ -141,13 +143,55 @@ namespace HistClinica.Controllers
         }
 
         // POST: Persona/Delete/5
-      //  [HttpPost, ActionName("Delete")]
-       // [ValidateAntiForgeryToken]
+        //  [HttpPost, ActionName("Delete")]
+        // [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var persona = await _personaRepository.GetById(id);
             await _personaRepository.DeletePersona(id);
             return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Asignar(int? id)
+        {
+            var tipoEmpleados = await _utilrepository.GetTipo("Tipo Empleado");
+            ViewBag.lsttipoempleado = tipoEmpleados;
+
+            PersonaDTO persona = await _empleadorepository.GetById(id);
+            return PartialView(persona);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Asignar(int? idEmpleado,int? idCaja, string claveUser,string usuRegistra)
+        {
+            if (idEmpleado != null)
+            {
+                try
+                {
+                    if(idCaja != null)
+                    {
+                        await _asignaCajaRepository.InsertAsignaCaja(idCaja,idEmpleado);
+                    }
+                    if(claveUser != null)
+                    {
+                        await _usuarioRepository.InsertUsuario(claveUser,usuRegistra,idEmpleado);
+                    }
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (await _usuarioRepository.UsuarioExists(idEmpleado))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View();
         }
     }
 }

@@ -4,13 +4,12 @@ using HistClinica.Models;
 using HistClinica.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace HistClinica.Repositories.Repositories
 {
-    public class MedicoRepository:IMedicoRepository
+    public class MedicoRepository : IMedicoRepository
     {
         private readonly ClinicaServiceContext _context;
         public MedicoRepository(ClinicaServiceContext context)
@@ -44,7 +43,7 @@ namespace HistClinica.Repositories.Repositories
         {
             return await _context.T212_MEDICO.AnyAsync(e => e.idMedico == id);
         }
-        public async Task<string> InsertMedico(PersonaDTO Persona,int idPersona, int idEmpleado)
+        public async Task<string> InsertMedico(PersonaDTO Persona, int idPersona, int idEmpleado)
         {
             try
             {
@@ -52,13 +51,13 @@ namespace HistClinica.Repositories.Repositories
                 {
                     idEmpleado = idEmpleado,
                     idPersona = idPersona,
-                    nroColegio = Persona.numeroColegio,
+                    nroColegio = Persona.personal.numeroColegio,
                     nroRuc = Persona.ruc,
-                    idEspecialidad = Persona.idEspecialidad,
-                    estado = Persona.estadoPersonal,
-                    codMedico = Persona.codMedico,
-                    condicion = Persona.condicion,
-                    nroRne = Persona.nroRne,
+                    idEspecialidad = Persona.personal.idEspecialidad,
+                    estado = Persona.personal.estadoPersonal,
+                    codMedico = Persona.personal.codMedico,
+                    condicion = Persona.personal.condicion,
+                    nroRne = Persona.personal.nroRne,
                     idtpDocumento = Persona.idTipoDocumento
                 };
                 await _context.T212_MEDICO.AddAsync(Medico);
@@ -77,15 +76,15 @@ namespace HistClinica.Repositories.Repositories
                 T212_MEDICO Medico = new T212_MEDICO()
                 {
                     idPersona = Persona.idPersona,
-                    idEmpleado = Persona.idEmpleado,
-                    idMedico = (int)Persona.idMedico,
-                    nroColegio = Persona.numeroColegio,
+                    idEmpleado = Persona.personal.idEmpleado,
+                    idMedico = (int)Persona.personal.idMedico,
+                    nroColegio = Persona.personal.numeroColegio,
                     nroRuc = Persona.ruc,
-                    idEspecialidad = Persona.idEspecialidad,
-                    estado = Persona.estadoPersonal,
-                    codMedico = Persona.codMedico,
-                    condicion = Persona.condicion,
-                    nroRne = Persona.nroRne,
+                    idEspecialidad = Persona.personal.idEspecialidad,
+                    estado = Persona.personal.estadoPersonal,
+                    codMedico = Persona.personal.codMedico,
+                    condicion = Persona.personal.condicion,
+                    nroRne = Persona.personal.nroRne,
                     idtpDocumento = Persona.idTipoDocumento
                 };
                 _context.Update(Medico);
@@ -102,8 +101,8 @@ namespace HistClinica.Repositories.Repositories
         public async Task<int> GetIdMedico(int? id)
         {
             int idMedico = await (from p in _context.T212_MEDICO
-                                        where p.idPersona == id
-                                            select p.idMedico).FirstOrDefaultAsync();
+                                  where p.idPersona == id
+                                  select p.idMedico).FirstOrDefaultAsync();
             return idMedico;
         }
     }

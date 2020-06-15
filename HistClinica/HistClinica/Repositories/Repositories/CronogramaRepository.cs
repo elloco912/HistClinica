@@ -1,10 +1,12 @@
 ﻿using HistClinica.Data;
+using HistClinica.DTO;
 using HistClinica.Models;
 using HistClinica.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
 
 namespace HistClinica.Repositories.Repositories
@@ -99,12 +101,35 @@ namespace HistClinica.Repositories.Repositories
 			}
 		}
 
-		public async Task<List<D012_CRONOMEDICO>> GetCronogramaByMedico(int idmedico)
+		public async Task<List<CronogramaDTO>> GetCronogramaByMedico(int idmedico)
 		{
-			List<D012_CRONOMEDICO> cronogramas = await (from c in _context.D012_CRONOMEDICO
+			List<CronogramaDTO> cronogramas = await (from c in _context.D012_CRONOMEDICO 
+													 join td in _context.D00_TBDETALLE on c.idEstado equals td.idDet
 														where c.idMedico == idmedico
-														select c).ToListAsync();
+														select new CronogramaDTO {
+															idProgramMedica = c.idProgramMedica,
+															fecProgramMedica = c.fecProgramMedica,
+															hrInicio = c.hrInicio,
+															hrFin = c.hrFin,
+															desEstado = td.descripcion
+														}
+														).ToListAsync();
 			return cronogramas;
+		}
+
+		public async Task<List<CronogramaDTO>> GetAllCronogramasConsulta()
+		{
+			List<CronogramaDTO> D012_CRONOMEDICOs = await(from c in _context.D012_CRONOMEDICO
+														  join td in _context.D00_TBDETALLE on c.idEstado equals td.idDet
+														  select new CronogramaDTO
+														  {
+															  idProgramMedica = c.idProgramMedica,
+															  fecProgramMedica = c.fecProgramMedica,
+															  hrInicio = c.hrInicio,
+															  hrFin = c.hrFin,
+															  desEstado = td.descripcion
+														  }).ToListAsync();
+			return D012_CRONOMEDICOs;
 		}
 	}
 }

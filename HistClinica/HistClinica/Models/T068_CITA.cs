@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HistClinica.Models
 {
@@ -15,8 +12,7 @@ namespace HistClinica.Models
 		public string descripcion { get; set; }
 		public DateTime? fechaCita { get; set; }
 		public string ultCie10 { get; set; }
-		public string servicio { get; set; }
-		public string tpAtencion { get; set; }
+		public int? tpAtencion { get; set; }
 		public int? nroHC { get; set; }
 		public int? idEstadoCita { get; set; }
 		public int? idEstaGralPac { get; set; }
@@ -27,11 +23,14 @@ namespace HistClinica.Models
 		public double? descuento { get; set; }
 		public double? coa { get; set; }
 		public double? igv { get; set; }
+		public int? tipoCita { get; set; }
+		public string motivoRepro { get; set; }
+		public string motivoAnula { get; set; }
 		public int? idPaciente { get; set; }
 		public int? idEmpleado { get; set; }
 		public int? idConsultorio { get; set; }
 		public int? idProgramMedica { get; set; }
-		public int? idTpAtencion { get; set; }
-		public int? idEstAtencion { get; set; }
+		public int? idservicioCli { get; set; }
+		public string estado { get; set; }
 	}
 }
