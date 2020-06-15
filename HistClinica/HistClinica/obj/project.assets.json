@@ -9902,11 +9902,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\MARCO\\Desktop\\version1\\HistClinica\\HistClinica\\HistClinica\\HistClinica.csproj",
+      "projectUniqueName": "C:\\Users\\MARCO\\Desktop\\version3\\HistClinica\\HistClinica\\HistClinica\\HistClinica.csproj",
       "projectName": "HistClinica",
-      "projectPath": "C:\\Users\\MARCO\\Desktop\\version1\\HistClinica\\HistClinica\\HistClinica\\HistClinica.csproj",
+      "projectPath": "C:\\Users\\MARCO\\Desktop\\version3\\HistClinica\\HistClinica\\HistClinica\\HistClinica.csproj",
       "packagesPath": "C:\\Users\\MARCO\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\MARCO\\Desktop\\version1\\HistClinica\\HistClinica\\HistClinica\\obj\\",
+      "outputPath": "C:\\Users\\MARCO\\Desktop\\version3\\HistClinica\\HistClinica\\HistClinica\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"

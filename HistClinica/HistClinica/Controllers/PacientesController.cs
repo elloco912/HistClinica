@@ -24,7 +24,7 @@ namespace HistClinica.Controllers
             _context = context;
         }
 
-        public static List<Paciente> lista;
+        public static List<T001_PACIENTE> lista;
 
         //Metodo que nos descargue el archivo->Descargar
 
@@ -138,8 +138,8 @@ namespace HistClinica.Controllers
         public async Task<IActionResult> Index()
         {
 
-            lista = await _context.Paciente.ToListAsync();
-            return View(await _context.Paciente.ToListAsync());
+            lista = await _context.T001_PACIENTE.ToListAsync();
+            return View(await _context.T001_PACIENTE.ToListAsync());
         }
 
         // GET: Pacientes/Details/5
@@ -150,7 +150,7 @@ namespace HistClinica.Controllers
                 return NotFound();
             }
 
-            var paciente = await _context.Paciente
+            var paciente = await _context.T001_PACIENTE
                 .FirstOrDefaultAsync(m => m.idPaciente == id);
             if (paciente == null)
             {
@@ -171,7 +171,7 @@ namespace HistClinica.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("idPaciente,idtpPaciente,descripcion,idAsegurado,nrohc,nomAcompana,edadAcompana,dniAcompana,idgpoSangre,idFactorrh,idPersona,idPacConvenio,estado")] Paciente paciente)
+        public async Task<IActionResult> Create([Bind("idPaciente,idtpPaciente,descripcion,idAsegurado,nrohc,nomAcompana,edadAcompana,dniAcompana,idgpoSangre,idFactorrh,idPersona,idPacConvenio,estado")] T001_PACIENTE paciente)
         {
             if (ModelState.IsValid)
             {
@@ -190,7 +190,7 @@ namespace HistClinica.Controllers
                 return NotFound();
             }
 
-            var paciente = await _context.Paciente.FindAsync(id);
+            var paciente = await _context.T001_PACIENTE.FindAsync(id);
             if (paciente == null)
             {
                 return NotFound();
@@ -203,7 +203,7 @@ namespace HistClinica.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("idPaciente,idtpPaciente,descripcion,idAsegurado,nrohc,nomAcompana,edadAcompana,dniAcompana,idgpoSangre,idFactorrh,idPersona,idPacConvenio,estado")] Paciente paciente)
+        public async Task<IActionResult> Edit(int id, [Bind("idPaciente,idtpPaciente,descripcion,idAsegurado,nrohc,nomAcompana,edadAcompana,dniAcompana,idgpoSangre,idFactorrh,idPersona,idPacConvenio,estado")] T001_PACIENTE paciente)
         {
             if (id != paciente.idPaciente)
             {
@@ -241,7 +241,7 @@ namespace HistClinica.Controllers
                 return NotFound();
             }
 
-            var paciente = await _context.Paciente
+            var paciente = await _context.T001_PACIENTE
                 .FirstOrDefaultAsync(m => m.idPaciente == id);
             if (paciente == null)
             {
@@ -256,15 +256,15 @@ namespace HistClinica.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var paciente = await _context.Paciente.FindAsync(id);
-            _context.Paciente.Remove(paciente);
+            var paciente = await _context.T001_PACIENTE.FindAsync(id);
+            _context.T001_PACIENTE.Remove(paciente);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool PacienteExists(int id)
         {
-            return _context.Paciente.Any(e => e.idPaciente == id);
+            return _context.T001_PACIENTE.Any(e => e.idPaciente == id);
         }
     }
 }

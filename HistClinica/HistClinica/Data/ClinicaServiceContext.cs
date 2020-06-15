@@ -1,11 +1,14 @@
 ﻿using HistClinica.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
-
 namespace HistClinica.Data
 {
     public class ClinicaServiceContext:DbContext
     {
+        public ClinicaServiceContext()
+        {
+        }
+
         public ClinicaServiceContext(DbContextOptions<ClinicaServiceContext> options)
        : base(options)
         { }
@@ -27,6 +30,7 @@ namespace HistClinica.Data
         public DbSet<D010_PACACOMPANA> D010_PACACOMPANA { get; set; }
         public DbSet<T001_PACASEGURADO> T001_PACASEGURADO { get; set; }
         public DbSet<T001_PACCONVENIO> T001_PACCONVENIO { get; set; }
+        //public DbSet<HistClinica.Clases.DetalleCLS> DetalleCLS { get; set; }
 
     }
 }

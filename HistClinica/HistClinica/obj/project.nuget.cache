@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3jyS0E4NWi6rTEYRj4OygBKdZJ7siLrOoisz1PdSjcTHDOZlaQq6ehxyte7MWwAgM1xbOTdnmnmg0DR7D7sDMg==",
+  "dgSpecHash": "N4TiJHLqbtTpkcgidjhv+lw5EI4TaKa7fb8FdcvIjzmgfwaokRqK05h/5ZKEK7HI5exAtcbQ9/TiPnaK+fej6g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\MARCO\\Desktop\\version1\\HistClinica\\HistClinica\\HistClinica\\HistClinica.csproj",
+  "projectFilePath": "C:\\Users\\MARCO\\Desktop\\version3\\HistClinica\\HistClinica\\HistClinica\\HistClinica.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\MARCO\\.nuget\\packages\\common.logging\\3.4.1\\common.logging.3.4.1.nupkg.sha512",
     "C:\\Users\\MARCO\\.nuget\\packages\\common.logging.core\\3.4.1\\common.logging.core.3.4.1.nupkg.sha512",

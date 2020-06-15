@@ -57,6 +57,7 @@ namespace HistClinica.Repositories.Repositories
 			return D012_CRONOMEDICOs;
 		}
 
+		//guiate con esto y el interface? 
 		public async Task<D012_CRONOMEDICO> GetByIdCrono(int CronoID)
 		{
 			D012_CRONOMEDICO D012_CRONOMEDICOs = await (from c in _context.D012_CRONOMEDICO

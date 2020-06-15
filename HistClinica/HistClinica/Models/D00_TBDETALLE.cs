@@ -15,7 +15,9 @@ namespace HistClinica.Models
 		public string abrev { get; set; }
 		public string fuente { get; set; }
 		public string estado { get; set; }
-		public int? idTab { get; set; }
+        public int? idTab { get; set; }
 
-	}
+
+
+    }
 }
