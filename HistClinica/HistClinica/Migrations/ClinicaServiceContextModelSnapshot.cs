@@ -19,6 +19,30 @@ namespace HistClinica.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("HistClinica.Clases.DetalleCLS", b =>
+                {
+                    b.Property<int>("idDet")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("coddetTab")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("descripcion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("descripcionGeneral")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("idDet");
+
+                    b.ToTable("DetalleCLS");
+                });
+
             modelBuilder.Entity("HistClinica.Models.D001_USUARIO", b =>
                 {
                     b.Property<int>("idUsuario")
