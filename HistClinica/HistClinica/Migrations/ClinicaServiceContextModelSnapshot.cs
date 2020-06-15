@@ -15,7 +15,7 @@ namespace HistClinica.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.3")
+                .HasAnnotation("ProductVersion", "3.1.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -318,15 +318,13 @@ namespace HistClinica.Migrations
 
             modelBuilder.Entity("HistClinica.Models.D025_ASIGNACAJA", b =>
                 {
-                    b.Property<int?>("idCaja")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("idEmpleado")
+                    b.Property<int>("idCaja")
                         .HasColumnType("int");
 
-                    b.HasKey("idCaja");
+                    b.Property<int>("idEmpleado")
+                        .HasColumnType("int");
+
+                    b.HasKey("idCaja", "idEmpleado");
 
                     b.ToTable("D025_ASIGNACAJA");
                 });

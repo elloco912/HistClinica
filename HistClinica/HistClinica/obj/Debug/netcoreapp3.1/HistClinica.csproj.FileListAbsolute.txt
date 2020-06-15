@@ -198,3 +198,5 @@ D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.dll
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.pdb
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.genruntimeconfig.cache
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.csprojAssemblyReference.cache
+D:\HistClinica\HistClinica\HistClinica\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
+D:\HistClinica\HistClinica\HistClinica\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll

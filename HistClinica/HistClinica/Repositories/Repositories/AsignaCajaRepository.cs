@@ -50,8 +50,8 @@ namespace HistClinica.Repositories.Repositories
             {
                 await _context.D025_ASIGNACAJA.AddAsync(new D025_ASIGNACAJA()
                 {
-                    idEmpleado = persona.personal.idEmpleado,
-                    idCaja = persona.asignacion.idCaja
+                    idEmpleado = (int) persona.personal.idEmpleado,
+                    idCaja = (int) persona.asignacion.idCaja
                 });
                 await Save();
                 return "Ingreso Exitoso";

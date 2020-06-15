@@ -190,13 +190,12 @@ namespace HistClinica.Migrations
                 name: "D025_ASIGNACAJA",
                 columns: table => new
                 {
-                    idCaja = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    idEmpleado = table.Column<int>(nullable: true)
+                    idCaja = table.Column<int>(nullable: false),
+                    idEmpleado = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_D025_ASIGNACAJA", x => x.idCaja);
+                    table.PrimaryKey("PK_D025_ASIGNACAJA", x => new { x.idCaja, x.idEmpleado });
                 });
 
             migrationBuilder.CreateTable(
