@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
-namespace HistClinica.Clases
+namespace HistClinica.DTO
 {
-    public class Detalle
+    public class DetalleDTO
     {
         [Key]
         [Display(Name = "Id Detalle")]

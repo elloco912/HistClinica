@@ -1,5 +1,5 @@
-﻿@using HistClinica.Clases;
-@model IEnumerable<Detalle>
+﻿@using HistClinica.DTO;
+@model IEnumerable<DetalleDTO>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -40,7 +40,7 @@
 
     </thead>
     <tbody>
-        @foreach (Detalle oDetalle in Model)
+        @foreach (DetalleDTO oDetalle in Model)
         {
             <tr>
                 <td>@oDetalle.idDet</td>

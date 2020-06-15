@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="NewFolder\**" />
+    <Content Remove="NewFolder\**" />
+    <EmbeddedResource Remove="NewFolder\**" />
+    <None Remove="NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Migrations\20200604173314_datanueva.cs" />
     <Compile Remove="Migrations\20200604173314_datanueva.Designer.cs" />
     <Compile Remove="Migrations\20200604174518_nuevo.cs" />
@@ -49,7 +56,6 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
-    <Folder Include="NewFolder\" />
   </ItemGroup>
 
 

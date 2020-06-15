@@ -3,48 +3,56 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using HistClinica.Clases;
 using HistClinica.Models;
+using HistClinica.DTO;
+using HistClinica.Data;
+using HistClinica.Repositories.Interfaces;
+
 namespace HistClinica.Controllers
 {
     public class DetalleController : Controller
     {
-        public IActionResult Index(Detalle oDetalle)
+        IDetalleRepository _detalleRepository;
+        public DetalleController(IDetalleRepository detalleRepository)
         {
-            List<Detalle> listaDetalle = new List<Detalle>();
-            using (ClinicaContext db = new ClinicaContext())
+            _detalleRepository = detalleRepository;
+        }
+        public async Task<IActionResult> IndexAsync(DetalleDTO oDetalle)
+        {
+            //List<DetalleDTO> listaDetalle = new List<DetalleDTO>();
+            //using (ClinicaServiceContext db = new ClinicaServiceContext())
 
-            {
-                if (oDetalle.coddetTab == null || oDetalle.coddetTab == "")
-                {
-                    listaDetalle = (from detalle in db.D00Tbdetalle
-                                    where detalle.IdTab == 1
-                                         select new Detalle
-                                         {
-                                             idDet = detalle.IdDet,
-                                             coddetTab = detalle.CoddetTab,
-                                             descripcion = detalle.Descripcion,
-                                         }).ToList();
+            //{
+            //    if (oDetalle.coddetTab == null || oDetalle.coddetTab == "")
+            //    {
+            //        listaDetalle = (from detalle in db.D00_TBDETALLE
+            //                        where detalle.idTab == 1
+            //                             select new DetalleDTO
+            //                             {
+            //                                 idDet = detalle.idDet,
+            //                                 coddetTab = detalle.coddetTab,
+            //                                 descripcion = detalle.descripcion,
+            //                             }).ToList();
 
-                    ViewBag.nombreDetalle = "";
-                }
+            //        ViewBag.nombreDetalle = "";
+            //    }
 
-                else
+            //    else
 
-                {
-                    listaDetalle = (from detalle in db.D00Tbdetalle
-                                    where detalle.IdTab == 1
-                                         && detalle.CoddetTab.Contains(oDetalle.coddetTab)
-                                         select new Detalle
-                                         {
-                                             idDet = detalle.IdDet,
-                                             coddetTab = detalle.CoddetTab,
-                                             descripcion = detalle.Descripcion,
-                                         }).ToList();
-                    ViewBag.nombreEspecialidad = (oDetalle.coddetTab);
-                }
-            }
-            return View(listaDetalle);
+            //    {
+            //        listaDetalle = (from detalle in db.D00_TBDETALLE
+            //                        where detalle.idTab == 1
+            //                             && detalle.coddetTab.Contains(oDetalle.coddetTab)
+            //                             select new DetalleDTO
+            //                             {
+            //                                 idDet = detalle.idDet,
+            //                                 coddetTab = detalle.coddetTab,
+            //                                 descripcion = detalle.descripcion,
+            //                             }).ToList();
+            //        ViewBag.nombreEspecialidad = (oDetalle.coddetTab);
+            //    }
+            //}
+            return View(await _detalleRepository.GetAllDetalles());
         }
 
 
@@ -60,31 +68,32 @@ namespace HistClinica.Controllers
         //}
 
         [HttpPost]
-        public IActionResult Agregar(Detalle oDetalle)
+        public async Task<IActionResult> AgregarAsync(DetalleDTO oDetalle)
         {
             try
             {
 
-                //Conexion a BD
-                using (ClinicaContext db = new ClinicaContext())
-                {
+                ////Conexion a BD
+                //using (ClinicaServiceContext db = new ClinicaServiceContext())
+                //{
 
-                    if (!ModelState.IsValid)
-                    {
-                        return View(oDetalle);
-                    }
-                    else
-                    {
+                //    if (!ModelState.IsValid)
+                //    {
+                //        return View(oDetalle);
+                //    }
+                //    else
+                //    {
 
-                        D00Tbdetalle objeto = new D00Tbdetalle();
-                        objeto.CoddetTab = oDetalle.coddetTab;
-                        objeto.Descripcion = oDetalle.descripcion;
-                        objeto.IdTab = 1;
-                        db.D00Tbdetalle.Add(objeto);
-                        db.SaveChanges();
-                    }
+                //        D00_TBDETALLE objeto = new D00_TBDETALLE();
+                //        objeto.coddetTab = oDetalle.coddetTab;
+                //        objeto.descripcion = oDetalle.descripcion;
+                //        objeto.idTab = 1;
+                //        db.D00_TBDETALLE.Add(objeto);
+                //        db.SaveChanges();
+                //    }
 
-                }
+                //}
+                await _detalleRepository.InsertDetalle(oDetalle);
             }
             catch (Exception ex)
             {
@@ -95,21 +104,22 @@ namespace HistClinica.Controllers
         }
 
         [HttpPost]
-        public ActionResult Eliminar(int idDet)
+        public async Task<ActionResult> EliminarAsync(int idDet)
         {
-            
-
-            
-                using (ClinicaContext db = new ClinicaContext())
-                {
-                    D00Tbdetalle oDetalle = db.D00Tbdetalle.Where(p => p.IdDet == idDet).First();
-                    db.D00Tbdetalle.Remove(oDetalle);
-                    db.SaveChanges();
-                    
 
 
 
-                }
+            //using (ClinicaServiceContext db = new ClinicaServiceContext())
+            //{
+            //    D00_TBDETALLE oDetalle = db.D00_TBDETALLE.Where(p => p.idDet == idDet).First();
+            //    db.D00_TBDETALLE.Remove(oDetalle);
+            //    db.SaveChanges();
+
+
+
+
+            //}
+                await _detalleRepository.DeleteDetalle(idDet);
                 return RedirectToAction("Index");
 
 
@@ -118,27 +128,17 @@ namespace HistClinica.Controllers
 
 
         //[HttpPost] Ya esta . Saludos
-        public IActionResult Editar(int idDet)
+        public async Task<IActionResult> EditarAsync(int idDet)
         {    
             //todo esto lo deberia tener en el repositorio, aca solo llamar al metodo edit
             // no lo hice asi el agregar tmb esta asi y no hay 
-            Detalle oDetalle = new Detalle();
-            using (ClinicaContext db = new ClinicaContext())
-            {
-                oDetalle = (from detalle in db.D00Tbdetalle
-                            where detalle.IdDet == idDet
-                            select new Detalle
-                            {
-                                idDet = detalle.IdDet,
-                                coddetTab = detalle.CoddetTab,
-                                descripcion = detalle.Descripcion
-                            }).First();
-            }
+            DetalleDTO oDetalle = new DetalleDTO();
+            //using (ClinicaServiceContext db = new ClinicaServiceContext())
+            //{
+            oDetalle = await _detalleRepository.GetById(idDet);
+            //}
             return View(oDetalle);
         }
-
-       
-        
     }
 }
 

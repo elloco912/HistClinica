@@ -30,7 +30,10 @@ namespace HistClinica.Data
         public DbSet<D010_PACACOMPANA> D010_PACACOMPANA { get; set; }
         public DbSet<T001_PACASEGURADO> T001_PACASEGURADO { get; set; }
         public DbSet<T001_PACCONVENIO> T001_PACCONVENIO { get; set; }
-        //public DbSet<HistClinica.Clases.DetalleCLS> DetalleCLS { get; set; }
+        public DbSet<D024_CAJA> D024_CAJA { get; set; }
+        public DbSet<D025_ASIGNACAJA> D025_ASIGNACAJA { get; set; }
+        public DbSet<D015_PAGO> D015_PAGO { get; set; }
+        public DbSet<T218_SERVICIOSCLI> T218_SERVICIOSCLI { get; set; }
 
     }
 }
