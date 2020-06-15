@@ -1,6 +1,4 @@
-﻿@using HistClinica.Clases;
-@model Detalle
-@{
+﻿@{
     ViewData["Title"] = "Agregar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -16,9 +14,9 @@
 
             <div class="form-group">
 
-                <label asp-for="coddetTab"></label>
-                <input asp-for="coddetTab" class="form form-control" />
-                <span asp-validation-for="coddetTab" class="text-danger"></span>
+                <label></label>
+                <input class="form form-control" />
+                <spa asp-validation-for="" class="text-danger"></spa>
                 @*@if (Model != null && Model.mensajeError != "")
                 {
                     <p class="text-danger">El nombre de la especialidad ya existe</p>
@@ -27,9 +25,9 @@
 
             <div class="form-group">
 
-                <label asp-for="descripcion"></label>
-                <input asp-for="descripcion" class="form form-control" />
-                <span asp-validation-for="descripcion" class="text-danger"></span>
+                <label></label>
+                <input class="form form-control" />
+                <span class="text-danger"></span>
             </div>
 
             <div class="form-group">
