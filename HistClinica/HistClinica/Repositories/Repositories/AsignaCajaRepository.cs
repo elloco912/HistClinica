@@ -1,4 +1,5 @@
 ﻿using HistClinica.Data;
+using HistClinica.DTO;
 using HistClinica.Models;
 using HistClinica.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -43,14 +44,14 @@ namespace HistClinica.Repositories.Repositories
         {
             return await _context.T068_CITA.AnyAsync(e => e.idCita == id);
         }
-        public async Task<string> InsertAsignaCaja(int? idCaja, int? idEmpleado)
+        public async Task<string> InsertAsignaCaja(PersonaDTO persona)
         {
             try
             {
                 await _context.D025_ASIGNACAJA.AddAsync(new D025_ASIGNACAJA()
                 {
-                    idEmpleado = idEmpleado,
-                    idCaja = idCaja
+                    idEmpleado = persona.personal.idEmpleado,
+                    idCaja = persona.asignacion.idCaja
                 });
                 await Save();
                 return "Ingreso Exitoso";
