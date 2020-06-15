@@ -44,21 +44,21 @@ namespace HistClinica.Repositories.Repositories
         {
             return await _context.T068_CITA.AnyAsync(e => e.idCita == id);
         }
-        public async Task<string> InsertUsuario(string claveUser, string usuRegistra, int? idEmpleado)
+        public async Task<string> InsertUsuario(PersonaDTO persona)
         {
             try
             {
-                T000_PERSONA persona = await (from p in _context.T000_PERSONA
+                string login = await (from p in _context.T000_PERSONA
                                             join e in _context.T120_EMPLEADO on p.idPersona equals e.idPersona
-                                            where e.idEmpleado == idEmpleado
-                                            select p).FirstOrDefaultAsync();
+                                            where e.idEmpleado == persona.personal.idEmpleado
+                                              select p.primerNombre.Substring(0, 1) + p.apePaterno + p.fecNacimiento.Substring(0, 2)).FirstOrDefaultAsync();
                 await _context.D001_USUARIO.AddAsync(new D001_USUARIO()
                 {
-                    idEmpleado = idEmpleado,
+                    idEmpleado = persona.personal.idEmpleado,
                     fechaRegistra = DateTime.Now.ToString(),
-                    loginUser = persona.primerNombre.Substring(0,1) + persona.apePaterno + persona.fecNacimiento.Substring(0,2),
-                    claveUser = claveUser,
-                    usuRegistra = usuRegistra,
+                    loginUser = login,
+                    claveUser = persona.asignacion.claveUser,
+                    usuRegistra = persona.asignacion.usuRegistra,
                     estado = "ACTIVO"
                 });
                 await Save();

@@ -163,24 +163,24 @@ namespace HistClinica.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Asignar(int? idEmpleado,int? idCaja, string claveUser,string usuRegistra)
+        public async Task<IActionResult> Asignar(PersonaDTO personaDTO)
         {
-            if (idEmpleado != null)
+            if (personaDTO.personal.idEmpleado != null)
             {
                 try
                 {
-                    if(idCaja != null)
+                    if(personaDTO.asignacion.idCaja != null)
                     {
-                        await _asignaCajaRepository.InsertAsignaCaja(idCaja,idEmpleado);
+                        await _asignaCajaRepository.InsertAsignaCaja(personaDTO);
                     }
-                    if(claveUser != null)
+                    if(personaDTO.asignacion.claveUser != null)
                     {
-                        await _usuarioRepository.InsertUsuario(claveUser,usuRegistra,idEmpleado);
+                        await _usuarioRepository.InsertUsuario(personaDTO);
                     }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (await _usuarioRepository.UsuarioExists(idEmpleado))
+                    if (await _usuarioRepository.UsuarioExists(personaDTO.personal.idEmpleado))
                     {
                         return NotFound();
                     }
