@@ -3,11 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HistClinica.Migrations
 {
-<<<<<<< HEAD:HistClinica/HistClinica/Migrations/20200611143810_nombremigracion.cs
     public partial class nombremigracion : Migration
-=======
-    public partial class nueva : Migration
->>>>>>> origin/desarrollo-bertol:HistClinica/HistClinica/Migrations/20200613173141_nueva.cs
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -54,7 +50,7 @@ namespace HistClinica.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     loginUser = table.Column<string>(nullable: true),
                     claveUser = table.Column<string>(nullable: true),
-                    idEmpleado = table.Column<int>(nullable: false),
+                    idEmpleado = table.Column<int>(nullable: true),
                     estado = table.Column<string>(nullable: true),
                     usuRegistra = table.Column<string>(nullable: true),
                     fechaRegistra = table.Column<string>(nullable: true),
@@ -177,20 +173,6 @@ namespace HistClinica.Migrations
                 });
 
             migrationBuilder.CreateTable(
-<<<<<<< HEAD:HistClinica/HistClinica/Migrations/20200611143810_nombremigracion.cs
-                name: "DetalleCLS",
-                columns: table => new
-                {
-                    idDet = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    coddetTab = table.Column<string>(nullable: false),
-                    descripcion = table.Column<string>(nullable: false),
-                    descripcionGeneral = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DetalleCLS", x => x.idDet);
-=======
                 name: "D024_CAJA",
                 columns: table => new
                 {
@@ -215,7 +197,6 @@ namespace HistClinica.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_D025_ASIGNACAJA", x => x.idCaja);
->>>>>>> origin/desarrollo-bertol:HistClinica/HistClinica/Migrations/20200613173141_nueva.cs
                 });
 
             migrationBuilder.CreateTable(
@@ -530,14 +511,10 @@ namespace HistClinica.Migrations
                 name: "D015_TPEMPLEADO");
 
             migrationBuilder.DropTable(
-<<<<<<< HEAD:HistClinica/HistClinica/Migrations/20200611143810_nombremigracion.cs
-                name: "DetalleCLS");
-=======
                 name: "D024_CAJA");
 
             migrationBuilder.DropTable(
                 name: "D025_ASIGNACAJA");
->>>>>>> origin/desarrollo-bertol:HistClinica/HistClinica/Migrations/20200613173141_nueva.cs
 
             migrationBuilder.DropTable(
                 name: "T000_PERSONA");

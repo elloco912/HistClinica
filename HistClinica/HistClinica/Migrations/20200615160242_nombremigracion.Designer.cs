@@ -10,13 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HistClinica.Migrations
 {
     [DbContext(typeof(ClinicaServiceContext))]
-<<<<<<< HEAD:HistClinica/HistClinica/Migrations/20200611143810_nombremigracion.Designer.cs
-    [Migration("20200611143810_nombremigracion")]
+    [Migration("20200615160242_nombremigracion")]
     partial class nombremigracion
-=======
-    [Migration("20200613173141_nueva")]
-    partial class nueva
->>>>>>> origin/desarrollo-bertol:HistClinica/HistClinica/Migrations/20200613173141_nueva.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,30 +20,6 @@ namespace HistClinica.Migrations
                 .HasAnnotation("ProductVersion", "3.1.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("HistClinica.Clases.DetalleCLS", b =>
-                {
-                    b.Property<int>("idDet")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("coddetTab")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("descripcion")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("descripcionGeneral")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("idDet");
-
-                    b.ToTable("DetalleCLS");
-                });
 
             modelBuilder.Entity("HistClinica.Models.D001_USUARIO", b =>
                 {
@@ -69,7 +40,7 @@ namespace HistClinica.Migrations
                     b.Property<string>("fechaRegistra")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("idEmpleado")
+                    b.Property<int?>("idEmpleado")
                         .HasColumnType("int");
 
                     b.Property<string>("loginUser")

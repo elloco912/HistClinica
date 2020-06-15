@@ -3,27 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using HistClinica.Clases;
+//using HistClinica.Clases;
 using HistClinica.Models;
+using HistClinica.Data;
+
 namespace HistClinica.Controllers
 {
     public class DetalleController : Controller
     {
-        public IActionResult Index(Detalle oDetalle)
+        public IActionResult Index(D00_TBDETALLE oDetalle)
         {
-            List<Detalle> listaDetalle = new List<Detalle>();
-            using (ClinicaContext db = new ClinicaContext())
+            List<D00_TBDETALLE> listaDetalle = new List<D00_TBDETALLE>();
+            using (ClinicaServiceContext db = new ClinicaServiceContext())
 
             {
                 if (oDetalle.coddetTab == null || oDetalle.coddetTab == "")
                 {
-                    listaDetalle = (from detalle in db.D00Tbdetalle
-                                    where detalle.IdTab == 1
-                                         select new Detalle
+                    listaDetalle = (from detalle in db.D00_TBDETALLE
+                                    where detalle.idTab == 1
+                                         select new D00_TBDETALLE
                                          {
-                                             idDet = detalle.IdDet,
-                                             coddetTab = detalle.CoddetTab,
-                                             descripcion = detalle.Descripcion,
+                                             idDet = detalle.idDet,
+                                             coddetTab = detalle.coddetTab,
+                                             descripcion = detalle.descripcion,
                                          }).ToList();
 
                     ViewBag.nombreDetalle = "";
@@ -32,14 +34,14 @@ namespace HistClinica.Controllers
                 else
 
                 {
-                    listaDetalle = (from detalle in db.D00Tbdetalle
-                                    where detalle.IdTab == 1
-                                         && detalle.CoddetTab.Contains(oDetalle.coddetTab)
-                                         select new Detalle
+                    listaDetalle = (from detalle in db.D00_TBDETALLE
+                                    where detalle.idTab == 1
+                                         && detalle.coddetTab.Contains(oDetalle.coddetTab)
+                                         select new D00_TBDETALLE
                                          {
-                                             idDet = detalle.IdDet,
-                                             coddetTab = detalle.CoddetTab,
-                                             descripcion = detalle.Descripcion,
+                                             idDet = detalle.idDet,
+                                             coddetTab = detalle.coddetTab,
+                                             descripcion = detalle.descripcion,
                                          }).ToList();
                     ViewBag.nombreEspecialidad = (oDetalle.coddetTab);
                 }
@@ -60,13 +62,13 @@ namespace HistClinica.Controllers
         //}
 
         [HttpPost]
-        public IActionResult Agregar(Detalle oDetalle)
+        public IActionResult Agregar(D00_TBDETALLE oDetalle)
         {
             try
             {
 
                 //Conexion a BD
-                using (ClinicaContext db = new ClinicaContext())
+                using (ClinicaServiceContext db = new ClinicaServiceContext())
                 {
 
                     if (!ModelState.IsValid)
@@ -76,11 +78,11 @@ namespace HistClinica.Controllers
                     else
                     {
 
-                        D00Tbdetalle objeto = new D00Tbdetalle();
-                        objeto.CoddetTab = oDetalle.coddetTab;
-                        objeto.Descripcion = oDetalle.descripcion;
-                        objeto.IdTab = 1;
-                        db.D00Tbdetalle.Add(objeto);
+                        D00_TBDETALLE objeto = new D00_TBDETALLE();
+                        objeto.coddetTab = oDetalle.coddetTab;
+                        objeto.descripcion = oDetalle.descripcion;
+                        objeto.idTab = 1;
+                        db.D00_TBDETALLE.Add(objeto);
                         db.SaveChanges();
                     }
 
@@ -100,10 +102,10 @@ namespace HistClinica.Controllers
             
 
             
-                using (ClinicaContext db = new ClinicaContext())
+                using (ClinicaServiceContext db = new ClinicaServiceContext())
                 {
-                    D00Tbdetalle oDetalle = db.D00Tbdetalle.Where(p => p.IdDet == idDet).First();
-                    db.D00Tbdetalle.Remove(oDetalle);
+                D00_TBDETALLE oDetalle = db.D00_TBDETALLE.Where(p => p.idDet == idDet).First();
+                    db.D00_TBDETALLE.Remove(oDetalle);
                     db.SaveChanges();
                     
 
@@ -119,19 +121,19 @@ namespace HistClinica.Controllers
 
         //[HttpPost] Ya esta . Saludos
         public IActionResult Editar(int idDet)
-        {    
+        {
             //todo esto lo deberia tener en el repositorio, aca solo llamar al metodo edit
             // no lo hice asi el agregar tmb esta asi y no hay 
-            Detalle oDetalle = new Detalle();
-            using (ClinicaContext db = new ClinicaContext())
+            D00_TBDETALLE oDetalle = new D00_TBDETALLE();
+            using (ClinicaServiceContext db = new ClinicaServiceContext())
             {
-                oDetalle = (from detalle in db.D00Tbdetalle
-                            where detalle.IdDet == idDet
-                            select new Detalle
+                oDetalle = (from detalle in db.D00_TBDETALLE
+                            where detalle.idDet == idDet
+                            select new D00_TBDETALLE
                             {
-                                idDet = detalle.IdDet,
-                                coddetTab = detalle.CoddetTab,
-                                descripcion = detalle.Descripcion
+                                idDet = detalle.idDet,
+                                coddetTab = detalle.coddetTab,
+                                descripcion = detalle.descripcion
                             }).First();
             }
             return View(oDetalle);

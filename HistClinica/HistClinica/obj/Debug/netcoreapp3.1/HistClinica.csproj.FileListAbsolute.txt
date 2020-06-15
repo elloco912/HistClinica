@@ -350,11 +350,13 @@ C:\Users\MARCO\Desktop\version3\HistClinica\HistClinica\HistClinica\obj\Debug\ne
 C:\Users\MARCO\Desktop\version3\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.TagHelpers.input.cache
 C:\Users\MARCO\Desktop\version3\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.TagHelpers.output.cache
 C:\Users\MARCO\Desktop\version3\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.RazorCoreGenerate.cache
+C:\Users\MARCO\Desktop\version3\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cita\AnularCita.cshtml.g.cs
 C:\Users\MARCO\Desktop\version3\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cita\Create.cshtml.g.cs
 C:\Users\MARCO\Desktop\version3\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cita\Delete.cshtml.g.cs
 C:\Users\MARCO\Desktop\version3\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cita\Details.cshtml.g.cs
 C:\Users\MARCO\Desktop\version3\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cita\Edit.cshtml.g.cs
 C:\Users\MARCO\Desktop\version3\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cita\Index.cshtml.g.cs
+C:\Users\MARCO\Desktop\version3\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cita\Registro.cshtml.g.cs
 C:\Users\MARCO\Desktop\version3\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cronograma\ConsultarCronograma.cshtml.g.cs
 C:\Users\MARCO\Desktop\version3\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cronograma\Create.cshtml.g.cs
 C:\Users\MARCO\Desktop\version3\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cronograma\Edit.cshtml.g.cs
@@ -369,6 +371,8 @@ C:\Users\MARCO\Desktop\version3\HistClinica\HistClinica\HistClinica\obj\Debug\ne
 C:\Users\MARCO\Desktop\version3\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Login\Index.cshtml.g.cs
 C:\Users\MARCO\Desktop\version3\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Paciente\Create.cshtml.g.cs
 C:\Users\MARCO\Desktop\version3\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Paciente\Index.cshtml.g.cs
+C:\Users\MARCO\Desktop\version3\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Panel\Index.cshtml.g.cs
+C:\Users\MARCO\Desktop\version3\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Persona\Asignar.cshtml.g.cs
 C:\Users\MARCO\Desktop\version3\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Persona\Create.cshtml.g.cs
 C:\Users\MARCO\Desktop\version3\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Persona\Delete.cshtml.g.cs
 C:\Users\MARCO\Desktop\version3\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Persona\Details.cshtml.g.cs
