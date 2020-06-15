@@ -24,7 +24,7 @@
 										<label>CODIGO</label>
 									</div>
 									<div class="form-group">
-										@Html.EditorFor(m => m.personal.idEmpleado, new { htmlAttributes = new { @class = "form-control" } })
+										@Html.Editor("idEmpleado", new { htmlAttributes = new { @class = "form-control" } })
 									</div>
 									<div class="form-group">
 										<label>TIPO</label>
@@ -45,7 +45,7 @@
 										<label>CLAVE </label>
 									</div>
 									<div class="form-group">
-										<input ID="txtClave" Text="" class="form-control" size="60" maxlength="60">
+										@Html.Password("claveUser", new { htmlAttributes = new { @class = "form-control"  } })
 									</div>
 									<div class="form-group">
 										<button class="btn btn-primary">Asignar modulo</button>
@@ -73,9 +73,7 @@
 										<label>CAJA </label>
 									</div>
 									<div class="form-group">
-										<select class="form-control">
-											<option>Caja 1</option>
-										</select>
+										@Html.DropDownList("idCaja", new SelectList(ViewBag.lsttipoempleado, "idtab", "descripcion"), new { @class = "form-control" })
 									</div>
 								</div>
 							</div>
@@ -87,7 +85,7 @@
 					<table>
 						<tr>
 							<td>
-								<button type="button" class="btn btn-primary" style="width: 112px;font-size: 16px;">Guardar </button>
+								<button type="submit" class="btn btn-primary" style="width: 112px;font-size: 16px;">Guardar </button>
 							</td>
 							<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
 							<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
