@@ -157,6 +157,9 @@ namespace HistClinica.Controllers
             var tipoEmpleados = await _utilrepository.GetTipo("Tipo Empleado");
             ViewBag.lsttipoempleado = tipoEmpleados;
 
+            List<D024_CAJA> cajas = await _utilrepository.getCajas();
+            ViewBag.lscaja = cajas;
+
             PersonaDTO persona = await _empleadorepository.GetById(id);
             return PartialView(persona);
         }
