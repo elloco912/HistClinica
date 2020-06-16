@@ -64,6 +64,8 @@ namespace HistClinica.Repositories.Repositories
                     idPaciente = Cita.idPaciente,
                     idProgramMedica = Cita.idProgramMedica,
                     fechaCita = DateTime.Parse(Cita.fecha + " " + Cita.hora),
+                    tipoCita = Cita.idTipoCita,
+                    estado = Cita.estado,
                     idEstadoCita = (from ec in _context.T109_ESTADOCITA
                                     where ec.estado == "RESERVADO"
                                     select ec.idEstadoCita).FirstOrDefault()
