@@ -1,7 +1,9 @@
-﻿         using HistClinica.Data;
+﻿using HistClinica.Data;
+using HistClinica.DTO;
 using HistClinica.Models;
 using HistClinica.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,29 +26,49 @@ namespace HistClinica.Repositories.Repositories
 			return caja;
 		}
 
+		public class Fecha
+        {
+			public int idprogramMed { get; set; }
+			public  string fecprogram { get; set; }
+		}
+
+		public List<Fecha> ObtenerFecha(List<D012_CRONOMEDICO> cronograma)
+        {
+			int intervalo;
+			List<Fecha> fechas = new List<Fecha>();
+			foreach (var item in cronograma)
+			{
+				intervalo = item.fechaFin.Value.DayOfYear - item.fechaIni.Value.DayOfYear;
+				for (int i = 0; i <= intervalo; i++)
+				{
+					Fecha fecha = new Fecha()
+					{
+						idprogramMed = item.idProgramMedica,
+						fecprogram = item.fechaFin.Value.AddDays(i).ToShortDateString()
+					};
+					fechas.Add(fecha);
+				}
+			}
+			return fechas;
+		}
+
 		public async Task<object> GetCronograma()
 		{
-			var cronograma = await(from cro in _context.D012_CRONOMEDICO
+			List<D012_CRONOMEDICO> cronograma = await(from cro in _context.D012_CRONOMEDICO
 								   join med in _context.T212_MEDICO on cro.idMedico equals med.idMedico
-								   select new
-								   {
-									   idprogramMed = cro.idProgramMedica,
-									 //  fecprogram = cro.fecProgramMedica.Value.ToShortDateString()
-								   }).ToListAsync();
-			return cronograma;
+								   select cro
+									).ToListAsync();
+			
+			return ObtenerFecha(cronograma);
 		}
 
 		public async Task<object> GetCronogramaByMedico(int id)
 		{
-			var cronograma = await (from cro in _context.D012_CRONOMEDICO
+			List<D012_CRONOMEDICO> cronograma = await (from cro in _context.D012_CRONOMEDICO
 									join med in _context.T212_MEDICO on cro.idMedico equals med.idMedico
 									where med.idMedico == id
-									select new
-									{
-										idprogramMed = cro.idProgramMedica,
-									//	fecprogram = cro.fecProgramMedica.Value.ToShortDateString()
-									}).ToListAsync();
-			return cronograma;
+									select cro).ToListAsync();
+			return ObtenerFecha(cronograma);
 		}
 
 		public async Task<object> GetEspecialidad(int id)
@@ -73,12 +95,7 @@ on td.idDet equals med.idEspecialidad
 
 		public async Task<object> GetHoras()
 		{
-			var horas = await (from cro in _context.D012_CRONOMEDICO
-							   select new
-							   {
-								   id = cro.idProgramMedica,
-								   hora = cro.hrInicio
-							   }).ToListAsync();
+			var horas = new Collection();
 			return horas;
 		}
 
@@ -89,7 +106,7 @@ on td.idDet equals med.idEspecialidad
 								   select new
 								   {
 									   id = cro.idProgramMedica,
-									   hora = cro.hrInicio
+									   hora = cro.hrInicio + " - " + cro.hrFin
 								   }).ToListAsync();
 			return horas;
 		}

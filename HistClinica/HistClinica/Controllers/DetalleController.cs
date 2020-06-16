@@ -19,40 +19,22 @@ namespace HistClinica.Controllers
         }
         public async Task<IActionResult> IndexAsync(DetalleDTO oDetalle)
         {
-            //List<DetalleDTO> listaDetalle = new List<DetalleDTO>();
-            //using (ClinicaServiceContext db = new ClinicaServiceContext())
+            List<DetalleDTO> listaDetalle = new List<DetalleDTO>();
+            if (oDetalle.coddetTab == null || oDetalle.coddetTab == "")
+            {
+                listaDetalle = await _detalleRepository.GetAllDetalles("");
 
-            //{
-            //    if (oDetalle.coddetTab == null || oDetalle.coddetTab == "")
-            //    {
-            //        listaDetalle = (from detalle in db.D00_TBDETALLE
-            //                        where detalle.idTab == 1
-            //                             select new DetalleDTO
-            //                             {
-            //                                 idDet = detalle.idDet,
-            //                                 coddetTab = detalle.coddetTab,
-            //                                 descripcion = detalle.descripcion,
-            //                             }).ToList();
+                ViewBag.nombreDetalle = "";
+            }
 
-            //        ViewBag.nombreDetalle = "";
-            //    }
+            else
 
-            //    else
+            {
+                ViewBag.nombreEspecialidad = (oDetalle.coddetTab);
 
-            //    {
-            //        listaDetalle = (from detalle in db.D00_TBDETALLE
-            //                        where detalle.idTab == 1
-            //                             && detalle.coddetTab.Contains(oDetalle.coddetTab)
-            //                             select new DetalleDTO
-            //                             {
-            //                                 idDet = detalle.idDet,
-            //                                 coddetTab = detalle.coddetTab,
-            //                                 descripcion = detalle.descripcion,
-            //                             }).ToList();
-            //        ViewBag.nombreEspecialidad = (oDetalle.coddetTab);
-            //    }
-            //}
-            return View(await _detalleRepository.GetAllDetalles());
+                listaDetalle = await _detalleRepository.GetAllDetalles(oDetalle.coddetTab);
+            }
+            return View(listaDetalle);
         }
 
 
@@ -119,17 +101,17 @@ namespace HistClinica.Controllers
 
 
             //}
-                await _detalleRepository.DeleteDetalle(idDet);
-                return RedirectToAction("Index");
+            await _detalleRepository.DeleteDetalle(idDet);
+            return RedirectToAction("Index");
 
 
-           
+
         }
 
 
         //[HttpPost] Ya esta . Saludos
         public async Task<IActionResult> EditarAsync(int idDet)
-        {    
+        {
             //todo esto lo deberia tener en el repositorio, aca solo llamar al metodo edit
             // no lo hice asi el agregar tmb esta asi y no hay 
             DetalleDTO oDetalle = new DetalleDTO();

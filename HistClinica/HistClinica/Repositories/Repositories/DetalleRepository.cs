@@ -46,17 +46,31 @@ namespace HistClinica.Repositories.Repositories
             return await _context.D00_TBDETALLE.AnyAsync(e => e.idDet == id);
         }
 
-        public async Task<List<DetalleDTO>> GetAllDetalles()
+        public async Task<List<DetalleDTO>> GetAllDetalles(string filtro)
         {
             List<DetalleDTO> listaDetalle = new List<DetalleDTO>();
-            listaDetalle = await (from detalle in _context.D00_TBDETALLE
-                            where detalle.idTab == 1
-                            select new DetalleDTO
-                            {
-                                idDet = detalle.idDet,
-                                coddetTab = detalle.coddetTab,
-                                descripcion = detalle.descripcion
-                            }).ToListAsync();
+            if(filtro == "")
+            {
+                listaDetalle = await (from detalle in _context.D00_TBDETALLE
+                                where detalle.idTab == 1
+                                select new DetalleDTO
+                                {
+                                    idDet = detalle.idDet,
+                                    coddetTab = detalle.coddetTab,
+                                    descripcion = detalle.descripcion
+                                }).ToListAsync();
+            }
+            else
+            {
+                listaDetalle = await (from detalle in _context.D00_TBDETALLE
+                                      where detalle.idTab == 1 && detalle.coddetTab.Contains(filtro)
+                                      select new DetalleDTO
+                                      {
+                                          idDet = detalle.idDet,
+                                          coddetTab = detalle.coddetTab,
+                                          descripcion = detalle.descripcion
+                                      }).ToListAsync();
+            }
             return listaDetalle;
         }
 
