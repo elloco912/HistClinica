@@ -17,17 +17,17 @@ namespace HistClinica.Controllers
         private readonly IPersonaRepository _personaRepository;
         private readonly IUtilRepository _utilrepository;
         private readonly IEmpleadoRepository _empleadorepository;
-        private readonly IAsignaCaja _asignaCajaRepository;
+        private readonly ICajaRepository _cajaRepository;
         private readonly IUsuarioRepository _usuarioRepository;
 
         public PersonaController(IPersonaRepository personaRepository,ClinicaServiceContext contexto,IUtilRepository utilRepository,
-                                IEmpleadoRepository empleadoRepository, IAsignaCaja asignaCajaRepository, IUsuarioRepository usuarioRepository)
+                                IEmpleadoRepository empleadoRepository, ICajaRepository cajaRepository, IUsuarioRepository usuarioRepository)
         {
             _context = contexto;
             _personaRepository = personaRepository;
             _utilrepository = utilRepository;
             _empleadorepository = empleadoRepository;
-            _asignaCajaRepository = asignaCajaRepository;
+            _cajaRepository = cajaRepository;
             _usuarioRepository = usuarioRepository;
         }
 
@@ -174,7 +174,7 @@ namespace HistClinica.Controllers
                 {
                     if(personaDTO.asignacion.idCaja != null)
                     {
-                        await _asignaCajaRepository.InsertAsignaCaja(personaDTO);
+                        await _cajaRepository.AsignaCaja(personaDTO);
                     }
                     if(personaDTO.asignacion.claveUser != null)
                     {
