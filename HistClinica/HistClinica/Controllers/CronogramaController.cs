@@ -7,6 +7,7 @@ using HistClinica.DTO;
 using HistClinica.Models;
 using HistClinica.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace HistClinica.Controllers
 {
@@ -36,24 +37,11 @@ namespace HistClinica.Controllers
             var lespecialidads = await _utilrepository.GetTipo("Especialidad");
             ViewBag.listaespecialidades = lespecialidads;
 
-            //combo estado
-            var estado = new Object();
-            estado = await _utilrepository.GetTipo("EstadoCronograma");
-            ViewBag.lestado = estado;
-
             //combo horas
             ViewBag.listahoras = horas;
 
             //combo medicos
-            var medico = from per in _context.T000_PERSONA
-                         join e in _context.T120_EMPLEADO on per.idPersona
-                         equals e.idPersona
-                         join med in _context.T212_MEDICO on e.idPersona equals med.idPersona
-                         select new
-                         {
-                             idMedico = med.idMedico,
-                             nombres = per.primerNombre + " " + per.segundoNombre + " " + per.apePaterno + " " + per.apeMaterno
-                         };
+            var medico = await _utilrepository.GetMedicos();
             ViewBag.listamedicos = medico;
 
             //listar

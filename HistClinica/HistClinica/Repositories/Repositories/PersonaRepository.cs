@@ -188,7 +188,7 @@ namespace HistClinica.Repositories.Repositories
                 if (Persona.personal.idTipoEmpleado != null)
                 {
                     await _empleadoRepository.UpdateEmpleado(Persona);
-                    if (Persona.personal.idTipoEmpleado == 2)
+                    if (Persona.personal.idTipoEmpleado == 109)
                     {
                         await _medicoRepository.UpdateMedico(Persona);
                     }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HistClinica.Migrations
 {
-    public partial class _15062020 : Migration
+    public partial class nueva : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

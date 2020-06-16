@@ -34,6 +34,8 @@
     <Compile Remove="Migrations\20200604202049_otrastb.Designer.cs" />
     <Compile Remove="Migrations\20200605192037_primeramigracion.cs" />
     <Compile Remove="Migrations\20200605192037_primeramigracion.Designer.cs" />
+    <Compile Remove="Migrations\20200615231955_nueva.cs" />
+    <Compile Remove="Migrations\20200615231955_nueva.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
