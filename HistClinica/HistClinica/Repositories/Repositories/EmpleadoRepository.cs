@@ -39,12 +39,11 @@ namespace HistClinica.Repositories.Repositories
             await _context.SaveChangesAsync();
         }
 
-
-
         public async Task<bool> EmpleadoExists(int? id)
         {
             return await _context.T120_EMPLEADO.AnyAsync(e => e.idEmpleado == id);
         }
+        
         public async Task<string> InsertEmpleado(PersonaDTO Persona, int idPersona)
         {
             try
@@ -78,7 +77,7 @@ namespace HistClinica.Repositories.Repositories
                 T120_EMPLEADO Empleado = new T120_EMPLEADO
                 {
                     idPersona = Persona.idPersona,
-                    idEmpleado = (int)Persona.personal.idTipoEmpleado,
+                    idEmpleado = (int)Persona.personal.idEmpleado,
                     cargo = Persona.personal.cargo,
                     codEmpleado = Persona.personal.codEmpleado,
                     descArea = Persona.personal.descArea,

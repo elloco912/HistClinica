@@ -46,28 +46,52 @@ namespace HistClinica.Repositories.Repositories
         }
         public async Task<string> InsertUsuario(PersonaDTO persona)
         {
+            T000_PERSONA Persona = await (from p in _context.T000_PERSONA
+                                        join e in _context.T120_EMPLEADO on p.idPersona equals e.idPersona
+                                        where e.idEmpleado == persona.personal.idEmpleado
+                                            select p).FirstOrDefaultAsync();
             try
             {
-                T000_PERSONA Persona = await (from p in _context.T000_PERSONA
-                                            join e in _context.T120_EMPLEADO on p.idPersona equals e.idPersona
-                                            where e.idEmpleado == persona.personal.idEmpleado
-                                              select p).FirstOrDefaultAsync();
-                await _context.D001_USUARIO.AddAsync(new D001_USUARIO()
+                if (await UsuarioExists(persona.personal.idEmpleado))
                 {
-                    idEmpleado = persona.personal.idEmpleado,
-                    fechaRegistra = DateTime.Now.ToString(),
-                    loginUser = Persona.primerNombre.Substring(0, 1) + Persona.apePaterno + Persona.fecNacimiento.Substring(0, 2),
-                    claveUser = persona.asignacion.claveUser,
-                    usuRegistra = persona.asignacion.usuRegistra,
-                    estado = "ACTIVO"
-                });
-                await Save();
-                return "Ingreso Exitoso";
+                    D001_USUARIO Usuario = await (from u in _context.D001_USUARIO where u.idEmpleado == persona.personal.idEmpleado select u).FirstOrDefaultAsync();
+                    return await UpdateUsuario(new D001_USUARIO()
+                    {
+                        idUsuario = Usuario.idUsuario,
+                        idEmpleado = Usuario.idEmpleado,
+                        fechaRegistra = Usuario.fechaRegistra,
+                        loginUser = Usuario.loginUser,
+                        claveUser = persona.asignacion.claveUser,
+                        usuRegistra = Usuario.usuRegistra,
+                        estado = Usuario.estado
+                    });
+                }
+                else
+                {
+                    await _context.D001_USUARIO.AddAsync(new D001_USUARIO()
+                    {
+                        idEmpleado = persona.personal.idEmpleado,
+                        fechaRegistra = DateTime.Now.ToString(),
+                        loginUser = Persona.primerNombre.Substring(0, 1) + Persona.apePaterno + Persona.fecNacimiento.Substring(0, 2),
+                        claveUser = persona.asignacion.claveUser,
+                        usuRegistra = persona.asignacion.usuRegistra,
+                        estado = "ACTIVO"
+                    });
+                    await Save();
+                    return "Ingreso Exitoso";   
+                }
             }
             catch (Exception ex)
             {
                 return "Error en el guardado " + ex.Message;
             }
+        }
+
+        public async Task<string> UpdateUsuario(D001_USUARIO usuario)
+        {
+            _context.Update(usuario);
+            await Save();
+            return "Actualizacion Exitosa";
         }
     }
 }

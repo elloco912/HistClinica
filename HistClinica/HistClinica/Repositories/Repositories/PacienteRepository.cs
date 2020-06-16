@@ -298,7 +298,8 @@ namespace HistClinica.Repositories.Repositories
         {
             PersonaDTO Persona = await (from p in _context.T000_PERSONA
                                         join pa in _context.T001_PACIENTE on p.idPersona equals pa.idPersona
-                                        where p.dniPersona == Dni
+                                        join e in _context.T120_EMPLEADO on p.idPersona equals e.idPersona
+                                        where p.dniPersona == Dni && e.idtpEmpleado == null
                                         select new PersonaDTO
                                         {
                                             primerNombre = p.primerNombre,
