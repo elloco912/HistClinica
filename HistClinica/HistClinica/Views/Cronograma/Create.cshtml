@@ -42,10 +42,20 @@
 		<div class="col-sm-4">
 			<div class="row">
 				<div class="col-sm-4">
-					<label>Fecha</label>
+					<label>Fecha Inicio</label>
 				</div>
 				<div class="col-sm-8">
-					@Html.TextBoxFor(m => m.fecProgramMedica, new { @class = "form-control", @type = "Date" })
+					@Html.TextBoxFor(m => m.fechaIni, new { @class = "form-control", @type = "Date" })
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="row">
+				<div class="col-sm-4">
+					<label>Fecha Fin</label>
+				</div>
+				<div class="col-sm-8">
+					@Html.TextBoxFor(m => m.fechaFin, new { @class = "form-control", @type = "Date" })
 				</div>
 			</div>
 		</div>
@@ -59,7 +69,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-4">
+		<div class="col-sm-4 pt-2">
 			<div class="row">
 				<div class="col-sm-4">
 					<label>Hora Fin</label>

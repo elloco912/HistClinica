@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HistClinica.Models.D012_CRONOMEDICO>
+﻿@model IEnumerable<HistClinica.DTO.CronogramaDTO>
 @{
 	ViewData["Title"] = "Index";
 }
@@ -20,7 +20,8 @@
 						<thead>
 							<tr>
 								<th>Id</th>
-								<th>Fecha</th>
+								<th>Fecha Ini</th>
+								<th>Fecha Fin</th>
 								<th>Hora ini</th>
 								<th>Hora fin</th>
 								<th>Estado</th>
@@ -30,17 +31,18 @@
 						<tbody>
 							@foreach (var item in Model)
 							{
-								<tr>
-									<td>@item.idProgramMedica</td>
-									<td>@item.fecProgramMedica</td>
-									<td>@item.hrInicio</td>
-									<td>@item.hrFin</td>
-									<td>@item.idEstado</td>
-									<td>
-										<button type="submit" class="edit btn btn-primary" onclick="Cargarmodal();"><i class="fas fa-edit"></i></button>
-										<a type="submit" asp-action="Delete" asp-route-id="@item.idProgramMedica" class="btn btn-danger"><i class="fas fa-minus"></i></a>
-									</td>
-								</tr>
+							<tr>
+								<td>@item.idProgramMedica</td>
+								<td>@item.fechaIni</td>
+								<td>@item.fechaFin</td>
+								<td>@item.hrInicio</td>
+								<td>@item.hrFin</td>
+								<td>@item.desEstado</td>
+								<td>
+									<button type="submit" class="edit btn btn-primary" onclick="Cargarmodal();"><i class="fas fa-edit"></i></button>
+									<a type="submit" asp-action="Delete" asp-route-id="@item.idProgramMedica" class="btn btn-danger"><i class="fas fa-minus"></i></a>
+								</td>
+							</tr>
 							}
 						</tbody>
 					</table>

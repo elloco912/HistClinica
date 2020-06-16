@@ -45,16 +45,18 @@ namespace HistClinica.Repositories.Repositories
 			await Save();
 		}
 
-		public async Task<List<D012_CRONOMEDICO>> GetAllCronogramas()
+		public async Task<List<CronogramaDTO>> GetAllCronogramas()
 		{
-			List<D012_CRONOMEDICO> D012_CRONOMEDICOs = await (from c in _context.D012_CRONOMEDICO
-													select new D012_CRONOMEDICO
+			List<CronogramaDTO> D012_CRONOMEDICOs = await (from c in _context.D012_CRONOMEDICO join det in _context.D00_TBDETALLE on
+															  c.idEstado equals det.idDet
+													select new CronogramaDTO
 													{
 														idProgramMedica = c.idProgramMedica,
-														fecProgramMedica = c.fecProgramMedica,
+														fechaIni = c.fechaIni,
+														fechaFin = c.fechaFin,
 														hrInicio = c.hrInicio,
 														hrFin = c.hrFin,
-														idEstado = c.idEstado
+														desEstado = det.descripcion
 													}).ToListAsync();
 			return D012_CRONOMEDICOs;
 		}
@@ -72,7 +74,17 @@ namespace HistClinica.Repositories.Repositories
 		{
 			try
 			{
-				await _context.D012_CRONOMEDICO.AddAsync(cronograma);
+				await _context.D012_CRONOMEDICO.AddAsync(new D012_CRONOMEDICO()
+				{
+					idEspecialidad = cronograma.idEspecialidad,
+					idMedico = cronograma.idMedico,
+					hrInicio = cronograma.hrInicio,
+					hrFin = cronograma.hrFin,
+					idConsultorio = cronograma.idConsultorio,
+					fechaIni = cronograma.fechaIni,
+					fechaFin = cronograma.fechaFin,
+					idEstado = 150
+				});
 				await Save();
 				return "Ingreso exitoso";
 			}
@@ -108,7 +120,8 @@ namespace HistClinica.Repositories.Repositories
 														where c.idMedico == idmedico
 														select new CronogramaDTO {
 															idProgramMedica = c.idProgramMedica,
-															fecProgramMedica = c.fecProgramMedica,
+															fechaIni = c.fechaIni,
+															fechaFin = c.fechaFin,
 															hrInicio = c.hrInicio,
 															hrFin = c.hrFin,
 															desEstado = td.descripcion
@@ -124,7 +137,8 @@ namespace HistClinica.Repositories.Repositories
 														  select new CronogramaDTO
 														  {
 															  idProgramMedica = c.idProgramMedica,
-															  fecProgramMedica = c.fecProgramMedica,
+															  fechaIni = c.fechaIni,
+															  fechaFin = c.fechaFin,
 															  hrInicio = c.hrInicio,
 															  hrFin = c.hrFin,
 															  desEstado = td.descripcion
