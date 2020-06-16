@@ -326,7 +326,7 @@ namespace HistClinica.Repositories.Repositories
                                          {
                                              idCita = c.idCita,
                                              nroCita = c.nroCita,
-                                             tipo = (from tb in _context.D00_TBDETALLE
+                                             TipoCita = (from tb in _context.D00_TBDETALLE
                                                      where tb.idDet == c.tipoCita
                                                      select tb.descripcion).FirstOrDefault(),
                                              fecha = (c.fechaCita).Value.Date.ToString(),
