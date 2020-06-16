@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 
 namespace HistClinica.Repositories.Repositories
@@ -48,6 +49,13 @@ namespace HistClinica.Repositories.Repositories
         public async Task<bool> PersonaExists(int? id)
         {
             return await _context.T000_PERSONA.AnyAsync(e => e.idPersona == id);
+        }
+        public async Task<int> getIdTpEmpleado(string descripcion)
+        {
+            return await (from d in _context.D00_TBDETALLE
+                          where d.descripcion == descripcion
+                         select d.idDet
+                         ).FirstOrDefaultAsync();
         }
         public async Task DeletePersona(int PersonaID)
         {
@@ -116,7 +124,7 @@ namespace HistClinica.Repositories.Repositories
                 {
                     await _empleadoRepository.InsertEmpleado(Persona, idPersona);
                     idEmpleado = await _empleadoRepository.GetIdEmpleado(idPersona);
-                    if (Persona.personal.idTipoEmpleado == 109)
+                    if (Persona.personal.idTipoEmpleado == (int)await getIdTpEmpleado("MEDICA/O"))
                     {
                         await _medicoRepository.InsertMedico(Persona, idPersona, idEmpleado);
                     }
@@ -138,6 +146,7 @@ namespace HistClinica.Repositories.Repositories
             {
                 _context.Update(new T000_PERSONA()
                 {
+                    idPersona = (int) Persona.idPersona,
                     primerNombre = Persona.primerNombre,
                     segundoNombre = Persona.segundoNombre,
                     apePaterno = Persona.apellidoPaterno,
@@ -188,7 +197,7 @@ namespace HistClinica.Repositories.Repositories
                 if (Persona.personal.idTipoEmpleado != null)
                 {
                     await _empleadoRepository.UpdateEmpleado(Persona);
-                    if (Persona.personal.idTipoEmpleado == 2)
+                    if (Persona.personal.idTipoEmpleado == (int)await getIdTpEmpleado("MEDICA/O"))
                     {
                         await _medicoRepository.UpdateMedico(Persona);
                     }
@@ -259,7 +268,8 @@ namespace HistClinica.Repositories.Repositories
                                           fechaIngreso = e.fecIngreso,
                                           cargo = e.cargo
                                       }).FirstOrDefaultAsync();
-            if (Persona.personal.idTipoEmpleado != 109)
+            //Tipo de Empleado verificar
+            if (Persona.personal.idTipoEmpleado == (int)await getIdTpEmpleado("MEDICA/O"))
             {
                 PersonalDTO personaTemporal = new PersonalDTO();
                 personaTemporal = await (from m in _context.T212_MEDICO

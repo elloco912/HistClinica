@@ -4,22 +4,20 @@ using HistClinica.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HistClinica.Migrations
 {
     [DbContext(typeof(ClinicaServiceContext))]
-    partial class ClinicaServiceContextModelSnapshot : ModelSnapshot
+    [Migration("20200616100708_16062020")]
+    partial class _16062020
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-<<<<<<< HEAD
-                .HasAnnotation("ProductVersion", "3.1.3")
-=======
                 .HasAnnotation("ProductVersion", "3.1.5")
->>>>>>> master
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -322,17 +320,6 @@ namespace HistClinica.Migrations
 
             modelBuilder.Entity("HistClinica.Models.D025_ASIGNACAJA", b =>
                 {
-<<<<<<< HEAD
-                    b.Property<int?>("idCaja")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("idEmpleado")
-                        .HasColumnType("int");
-
-                    b.HasKey("idCaja");
-=======
                     b.Property<int>("idCaja")
                         .HasColumnType("int");
 
@@ -340,7 +327,6 @@ namespace HistClinica.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("idCaja", "idEmpleado");
->>>>>>> master
 
                     b.ToTable("D025_ASIGNACAJA");
                 });

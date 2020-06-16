@@ -16,6 +16,14 @@ namespace HistClinica.Repositories.Repositories
 			_context = contexto;
 		}
 
+		public async Task<List<D024_CAJA>> getCajas()
+		{
+			List<D024_CAJA> caja = await (from c in _context.D024_CAJA
+										  select c).ToListAsync();
+
+			return caja;
+		}
+
 		public async Task<object> GetCronograma()
 		{
 			var cronograma = await(from cro in _context.D012_CRONOMEDICO
