@@ -31,18 +31,18 @@
 						<tbody>
 							@foreach (var item in Model)
 							{
-							<tr>
-								<td>@item.idProgramMedica</td>
-								<td>@item.fechaIni</td>
-								<td>@item.fechaFin</td>
-								<td>@item.hrInicio</td>
-								<td>@item.hrFin</td>
-								<td>@item.desEstado</td>
-								<td>
-									<button type="submit" class="edit btn btn-primary" onclick="Cargarmodal();"><i class="fas fa-edit"></i></button>
-									<a type="submit" asp-action="Delete" asp-route-id="@item.idProgramMedica" class="btn btn-danger"><i class="fas fa-minus"></i></a>
-								</td>
-							</tr>
+								<tr>
+									<td>@item.idProgramMedica</td>
+									<td>@item.fechaIni</td>
+									<td>@item.fechaFin</td>
+									<td>@item.hrInicio</td>
+									<td>@item.hrFin</td>
+									<td>@item.desEstado</td>
+									<td>
+										<button type="submit" class="edit btn btn-primary" onclick="Cargarmodal();"><i class="fas fa-edit"></i></button>
+										<a type="submit" asp-action="Delete" asp-route-id="@item.idProgramMedica" class="btn btn-danger"><i class="fas fa-minus"></i></a>
+									</td>
+								</tr>
 							}
 						</tbody>
 					</table>
@@ -50,7 +50,6 @@
 			</div>
 	</div>
 </div>
-
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 </div>

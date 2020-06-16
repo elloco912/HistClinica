@@ -50,6 +50,11 @@ namespace HistClinica.Controllers
             List<CronogramaDTO> cronograma = new List<CronogramaDTO>();
             cronograma = await cronogramaRepository.GetAllCronogramas();
 
+            if (TempData["mensajeadd"] != null)
+            {
+                ViewBag.message = TempData["mensajeadd"].ToString();
+            }
+
             return View(cronograma);
         }
 
@@ -64,7 +69,7 @@ namespace HistClinica.Controllers
         {
             if (cronoMedico != null)
             {
-               ViewBag.message = await cronogramaRepository.InsertCronograma(cronoMedico);
+               TempData["mensajeadd"] = await cronogramaRepository.InsertCronograma(cronoMedico);
                return RedirectToAction("Index");
             }
             return PartialView();
