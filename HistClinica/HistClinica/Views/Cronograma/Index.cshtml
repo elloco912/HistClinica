@@ -55,3 +55,11 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 </div>
 <script src="~/js/cargavistaparcial.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#Crear").click(function (e) {
+			var msj = @ViewBag.message;
+			console.log(msj);
+    });
+});
+</script>

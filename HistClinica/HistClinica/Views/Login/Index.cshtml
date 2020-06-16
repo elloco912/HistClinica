@@ -10,6 +10,7 @@
 	<meta name="viewport" content="width=device-width" />
 	<title>@ViewBag.Title</title>
 	<link href="~/css/styles.css" rel="stylesheet" />
+	<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
 	<div>
@@ -19,35 +20,41 @@
 		<div class="sub-main-w3">
 			@using (Html.BeginForm())
 			{
-					<img src="/images/logo.png" alt="">
-					<h2>Por favor inicie sesión</h2>
-					<div class="form-style-agile">
-						@Html.TextBoxFor(m => m.loginUser, new { @class = "form-control" })
-					</div>
-					<div class="form-style-agile">
-						@Html.TextBoxFor(m => m.claveUser, new { @class = "form-control", @type = "password" })
-					</div>
-					<div class="wthree-text">
-						<ul>
-							<li>
-								<!--<div class="checkout-w3l">
-							<div class="demo5">
-								<div class="switch demo3">
-									<input type="checkbox">
-									<label>
-										<i></i>
-									</label>
-								</div>
+				<img src="/images/logo.png" alt="">
+				<h2>Por favor inicie sesión</h2>
+				<div class="form-style-agile">
+					@Html.TextBoxFor(m => m.loginUser, new { @class = "form-control" })
+				</div>
+				<div class="form-style-agile">
+					@Html.TextBoxFor(m => m.claveUser, new { @class = "form-control", @type = "password" })
+				</div>
+				<div class="wthree-text">
+					<ul>
+						<li>
+							<!--<div class="checkout-w3l">
+						<div class="demo5">
+							<div class="switch demo3">
+								<input type="checkbox">
+								<label>
+									<i></i>
+								</label>
 							</div>
-							<a href="#">Stay Signed In</a>
-						</div>-->
-							</li>
-							<li>
-								<a href="#">Olvidaste tu contraseña?</a>
-							</li>
-						</ul>
+						</div>
+						<a href="#">Stay Signed In</a>
+					</div>-->
+						</li>
+						<li>
+							<a href="#">Olvidaste tu contraseña?</a>
+						</li>
+					</ul>
+				</div>
+				<input type="submit" id="btnIngresar" value="Ingresa">
+				@if (ViewBag.error != null)
+				{
+					<div class="col-sm-12 alert alert-danger text-center" role="alert" style="margin-top: 15px;">
+					  @ViewBag.error
 					</div>
-					<input type="submit" id="btnIngresar" value="Ingresa">
+				}
 			}
 		</div>
 		<div class="clear"></div>
@@ -65,5 +72,6 @@
 			}
 		}*/
 	</script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
 </body>
 </html>

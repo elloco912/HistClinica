@@ -28,6 +28,7 @@ namespace HistClinica.Controllers
               //  HttpContext.Session.SetString("nombreusuario", user.loginUser);
                 return RedirectToAction("Index", "Home");
             }
+            ViewBag.error = "Usuario invalido";
             return View();
         }
     }

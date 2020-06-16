@@ -1,4 +1,4 @@
-﻿using HistClinica.Data;
+﻿         using HistClinica.Data;
 using HistClinica.Models;
 using HistClinica.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -77,7 +77,7 @@ on td.idDet equals med.idEspecialidad
 							   select new
 							   {
 								   id = cro.idProgramMedica,
-								   hora = cro.hrInicio + " - " + cro.hrFin
+								   hora = cro.hrInicio
 							   }).ToListAsync();
 			return horas;
 		}
@@ -89,7 +89,7 @@ on td.idDet equals med.idEspecialidad
 								   select new
 								   {
 									   id = cro.idProgramMedica,
-									   hora = cro.hrInicio + " - " + cro.hrFin
+									   hora = cro.hrInicio
 								   }).ToListAsync();
 			return horas;
 		}

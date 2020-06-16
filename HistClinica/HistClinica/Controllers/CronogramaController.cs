@@ -62,11 +62,10 @@ namespace HistClinica.Controllers
 
         public async Task<IActionResult> Create(D012_CRONOMEDICO cronoMedico)
         {
-            if (ModelState.IsValid)
+            if (cronoMedico != null)
             {
-                await cronogramaRepository.InsertCronograma(cronoMedico);
-                return RedirectToAction("Index");
-
+               ViewBag.message = await cronogramaRepository.InsertCronograma(cronoMedico);
+               return RedirectToAction("Index");
             }
             return PartialView();
         }
