@@ -19,39 +19,39 @@ namespace HistClinica.Controllers
         }
         public async Task<IActionResult> IndexAsync(DetalleDTO oDetalle)
         {
-            //List<DetalleDTO> listaDetalle = new List<DetalleDTO>();
-            //using (ClinicaServiceContext db = new ClinicaServiceContext())
+            List<DetalleDTO> listaDetalle = new List<DetalleDTO>();
+            using (ClinicaServiceContext db = new ClinicaServiceContext())
 
-            //{
-            //    if (oDetalle.coddetTab == null || oDetalle.coddetTab == "")
-            //    {
-            //        listaDetalle = (from detalle in db.D00_TBDETALLE
-            //                        where detalle.idTab == 1
-            //                             select new DetalleDTO
-            //                             {
-            //                                 idDet = detalle.idDet,
-            //                                 coddetTab = detalle.coddetTab,
-            //                                 descripcion = detalle.descripcion,
-            //                             }).ToList();
+            {
+                if (oDetalle.coddetTab == null || oDetalle.coddetTab == "")
+                {
+                    listaDetalle = (from detalle in db.D00_TBDETALLE
+                                    where detalle.idTab == 1
+                                    select new DetalleDTO
+                                    {
+                                        idDet = detalle.idDet,
+                                        coddetTab = detalle.coddetTab,
+                                        descripcion = detalle.descripcion,
+                                    }).ToList();
 
-            //        ViewBag.nombreDetalle = "";
-            //    }
+                    ViewBag.nombreDetalle = "";
+                }
 
-            //    else
+                else
 
-            //    {
-            //        listaDetalle = (from detalle in db.D00_TBDETALLE
-            //                        where detalle.idTab == 1
-            //                             && detalle.coddetTab.Contains(oDetalle.coddetTab)
-            //                             select new DetalleDTO
-            //                             {
-            //                                 idDet = detalle.idDet,
-            //                                 coddetTab = detalle.coddetTab,
-            //                                 descripcion = detalle.descripcion,
-            //                             }).ToList();
-            //        ViewBag.nombreEspecialidad = (oDetalle.coddetTab);
-            //    }
-            //}
+                {
+                    listaDetalle = (from detalle in db.D00_TBDETALLE
+                                    where detalle.idTab == 1
+                                         && detalle.coddetTab.Contains(oDetalle.coddetTab)
+                                    select new DetalleDTO
+                                    {
+                                        idDet = detalle.idDet,
+                                        coddetTab = detalle.coddetTab,
+                                        descripcion = detalle.descripcion,
+                                    }).ToList();
+                    ViewBag.nombreEspecialidad = (oDetalle.coddetTab);
+                }
+            }
             return View(await _detalleRepository.GetAllDetalles());
         }
 
