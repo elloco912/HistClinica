@@ -39,21 +39,22 @@
 						<div class="col-sm-6">
 							<div class="row">
 								<div class="col-sm-4">
-									<label>Consultorio</label>
+									<label>Fecha Inicio</label>
 								</div>
 								<div class="col-sm-8">
-									@Html.DropDownListFor(m => m.idConsultorio, new SelectList(ViewBag.listaconsultorio, "idtab", "descripcion"), new { @class = "form-control" })
+
+									@Html.EditorFor(m => m.fechaIni, new { htmlAttributes = new { @class = "form-control", @type = "Date" } })
 								</div>
 							</div>
 						</div>
 						<div class="col-sm-6">
 							<div class="row">
 								<div class="col-sm-4">
-									<label>Fecha</label>
+									<label>Fecha Fin</label>
 								</div>
 								<div class="col-sm-8">
 
-									@Html.EditorFor(m => m.fecProgramMedica, new { htmlAttributes = new { @class = "form-control", @type = "Date" } })
+									@Html.EditorFor(m => m.fechaFin, new { htmlAttributes = new { @class = "form-control", @type = "Date" } })
 								</div>
 							</div>
 						</div>
@@ -92,7 +93,14 @@
 							</div>
 						</div>
 						<div class="col-sm-6">
-
+							<div class="row">
+								<div class="col-sm-4">
+									<label>Consultorio</label>
+								</div>
+								<div class="col-sm-8">
+									@Html.DropDownListFor(m => m.idConsultorio, new SelectList(ViewBag.listaconsultorio, "idtab", "descripcion"), new { @class = "form-control" })
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

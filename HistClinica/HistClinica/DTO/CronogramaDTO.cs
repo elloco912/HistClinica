@@ -11,7 +11,8 @@ namespace HistClinica.DTO
 		public string mes { get; set; }
 		public string semana { get; set; }
 		public string dia { get; set; }
-		public DateTime? fecProgramMedica { get; set; }
+		public DateTime? fechaIni { get; set; }
+		public DateTime? fechaFin { get; set; }
 		public int? idMedico { get; set; }
 		public int? idEspecialidad { get; set; }
 		public int? idConsultorio { get; set; }

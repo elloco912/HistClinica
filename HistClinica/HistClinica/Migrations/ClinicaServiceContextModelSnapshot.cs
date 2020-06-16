@@ -215,7 +215,10 @@ namespace HistClinica.Migrations
                     b.Property<string>("dia")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("fecProgramMedica")
+                    b.Property<DateTime?>("fechaFin")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("fechaIni")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("hrFin")

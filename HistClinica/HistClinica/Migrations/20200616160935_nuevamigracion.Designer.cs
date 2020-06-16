@@ -10,13 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HistClinica.Migrations
 {
     [DbContext(typeof(ClinicaServiceContext))]
-<<<<<<< HEAD:HistClinica/HistClinica/Migrations/20200615232242_nueva.Designer.cs
-    [Migration("20200615232242_nueva")]
-    partial class nueva
-=======
-    [Migration("20200616100708_16062020")]
-    partial class _16062020
->>>>>>> master:HistClinica/HistClinica/Migrations/20200616100708_16062020.Designer.cs
+    [Migration("20200616160935_nuevamigracion")]
+    partial class nuevamigracion
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -222,7 +217,10 @@ namespace HistClinica.Migrations
                     b.Property<string>("dia")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("fecProgramMedica")
+                    b.Property<DateTime?>("fechaFin")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("fechaIni")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("hrFin")

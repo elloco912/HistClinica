@@ -3,11 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HistClinica.Migrations
 {
-<<<<<<< HEAD:HistClinica/HistClinica/Migrations/20200615232242_nueva.cs
-    public partial class nueva : Migration
-=======
-    public partial class _16062020 : Migration
->>>>>>> master:HistClinica/HistClinica/Migrations/20200616100708_16062020.cs
+    public partial class nuevamigracion : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -130,7 +126,8 @@ namespace HistClinica.Migrations
                     mes = table.Column<string>(nullable: true),
                     semana = table.Column<string>(nullable: true),
                     dia = table.Column<string>(nullable: true),
-                    fecProgramMedica = table.Column<DateTime>(nullable: true),
+                    fechaIni = table.Column<DateTime>(nullable: true),
+                    fechaFin = table.Column<DateTime>(nullable: true),
                     idMedico = table.Column<int>(nullable: true),
                     idEspecialidad = table.Column<int>(nullable: true),
                     idConsultorio = table.Column<int>(nullable: true),

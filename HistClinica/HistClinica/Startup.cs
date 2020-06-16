@@ -57,6 +57,8 @@ namespace HistClinica
 
             app.UseRouting();
 
+          //  app.UseSession();
+
             app.UseHttpsRedirection();
 
             app.UseAuthorization();

@@ -23,6 +23,8 @@ namespace HistClinica.Controllers
             cronogramaRepository = cronograma;
             _utilrepository = utilRepository;
         }
+
+
         public async Task<IActionResult> Index()
         {
 
@@ -45,7 +47,7 @@ namespace HistClinica.Controllers
             ViewBag.listamedicos = medico;
 
             //listar
-            List<D012_CRONOMEDICO> cronograma = new List<D012_CRONOMEDICO>();
+            List<CronogramaDTO> cronograma = new List<CronogramaDTO>();
             cronograma = await cronogramaRepository.GetAllCronogramas();
 
             return View(cronograma);
@@ -97,15 +99,8 @@ namespace HistClinica.Controllers
             estado = await _utilrepository.GetTipo("EstadoCronograma");
             ViewBag.lestado = estado;
 
-            var medico = from per in _context.T000_PERSONA
-                         join e in _context.T120_EMPLEADO on per.idPersona
-                         equals e.idPersona
-                         join med in _context.T212_MEDICO on e.idPersona equals med.idPersona
-                         select new
-                         {
-                             idMedico = med.idMedico,
-                             nombres = per.primerNombre + " " + per.segundoNombre + " " + per.apePaterno + " " + per.apeMaterno
-                         };
+            //combo medicos
+            var medico = await _utilrepository.GetMedicos();
             ViewBag.listamedicos = medico;
 
             ViewBag.listahoras = horas;
