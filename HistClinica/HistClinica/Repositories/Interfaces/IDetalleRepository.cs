@@ -9,7 +9,7 @@ namespace HistClinica.Repositories.Interfaces
 {
     public interface IDetalleRepository
     {
-        Task<List<DetalleDTO>> GetAllDetalles();
+        Task<List<DetalleDTO>> GetAllDetalles(string filtro);
         Task<DetalleDTO> GetById(int? Id);
         //Operaciones Transaccionales
         Task<string> InsertDetalle(DetalleDTO Detalle);

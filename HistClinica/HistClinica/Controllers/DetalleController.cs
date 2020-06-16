@@ -20,39 +20,21 @@ namespace HistClinica.Controllers
         public async Task<IActionResult> IndexAsync(DetalleDTO oDetalle)
         {
             List<DetalleDTO> listaDetalle = new List<DetalleDTO>();
-            using (ClinicaServiceContext db = new ClinicaServiceContext())
+            if (oDetalle.coddetTab == null || oDetalle.coddetTab == "")
+            {
+                listaDetalle = await _detalleRepository.GetAllDetalles("");
+
+                ViewBag.nombreDetalle = "";
+            }
+
+            else
 
             {
-                if (oDetalle.coddetTab == null || oDetalle.coddetTab == "")
-                {
-                    listaDetalle = (from detalle in db.D00_TBDETALLE
-                                    where detalle.idTab == 1
-                                    select new DetalleDTO
-                                    {
-                                        idDet = detalle.idDet,
-                                        coddetTab = detalle.coddetTab,
-                                        descripcion = detalle.descripcion,
-                                    }).ToList();
+                ViewBag.nombreEspecialidad = (oDetalle.coddetTab);
 
-                    ViewBag.nombreDetalle = "";
-                }
-
-                else
-
-                {
-                    listaDetalle = (from detalle in db.D00_TBDETALLE
-                                    where detalle.idTab == 1
-                                         && detalle.coddetTab.Contains(oDetalle.coddetTab)
-                                    select new DetalleDTO
-                                    {
-                                        idDet = detalle.idDet,
-                                        coddetTab = detalle.coddetTab,
-                                        descripcion = detalle.descripcion,
-                                    }).ToList();
-                    ViewBag.nombreEspecialidad = (oDetalle.coddetTab);
-                }
+                listaDetalle = await _detalleRepository.GetAllDetalles(oDetalle.coddetTab);
             }
-            return View(await _detalleRepository.GetAllDetalles());
+            return View(listaDetalle);
         }
 
 
