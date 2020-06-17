@@ -127,14 +127,17 @@ namespace HistClinica.Repositories.Repositories
 		{
 			List<CronogramaDTO> cronogramas = await (from c in _context.D012_CRONOMEDICO 
 													 join td in _context.D00_TBDETALLE on c.idEstado equals td.idDet
-														where c.idMedico == idmedico
+													 join med in _context.T212_MEDICO on c.idMedico equals med.idMedico
+													 join pe in _context.T000_PERSONA on med.idPersona equals pe.idPersona
+													 where c.idMedico == idmedico
 														select new CronogramaDTO {
 															idProgramMedica = c.idProgramMedica,
 															fechaIni = c.fechaIni.Value.ToString("yyyy-MM-dd"),
 															fechaFin = c.fechaFin.Value.ToString("yyyy-MM-dd"),
 															hrInicio = c.hrInicio,
 															hrFin = c.hrFin,
-															desEstado = td.descripcion
+															desEstado = td.descripcion,
+															medico = pe.primerNombre + ' ' + pe.apePaterno + ' ' + pe.apeMaterno
 														}
 														).ToListAsync();
 			return cronogramas;
@@ -143,7 +146,8 @@ namespace HistClinica.Repositories.Repositories
 		public async Task<List<CronogramaDTO>> GetAllCronogramasConsulta()
 		{
 			List<CronogramaDTO> D012_CRONOMEDICOs = await(from c in _context.D012_CRONOMEDICO
-														  join td in _context.D00_TBDETALLE on c.idEstado equals td.idDet
+														  join td in _context.D00_TBDETALLE on c.idEstado equals td.idDet join med in _context.T212_MEDICO 
+														  on c.idMedico equals med.idMedico join pe in _context.T000_PERSONA on med.idPersona equals pe.idPersona
 														  select new CronogramaDTO
 														  {
 															  idProgramMedica = c.idProgramMedica,
@@ -151,7 +155,8 @@ namespace HistClinica.Repositories.Repositories
 															  fechaFin = c.fechaFin.Value.ToString("yyyy-MM-dd"),
 															  hrInicio = c.hrInicio,
 															  hrFin = c.hrFin,
-															  desEstado = td.descripcion
+															  desEstado = td.descripcion,
+															  medico = pe.primerNombre + ' ' + pe.apePaterno + ' ' + pe.apeMaterno
 														  }).ToListAsync();
 			return D012_CRONOMEDICOs;
 		}

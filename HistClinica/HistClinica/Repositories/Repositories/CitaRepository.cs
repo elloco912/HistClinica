@@ -103,7 +103,7 @@ namespace HistClinica.Repositories.Repositories
                 Cita.motivoAnula = motivoAnula;
                 _context.Entry(Cita).State = EntityState.Modified;
                 await Save();
-                return "Actualizacion Exitosa";
+                return "Se anulo la cita correctamente";
             }
             catch (Exception ex)
             {
@@ -124,7 +124,7 @@ namespace HistClinica.Repositories.Repositories
                 Cita.motivoRepro = cita.motivoreprogramacion;
                 _context.Entry(Cita).State = EntityState.Modified;
                 await Save();
-                return "Actualizacion Exitosa";
+                return "Se reprogramo la cita de forma correcta";
             }
             catch (Exception ex)
             {

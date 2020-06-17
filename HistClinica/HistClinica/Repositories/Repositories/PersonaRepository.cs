@@ -133,7 +133,7 @@ namespace HistClinica.Repositories.Repositories
                 {
                     await _pacienteRepository.InsertPaciente(Persona, idPersona);
                 }
-                return "Ingreso Exitoso Persona";
+                return "Paciente registrado correctamente";
             }
             catch (Exception ex)
             {

@@ -37,16 +37,16 @@
 
 				<div class="row pt-3">
 					<div class="col-sm-12">
-						<table class="table table-bordered table-hover text-center" id="cronogramagrid">
+						<table class="table table-bordered table-hover text-center" id="consultacronogrid">
 							<thead>
 								<tr>
 									<th>Id</th>
+									<th>Medico</th>
 									<th>Fecha Ini</th>
 									<th>Fecha Fin</th>
 									<th>Hora ini</th>
 									<th>Hora fin</th>
 									<th>Estado</th>
-									<th>Acciones</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -54,14 +54,12 @@
 								{
 								<tr>
 									<td>@item.idProgramMedica</td>
+									<td>@item.medico</td>
 									<td>@item.fechaIni</td>
 									<td>@item.fechaFin</td>
 									<td>@item.hrInicio</td>
 									<td>@item.hrFin</td>
 									<td>@item.desEstado</td>
-									<td>
-										<button type="submit" class="edit btn btn-primary" onclick="Cargarmodal();"><i class="fas fa-edit"></i></button>
-									</td>
 								</tr>
 								}
 							</tbody>
