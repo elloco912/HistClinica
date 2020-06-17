@@ -75,14 +75,18 @@ namespace HistClinica.Controllers
             return PartialView();
         }
 
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            await cronogramaRepository.DeleteCronograma(id);
+            CronogramaDTO cronograma = await cronogramaRepository.GetByIdCrono(id);
+            return PartialView(cronograma);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeletePost(D012_CRONOMEDICO cronograma)
+        {
+
+            await cronogramaRepository.DeleteCronograma(cronograma.idProgramMedica);
             return RedirectToAction("Index");
         }
 
@@ -109,7 +113,7 @@ namespace HistClinica.Controllers
 
             ViewBag.listahoras = horas;
 
-            D012_CRONOMEDICO cronoMedico = await cronogramaRepository.GetByIdCrono(id);
+            CronogramaDTO cronoMedico = await cronogramaRepository.GetByIdCrono(id);
 
             return PartialView("Edit",cronoMedico);
 
