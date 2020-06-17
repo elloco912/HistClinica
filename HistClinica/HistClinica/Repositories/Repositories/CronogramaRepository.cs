@@ -52,8 +52,8 @@ namespace HistClinica.Repositories.Repositories
 													select new CronogramaDTO
 													{
 														idProgramMedica = c.idProgramMedica,
-														fechaIni = c.fechaIni,
-														fechaFin = c.fechaFin,
+														fechaIni = c.fechaIni.Value.ToString("yyyy-MM-dd"),
+														fechaFin = c.fechaFin.Value.ToString("yyyy-MM-dd"),
 														hrInicio = c.hrInicio,
 														hrFin = c.hrFin,
 														desEstado = det.descripcion
@@ -120,8 +120,8 @@ namespace HistClinica.Repositories.Repositories
 														where c.idMedico == idmedico
 														select new CronogramaDTO {
 															idProgramMedica = c.idProgramMedica,
-															fechaIni = c.fechaIni,
-															fechaFin = c.fechaFin,
+															fechaIni = c.fechaIni.Value.ToString("yyyy-mm-dd"),
+															fechaFin = c.fechaFin.Value.ToString("yyyy-mm-dd"),
 															hrInicio = c.hrInicio,
 															hrFin = c.hrFin,
 															desEstado = td.descripcion
@@ -137,8 +137,8 @@ namespace HistClinica.Repositories.Repositories
 														  select new CronogramaDTO
 														  {
 															  idProgramMedica = c.idProgramMedica,
-															  fechaIni = c.fechaIni,
-															  fechaFin = c.fechaFin,
+															  fechaIni = c.fechaIni.Value.ToString("yyyy-MM-dd"),
+															  fechaFin = c.fechaFin.Value.ToString("yyyy-MM-dd"),
 															  hrInicio = c.hrInicio,
 															  hrFin = c.hrFin,
 															  desEstado = td.descripcion
