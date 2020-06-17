@@ -64,7 +64,7 @@ namespace HistClinica.Controllers
         {
             if (Cita != null)
             {
-              TempData["mensajecita"] = await _repository.InsertCita(Cita);
+                await _repository.InsertCita(Cita);
                 return RedirectToAction(nameof(Index));
             }
             return View(Cita);
@@ -115,7 +115,7 @@ namespace HistClinica.Controllers
                 try
                 {
                     TempData["dni"] = cita.dniPaciente;
-                    await _repository.ReprogramarCita(cita);
+                   TempData["mensajecita"] = await _repository.ReprogramarCita(cita);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -200,7 +200,7 @@ namespace HistClinica.Controllers
             if (cita != null)
             {
                 TempData["dni"] = dni;
-                await _repository.InsertCita(cita);
+                TempData["mensajecita"] = await _repository.InsertCita(cita);
                 return RedirectToAction("Index","Paciente");
             }
             return View(cita);
@@ -226,7 +226,7 @@ namespace HistClinica.Controllers
         public async Task<IActionResult> AnularCita(CitaDTO cita)
         {
             TempData["dni"] = cita.dniPaciente;
-            await _repository.AnularCita(cita.idCita, cita.motivoanulacion);
+            TempData["mensajecita"] = await _repository.AnularCita(cita.idCita, cita.motivoanulacion);
             return RedirectToAction("Index", "Paciente");
         }
 

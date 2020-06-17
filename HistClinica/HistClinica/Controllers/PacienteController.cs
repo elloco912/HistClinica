@@ -24,12 +24,16 @@ namespace HistClinica.Controllers
 
         public async Task<IActionResult> Index()
         {
-            if (TempData["dni"] != null)
+            if (TempData.ContainsKey("mensajecita"))
+            {
+                ViewBag.message = TempData["mensajecita"].ToString();
+            }
+            if (TempData.ContainsKey("dni"))
             {
                 var dni = TempData["dni"].ToString();
                 PersonaDTO personaDTO = await _pacienteRepository.GetByDni(Convert.ToInt32(dni));
                 return View(personaDTO);
-            }
+            } 
             return View();
            
         }
@@ -113,7 +117,8 @@ namespace HistClinica.Controllers
         {
             if (persona != null)
             {
-                await _personaRepository.InsertPersona(persona);
+                TempData["dni"] = persona.numeroDocumento;
+                TempData["mensajecita"] = await _personaRepository.InsertPersona(persona);
                 return RedirectToAction(nameof(Index));
             }
             return View(persona);
