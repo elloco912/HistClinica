@@ -91,6 +91,12 @@
 								@Html.TextBoxFor(m => (m.apellidoMaterno), new { @class = "form-control" })
 							</div>
 							<div class="form-group">
+								<label id="txtfecingresopersonal">FECHA NACIMIENTO</label>
+							</div>
+							<div class="form-group">
+								@Html.TextBoxFor(m => m.fecNacimiento, new { @class = "form-control", @type = "Date" })
+							</div>
+							<div class="form-group">
 								<label id="txtfecingresopersonal">FECHA INGRESO</label>
 							</div>
 							<div class="form-group">

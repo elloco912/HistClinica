@@ -206,3 +206,26 @@ function CargarModalAsignarUsuario() {
 		});
 	});
 }
+
+function CargarModalDeletePersona() {
+	$("#personalgrid .delete").click(function () {
+		var id = $(this).closest("tr").find("td").eq(0).html();
+		$.ajax({
+			type: "GET",
+			url: "/Persona/Delete",
+			data: { id: id },
+			contentType: "application/json; charset=utf-8",
+			dataType: "html",
+			success: function (response) {
+				$('#modaldeletepersona').html(response);
+				$('#modaldeletepersona').modal('show');
+			},
+			failure: function (response) {
+				alert(response.responseText);
+			},
+			error: function (response) {
+				alert(response.responseText);
+			}
+		});
+	});
+}

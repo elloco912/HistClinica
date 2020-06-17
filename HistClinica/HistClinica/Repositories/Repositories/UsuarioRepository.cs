@@ -42,7 +42,7 @@ namespace HistClinica.Repositories.Repositories
 
         public async Task<bool> UsuarioExists(int? id)
         {
-            return await _context.T068_CITA.AnyAsync(e => e.idCita == id);
+            return await _context.D001_USUARIO.AnyAsync(e => e.idEmpleado == id);
         }
         public async Task<string> InsertUsuario(PersonaDTO persona)
         {
@@ -78,7 +78,7 @@ namespace HistClinica.Repositories.Repositories
                         estado = "ACTIVO"
                     });
                     await Save();
-                    return "Ingreso Exitoso";   
+                    return "Se asigno usuario correctamente";   
                 }
             }
             catch (Exception ex)
