@@ -144,8 +144,7 @@ on td.idDet equals med.idEspecialidad
 		public async Task<object> GetTipo(string nombretipo)
 		{
 			var combo = await (from tg in _context.D00_TBGENERAL
-								 join td in _context.D00_TBDETALLE on tg.idTab
-                                  equals td.idTab
+								 join td in _context.D00_TBDETALLE on tg.idTab equals td.idTab
 								 where tg.descripcion == nombretipo
 								 select new
 								 {
