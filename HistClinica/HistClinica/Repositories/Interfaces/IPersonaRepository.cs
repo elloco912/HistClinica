@@ -11,7 +11,7 @@ namespace HistClinica.Repositories.Interfaces
         //Operaciones Transaccionales
         Task<string> InsertPersona(PersonaDTO Persona);
         Task<string> UpdatePersona(PersonaDTO Persona);
-        Task DeletePersona(int PersonaID);
+        Task DeletePersona(int? PersonaID);
         Task<bool> PersonaExists(int? id);
         Task Save();
     }

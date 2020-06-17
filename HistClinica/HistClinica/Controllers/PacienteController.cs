@@ -29,6 +29,10 @@ namespace HistClinica.Controllers
 
         public IActionResult Index()
         {
+            if (TempData["mensajecita"] != null)
+            {
+                ViewBag.mensaje = TempData["mensajecita"].ToString();
+            }
             return View();
         }
 

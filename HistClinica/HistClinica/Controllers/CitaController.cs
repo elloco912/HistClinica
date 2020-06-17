@@ -64,7 +64,7 @@ namespace HistClinica.Controllers
         {
             if (Cita != null)
             {
-                await _repository.InsertCita(Cita);
+              TempData["mensajecita"] = await _repository.InsertCita(Cita);
                 return RedirectToAction(nameof(Index));
             }
             return View(Cita);

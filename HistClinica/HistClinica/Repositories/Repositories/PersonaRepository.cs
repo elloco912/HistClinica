@@ -57,7 +57,7 @@ namespace HistClinica.Repositories.Repositories
                          select d.idDet
                          ).FirstOrDefaultAsync();
         }
-        public async Task DeletePersona(int PersonaID)
+        public async Task DeletePersona(int? PersonaID)
         {
             T000_PERSONA Persona = await _context.T000_PERSONA.FindAsync(PersonaID);
             _context.T000_PERSONA.Remove(Persona);

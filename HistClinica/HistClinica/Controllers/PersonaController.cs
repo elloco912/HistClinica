@@ -34,6 +34,10 @@ namespace HistClinica.Controllers
         // GET: Persona
         public async Task<IActionResult> Index()
         {
+            if (TempData["mensajepersona"] != null)
+            {
+                ViewBag.message = TempData["mensajepersona"].ToString();
+            }
             return View(await _personaRepository.GetAllPersonal());
         }
 
@@ -75,7 +79,7 @@ namespace HistClinica.Controllers
         {
             if (personaDTO != null)
             {
-                await _personaRepository.InsertPersona(personaDTO);
+                TempData["mensajepersona"] = await _personaRepository.InsertPersona(personaDTO);
                 return RedirectToAction(nameof(Index));
             }
             return RedirectToAction("Create");
@@ -107,7 +111,7 @@ namespace HistClinica.Controllers
             {
                 try
                 {
-                    await _personaRepository.UpdatePersona(personaDTO);
+                    TempData["mensajepersona"] = await _personaRepository.UpdatePersona(personaDTO);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -139,16 +143,16 @@ namespace HistClinica.Controllers
                 return NotFound();
             }
 
-            return View(persona);
+            return PartialView(persona);
         }
 
         // POST: Persona/Delete/5
-        //  [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("Delete")]
         // [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(PersonaDTO personadto)
         {
-            var persona = await _personaRepository.GetById(id);
-            await _personaRepository.DeletePersona(id);
+            var persona = await _personaRepository.GetById(personadto.idPersona);
+            await _personaRepository.DeletePersona(personadto.idPersona);
             return RedirectToAction(nameof(Index));
         }
 
@@ -178,7 +182,8 @@ namespace HistClinica.Controllers
                     }
                     if(personaDTO.asignacion.claveUser != null)
                     {
-                        await _usuarioRepository.InsertUsuario(personaDTO);
+                        TempData["mensajepersona"] = await _usuarioRepository.InsertUsuario(personaDTO);
+
                     }
                 }
                 catch (DbUpdateConcurrencyException)

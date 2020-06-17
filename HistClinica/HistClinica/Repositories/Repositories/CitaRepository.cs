@@ -83,7 +83,7 @@ namespace HistClinica.Repositories.Repositories
                     estado = "Pendiente"
                 });
                 await Save();
-                return "Ingreso Exitoso";
+                return "Se registro cita correctamente";
             }
             catch (Exception ex)
             {

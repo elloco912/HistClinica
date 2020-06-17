@@ -83,7 +83,7 @@ namespace HistClinica.Repositories.Repositories
                         fechaMod = ""
                     });
                     await Save();
-                    return "Ingreso Exitoso";   
+                    return "Se asigno usuario correctamente";   
                 }
             }
             catch (Exception ex)
