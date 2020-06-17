@@ -45,6 +45,11 @@ namespace HistClinica.Repositories.Repositories
             return await _context.D024_CAJA.AnyAsync(e => e.idCaja == id);
         }
 
+        public async Task<bool> AsignaCajaExists(int? idcaja, int? idEmpleado)
+        {
+            return await _context.D025_ASIGNACAJA.AnyAsync(e => e.idCaja == idcaja && e.idEmpleado == idEmpleado);
+        }
+
         public async Task DeleteCaja(int CajaID)
         {
             D024_CAJA Caja = await _context.D024_CAJA.FindAsync(CajaID);
@@ -84,13 +89,17 @@ namespace HistClinica.Repositories.Repositories
         {
             try
             {
-                await _context.D025_ASIGNACAJA.AddAsync(new D025_ASIGNACAJA()
+                if(!await AsignaCajaExists(persona.asignacion.idCaja, persona.personal.idEmpleado))
                 {
-                    idEmpleado = (int)persona.personal.idEmpleado,
-                    idCaja = (int)persona.asignacion.idCaja
-                });
-                await Save();
-                return "Ingreso Exitoso";
+                    await _context.D025_ASIGNACAJA.AddAsync(new D025_ASIGNACAJA()
+                    {
+                        idEmpleado = (int)persona.personal.idEmpleado,
+                        idCaja = (int)persona.asignacion.idCaja
+                    });
+                    await Save();
+                    return "Ingreso Exitoso";
+                }
+                return "Caja ya asignada";
             }
             catch (Exception ex)
             {

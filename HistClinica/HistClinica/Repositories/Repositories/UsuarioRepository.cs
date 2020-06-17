@@ -68,6 +68,9 @@ namespace HistClinica.Repositories.Repositories
                 }
                 else
                 {
+                    string fecNacimiento = Persona.fecNacimiento;
+                    if (fecNacimiento != null) fecNacimiento = Persona.fecNacimiento.Substring(0, 2);
+                    else fecNacimiento = "";
                     await _context.D001_USUARIO.AddAsync(new D001_USUARIO()
                     {
                         idEmpleado = persona.personal.idEmpleado,
@@ -75,7 +78,9 @@ namespace HistClinica.Repositories.Repositories
                         loginUser = Persona.primerNombre.Substring(0, 1) + Persona.apePaterno + Persona.fecNacimiento.Substring(0, 2),
                         claveUser = persona.asignacion.claveUser,
                         usuRegistra = persona.asignacion.usuRegistra,
-                        estado = "ACTIVO"
+                        estado = "ACTIVO",
+                        usuMod = "",
+                        fechaMod = ""
                     });
                     await Save();
                     return "Se asigno usuario correctamente";   

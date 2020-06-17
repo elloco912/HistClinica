@@ -110,8 +110,8 @@ namespace HistClinica.Repositories.Repositories
         {
             PersonaDTO personaDTO = await (from p in _context.T000_PERSONA
                                      join e in _context.T120_EMPLEADO on p.idPersona equals e.idPersona
-                                           where e.idEmpleado == id
-                                           select new PersonaDTO
+                                     where p.idPersona == id
+                                     select new PersonaDTO
                                      {
                                          primerNombre = p.primerNombre,
                                          segundoNombre = p.segundoNombre,
