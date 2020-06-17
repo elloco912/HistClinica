@@ -97,7 +97,8 @@
 										<label>Dni</label>
 									</div>
 									<div class="col-sm-8 form-inline">
-										<input type="text" class="form-control pr-2" id="dni" asp-for="dniPaciente" disabled>
+										@Html.EditorFor(m => m.dniPaciente, new { htmlAttributes = new { @class = "form-control", @disabled="true"} })
+										@Html.HiddenFor(m => m.dniPaciente)
 									</div>
 								</div>
 							</div>

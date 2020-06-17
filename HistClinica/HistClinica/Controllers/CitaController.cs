@@ -114,6 +114,7 @@ namespace HistClinica.Controllers
             {
                 try
                 {
+                    TempData["dni"] = cita.dniPaciente;
                     await _repository.ReprogramarCita(cita);
                 }
                 catch (DbUpdateConcurrencyException)
@@ -194,10 +195,11 @@ namespace HistClinica.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Registro(CitaDTO cita)
+        public async Task<IActionResult> Registro(CitaDTO cita,string dni)
         {
             if (cita != null)
             {
+                TempData["dni"] = dni;
                 await _repository.InsertCita(cita);
                 return RedirectToAction("Index","Paciente");
             }
@@ -223,6 +225,7 @@ namespace HistClinica.Controllers
         [HttpPost]
         public async Task<IActionResult> AnularCita(CitaDTO cita)
         {
+            TempData["dni"] = cita.dniPaciente;
             await _repository.AnularCita(cita.idCita, cita.motivoanulacion);
             return RedirectToAction("Index", "Paciente");
         }
