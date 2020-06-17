@@ -197,7 +197,6 @@ D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\staticwebassets\H
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.dll
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.pdb
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.genruntimeconfig.cache
-D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.csprojAssemblyReference.cache
 D:\HistClinica\HistClinica\HistClinica\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
 D:\HistClinica\HistClinica\HistClinica\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
 C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
@@ -404,3 +403,4 @@ C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.
 C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.csprojAssemblyReference.cache
 C:\Users\User\Desktop\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cronograma\Delete.cshtml.g.cs
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cronograma\Delete.cshtml.g.cs
+D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cronograma\Details.cshtml.g.cs

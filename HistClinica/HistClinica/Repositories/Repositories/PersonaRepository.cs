@@ -266,7 +266,8 @@ namespace HistClinica.Repositories.Repositories
                                           idEmpleado = e.idEmpleado,
                                           idTipoEmpleado = e.idtpEmpleado,
                                           fechaIngreso = e.fecIngreso.Value.ToString("yyyy-MM-dd"),
-                                          cargo = e.cargo
+                                          cargo = e.cargo,
+                                          descArea = e.descArea
                                       }).FirstOrDefaultAsync();
             //Tipo de Empleado verificar
             if (Persona.personal.idTipoEmpleado == (int)await getIdTpEmpleado("MEDICA/O"))
