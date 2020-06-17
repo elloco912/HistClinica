@@ -235,7 +235,7 @@ namespace HistClinica.Repositories.Repositories
                                               where e.idPersona == Personas[i].idPersona
                                               select new PersonalDTO
                                               {
-                                                  fechaIngreso = e.fecIngreso,
+                                                  fechaIngreso = e.fecIngreso.Value.ToString("yyyy-MM-dd"),
                                                   cargo = e.cargo
                                               }).FirstOrDefaultAsync();
             }
@@ -265,7 +265,7 @@ namespace HistClinica.Repositories.Repositories
                                       {
                                           idEmpleado = e.idEmpleado,
                                           idTipoEmpleado = e.idtpEmpleado,
-                                          fechaIngreso = e.fecIngreso,
+                                          fechaIngreso = e.fecIngreso.Value.ToString("yyyy-MM-dd"),
                                           cargo = e.cargo
                                       }).FirstOrDefaultAsync();
             //Tipo de Empleado verificar
