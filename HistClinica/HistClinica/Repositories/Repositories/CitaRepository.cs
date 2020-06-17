@@ -68,7 +68,13 @@ namespace HistClinica.Repositories.Repositories
                     estado = Cita.estado,
                     idEstadoCita = (from ec in _context.T109_ESTADOCITA
                                     where ec.estado == "RESERVADO"
-                                    select ec.idEstadoCita).FirstOrDefault()
+                                    select ec.idEstadoCita).FirstOrDefault(),
+                    idConsultorio = (from cm in _context.D012_CRONOMEDICO
+                                     where cm.idProgramMedica == Cita.idProgramMedica
+                                     select cm.idConsultorio).FirstOrDefault(),
+                    //idservicioCli = (from cm in _context.D012_CRONOMEDICO
+                    //                 where cm.idProgramMedica == Cita.idProgramMedica
+                    //                 select cm.id).FirstOrDefault(),
                 });
                 await Save();
                 idCita = (from c in _context.T068_CITA
@@ -101,7 +107,7 @@ namespace HistClinica.Repositories.Repositories
                                      where ec.estado ==  "ANULADO"
                                      select ec.idEstadoCita).FirstOrDefault();
                 Cita.motivoAnula = motivoAnula;
-                _context.Entry(Cita).State = EntityState.Modified;
+                _context.Update(Cita);
                 await Save();
                 return "Se anulo la cita correctamente";
             }
@@ -122,7 +128,7 @@ namespace HistClinica.Repositories.Repositories
                                      where ec.estado == "REPROGRAMADO"
                                      select ec.idEstadoCita).FirstOrDefault();
                 Cita.motivoRepro = cita.motivoreprogramacion;
-                _context.Entry(Cita).State = EntityState.Modified;
+                _context.Update(Cita);
                 await Save();
                 return "Se reprogramo la cita de forma correcta";
             }
