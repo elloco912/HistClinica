@@ -11,7 +11,7 @@ namespace HistClinica.Repositories.Interfaces
 	{
 		Task<string> InsertCronograma(D012_CRONOMEDICO cronograma);
 		Task<string> UpdateCronograma(D012_CRONOMEDICO cronograma);
-		Task<D012_CRONOMEDICO> GetByIdCrono(int CronoID);
+		Task<CronogramaDTO> GetByIdCrono(int CronoID);
 		Task<List<CronogramaDTO>> GetAllCronogramas();
 
 		Task<List<CronogramaDTO>> GetAllCronogramasConsulta();

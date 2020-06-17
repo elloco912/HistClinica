@@ -62,11 +62,21 @@ namespace HistClinica.Repositories.Repositories
 		}
 
 		//guiate con esto y el interface? 
-		public async Task<D012_CRONOMEDICO> GetByIdCrono(int CronoID)
+		public async Task<CronogramaDTO> GetByIdCrono(int CronoID)
 		{
-			D012_CRONOMEDICO D012_CRONOMEDICOs = await (from c in _context.D012_CRONOMEDICO
+			CronogramaDTO D012_CRONOMEDICOs = await (from c in _context.D012_CRONOMEDICO
 											  where c.idProgramMedica == CronoID
-											  select c).FirstOrDefaultAsync();
+											  select new CronogramaDTO() { 
+												  idConsultorio = c.idConsultorio,
+												  idEspecialidad = c.idEspecialidad,
+												  idEstado = c.idEstado,
+												  idProgramMedica = c.idProgramMedica,
+												  fechaIni = c.fechaIni.Value.ToString("yyyy-MM-dd"),
+												  fechaFin = c.fechaFin.Value.ToString("yyyy-MM-dd"),
+												  hrInicio = c.hrInicio,
+												  hrFin = c.hrFin,
+												  idMedico = c.idMedico
+											  }).FirstOrDefaultAsync();
 			return D012_CRONOMEDICOs;
 		}
 
@@ -120,8 +130,8 @@ namespace HistClinica.Repositories.Repositories
 														where c.idMedico == idmedico
 														select new CronogramaDTO {
 															idProgramMedica = c.idProgramMedica,
-															fechaIni = c.fechaIni.Value.ToString("yyyy-mm-dd"),
-															fechaFin = c.fechaFin.Value.ToString("yyyy-mm-dd"),
+															fechaIni = c.fechaIni.Value.ToString("yyyy-MM-dd"),
+															fechaFin = c.fechaFin.Value.ToString("yyyy-MM-dd"),
 															hrInicio = c.hrInicio,
 															hrFin = c.hrFin,
 															desEstado = td.descripcion

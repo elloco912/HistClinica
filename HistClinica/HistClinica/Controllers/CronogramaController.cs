@@ -77,8 +77,8 @@ namespace HistClinica.Controllers
 
         public async Task<IActionResult> Delete(int id)
         {
-        
-            D012_CRONOMEDICO cronograma = await cronogramaRepository.GetByIdCrono(id);
+
+            CronogramaDTO cronograma = await cronogramaRepository.GetByIdCrono(id);
             return PartialView(cronograma);
         }
 
@@ -113,7 +113,7 @@ namespace HistClinica.Controllers
 
             ViewBag.listahoras = horas;
 
-            D012_CRONOMEDICO cronoMedico = await cronogramaRepository.GetByIdCrono(id);
+            CronogramaDTO cronoMedico = await cronogramaRepository.GetByIdCrono(id);
 
             return PartialView("Edit",cronoMedico);
 
