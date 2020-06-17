@@ -52,8 +52,8 @@ namespace HistClinica.Repositories.Repositories
 													select new CronogramaDTO
 													{
 														idProgramMedica = c.idProgramMedica,
-														fechaIni = c.fechaIni,
-														fechaFin = c.fechaFin,
+														fechaIni = c.fechaIni.Value.ToShortDateString(),
+														fechaFin = c.fechaFin.Value.ToShortDateString(),
 														hrInicio = c.hrInicio,
 														hrFin = c.hrFin,
 														desEstado = det.descripcion
@@ -61,7 +61,7 @@ namespace HistClinica.Repositories.Repositories
 			return D012_CRONOMEDICOs;
 		}
 
-		//guiate con esto y el interface? 
+		//guiate con esto y el interface?     
 		public async Task<D012_CRONOMEDICO> GetByIdCrono(int CronoID)
 		{
 			D012_CRONOMEDICO D012_CRONOMEDICOs = await (from c in _context.D012_CRONOMEDICO
@@ -120,8 +120,8 @@ namespace HistClinica.Repositories.Repositories
 														where c.idMedico == idmedico
 														select new CronogramaDTO {
 															idProgramMedica = c.idProgramMedica,
-															fechaIni = c.fechaIni,
-															fechaFin = c.fechaFin,
+															fechaIni = c.fechaIni.Value.ToShortDateString(),
+															fechaFin = c.fechaFin.Value.ToShortDateString(),
 															hrInicio = c.hrInicio,
 															hrFin = c.hrFin,
 															desEstado = td.descripcion
@@ -137,8 +137,8 @@ namespace HistClinica.Repositories.Repositories
 														  select new CronogramaDTO
 														  {
 															  idProgramMedica = c.idProgramMedica,
-															  fechaIni = c.fechaIni,
-															  fechaFin = c.fechaFin,
+															  fechaIni = c.fechaIni.Value.ToShortDateString(),
+															  fechaFin = c.fechaFin.Value.ToShortDateString(),
 															  hrInicio = c.hrInicio,
 															  hrFin = c.hrFin,
 															  desEstado = td.descripcion
