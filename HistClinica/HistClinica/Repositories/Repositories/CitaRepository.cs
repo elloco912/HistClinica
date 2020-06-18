@@ -72,9 +72,7 @@ namespace HistClinica.Repositories.Repositories
                     idConsultorio = (from cm in _context.D012_CRONOMEDICO
                                      where cm.idProgramMedica == Cita.idProgramMedica
                                      select cm.idConsultorio).FirstOrDefault(),
-                    //idservicioCli = (from cm in _context.D012_CRONOMEDICO
-                    //                 where cm.idProgramMedica == Cita.idProgramMedica
-                    //                 select cm.id).FirstOrDefault(),
+                    idservicioCli = Cita.idServicioCli
                 });
                 await Save();
                 idCita = (from c in _context.T068_CITA
@@ -182,7 +180,7 @@ namespace HistClinica.Repositories.Repositories
                                         nombrePaciente = (from p in _context.T001_PACIENTE
                                                           join pe in _context.T000_PERSONA on p.idPersona equals pe.idPersona 
                                                           where p.idPaciente == c.idPaciente
-                                                          select (pe.primerNombre + " " + pe.segundoNombre)).FirstOrDefault(),
+                                                          select pe.primerNombre + "" + pe.apePaterno).FirstOrDefault(),
                                         dniPaciente = (from p in _context.T001_PACIENTE
                                                           join pe in _context.T000_PERSONA on p.idPersona equals pe.idPersona
                                                           where p.idPaciente == c.idPaciente
