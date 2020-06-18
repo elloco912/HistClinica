@@ -1,30 +1,30 @@
 ﻿
 @{
-    ViewData["Title"] = "Agregar";
+    ViewData["Title"] = "EditarInformacion";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Agregar Tipo</h1>
+<h1>Editar Informacion</h1>
 
 <hr />
 
 <div class="row">
     <div class="col-md-6">
 
-        <form asp-action="Agregar" method="post">
+        <form asp-action="Editar" method="post">
 
             <div class="form-group">
 
-                <label >Codigo</label>
+                <label>Codigo</label>
                 <input class="form form-control" />
                 <span class="text-danger"></span>
             </div>
 
             <div class="form-group">
 
-                <label >Descripcion</label>
-                <input  class="form form-control" />
-                <span  class="text-danger"></span>
+                <label>Descripcion</label>
+                <input class="form form-control" />
+                <span class="text-danger"></span>
             </div>
 
             <div class="form-group">
@@ -44,6 +44,4 @@
 
 
 </div>
-
-
 

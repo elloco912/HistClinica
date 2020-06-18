@@ -409,3 +409,6 @@ D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Crono
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cronograma\Details.cshtml.g.cs
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Paciente\Pago.cshtml.g.cs
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
+D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Detalle\Actualizar.cshtml.g.cs
+D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Detalle\AgregarInformacion.cshtml.g.cs
+D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Detalle\EditarInformacion.cshtml.g.cs
