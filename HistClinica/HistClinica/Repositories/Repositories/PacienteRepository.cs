@@ -263,7 +263,7 @@ namespace HistClinica.Repositories.Repositories
                     idPaciente = Persona.paciente.idPaciente
                 });
                 await Save();
-                return "Ingreso Exitoso Paciente";
+                return "Actualizacion Exitosa Paciente";
             }
             catch (Exception ex)
             {

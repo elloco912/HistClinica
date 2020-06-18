@@ -32,14 +32,16 @@ namespace HistClinica.Repositories.Repositories
 			public  string fecprogram { get; set; }
 		}
 
-		public List<Fecha> ObtenerFecha(List<D012_CRONOMEDICO> cronograma)
+		public List<Fecha> ObtenerFechaHora(List<D012_CRONOMEDICO> cronograma)
         {
-			int intervalo;
+			int intervalofecha, intervalohora;
 			List<Fecha> fechas = new List<Fecha>();
+
 			foreach (var item in cronograma)
 			{
-				intervalo = item.fechaFin.Value.DayOfYear - item.fechaIni.Value.DayOfYear;
-				for (int i = 0; i <= intervalo; i++)
+				intervalofecha = item.fechaFin.Value.DayOfYear - item.fechaIni.Value.DayOfYear;
+				intervalohora = int.Parse(item.hrFin.Split(":")[0]) - int.Parse(item.hrInicio.Split(":")[0]);
+				for (int i = 0; i <= intervalofecha; i++)
 				{
 					Fecha fecha = new Fecha()
 					{
@@ -59,7 +61,7 @@ namespace HistClinica.Repositories.Repositories
 								   select cro
 									).ToListAsync();
 			
-			return ObtenerFecha(cronograma);
+			return ObtenerFechaHora(cronograma);
 		}
 
 		public async Task<object> GetCronogramaByMedico(int id)
@@ -68,20 +70,20 @@ namespace HistClinica.Repositories.Repositories
 									join med in _context.T212_MEDICO on cro.idMedico equals med.idMedico
 									where med.idMedico == id
 									select cro).ToListAsync();
-			return ObtenerFecha(cronograma);
+			return ObtenerFechaHora(cronograma);
 		}
 
 		public async Task<object> GetEspecialidad(int id)
 		{
-			var combo = await(from td in _context.D00_TBDETALLE
-							  join med in _context.T212_MEDICO
-on td.idDet equals med.idEspecialidad
-							  where med.idMedico == id
-							  select new
-							  {
-								  idtab = td.idDet,
-								  descripcion = td.descripcion
-							  }).ToListAsync();
+			var combo = await(	from td in _context.D00_TBDETALLE
+								join med in _context.T212_MEDICO
+								on td.idDet equals med.idEspecialidad
+								where med.idMedico == id
+								select new
+								{
+									idtab = td.idDet,
+									descripcion = td.descripcion
+								}).ToListAsync();
 			return combo;
 		}
 
@@ -99,19 +101,28 @@ on td.idDet equals med.idEspecialidad
 			return horas;
 		}
 
-		public async Task<object> GetHorasByCronograma(int id)
-		{
-			var horas = await(from cro in _context.D012_CRONOMEDICO
-								   where cro.idProgramMedica == id
-								   select new
-								   {
-									   id = cro.idProgramMedica,
-									   hora = cro.hrInicio + " - " + cro.hrFin
-								   }).ToListAsync();
-			return horas;
-		}
+        public async Task<object> GetHorasByCronograma(int id)
+        {
+			int intervalohora;
+			int hora;
+			List<string> horas = new List<string>();
+			var cronograma = await (from cro in _context.D012_CRONOMEDICO
+                               where cro.idProgramMedica == id
+                               select cro).FirstOrDefaultAsync();
+			intervalohora = int.Parse(cronograma.hrFin.Split(":")[0]) - int.Parse(cronograma.hrInicio.Split(":")[0]);
 
-		public async Task<object> GetMedicoByEspecialidad(int id)
+			for (int i = 0; i <= intervalohora; i++)
+			{
+				for (int j = 0; j < intervalohora; j++)
+				{
+					hora = int.Parse(cronograma.hrInicio.Split(":")[0]) + i;
+					horas.Add(hora.ToString() + ":00");
+				}
+			}
+			return horas;
+        }
+
+        public async Task<object> GetMedicoByEspecialidad(int id)
 		{
 			var medico = await (from td in _context.D00_TBDETALLE
 								join med in _context.T212_MEDICO
