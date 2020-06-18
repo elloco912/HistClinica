@@ -25,7 +25,7 @@
 										<label>Tipo de paciente</label>
 									</div>
 									<div class="col-sm-7">
-										@Html.DropDownListFor(m => m.paciente.idTipoPaciente, new SelectList(ViewBag.ltippac, "idtab", "descripcion"), "Seleccione", new { @class = "form-control" })
+										@Html.DropDownListFor(m => m.paciente.idTipoPaciente, new SelectList(ViewBag.ltippac, "idtab", "descripcion"), "Seleccione", new { @class = "form-control",@id="cbotppac" })
 									</div>
 								</div>
 							</div>
