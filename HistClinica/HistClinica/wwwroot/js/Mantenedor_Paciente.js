@@ -4,17 +4,15 @@ $(document).ready(function () {
     camposlongitud();
 });
 
-function MostrarInputs() {
-    var value;
-    var select = document.getElementById("cbotppac");
-    value = select.value;
-    if (value == '2') {
+$(document).on('change', '#cbotppac', function (event) {
+    var value = $("#cbotppac option:selected").val();
+    if (value == 121) {
         $('#divpacconv').show();
         $('#divpaccomp').show();
         $('#divpacotros').show();
         $('#actconvenio').show();
         $('#actcompañia').hide();
-    } else if (value == '3') {
+    } else if (value == 120) {
         $('#divpacconv').show();
         $('#divpaccomp').show();
         $('#divpacotros').show();
@@ -27,7 +25,9 @@ function MostrarInputs() {
         $('#actcompañia').hide();
         $('#actconvenio').hide();
     }
-    }
+
+});
+
 
 (function () {
     'use strict';
