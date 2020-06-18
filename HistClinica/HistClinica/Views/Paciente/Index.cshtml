@@ -86,7 +86,7 @@
 								<label>Paciente</label>
 							</div>
 							<div class="col-sm-8">
-								<label>@Html.DisplayFor(m => m.apellidoPaterno) @Html.DisplayFor(m => m.apellidoMaterno) @Html.DisplayFor(m => m.primerNombre)</label>
+								<label>@Html.DisplayFor(m => m.apellidoPaterno) @Html.DisplayFor(m => m.apellidoMaterno) @Html.DisplayFor(m => m.primerNombre) @Html.DisplayFor(m => m.segundoNombre)</label>
 							</div>
 						</div>
 					</div>
@@ -214,7 +214,7 @@
 
 					</div>
 					<div class="col-sm-6 text-right">
-						<button class="btn btn-primary" style="width: 112px;font-size: 16px;">Pagar</button>
+						<a asp-action="Pago" asp-controller="Paciente" class="btn btn-primary" style="width: 112px;font-size: 16px;">Pagar</a>
 					</div>
 				</div>
 

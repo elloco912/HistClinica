@@ -154,5 +154,12 @@ on td.idDet equals med.idEspecialidad
 								 }).ToListAsync();
 			return combo;
 		}
+
+		public async Task<List<T218_SERVICIOSCLI>> getServicios()
+		{
+			List<T218_SERVICIOSCLI> servicios = await (from s in _context.T218_SERVICIOSCLI
+													   select s).ToListAsync();
+			return servicios;
+		}
 	}
 }

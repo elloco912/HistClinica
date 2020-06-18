@@ -189,6 +189,9 @@ namespace HistClinica.Controllers
             var lcronograma = await _utilrepository.GetCronograma();
             ViewBag.lcronograma = lcronograma;
 
+            var servicios = await _utilrepository.getServicios();
+            ViewBag.servicios = servicios;
+
             var lhoras = await _utilrepository.GetHoras();
             ViewBag.lhoras = lhoras;
             return PartialView();

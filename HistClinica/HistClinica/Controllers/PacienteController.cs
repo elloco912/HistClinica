@@ -201,5 +201,11 @@ namespace HistClinica.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
+        public IActionResult Pago()
+        {
+            return View();
+        }
+
     }
 }
