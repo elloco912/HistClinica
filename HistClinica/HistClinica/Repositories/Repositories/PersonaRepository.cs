@@ -255,6 +255,7 @@ namespace HistClinica.Repositories.Repositories
                                  segundoNombre = p.segundoNombre,
                                  apellidoPaterno = p.apePaterno,
                                  apellidoMaterno = p.apeMaterno,
+                                 fecNacimiento = p.fecNacimiento,
                                  telefono = p.telefono,
                                  numeroDocumento = (int)p.dniPersona,
                                  ruc = p.nroRuc
