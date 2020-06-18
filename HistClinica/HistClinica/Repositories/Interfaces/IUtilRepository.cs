@@ -13,7 +13,7 @@ namespace HistClinica.Repositories.Interfaces
 		Task<object> GetMedicoByEspecialidad(int id);
 		Task<object> GetMedicos();
 		Task<object> GetCronogramaByMedico(int id);
-		Task<object> GetHorasByCronograma(int id);
+		//Task<object> GetHorasByCronograma(int id);
 		Task<object> GetHoras();
 		Task<object> GetCronograma();
 		Task<List<T109_ESTADOCITA>> getEstadoCita();

@@ -61,7 +61,8 @@ namespace HistClinica.Repositories.Repositories
                         idEmpleado = Usuario.idEmpleado,
                         fechaRegistra = Usuario.fechaRegistra,
                         loginUser = Usuario.loginUser,
-                        claveUser = persona.asignacion.claveUser,
+                        //claveUser = persona.asignacion.claveUser,
+                        claveUser = persona.numeroDocumento.ToString(),
                         usuRegistra = Usuario.usuRegistra,
                         estado = Usuario.estado
                     });
@@ -75,8 +76,9 @@ namespace HistClinica.Repositories.Repositories
                     {
                         idEmpleado = persona.personal.idEmpleado,
                         fechaRegistra = DateTime.Now.ToString(),
-                        loginUser = Persona.primerNombre.Substring(0, 1) + Persona.apePaterno + Persona.fecNacimiento.Substring(0, 2),
-                        claveUser = persona.asignacion.claveUser,
+                        loginUser = Persona.apePaterno.Substring(0, 1) + Persona.primerNombre + Persona.fecNacimiento.Substring(0, 2),
+                        //claveUser = persona.asignacion.claveUser,
+                        claveUser = persona.numeroDocumento.ToString(),
                         usuRegistra = persona.asignacion.usuRegistra,
                         estado = "ACTIVO",
                         usuMod = "",
@@ -96,7 +98,7 @@ namespace HistClinica.Repositories.Repositories
         {
             _context.Update(usuario);
             await Save();
-            return "Actualizacion Exitosa";
+            return "Actualizacion Exitosa Usuario";
         }
     }
 }

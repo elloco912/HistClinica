@@ -58,7 +58,6 @@ namespace HistClinica.Repositories.Repositories
         }
         public async Task<string> InsertCaja(D024_CAJA Caja)
         {
-            int idCaja = 0;
             try
             {
                 await _context.D024_CAJA.AddAsync(Caja);
