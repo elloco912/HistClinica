@@ -94,6 +94,9 @@ namespace HistClinica.Controllers
             var lestado = await _utilrepository.getEstadoCita();
             ViewBag.lestado = lestado;
 
+            var servicios = await _utilrepository.getServicios();
+            ViewBag.servicios = servicios;
+
             var t068_CITA = await _repository.GetById(id);
             if (t068_CITA == null)
             {

@@ -177,6 +177,7 @@ namespace HistClinica.Repositories.Repositories
                                         idCita = c.idCita,
                                         descripcion = c.descripcion,
                                         idPaciente = c.idPaciente,
+                                        idServicioCli = c.idservicioCli,
                                         nombrePaciente = (from p in _context.T001_PACIENTE
                                                           join pe in _context.T000_PERSONA on p.idPersona equals pe.idPersona 
                                                           where p.idPaciente == c.idPaciente
