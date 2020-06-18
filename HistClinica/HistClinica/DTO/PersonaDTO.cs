@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace HistClinica.DTO
 {
@@ -13,16 +14,31 @@ namespace HistClinica.DTO
         public string segundoNombre { get; set; }
         public int? ruc { get; set; }
         public int? edad { get; set; }
+
+        [MaxLength(9)]
+        [Required(ErrorMessage = "Ingrese numero de telefono")]
         public string telefono { get; set; }
         public int? idSexo { get; set; }
         public int? idGradoInstruccion { get; set; }
         public int? idEstadoCivil { get; set; }
+
+        [DataType(DataType.EmailAddress)]
+        [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = "Correo no valido")]
         public string Email { get; set; }
+
+        [MaxLength(9)]
+        [Required(ErrorMessage = "Ingrese numero de celular")]
         public string celular { get; set; }
         public int? idTipoDocumento { get; set; }
+
+        [MaxLength(8)]
+        [Required(ErrorMessage = "Ingrese numero de documento")]
         public int? numeroDocumento { get; set; }
         public string centroEduca { get; set; }
         public string condicionRuc { get; set; }
+
+        [DataType(DataType.EmailAddress)]
+        [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = "Correo no valido")]
         public string correo { get; set; }
         public string domiFiscal { get; set; }
         public string estado { get; set; }

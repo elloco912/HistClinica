@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,6 +16,9 @@ namespace HistClinica.DTO
         public string nroRne { get; set; }
         public int? idTipoEmpleado { get; set; }
         public string fechaIngreso { get; set; }
+
+        [MaxLength(5)]
+        [Required(ErrorMessage = "Ingrese numero de colegio")]
         public int? numeroColegio { get; set; }
         public string cargo { get; set; }
         public int? idEspecialidad { get; set; }
