@@ -32,6 +32,12 @@ namespace HistClinica.Repositories.Repositories
 			public  string fecprogram { get; set; }
 		}
 
+		public class Hora
+		{
+			public int idprogramMed { get; set; }
+			public string horprogram { get; set; }
+		}
+
 		public List<Fecha> ObtenerFechaHora(List<D012_CRONOMEDICO> cronograma)
         {
 			int intervalofecha, intervalohora;
@@ -104,20 +110,20 @@ namespace HistClinica.Repositories.Repositories
         public async Task<object> GetHorasByCronograma(int id)
         {
 			int intervalohora;
-			int hora;
-			List<string> horas = new List<string>();
+			Hora hora;
+			List<Hora> horas = new List<Hora>();
 			var cronograma = await (from cro in _context.D012_CRONOMEDICO
                                where cro.idProgramMedica == id
                                select cro).FirstOrDefaultAsync();
 			intervalohora = int.Parse(cronograma.hrFin.Split(":")[0]) - int.Parse(cronograma.hrInicio.Split(":")[0]);
 
-			for (int i = 0; i <= intervalohora; i++)
+			for (int j = 0; j < intervalohora; j++)
 			{
-				for (int j = 0; j < intervalohora; j++)
-				{
-					hora = int.Parse(cronograma.hrInicio.Split(":")[0]) + i;
-					horas.Add(hora.ToString() + ":00");
-				}
+				hora = new Hora{
+					idprogramMed = cronograma.idProgramMedica,
+					horprogram = (int.Parse(cronograma.hrInicio.Split(":")[0]) + j).ToString() + ":00"
+				};
+				horas.Add(hora);
 			}
 			return horas;
         }
