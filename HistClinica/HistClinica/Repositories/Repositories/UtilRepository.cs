@@ -30,31 +30,23 @@ namespace HistClinica.Repositories.Repositories
         {
 			public int idprogramMed { get; set; }
 			public  string fecprogram { get; set; }
-			public  List<string> horprogram { get; set; }
 		}
 
 		public List<Fecha> ObtenerFechaHora(List<D012_CRONOMEDICO> cronograma)
         {
-			int hora;
 			int intervalofecha, intervalohora;
 			List<Fecha> fechas = new List<Fecha>();
-			List<string> horas = new List<string>();
+
 			foreach (var item in cronograma)
 			{
 				intervalofecha = item.fechaFin.Value.DayOfYear - item.fechaIni.Value.DayOfYear;
 				intervalohora = int.Parse(item.hrFin.Split(":")[0]) - int.Parse(item.hrInicio.Split(":")[0]);
 				for (int i = 0; i <= intervalofecha; i++)
 				{
-                    for (int j = 0; j < intervalohora; j++)
-                    {
-						hora = int.Parse(item.hrInicio.Split(":")[0]) + i;
-						horas.Add(hora.ToString() + ":00");
-					}
 					Fecha fecha = new Fecha()
 					{
 						idprogramMed = item.idProgramMedica,
-						fecprogram = item.fechaIni.Value.AddDays(i).ToShortDateString(),
-						horprogram = horas
+						fecprogram = item.fechaIni.Value.AddDays(i).ToShortDateString()
 					};
 					fechas.Add(fecha);
 				}
@@ -109,19 +101,28 @@ namespace HistClinica.Repositories.Repositories
 			return horas;
 		}
 
-		//public async Task<object> GetHorasByCronograma(int id)
-		//{
-		//	var horas = await(from cro in _context.D012_CRONOMEDICO
-		//						   where cro.idProgramMedica == id
-		//						   select new
-		//						   {
-		//							   id = cro.idProgramMedica,
-		//							   hora = cro.hrInicio + " - " + cro.hrFin
-		//						   }).ToListAsync();
-		//	return horas;
-		//}
+        public async Task<object> GetHorasByCronograma(int id)
+        {
+			int intervalohora;
+			int hora;
+			List<string> horas = new List<string>();
+			var cronograma = await (from cro in _context.D012_CRONOMEDICO
+                               where cro.idProgramMedica == id
+                               select cro).FirstOrDefaultAsync();
+			intervalohora = int.Parse(cronograma.hrFin.Split(":")[0]) - int.Parse(cronograma.hrInicio.Split(":")[0]);
 
-		public async Task<object> GetMedicoByEspecialidad(int id)
+			for (int i = 0; i <= intervalohora; i++)
+			{
+				for (int j = 0; j < intervalohora; j++)
+				{
+					hora = int.Parse(cronograma.hrInicio.Split(":")[0]) + i;
+					horas.Add(hora.ToString() + ":00");
+				}
+			}
+			return horas;
+        }
+
+        public async Task<object> GetMedicoByEspecialidad(int id)
 		{
 			var medico = await (from td in _context.D00_TBDETALLE
 								join med in _context.T212_MEDICO
