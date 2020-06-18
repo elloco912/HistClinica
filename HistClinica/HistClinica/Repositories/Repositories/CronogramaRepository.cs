@@ -93,7 +93,7 @@ namespace HistClinica.Repositories.Repositories
 					idConsultorio = cronograma.idConsultorio,
 					fechaIni = cronograma.fechaIni,
 					fechaFin = cronograma.fechaFin,
-					idEstado = 150
+					idEstado = 171
 				});
 				await Save();
 				return "Ingreso exitoso";
