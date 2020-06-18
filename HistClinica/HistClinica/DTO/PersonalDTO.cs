@@ -14,7 +14,6 @@ namespace HistClinica.DTO
         public string condicion { get; set; }
         public string nroRne { get; set; }
         public int? idTipoEmpleado { get; set; }
-        public string area { get; set; }
         public string fechaIngreso { get; set; }
         public int? numeroColegio { get; set; }
         public string cargo { get; set; }

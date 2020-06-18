@@ -21,7 +21,6 @@ namespace HistClinica.Data
         public DbSet<T120_ESPECIALIDAD> T120_ESPECIALIDAD { get; set; }
         public DbSet<T068_CITA> T068_CITA { get; set; }
         public DbSet<T109_ESTADOCITA> T109_ESTADOCITA { get; set; }
-        public DbSet<D008_CONSULTORIO> D008_CONSULTORIO { get; set; }
         public DbSet<D015_TPEMPLEADO> D015_TPEMPLEADO { get; set; }
         public DbSet<D001_USUARIO> D001_USUARIO { get; set; }
         public DbSet<D002_PERFIL> D002_PERFIL { get; set; }

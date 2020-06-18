@@ -68,7 +68,11 @@ namespace HistClinica.Repositories.Repositories
                     estado = Cita.estado,
                     idEstadoCita = (from ec in _context.T109_ESTADOCITA
                                     where ec.estado == "RESERVADO"
-                                    select ec.idEstadoCita).FirstOrDefault()
+                                    select ec.idEstadoCita).FirstOrDefault(),
+                    idConsultorio = (from cm in _context.D012_CRONOMEDICO
+                                     where cm.idProgramMedica == Cita.idProgramMedica
+                                     select cm.idConsultorio).FirstOrDefault(),
+                    idservicioCli = Cita.idServicioCli
                 });
                 await Save();
                 idCita = (from c in _context.T068_CITA
@@ -101,7 +105,7 @@ namespace HistClinica.Repositories.Repositories
                                      where ec.estado ==  "ANULADO"
                                      select ec.idEstadoCita).FirstOrDefault();
                 Cita.motivoAnula = motivoAnula;
-                _context.Entry(Cita).State = EntityState.Modified;
+                _context.Update(Cita);
                 await Save();
                 return "Se anulo la cita correctamente";
             }
@@ -122,7 +126,7 @@ namespace HistClinica.Repositories.Repositories
                                      where ec.estado == "REPROGRAMADO"
                                      select ec.idEstadoCita).FirstOrDefault();
                 Cita.motivoRepro = cita.motivoreprogramacion;
-                _context.Entry(Cita).State = EntityState.Modified;
+                _context.Update(Cita);
                 await Save();
                 return "Se reprogramo la cita de forma correcta";
             }
@@ -176,7 +180,7 @@ namespace HistClinica.Repositories.Repositories
                                         nombrePaciente = (from p in _context.T001_PACIENTE
                                                           join pe in _context.T000_PERSONA on p.idPersona equals pe.idPersona 
                                                           where p.idPaciente == c.idPaciente
-                                                          select (pe.primerNombre + " " + pe.segundoNombre)).FirstOrDefault(),
+                                                          select pe.primerNombre + "" + pe.apePaterno).FirstOrDefault(),
                                         dniPaciente = (from p in _context.T001_PACIENTE
                                                           join pe in _context.T000_PERSONA on p.idPersona equals pe.idPersona
                                                           where p.idPaciente == c.idPaciente

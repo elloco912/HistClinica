@@ -298,7 +298,6 @@ namespace HistClinica.Repositories.Repositories
         {
             PersonaDTO Persona = await (from p in _context.T000_PERSONA
                                         join pa in _context.T001_PACIENTE on p.idPersona equals pa.idPersona
-                                        //join e in _context.T120_EMPLEADO on p.idPersona equals e.idPersona
                                         where p.dniPersona == Dni 
                                         select new PersonaDTO
                                         {
@@ -332,9 +331,9 @@ namespace HistClinica.Repositories.Repositories
                                                      select tb.descripcion).FirstOrDefault(),
                                              fecha = (c.fechaCita).Value.Date.ToString(),
                                              hora = (c.fechaCita).Value.ToString("H:mm"),
-                                             consultorio = (from co in _context.D008_CONSULTORIO
-                                                            where co.idConsultorio == c.idConsultorio
-                                                            select co.descripcion).FirstOrDefault(),
+                                             consultorio = (from de in _context.D00_TBDETALLE
+                                                            where de.idDet == c.idConsultorio
+                                                            select de.descripcion).FirstOrDefault(),
                                              descripcion = (from sc in _context.T218_SERVICIOSCLI
                                                             where sc.idservicioCli == c.idservicioCli
                                                             select sc.descripcion).FirstOrDefault(),

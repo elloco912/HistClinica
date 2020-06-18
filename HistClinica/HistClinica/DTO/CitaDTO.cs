@@ -23,6 +23,7 @@ namespace HistClinica.DTO
         public int? idEmpleado { get; set; }
         public int? idProgramMedica { get; set; }
         public int? idEspecialidad { get; set; }
+        public int? idServicioCli { get; set; }
         public string especialidad { get; set; }
         public double? precio { get; set; }
         public double? igv { get; set; }
