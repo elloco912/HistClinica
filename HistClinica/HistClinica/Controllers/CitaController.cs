@@ -174,11 +174,11 @@ namespace HistClinica.Controllers
             return Json(cronograma);
         }
 
-        //public async Task<JsonResult> GetHorasByCronograma(int id)
-        //{
-        //    var horas = await _utilrepository.GetHorasByCronograma(id);
-        //    return Json(horas);
-        //}
+        public async Task<JsonResult> GetHorasByCronograma(int id)
+        {
+            var horas = await _utilrepository.GetHorasByCronograma(id);
+            return Json(horas);
+        }
 
         public async Task<IActionResult> Registro()
         {
