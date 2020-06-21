@@ -46,58 +46,74 @@ namespace HistClinica.Repositories.Repositories
             return await _context.D00_TBDETALLE.AnyAsync(e => e.idDet == id);
         }
 
-        public async Task<List<DetalleDTO>> GetAllDetalles(string filtro)
+        public async Task<List<D00_TBDETALLE>> GetAllDetalles(string filtro)
         {
-            List<DetalleDTO> listaDetalle = new List<DetalleDTO>();
+            List<D00_TBDETALLE> listaDetalle = new List<D00_TBDETALLE>();
             if(filtro == "")
             {
                 listaDetalle = await (from detalle in _context.D00_TBDETALLE
                                 where detalle.idTab == 1
-                                select new DetalleDTO
+                                select new D00_TBDETALLE
                                 {
                                     idDet = detalle.idDet,
                                     coddetTab = detalle.coddetTab,
-                                    descripcion = detalle.descripcion
+                                    descripcion = detalle.descripcion,
+                                    abrev = detalle.abrev,
+                                    estado = detalle.estado,
+                                    fuente = detalle.fuente,
+                                    idTab = detalle.idTab
                                 }).ToListAsync();
             }
             else
             {
                 listaDetalle = await (from detalle in _context.D00_TBDETALLE
                                       where detalle.idTab == 1 && detalle.coddetTab.Contains(filtro)
-                                      select new DetalleDTO
+                                      select new D00_TBDETALLE
                                       {
                                           idDet = detalle.idDet,
                                           coddetTab = detalle.coddetTab,
-                                          descripcion = detalle.descripcion
+                                          descripcion = detalle.descripcion,
+                                          abrev = detalle.abrev,
+                                          estado = detalle.estado,
+                                          fuente = detalle.fuente,
+                                          idTab = detalle.idTab
                                       }).ToListAsync();
             }
             return listaDetalle;
         }
 
-        public async Task<DetalleDTO> GetById(int? Id)
+        public async Task<D00_TBDETALLE> GetById(int? Id)
         {
-            DetalleDTO listaDetalle = new DetalleDTO();
+            D00_TBDETALLE listaDetalle = new D00_TBDETALLE();
             listaDetalle = await (from detalle in _context.D00_TBDETALLE
                                  where detalle.idTab == 1 && detalle.idDet == Id
-                                 select new DetalleDTO
+                                 select new D00_TBDETALLE
                                  {
                                      idDet = detalle.idDet,
                                      coddetTab = detalle.coddetTab,
-                                     descripcion = detalle.descripcion
+                                     descripcion = detalle.descripcion,
+                                     abrev = detalle.abrev,
+                                     estado = detalle.estado,
+                                     fuente = detalle.fuente,
+                                     idTab = detalle.idTab
                                  }).FirstOrDefaultAsync();
             return listaDetalle;
         }
 
-        public async Task<string> InsertDetalle(DetalleDTO Detalle)
+        public async Task<string> InsertDetalle(D00_TBDETALLE detalle)
         {
             try
             {
                 await _context.D00_TBDETALLE.AddAsync(new D00_TBDETALLE()
                 {
-                    coddetTab = Detalle.coddetTab,
-                    descripcion = Detalle.descripcion,
-                    idTab = 1
-            });
+                    idDet = detalle.idDet,
+                    coddetTab = detalle.coddetTab,
+                    descripcion = detalle.descripcion,
+                    abrev = detalle.abrev,
+                    estado = detalle.estado,
+                    fuente = detalle.fuente,
+                    idTab = detalle.idTab
+                });
                 await Save();
                 return "Ingreso Exitoso";
             }
@@ -114,19 +130,22 @@ namespace HistClinica.Repositories.Repositories
             await Save();
         }
 
-        public async Task<string> UpdateDetalle(DetalleDTO Detalle)
+        public async Task<string> UpdateDetalle(D00_TBDETALLE detalle)
         {
             try
             {
-                await _context.D00_TBDETALLE.AddAsync(new D00_TBDETALLE()
+                _context.D00_TBDETALLE.Update(new D00_TBDETALLE()
                 {
-                    idDet = Detalle.idDet,
-                    coddetTab = Detalle.coddetTab,
-                    descripcion = Detalle.descripcion,
-                    idTab = 1
+                    idDet = detalle.idDet,
+                    coddetTab = detalle.coddetTab,
+                    descripcion = detalle.descripcion,
+                    abrev = detalle.abrev,
+                    estado = detalle.estado,
+                    fuente = detalle.fuente,
+                    idTab = detalle.idTab
                 });
                 await Save();
-                return "Ingreso Exitoso";
+                return "Actualizacion Exitosa";
             }
             catch (Exception ex)
             {

@@ -7,6 +7,7 @@ using HistClinica.Models;
 using HistClinica.DTO;
 using HistClinica.Data;
 using HistClinica.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace HistClinica.Controllers
 {
@@ -17,9 +18,10 @@ namespace HistClinica.Controllers
         {
             _detalleRepository = detalleRepository;
         }
-        public async Task<IActionResult> IndexAsync(DetalleDTO oDetalle)
+        // GET: Detalle
+        public async Task<IActionResult> Index(D00_TBDETALLE oDetalle)
         {
-            List<DetalleDTO> listaDetalle = new List<DetalleDTO>();
+            List<D00_TBDETALLE> listaDetalle = new List<D00_TBDETALLE>();
             if (oDetalle.coddetTab == null || oDetalle.coddetTab == "")
             {
                 listaDetalle = await _detalleRepository.GetAllDetalles("");
@@ -37,44 +39,37 @@ namespace HistClinica.Controllers
             return View(listaDetalle);
         }
 
+        // GET: Detalle/Detalles/5
+        public async Task<IActionResult> Detalles(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var d00_TBDETALLE = await _detalleRepository.GetById(id);
+            if (d00_TBDETALLE == null)
+            {
+                return NotFound();
+            }
+
+            return View(d00_TBDETALLE);
+        }
+
+        // GET: Detalle/Agregar
         public IActionResult Agregar()
         {
 
             return View();
         }
 
-        //public IActionResult Editar(int? id)
-        //{ //aca te falta
-        //    return View();
-        //}
-
+        // POST: Detalle/Agregar
         [HttpPost]
-        public async Task<IActionResult> AgregarAsync(DetalleDTO oDetalle)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Agregar(D00_TBDETALLE oDetalle)
         {
             try
             {
-
-                ////Conexion a BD
-                //using (ClinicaServiceContext db = new ClinicaServiceContext())
-                //{
-
-                //    if (!ModelState.IsValid)
-                //    {
-                //        return View(oDetalle);
-                //    }
-                //    else
-                //    {
-
-                //        D00_TBDETALLE objeto = new D00_TBDETALLE();
-                //        objeto.coddetTab = oDetalle.coddetTab;
-                //        objeto.descripcion = oDetalle.descripcion;
-                //        objeto.idTab = 1;
-                //        db.D00_TBDETALLE.Add(objeto);
-                //        db.SaveChanges();
-                //    }
-
-                //}
                 await _detalleRepository.InsertDetalle(oDetalle);
             }
             catch (Exception ex)
@@ -85,41 +80,73 @@ namespace HistClinica.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        public async Task<ActionResult> EliminarAsync(int idDet)
+        // GET: Detalle/Editar/5
+        public async Task<IActionResult> Editar(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-
-
-            //using (ClinicaServiceContext db = new ClinicaServiceContext())
-            //{
-            //    D00_TBDETALLE oDetalle = db.D00_TBDETALLE.Where(p => p.idDet == idDet).First();
-            //    db.D00_TBDETALLE.Remove(oDetalle);
-            //    db.SaveChanges();
-
-
-
-
-            //}
-            await _detalleRepository.DeleteDetalle(idDet);
-            return RedirectToAction("Index");
-
-
-
+            var d00_TBDETALLE = await _detalleRepository.GetById(id);
+            if (d00_TBDETALLE == null)
+            {
+                return NotFound();
+            }
+            return View(d00_TBDETALLE);
         }
 
-
-        //[HttpPost] Ya esta . Saludos
-        public async Task<IActionResult> EditarAsync(int idDet)
+        // POST: Detalle/Editar/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Editar(D00_TBDETALLE d00_TBDETALLE)
         {
-            //todo esto lo deberia tener en el repositorio, aca solo llamar al metodo edit
-            // no lo hice asi el agregar tmb esta asi y no hay 
-            DetalleDTO oDetalle = new DetalleDTO();
-            //using (ClinicaServiceContext db = new ClinicaServiceContext())
-            //{
-            oDetalle = await _detalleRepository.GetById(idDet);
-            //}
-            return View(oDetalle);
+            if (d00_TBDETALLE.idDet != 0)
+            {
+                try
+                {
+                    await _detalleRepository.UpdateDetalle(d00_TBDETALLE);
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!await _detalleRepository.DetalleExists(d00_TBDETALLE.idDet))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(d00_TBDETALLE);
+        }
+
+        // GET: Detalle/Eliminar/5
+        public async Task<IActionResult> Eliminar(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var d00_TBDETALLE = await _detalleRepository.GetById(id);
+            if (d00_TBDETALLE == null)
+            {
+                return NotFound();
+            }
+
+            return View(d00_TBDETALLE);
+        }
+
+        // POST: Detalle/Eliminar/5
+        [HttpPost, ActionName("Eliminar")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Eliminar(D00_TBDETALLE d00_TBDETALLE)
+        {
+            await _detalleRepository.DeleteDetalle(d00_TBDETALLE.idDet);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
