@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HistClinica.Migrations
 {
-    public partial class nuevomigracion : Migration
+    public partial class _29062020 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,20 +49,18 @@ namespace HistClinica.Migrations
                 name: "D001_USUARIO",
                 columns: table => new
                 {
-                    idUsuario = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    loginUser = table.Column<string>(nullable: true),
+                    idEmpleado = table.Column<int>(nullable: false),
+                    loginUser = table.Column<string>(nullable: false),
                     claveUser = table.Column<string>(nullable: true),
-                    idEmpleado = table.Column<int>(nullable: true),
                     estado = table.Column<int>(nullable: false),
-                    usuCrea = table.Column<string>(nullable: true),
-                    fechaCrea = table.Column<string>(nullable: true),
+                    usuRegistra = table.Column<string>(nullable: true),
+                    fechaRegistra = table.Column<string>(nullable: true),
                     usuMod = table.Column<string>(nullable: true),
                     fechaMod = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_D001_USUARIO", x => x.idUsuario);
+                    table.PrimaryKey("PK_D001_USUARIO", x => new { x.idEmpleado, x.loginUser });
                 });
 
             migrationBuilder.CreateTable(

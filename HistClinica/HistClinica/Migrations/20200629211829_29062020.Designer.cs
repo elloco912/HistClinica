@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HistClinica.Migrations
 {
     [DbContext(typeof(ClinicaServiceContext))]
-    [Migration("20200629184818_nuevo-migracion")]
-    partial class nuevomigracion
+    [Migration("20200629211829_29062020")]
+    partial class _29062020
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,10 +23,11 @@ namespace HistClinica.Migrations
 
             modelBuilder.Entity("HistClinica.Models.D001_USUARIO", b =>
                 {
-                    b.Property<int>("idUsuario")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int?>("idEmpleado")
+                        .HasColumnType("int");
+
+                    b.Property<string>("loginUser")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("claveUser")
                         .HasColumnType("nvarchar(max)");
@@ -34,25 +35,19 @@ namespace HistClinica.Migrations
                     b.Property<int>("estado")
                         .HasColumnType("int");
 
-                    b.Property<string>("fechaCrea")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("fechaMod")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("idEmpleado")
-                        .HasColumnType("int");
-
-                    b.Property<string>("loginUser")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("usuCrea")
+                    b.Property<string>("fechaRegistra")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("usuMod")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("idUsuario");
+                    b.Property<string>("usuRegistra")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("idEmpleado", "loginUser");
 
                     b.ToTable("D001_USUARIO");
                 });

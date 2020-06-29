@@ -1,4 +1,6 @@
 using HistClinica.Data;
+using HistClinica.Interfaces;
+using HistClinica.Repositories;
 using HistClinica.Repositories.Interfaces;
 using HistClinica.Repositories.Repositories;
 using Microsoft.AspNetCore.Builder;

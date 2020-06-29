@@ -55,17 +55,11 @@ namespace HistClinica.Repositories.Repositories
                 if (await UsuarioExists(persona.personal.idEmpleado))
                 {
                     D001_USUARIO Usuario = await (from u in _context.D001_USUARIO where u.idEmpleado == persona.personal.idEmpleado select u).FirstOrDefaultAsync();
-                    return await UpdateUsuario(new D001_USUARIO()
-                    {
-                        idUsuario = Usuario.idUsuario,
-                        idEmpleado = Usuario.idEmpleado,
-                        fechaCrea = Usuario.fechaCrea,
-                        loginUser = Usuario.loginUser,
-                        //claveUser = persona.asignacion.claveUser,
-                        claveUser = persona.numeroDocumento.ToString(),
-                        usuCrea = Usuario.usuCrea,
-                        estado = Usuario.estado
-                    });
+                    Usuario.fechaMod = DateTime.Now.ToString();
+                    Usuario.usuMod = persona.asignacion.usuRegistra;
+                    _context.Update(Usuario);
+                    await Save();
+                    return "Usuario ya asignado";
                 }
                 else
                 {
@@ -75,10 +69,10 @@ namespace HistClinica.Repositories.Repositories
                     await _context.D001_USUARIO.AddAsync(new D001_USUARIO()
                     {
                         idEmpleado = persona.personal.idEmpleado,
-                        fechaCrea = DateTime.Now.ToString(),
-                        loginUser = Persona.apePaterno.Substring(0, 1) + Persona.nombres + Persona.fecNace.Substring(0, 2),
+                        loginUser = (Persona.apePaterno.Substring(0, 1).Trim() + Persona.nombres.Trim() + fecNacimiento.Trim()).ToLower(),
+                        fechaRegistra = DateTime.Now.ToString(),
                         claveUser = persona.numeroDocumento.ToString(),
-                        usuCrea = persona.asignacion.usuRegistra,
+                        usuRegistra = persona.asignacion.usuRegistra,
                         estado = 1,
                         usuMod = "",
                         fechaMod = ""
@@ -91,13 +85,6 @@ namespace HistClinica.Repositories.Repositories
             {
                 return "Error en el guardado " + ex.Message;
             }
-        }
-
-        public async Task<string> UpdateUsuario(D001_USUARIO usuario)
-        {
-            _context.Update(usuario);
-            await Save();
-            return "Actualizacion Exitosa Usuario";
         }
     }
 }

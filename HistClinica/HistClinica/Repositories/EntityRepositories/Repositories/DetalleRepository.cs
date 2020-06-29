@@ -1,5 +1,6 @@
 ﻿using HistClinica.Data;
 using HistClinica.DTO;
+using HistClinica.Interfaces;
 using HistClinica.Models;
 using HistClinica.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
