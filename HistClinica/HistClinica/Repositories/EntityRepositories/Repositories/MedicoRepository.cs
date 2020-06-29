@@ -43,22 +43,22 @@ namespace HistClinica.Repositories.Repositories
         {
             return await _context.T212_MEDICO.AnyAsync(e => e.idMedico == id);
         }
-        public async Task<string> InsertMedico(PersonaDTO Persona, int idPersona, int idEmpleado)
+        public async Task<string> InsertMedico(PersonaDTO persona, int idPersona, int idEmpleado)
         {
             try
             {
                 T212_MEDICO Medico = new T212_MEDICO()
                 {
+                    codMedico = persona.personal.codMedico,
+                    nroColegio = persona.personal.numeroColegio,
+                    nroRne = persona.personal.nroRne,
+                    nroRuc = persona.personal.nroRucMedico,
+                    idtpDocumento = persona.personal.idTipoEmpleado,
+                    condicion = persona.personal.condicion,
                     idEmpleado = idEmpleado,
+                    idEspecialidad = persona.personal.idEspecialidad,
                     idPersona = idPersona,
-                    nroColegio = Persona.personal.numeroColegio,
-                    nroRuc = Persona.ruc,
-                    idEspecialidad = Persona.personal.idEspecialidad,
-                    estado = Persona.personal.estadoMedico,
-                    codMedico = Persona.personal.codMedico,
-                    condicion = Persona.personal.condicion,
-                    nroRne = Persona.personal.nroRne,
-                    idtpDocumento = Persona.idTipoDocumento
+                    estado = "1"
                 };
                 await _context.T212_MEDICO.AddAsync(Medico);
                 await Save();
@@ -69,23 +69,23 @@ namespace HistClinica.Repositories.Repositories
                 return "Error en el guardado " + ex.Message;
             }
         }
-        public async Task<string> UpdateMedico(PersonaDTO Persona)
+        public async Task<string> UpdateMedico(PersonaDTO persona)
         {
             try
             {
                 T212_MEDICO Medico = new T212_MEDICO()
                 {
-                    idPersona = Persona.idPersona,
-                    idEmpleado = Persona.personal.idEmpleado,
-                    idMedico = (int)Persona.personal.idMedico,
-                    nroColegio = Persona.personal.numeroColegio,
-                    nroRuc = Persona.ruc,
-                    idEspecialidad = Persona.personal.idEspecialidad,
-                    estado = Persona.personal.estadoMedico,
-                    codMedico = Persona.personal.codMedico,
-                    condicion = Persona.personal.condicion,
-                    nroRne = Persona.personal.nroRne,
-                    idtpDocumento = Persona.idTipoDocumento
+                    idMedico = (int)persona.personal.idMedico,
+                    codMedico = persona.personal.codMedico,
+                    nroColegio = persona.personal.numeroColegio,
+                    nroRne = persona.personal.nroRne,
+                    nroRuc = persona.personal.nroRucMedico,
+                    idtpDocumento = persona.personal.idTipoEmpleado,
+                    condicion = persona.personal.condicion,
+                    idEmpleado = persona.personal.idEmpleado,
+                    idEspecialidad = persona.personal.idEspecialidad,
+                    idPersona = persona.idPersona,
+                    estado = "1"
                 };
                 _context.Update(Medico);
                 await Save();

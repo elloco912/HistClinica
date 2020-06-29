@@ -63,7 +63,7 @@ namespace HistClinica.Repositories.Repositories
             _context.T000_PERSONA.Remove(Persona);
             await Save();
         }
-        public async Task<string> InsertPersona(PersonaDTO Persona)
+        public async Task<string> InsertPersona(PersonaDTO persona)
         {
             int idPersona = 0;
             int idEmpleado = 0;
@@ -71,66 +71,66 @@ namespace HistClinica.Repositories.Repositories
             {
                 await _context.T000_PERSONA.AddAsync(new T000_PERSONA()
                 {
-                    nombres = Persona.nombres,
-                    apePaterno = Persona.apellidoPaterno,
-                    apeMaterno = Persona.apellidoMaterno,
-                    dniPersona = Persona.numeroDocumento,
-                    nroRuc = Persona.ruc,
-                    telefono = Persona.telefono,
-                    celular = Persona.celular,
-                    centroEduca = Persona.centroEduca,
-                    condicionRuc = Persona.condicionRuc,
-                    correo = Persona.correo,
-                    domiFiscal = Persona.domiFiscal,
-                    edad = Persona.edad,
-                    estado = Persona.estado,
-                    estadoRuc = Persona.estadoRuc,
-                    fecNace = Persona.fecNacimiento,
-                    fotografia = Persona.fotografia,
-                    idciaSeguro = Persona.idciaSeguro,
-                    iddatoSiteds = Persona.iddatoSiteds,
-                    idemprConvenio = Persona.idemprConvenio,
-                    idEstCivil = Persona.idEstCivil,
-                    idEtnico = Persona.idEtnico,
-                    idgpoSangre = Persona.idgpoSangre,
-                    idGrdInstruc = Persona.idGrdInstruc,
-                    idOcupacion = Persona.idOcupacion,
-                    idParentesco = Persona.idParentesco,
-                    idReligion = Persona.idReligion,
-                    idSexo = Persona.idSexo,
-                    idtipoIafa = Persona.idtipoIafa,
-                    idtipoVia = Persona.idtipoVia,
-                    idtpDocumento = Persona.idTipoDocumento,
-                    idUbigeoNace = Persona.idUbigeoNace,
-                    idUbigeoResi = Persona.idUbigeoResi,
-                    manzana = Persona.manzana,
-                    nroEtapa = Persona.nroEtapa,
-                    nroKm = Persona.nroKm,
-                    nroVia = Persona.nroVia,
-                    razonSocial = Persona.razonSocial,
-                    tpPersona = Persona.tpPersona,
-                    idFactorrh = Persona.idFactorrh,
-                    interior = Persona.interior,
-                    nombreVia = Persona.nombreVia,
-                    nroBlock = Persona.nroBlock,
-                    nroDpto = Persona.nroDpto,
-                    nroLote = Persona.nroLote
+                    apePaterno = persona.apellidoPaterno,
+                    apeMaterno = persona.apellidoMaterno,
+                    nombres = persona.nombres,
+                    idtpDocumento = persona.idTipoDocumento,
+                    dniPersona = persona.numeroDocumento,
+                    idSexo = persona.idSexo,
+                    fecNace = persona.fecNacimiento,
+                    idEstCivil = persona.idEstadoCivil,
+                    idOcupacion = persona.idOcupacion,
+                    domiFiscal = persona.domiFiscal,
+                    telefono = persona.telefono,
+                    celular = persona.celular,
+                    correo = persona.correo,
+                    estado = "1",
+                    centroEduca = persona.centroEduca,
+                    condicionRuc = persona.condicionRuc,
+                    edad = persona.edad,
+                    estadoRuc = persona.estadoRuc,
+                    fotografia = persona.fotografia,
+                    idciaSeguro = persona.idciaSeguro,
+                    iddatoSiteds = persona.iddatoSiteds,
+                    idemprConvenio = persona.idemprConvenio,
+                    idEtnico = persona.idEtnico,
+                    idFactorrh = persona.idFactorrh,
+                    idgpoSangre = persona.idgpoSangre,
+                    idGrdInstruc = persona.idGradoInstruccion,
+                    idParentesco = persona.idParentesco,
+                    idReligion = persona.idReligion,
+                    idtipoIafa = persona.idtipoIafa,
+                    idtipoVia = persona.idtipoVia,
+                    idUbigeoNace = persona.idUbigeoNace,
+                    idUbigeoResi = persona.idUbigeoResi,
+                    interior = persona.interior,
+                    manzana = persona.manzana,
+                    nombreVia = persona.nombreVia,
+                    nroBlock = persona.nroBlock,
+                    nroDpto = persona.nroDpto,
+                    nroEtapa = persona.nroEtapa,
+                    nroKm = persona.nroKm,
+                    nroLote = persona.nroLote,
+                    nroRuc = persona.ruc,
+                    nroVia = persona.nroVia,
+                    razonSocial = persona.razonSocial,
+                    tpPersona = persona.tpPersona
                 });
                 await Save();
                 idPersona = (await _context.T000_PERSONA
-                    .FirstOrDefaultAsync(p => p.dniPersona == Persona.numeroDocumento)).idPersona;
-                if (Persona.personal != null)
+                    .FirstOrDefaultAsync(p => p.dniPersona == persona.numeroDocumento)).idPersona;
+                if (persona.personal != null)
                 {
-                    await _empleadoRepository.InsertEmpleado(Persona, idPersona);
+                    await _empleadoRepository.InsertEmpleado(persona, idPersona);
                     idEmpleado = await _empleadoRepository.GetIdEmpleado(idPersona);
-                    if (Persona.personal.idTipoEmpleado == (int)await getIdTpEmpleado("MEDICA/O"))
+                    if (persona.personal.idTipoEmpleado == (int)await getIdTpEmpleado("MEDICA/O"))
                     {
-                        await _medicoRepository.InsertMedico(Persona, idPersona, idEmpleado);
+                        await _medicoRepository.InsertMedico(persona, idPersona, idEmpleado);
                     }
                 }
                 else
                 {
-                    await _pacienteRepository.InsertPaciente(Persona, idPersona);
+                    await _pacienteRepository.InsertPaciente(persona, idPersona);
                 }
                 return "Ingreso Exitoso Persona";
             }
@@ -139,70 +139,70 @@ namespace HistClinica.Repositories.Repositories
                 return "Error en el guardado " + ex.Message;
             }
         }
-        public async Task<string> UpdatePersona(PersonaDTO Persona)
+        public async Task<string> UpdatePersona(PersonaDTO persona)
         {
             try
             {
                 _context.Update(new T000_PERSONA()
                 {
-                    idPersona = (int) Persona.idPersona,
-                    nombres = Persona.nombres,
-                    apePaterno = Persona.apellidoPaterno,
-                    apeMaterno = Persona.apellidoMaterno,
-                    dniPersona = Persona.numeroDocumento,
-                    nroRuc = Persona.ruc,
-                    telefono = Persona.telefono,
-                    celular = Persona.celular,
-                    centroEduca = Persona.centroEduca,
-                    condicionRuc = Persona.condicionRuc,
-                    correo = Persona.correo,
-                    domiFiscal = Persona.domiFiscal,
-                    edad = Persona.edad,
-                    estado = Persona.estado,
-                    estadoRuc = Persona.estadoRuc,
-                    fecNace = Persona.fecNacimiento,
-                    fotografia = Persona.fotografia,
-                    idciaSeguro = Persona.idciaSeguro,
-                    iddatoSiteds = Persona.iddatoSiteds,
-                    idemprConvenio = Persona.idemprConvenio,
-                    idEstCivil = Persona.idEstCivil,
-                    idEtnico = Persona.idEtnico,
-                    idgpoSangre = Persona.idgpoSangre,
-                    idGrdInstruc = Persona.idGrdInstruc,
-                    idOcupacion = Persona.idOcupacion,
-                    idParentesco = Persona.idParentesco,
-                    idReligion = Persona.idReligion,
-                    idSexo = Persona.idSexo,
-                    idtipoIafa = Persona.idtipoIafa,
-                    idtipoVia = Persona.idtipoVia,
-                    idtpDocumento = Persona.idTipoDocumento,
-                    idUbigeoNace = Persona.idUbigeoNace,
-                    idUbigeoResi = Persona.idUbigeoResi,
-                    manzana = Persona.manzana,
-                    nroEtapa = Persona.nroEtapa,
-                    nroKm = Persona.nroKm,
-                    nroVia = Persona.nroVia,
-                    razonSocial = Persona.razonSocial,
-                    tpPersona = Persona.tpPersona,
-                    idFactorrh = Persona.idFactorrh,
-                    interior = Persona.interior,
-                    nombreVia = Persona.nombreVia,
-                    nroBlock = Persona.nroBlock,
-                    nroDpto = Persona.nroDpto,
-                    nroLote = Persona.nroLote
+                    idPersona = (int)persona.idPersona,
+                    apePaterno = persona.apellidoPaterno,
+                    apeMaterno = persona.apellidoMaterno,
+                    nombres = persona.nombres,
+                    idtpDocumento = persona.idTipoDocumento,
+                    dniPersona = persona.numeroDocumento,
+                    idSexo = persona.idSexo,
+                    fecNace = persona.fecNacimiento,
+                    idEstCivil = persona.idEstadoCivil,
+                    idOcupacion = persona.idOcupacion,
+                    domiFiscal = persona.domiFiscal,
+                    telefono = persona.telefono,
+                    celular = persona.celular,
+                    correo = persona.correo,
+                    estado = "1",
+                    centroEduca = persona.centroEduca,
+                    condicionRuc = persona.condicionRuc,
+                    edad = persona.edad,
+                    estadoRuc = persona.estadoRuc,
+                    fotografia = persona.fotografia,
+                    idciaSeguro = persona.idciaSeguro,
+                    iddatoSiteds = persona.iddatoSiteds,
+                    idemprConvenio = persona.idemprConvenio,
+                    idEtnico = persona.idEtnico,
+                    idFactorrh = persona.idFactorrh,
+                    idgpoSangre = persona.idgpoSangre,
+                    idGrdInstruc = persona.idGradoInstruccion,
+                    idParentesco = persona.idParentesco,
+                    idReligion = persona.idReligion,
+                    idtipoIafa = persona.idtipoIafa,
+                    idtipoVia = persona.idtipoVia,
+                    idUbigeoNace = persona.idUbigeoNace,
+                    idUbigeoResi = persona.idUbigeoResi,
+                    interior = persona.interior,
+                    manzana = persona.manzana,
+                    nombreVia = persona.nombreVia,
+                    nroBlock = persona.nroBlock,
+                    nroDpto = persona.nroDpto,
+                    nroEtapa = persona.nroEtapa,
+                    nroKm = persona.nroKm,
+                    nroLote = persona.nroLote,
+                    nroRuc = persona.ruc,
+                    nroVia = persona.nroVia,
+                    razonSocial = persona.razonSocial,
+                    tpPersona = persona.tpPersona
                 });
                 await Save();
-                if (Persona.personal.idTipoEmpleado != null)
+                if (persona.personal.idTipoEmpleado != null)
                 {
-                    await _empleadoRepository.UpdateEmpleado(Persona);
-                    if (Persona.personal.idTipoEmpleado == (int)await getIdTpEmpleado("MEDICA/O"))
+                    await _empleadoRepository.UpdateEmpleado(persona);
+                    if (persona.personal.idTipoEmpleado == (int)await getIdTpEmpleado("MEDICA/O"))
                     {
-                        await _medicoRepository.UpdateMedico(Persona);
+                        await _medicoRepository.UpdateMedico(persona);
                     }
                 }
                 else
                 {
-                    await _pacienteRepository.UpdatePaciente(Persona);
+                    await _pacienteRepository.UpdatePaciente(persona);
                 }
                 return "Actualizacion Exitosa Persona";
             }
