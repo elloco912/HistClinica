@@ -35,23 +35,26 @@
 										@Html.EditorFor(m => m.numeroDocumento, new { htmlAttributes = new { @class = "form-control" } })
 									</div>
 									<div class="form-group">
-										<label for="txtNroColegio">N° DE COLEGIO</label>
+										<label for="txtTelefono">TELÉFONO</label>
 									</div>
 									<div class="form-group">
-										@Html.EditorFor(m => m.personal.numeroColegio, new { htmlAttributes = new { @class = "form-control" } })
+										@Html.EditorFor(m => m.telefono, new { htmlAttributes = new { @class = "form-control" } })
 									</div>
 									<div class="form-group">
-										<label for="txtruc">N° DE RUC</label>
+										<label for="txtcargo">CARGO</label>
 									</div>
 									<div class="form-group">
-										@Html.EditorFor(m => m.ruc, new { htmlAttributes = new { @class = "form-control" } })
+										@Html.EditorFor(m => m.personal.cargo, new { htmlAttributes = new { @class = "form-control" } })
 									</div>
-									<div class="form-group">
-										<label for="txtespecialidad">ESPECIALIDAD</label>
-									</div>
-									<div class="form-group">
-										@Html.DropDownListFor(m => m.personal.idEspecialidad, new SelectList(ViewBag.listaespecialidades, "idtab", "descripcion"), new { @class = "form-control" })
-									</div>
+									@if (Model.personal.idTipoEmpleado == 109)
+									{
+										<div class="form-group">
+											<label for="txtespecialidad">ESPECIALIDAD</label>
+										</div>
+										<div class="form-group">
+											@Html.DropDownListFor(m => m.personal.idEspecialidad, new SelectList(ViewBag.listaespecialidades, "idtab", "descripcion"), new { @class = "form-control" })
+										</div>
+									}
 								</div>
 							</div>
 						</div>
@@ -88,18 +91,21 @@
 									<div class="form-group">
 										@Html.EditorFor(m => m.personal.fechaIngreso, new { htmlAttributes = new { @class = "form-control", @type = "Date" } })
 									</div>
-									<div class="form-group">
-										<label for="txtcargo">CARGO</label>
-									</div>
-									<div class="form-group">
-										@Html.EditorFor(m => m.personal.cargo, new { htmlAttributes = new { @class = "form-control" } })
-									</div>
-									<div class="form-group">
-										<label for="txtTelefono">TELÉFONO</label>
-									</div>
-									<div class="form-group">
-										@Html.EditorFor(m => m.telefono, new { htmlAttributes = new { @class = "form-control" } })
-									</div>
+									@if (Model.personal.idTipoEmpleado == 109)
+									{
+										<div class="form-group">
+											<label for="txtruc">N° DE RUC</label>
+										</div>
+										<div class="form-group">
+											@Html.EditorFor(m => m.ruc, new { htmlAttributes = new { @class = "form-control" } })
+										</div>
+										<div class="form-group">
+											<label for="txtNroColegio">N° DE COLEGIO</label>
+										</div>
+										<div class="form-group">
+											@Html.EditorFor(m => m.personal.numeroColegio, new { htmlAttributes = new { @class = "form-control" } })
+										</div>
+									}
 								</div>
 							</div>
 						</div>

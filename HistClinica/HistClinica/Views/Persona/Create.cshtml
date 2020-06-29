@@ -58,10 +58,10 @@
 								@Html.TextBoxFor(m => m.telefono, new { @class = "form-control" })
 								@Html.ValidationMessageFor(model => model.telefono, "", new { @class = "text-danger" })
 							</div>
-							<div id="esp1" class="form-group">
+							<div id="esp1" class="form-group" style="display:none;">
 								<label for="txtespecialidad">ESPECIALIDAD</label>
 							</div>
-							<div id="esp2" class="form-group">
+							<div id="esp2" class="form-group" style="display:none;">
 								@Html.DropDownListFor(m => m.personal.idEspecialidad, new SelectList(ViewBag.listaespecialidades, "idtab", "descripcion"), new { @class = "form-control" })
 							</div>
 						</div>
@@ -100,16 +100,16 @@
 							<div class="form-group">
 								@Html.TextBoxFor(m => m.personal.fechaIngreso, new { @class = "form-control", @type = "Date" })
 							</div>
-							<div id="ruc1" class="form-group">
+							<div id="ruc1" class="form-group" style="display:none;">
 								<label for="txtruc">N° DE RUC</label>
 							</div>
-							<div id="ruc2" class="form-group">
+							<div id="ruc2" class="form-group" style="display:none;">
 								@Html.TextBoxFor(m => m.ruc, new { @class = "form-control" })
 							</div>
-							<div id="col1" class="form-group">
+							<div id="col1" class="form-group" style="display:none;">
 								<label for="txtNroColegio">N° DE COLEGIO</label>
 							</div>
-							<div id="col2" class="form-group">
+							<div id="col2" class="form-group" style="display:none;">
 								@Html.TextBoxFor(m => m.personal.numeroColegio, new { @class = "form-control" })
 								@Html.ValidationMessageFor(model => model.personal.numeroColegio, "", new { @class = "text-danger" })
 							</div>
