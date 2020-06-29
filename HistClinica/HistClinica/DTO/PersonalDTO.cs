@@ -16,14 +16,19 @@ namespace HistClinica.DTO
         public string nroRne { get; set; }
         public int? nroRucMedico { get; set; }
         public int? idTipoEmpleado { get; set; }
+
+        [Required(ErrorMessage = "Ingrese fecha de ingreso")]
         public string fechaIngreso { get; set; }
 
-      //  [MaxLength(5)]
-      //  [Required(ErrorMessage = "Ingrese numero de colegio")]
+        [Required(ErrorMessage = "Ingrese numero de colegio")]
         public int? numeroColegio { get; set; }
+
+        [Required(ErrorMessage = "Ingrese cargo")]
         public string cargo { get; set; }
         public int? idEspecialidad { get; set; }
         public string codEmpleado { get; set; }
+
+        [Required(ErrorMessage = "Ingrese area")]
         public string descArea { get; set; }
         public string estadoEmpleado { get; set; }
         public string estadoMedico { get; set; }

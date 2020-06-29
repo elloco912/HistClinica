@@ -685,3 +685,4 @@ C:\Users\User\OneDrive\Desktop\his-net core\HistClinica\HistClinica\HistClinica\
 C:\Users\User\OneDrive\Desktop\his-net core\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.dll
 C:\Users\User\OneDrive\Desktop\his-net core\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.pdb
 C:\Users\User\OneDrive\Desktop\his-net core\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.genruntimeconfig.cache
+C:\Users\User\OneDrive\Desktop\his-net core\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.csprojAssemblyReference.cache

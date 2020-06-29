@@ -112,7 +112,7 @@ namespace HistClinica.Controllers
 
             //combo estado
             var estado = new Object();
-            estado = await _utilrepository.GetTipo("EstadoCronograma");
+            estado = await _utilrepository.GetTipo("ESTADO CRONOGRAMA");
             ViewBag.lestado = estado;
 
             //combo medicos

@@ -358,7 +358,7 @@ function BuscarPaciente() {
 		dataType: "Json",
 		success: function (response) {
 			console.log(response);
-			$('#modalcitas #nombrepaciente').val(response.primerNombre + ' ' + response.apellidoPaterno + ' ' + response.apellidoMaterno);
+			$('#modalcitas #nombrepaciente').val(response.nombres + ' ' + response.apellidoPaterno + ' ' + response.apellidoMaterno);
 			console.log(response.paciente.idPaciente);
 			$('#modalcitas #idpaciente').val(response.paciente.idPaciente);
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,10 +12,18 @@ namespace HistClinica.DTO
         public int? idPaciente { get; set; }
         public int? idAsegurado { get; set; }
         public int? idConvenio { get; set; }
+
+        [Required(ErrorMessage = "Seleccione el tipo de paciente")]
         public int? idTipoPaciente { get; set; }
         public int? idOcupacionPaciente { get; set; }
+
+        [Required(ErrorMessage = "Seleccione el parentesco")]
         public int? idParentescoPaciente { get; set; }
+
+        [Required(ErrorMessage = "Seleccione el factor")]
         public int? idFactorRrh { get; set; }
+
+        [Required(ErrorMessage = "Seleccione el grupo sanguineo")]
         public int? idGrupoSanguineo { get; set; }
         public string codPaciente { get; set; }
         public string descripcion { get; set; }

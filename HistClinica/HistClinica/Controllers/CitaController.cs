@@ -192,7 +192,7 @@ namespace HistClinica.Controllers
             var lcronograma = await _utilrepository.GetCronograma();
             ViewBag.lcronograma = lcronograma;
 
-            var servicios = await _utilrepository.getServicios();
+            var servicios = await _utilrepository.GetTipo("Servicio Clinica");
             ViewBag.servicios = servicios;
 
             var lhoras = await _utilrepository.GetHoras();
