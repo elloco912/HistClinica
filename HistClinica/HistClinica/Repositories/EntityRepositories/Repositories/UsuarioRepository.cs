@@ -59,28 +59,27 @@ namespace HistClinica.Repositories.Repositories
                     {
                         idUsuario = Usuario.idUsuario,
                         idEmpleado = Usuario.idEmpleado,
-                        fechaRegistra = Usuario.fechaRegistra,
+                        fechaCrea = Usuario.fechaCrea,
                         loginUser = Usuario.loginUser,
                         //claveUser = persona.asignacion.claveUser,
                         claveUser = persona.numeroDocumento.ToString(),
-                        usuRegistra = Usuario.usuRegistra,
+                        usuCrea = Usuario.usuCrea,
                         estado = Usuario.estado
                     });
                 }
                 else
                 {
-                    string fecNacimiento = Persona.fecNacimiento;
-                    if (fecNacimiento != null) fecNacimiento = Persona.fecNacimiento.Substring(0, 2);
+                    string fecNacimiento = Persona.fecNace;
+                    if (fecNacimiento != null) fecNacimiento = Persona.fecNace.Substring(0, 2);
                     else fecNacimiento = "";
                     await _context.D001_USUARIO.AddAsync(new D001_USUARIO()
                     {
                         idEmpleado = persona.personal.idEmpleado,
-                        fechaRegistra = DateTime.Now.ToString(),
-                        loginUser = Persona.apePaterno.Substring(0, 1) + Persona.primerNombre + Persona.fecNacimiento.Substring(0, 2),
-                        //claveUser = persona.asignacion.claveUser,
+                        fechaCrea = DateTime.Now.ToString(),
+                        loginUser = Persona.apePaterno.Substring(0, 1) + Persona.nombres + Persona.fecNace.Substring(0, 2),
                         claveUser = persona.numeroDocumento.ToString(),
-                        usuRegistra = persona.asignacion.usuRegistra,
-                        estado = "ACTIVO",
+                        usuCrea = persona.asignacion.usuRegistra,
+                        estado = 1,
                         usuMod = "",
                         fechaMod = ""
                     });

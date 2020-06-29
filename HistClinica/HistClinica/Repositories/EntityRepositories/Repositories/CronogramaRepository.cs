@@ -2,6 +2,7 @@
 using HistClinica.DTO;
 using HistClinica.Models;
 using HistClinica.Repositories.Interfaces;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -47,17 +48,18 @@ namespace HistClinica.Repositories.Repositories
 
 		public async Task<List<CronogramaDTO>> GetAllCronogramas()
 		{
-			List<CronogramaDTO> D012_CRONOMEDICOs = await (from c in _context.D012_CRONOMEDICO join det in _context.D00_TBDETALLE on
-															  c.idEstado equals det.idDet
-													select new CronogramaDTO
-													{
-														idProgramMedica = c.idProgramMedica,
-														fechaIni = c.fechaIni.Value.ToString("yyyy-MM-dd"),
-														fechaFin = c.fechaFin.Value.ToString("yyyy-MM-dd"),
-														hrInicio = c.hrInicio,
-														hrFin = c.hrFin,
-														desEstado = det.descripcion
-													}).ToListAsync();
+			List<CronogramaDTO> D012_CRONOMEDICOs = await (	from c in _context.D012_CRONOMEDICO
+															select new CronogramaDTO
+															{
+																idProgramMedica = c.idProgramMedica,
+																fechaIni = c.fechaIni.Value.ToString("yyyy-MM-dd"),
+																fechaFin = c.fechaFin.Value.ToString("yyyy-MM-dd"),
+																hrInicio = c.hrInicio,
+																hrFin = c.hrFin,
+																desEstado = (from det in _context.D00_TBDETALLE
+																			 where det.idDet == c.idEstado
+																			 select det.descripcion).FirstOrDefault()
+															}).ToListAsync();
 			return D012_CRONOMEDICOs;
 		}
 
@@ -137,7 +139,7 @@ namespace HistClinica.Repositories.Repositories
 															hrInicio = c.hrInicio,
 															hrFin = c.hrFin,
 															desEstado = td.descripcion,
-															medico = pe.primerNombre + ' ' + pe.apePaterno + ' ' + pe.apeMaterno
+															medico = pe.nombres + ' ' + pe.apePaterno + ' ' + pe.apeMaterno
 														}
 														).ToListAsync();
 			return cronogramas;
@@ -156,7 +158,7 @@ namespace HistClinica.Repositories.Repositories
 															  hrInicio = c.hrInicio,
 															  hrFin = c.hrFin,
 															  desEstado = td.descripcion,
-															  medico = pe.primerNombre + ' ' + pe.apePaterno + ' ' + pe.apeMaterno
+															  medico = pe.nombres + ' ' + pe.apePaterno + ' ' + pe.apeMaterno
 														  }).ToListAsync();
 			return D012_CRONOMEDICOs;
 		}

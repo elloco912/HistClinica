@@ -6,9 +6,17 @@
 
   <ItemGroup>
     <Compile Remove="NewFolder\**" />
+    <Compile Remove="Repositories\ADO\**" />
+    <Compile Remove="Repositories\EFC\**" />
     <Content Remove="NewFolder\**" />
+    <Content Remove="Repositories\ADO\**" />
+    <Content Remove="Repositories\EFC\**" />
     <EmbeddedResource Remove="NewFolder\**" />
+    <EmbeddedResource Remove="Repositories\ADO\**" />
+    <EmbeddedResource Remove="Repositories\EFC\**" />
     <None Remove="NewFolder\**" />
+    <None Remove="Repositories\ADO\**" />
+    <None Remove="Repositories\EFC\**" />
   </ItemGroup>
 
   <ItemGroup>

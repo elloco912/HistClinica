@@ -139,7 +139,7 @@ namespace HistClinica.Repositories.Repositories
 								select new
 								{
 									idMedico = med.idMedico,
-									nombres = per.primerNombre + " "  + per.apePaterno + " " + per.apeMaterno
+									nombres = per.nombres + " "  + per.apePaterno + " " + per.apeMaterno
 								}).ToListAsync();
 			return medico;
 		}
@@ -153,7 +153,7 @@ namespace HistClinica.Repositories.Repositories
 						 select new
 						 {
 							 idMedico = med.idMedico,
-							 nombres = per.primerNombre +  " " + per.apePaterno + " " + per.apeMaterno
+							 nombres = per.nombres +  " " + per.apePaterno + " " + per.apeMaterno
 						 }).ToListAsync();
 			return medico;
 		}
@@ -171,10 +171,12 @@ namespace HistClinica.Repositories.Repositories
 			return combo;
 		}
 
-		public async Task<List<T218_SERVICIOSCLI>> getServicios()
+		public async Task<List<D00_TBDETALLE>> getServicios()
 		{
-			List<T218_SERVICIOSCLI> servicios = await (from s in _context.T218_SERVICIOSCLI
-													   select s).ToListAsync();
+			List<D00_TBDETALLE> servicios = await (from s in _context.D00_TBDETALLE
+													   where s.idTab == 16
+													   select s
+													   ).ToListAsync();
 			return servicios;
 		}
 	}

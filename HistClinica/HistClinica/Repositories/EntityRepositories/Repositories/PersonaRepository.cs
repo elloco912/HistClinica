@@ -71,8 +71,7 @@ namespace HistClinica.Repositories.Repositories
             {
                 await _context.T000_PERSONA.AddAsync(new T000_PERSONA()
                 {
-                    primerNombre = Persona.primerNombre,
-                    segundoNombre = Persona.segundoNombre,
+                    nombres = Persona.nombres,
                     apePaterno = Persona.apellidoPaterno,
                     apeMaterno = Persona.apellidoMaterno,
                     dniPersona = Persona.numeroDocumento,
@@ -86,7 +85,7 @@ namespace HistClinica.Repositories.Repositories
                     edad = Persona.edad,
                     estado = Persona.estado,
                     estadoRuc = Persona.estadoRuc,
-                    fecNacimiento = Persona.fecNacimiento,
+                    fecNace = Persona.fecNacimiento,
                     fotografia = Persona.fotografia,
                     idciaSeguro = Persona.idciaSeguro,
                     iddatoSiteds = Persona.iddatoSiteds,
@@ -147,8 +146,7 @@ namespace HistClinica.Repositories.Repositories
                 _context.Update(new T000_PERSONA()
                 {
                     idPersona = (int) Persona.idPersona,
-                    primerNombre = Persona.primerNombre,
-                    segundoNombre = Persona.segundoNombre,
+                    nombres = Persona.nombres,
                     apePaterno = Persona.apellidoPaterno,
                     apeMaterno = Persona.apellidoMaterno,
                     dniPersona = Persona.numeroDocumento,
@@ -162,7 +160,7 @@ namespace HistClinica.Repositories.Repositories
                     edad = Persona.edad,
                     estado = Persona.estado,
                     estadoRuc = Persona.estadoRuc,
-                    fecNacimiento = Persona.fecNacimiento,
+                    fecNace = Persona.fecNacimiento,
                     fotografia = Persona.fotografia,
                     idciaSeguro = Persona.idciaSeguro,
                     iddatoSiteds = Persona.iddatoSiteds,
@@ -222,8 +220,7 @@ namespace HistClinica.Repositories.Repositories
                                                select new PersonaDTO
                                                {
                                                    idPersona = p.idPersona,
-                                                   primerNombre = p.primerNombre,
-                                                   segundoNombre = p.segundoNombre,
+                                                   nombres = p.nombres,
                                                    apellidoPaterno = p.apePaterno,
                                                    apellidoMaterno = p.apeMaterno,
                                                    telefono = p.telefono
@@ -251,11 +248,10 @@ namespace HistClinica.Repositories.Repositories
                              select new PersonaDTO
                              {
                                  idPersona = p.idPersona,
-                                 primerNombre = p.primerNombre,
-                                 segundoNombre = p.segundoNombre,
+                                 nombres = p.nombres,
                                  apellidoPaterno = p.apePaterno,
                                  apellidoMaterno = p.apeMaterno,
-                                 fecNacimiento = p.fecNacimiento,
+                                 fecNacimiento = p.fecNace,
                                  telefono = p.telefono,
                                  numeroDocumento = (int)p.dniPersona,
                                  ruc = p.nroRuc

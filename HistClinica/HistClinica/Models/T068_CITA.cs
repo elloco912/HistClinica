@@ -1,11 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace HistClinica.Models
+namespace His.Models
 {
 	public class T068_CITA
 	{
-		[Key]
 		public int idCita { get; set; }
 		public int? codCita { get; set; }
 		public int? nroCita { get; set; }

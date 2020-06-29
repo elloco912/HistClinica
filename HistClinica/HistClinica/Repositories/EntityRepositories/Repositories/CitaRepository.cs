@@ -181,7 +181,7 @@ namespace HistClinica.Repositories.Repositories
                                         nombrePaciente = (from p in _context.T001_PACIENTE
                                                           join pe in _context.T000_PERSONA on p.idPersona equals pe.idPersona 
                                                           where p.idPaciente == c.idPaciente
-                                                          select pe.primerNombre + "" + pe.apePaterno).FirstOrDefault(),
+                                                          select pe.nombres + "" + pe.apePaterno).FirstOrDefault(),
                                         dniPaciente = (from p in _context.T001_PACIENTE
                                                           join pe in _context.T000_PERSONA on p.idPersona equals pe.idPersona
                                                           where p.idPaciente == c.idPaciente

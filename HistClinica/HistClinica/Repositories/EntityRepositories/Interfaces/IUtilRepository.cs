@@ -19,6 +19,6 @@ namespace HistClinica.Repositories.Interfaces
 		Task<List<T109_ESTADOCITA>> getEstadoCita();
 		Task<List<D024_CAJA>> getCajas();
 
-		Task<List<T218_SERVICIOSCLI>> getServicios();
+		Task<List<D00_TBDETALLE>> getServicios();
 	}
 }
