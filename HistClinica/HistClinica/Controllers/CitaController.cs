@@ -206,7 +206,7 @@ namespace HistClinica.Controllers
             if (cita != null)
             {
                 TempData["dni"] = dni;
-                TempData["mensajecita"] = await _repository.InsertCita(cita);
+                   TempData["mensajecita"] = await _repository.InsertCita(cita);
                 return RedirectToAction("Index","Paciente");
             }
             return View(cita);

@@ -34,8 +34,8 @@ namespace HistClinica.Repositories.Repositories
 
 		public class Hora
 		{
-			public int idprogramMed { get; set; }
-			public string horprogram { get; set; }
+			public int id { get; set; }
+			public string hora { get; set; }
 		}
 
 		public List<Fecha> ObtenerFechaHora(List<D012_CRONOMEDICO> cronograma)
@@ -120,8 +120,8 @@ namespace HistClinica.Repositories.Repositories
 			for (int j = 0; j < intervalohora; j++)
 			{
 				hora = new Hora{
-					idprogramMed = cronograma.idProgramMedica,
-					horprogram = (int.Parse(cronograma.hrInicio.Split(":")[0]) + j).ToString() + ":00"
+					id = cronograma.idProgramMedica,
+					hora = (int.Parse(cronograma.hrInicio.Split(":")[0]) + j).ToString() + ":00"
 				};
 				horas.Add(hora);
 			}
