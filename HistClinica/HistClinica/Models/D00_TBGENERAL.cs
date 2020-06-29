@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace His.Models
+namespace HistClinica.Models
 {
 	public class D00_TBGENERAL
 	{

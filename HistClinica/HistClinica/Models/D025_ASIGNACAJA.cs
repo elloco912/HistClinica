@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace His.Models
+namespace HistClinica.Models
 {
 	public class D025_ASIGNACAJA
 	{

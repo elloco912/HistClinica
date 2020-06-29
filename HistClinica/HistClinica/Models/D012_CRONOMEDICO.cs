@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace His.Models
+namespace HistClinica.Models
 {
 	public class D012_CRONOMEDICO
 	{
@@ -19,6 +19,6 @@ namespace His.Models
 		public int? idConsultorio { get; set; }
 		public string hrInicio { get; set; }
 		public string hrFin { get; set; }
-		public string idEstado { get; set; }
+		public int? idEstado { get; set; }
 	}
 }
