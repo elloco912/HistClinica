@@ -6,7 +6,11 @@ namespace HistClinica.Models
     {
         [Key]
         public int idDet { get; set; }
+
+        [Required(ErrorMessage = "Ingrese el codigo")]
         public string coddetTab { get; set; }
+
+        [Required(ErrorMessage = "Ingrese la descripcion")]
         public string descripcion { get; set; }
         public string abrev { get; set; }
         public string fuente { get; set; }

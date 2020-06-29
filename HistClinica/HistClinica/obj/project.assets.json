@@ -9831,11 +9831,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Desktop\\HistClinica\\HistClinica\\HistClinica\\HistClinica.csproj",
+      "projectUniqueName": "C:\\Users\\User\\OneDrive\\Desktop\\his-net core\\HistClinica\\HistClinica\\HistClinica\\HistClinica.csproj",
       "projectName": "HistClinica",
-      "projectPath": "C:\\Users\\User\\Desktop\\HistClinica\\HistClinica\\HistClinica\\HistClinica.csproj",
+      "projectPath": "C:\\Users\\User\\OneDrive\\Desktop\\his-net core\\HistClinica\\HistClinica\\HistClinica\\HistClinica.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Desktop\\HistClinica\\HistClinica\\HistClinica\\obj\\",
+      "outputPath": "C:\\Users\\User\\OneDrive\\Desktop\\his-net core\\HistClinica\\HistClinica\\HistClinica\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"

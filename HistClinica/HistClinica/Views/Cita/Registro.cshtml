@@ -82,8 +82,8 @@
 							<label>Hora</label>
 						</div>
 						<div class="col-sm-8">
+							@Html.DropDownList("hora", new SelectList(ViewBag.lhoras, "id", "hora"), "Seleccione",  new { @class = "form-control", id = "hora" } )
 							<input type="hidden" id="deshora" asp-for="hora" />
-							@Html.DropDownListFor(m => m.hora, new SelectList(ViewBag.lhoras, "id", "hora"), "Seleccione", new { @class = "form-control", @id = "hora" })
 						</div>
 					</div>
 				</div>

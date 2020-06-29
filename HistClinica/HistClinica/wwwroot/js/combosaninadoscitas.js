@@ -104,9 +104,6 @@ $(document).on('change', '[data-cascade-combofec]', function (event) {
 			$.each(data,
 				function (index, type) {
 					var content = '<option value="' + type.id + '">' + type.hora + '</option>';
-					var newhora = type.hora.split('-')
-					var hora = newhora[0];
-					$('#modalcitas #deshora').val(hora.trim());
 					$(id).append(content);
 				});
 		},
@@ -117,4 +114,14 @@ $(document).on('change', '[data-cascade-combofec]', function (event) {
 			alert(response.responseText);
 		}
 	});
+});
+
+$(document).on('change', '#hora', function (event) {
+
+	var text = $("#hora option:selected").text();
+	$('#deshora').val(text);
+});
+$(document).on('change', '#idProgramMedica', function (event) {
+	var text = $("#hora option:selected").text();
+	$('#desfecha').val(text);
 });

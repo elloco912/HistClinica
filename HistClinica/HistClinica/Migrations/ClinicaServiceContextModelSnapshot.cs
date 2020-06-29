@@ -79,36 +79,6 @@ namespace HistClinica.Migrations
                     b.ToTable("D002_PERFIL");
                 });
 
-            modelBuilder.Entity("HistClinica.Models.D008_CONSULTORIO", b =>
-                {
-                    b.Property<int>("idConsultorio")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("area")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("descripcion")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("idEspecialidad")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("nroConsultorio")
-                        .HasColumnType("int");
-
-                    b.Property<string>("piso")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("tpConsultorio")
-                        .HasColumnType("int");
-
-                    b.HasKey("idConsultorio");
-
-                    b.ToTable("D008_CONSULTORIO");
-                });
-
             modelBuilder.Entity("HistClinica.Models.D00_TBDETALLE", b =>
                 {
                     b.Property<int>("idDet")
