@@ -8,6 +8,7 @@ namespace HistClinica.Models
 {
 	public class D015_PAGO
 	{
+		[Key]
 		public int idPago { get; set; }
 		public string codTransaccion { get; set; }
 		public string codTransacRetorno { get; set; }

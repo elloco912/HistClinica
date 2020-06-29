@@ -5,6 +5,7 @@ namespace HistClinica.Models
 {
 	public class T120_EMPLEADO
 	{
+		[Key]
 		public int idEmpleado { get; set; }
 		public string codEmpleado { get; set; }
 		public string descArea { get; set; }

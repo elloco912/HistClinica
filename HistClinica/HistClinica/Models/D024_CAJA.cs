@@ -8,6 +8,7 @@ namespace HistClinica.Models
 {
 	public class D024_CAJA
 	{
+		[Key]
 		public int idCaja { get; set; }
 		public int? nroCaja { get; set; }
 		public double? montoAper { get; set; }

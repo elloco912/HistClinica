@@ -4,6 +4,7 @@ namespace HistClinica.Models
 {
 	public class D002_PERFIL
 	{
+		[Key]
 		public int idPerfil { get; set; }
 		public string codPerfil { get; set; }
 		public string nombrePerfil { get; set; }

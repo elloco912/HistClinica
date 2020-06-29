@@ -8,6 +8,7 @@ namespace HistClinica.Models
 {
 	public class D012_CRONOMEDICO
 	{
+		[Key]
 		public int idProgramMedica { get; set; }
 		public string mes { get; set; }
 		public string semana { get; set; }

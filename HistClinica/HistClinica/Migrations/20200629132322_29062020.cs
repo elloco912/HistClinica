@@ -3,11 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HistClinica.Migrations
 {
-<<<<<<< HEAD:HistClinica/HistClinica/Migrations/20200629155732_migracion.cs
-    public partial class migracion : Migration
-=======
     public partial class _29062020 : Migration
->>>>>>> master:HistClinica/HistClinica/Migrations/20200629132322_29062020.cs
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

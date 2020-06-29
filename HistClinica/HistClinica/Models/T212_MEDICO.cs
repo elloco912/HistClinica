@@ -4,6 +4,7 @@ namespace HistClinica.Models
 {
 	public class T212_MEDICO
 	{
+		[Key]
 		public int idMedico { get; set; }
 		public string codMedico { get; set; }
 		public int? nroColegio { get; set; }

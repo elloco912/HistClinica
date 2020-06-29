@@ -5,6 +5,7 @@ namespace HistClinica.Models
 {
 	public class T001_PACIENTE
 	{
+		[Key]
 		public int idPaciente { get; set; }
 		public string codPaciente { get; set; }
 		public string descripcion { get; set; }

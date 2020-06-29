@@ -4,6 +4,7 @@ namespace HistClinica.Models
 {
 	public class T000_PERSONA
 	{
+		[Key]
 		public int idPersona { get; set; }
 		public string apePaterno { get; set; }
 		public string apeMaterno { get; set; }
