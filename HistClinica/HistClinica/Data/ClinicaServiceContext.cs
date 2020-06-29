@@ -30,6 +30,8 @@ namespace HistClinica.Data
         {
             modelBuilder.Entity<D025_ASIGNACAJA>()
                 .HasKey(o => new { o.idCaja, o.idEmpleado });
+            modelBuilder.Entity<D001_USUARIO>()
+                .HasKey(c => new { c.idEmpleado, c.loginUser });
         }
         public DbSet<D015_PAGO> D015_PAGO { get; set; }
     }

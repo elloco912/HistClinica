@@ -183,7 +183,6 @@ namespace HistClinica.Controllers
                     if(personaDTO.asignacion.claveUser != null)
                     {
                         TempData["mensajepersona"] = await _usuarioRepository.InsertUsuario(personaDTO);
-
                     }
                 }
                 catch (DbUpdateConcurrencyException)
