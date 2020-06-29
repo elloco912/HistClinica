@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HistClinica.Migrations
 {
-    public partial class _17062020 : Migration
+    public partial class _29062020 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -76,24 +76,6 @@ namespace HistClinica.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_D002_PERFIL", x => x.idPerfil);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "D008_CONSULTORIO",
-                columns: table => new
-                {
-                    idConsultorio = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    nroConsultorio = table.Column<int>(nullable: true),
-                    tpConsultorio = table.Column<int>(nullable: true),
-                    descripcion = table.Column<string>(nullable: true),
-                    area = table.Column<string>(nullable: true),
-                    piso = table.Column<string>(nullable: true),
-                    idEspecialidad = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_D008_CONSULTORIO", x => x.idConsultorio);
                 });
 
             migrationBuilder.CreateTable(
@@ -494,9 +476,6 @@ namespace HistClinica.Migrations
 
             migrationBuilder.DropTable(
                 name: "D002_PERFIL");
-
-            migrationBuilder.DropTable(
-                name: "D008_CONSULTORIO");
 
             migrationBuilder.DropTable(
                 name: "D010_PACACOMPANA");

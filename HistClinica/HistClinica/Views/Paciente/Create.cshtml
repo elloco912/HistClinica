@@ -70,17 +70,7 @@
 									<label for="firstname">Primer nombre</label>
 								</div>
 								<div class="col-sm-8">
-									@Html.TextBoxFor(m => m.primerNombre, new { @class = "form-control" })
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="row">
-								<div class="col-sm-4">
-									<label for="secondname">Segundo nombre</label>
-								</div>
-								<div class="col-sm-8">
-									@Html.TextBoxFor(m => m.segundoNombre, new { @class = "form-control" })
+									@Html.TextBoxFor(m => m.nombres, new { @class = "form-control" })
 								</div>
 							</div>
 						</div>
@@ -753,17 +743,7 @@
 										<label for="firstnomacom">Primer nombre</label>
 									</div>
 									<div class="col-sm-8">
-										@Html.TextBoxFor(m => m.paciente.primerNombreAcompañante, new { @class = "form-control" })
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-3">
-								<div class="row">
-									<div class="col-sm-4">
-										<label for="secondnameacom">Segundo nombre</label>
-									</div>
-									<div class="col-sm-8">
-										@Html.TextBoxFor(m => m.paciente.segundoNombreAcompañante, new { @class = "form-control" })
+										@Html.TextBoxFor(m => m.paciente.NombreAcompañante, new { @class = "form-control" })
 									</div>
 								</div>
 							</div>

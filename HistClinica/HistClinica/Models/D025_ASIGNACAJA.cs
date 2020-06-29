@@ -5,11 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HistClinica.Models
+namespace His.Models
 {
 	public class D025_ASIGNACAJA
 	{
-		public int idCaja { get; set; }
-		public int idEmpleado { get; set; }
+		public int? idCaja { get; set; }
+		public int? idEmpleado { get; set; }
 	}
 }

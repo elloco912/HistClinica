@@ -1,4 +1,4 @@
-namespace HistClinica.Models
+namespace His.Models
 {
     public class ErrorViewModel
     {

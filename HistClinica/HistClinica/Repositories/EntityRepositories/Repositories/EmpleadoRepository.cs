@@ -54,11 +54,10 @@ namespace HistClinica.Repositories.Repositories
                     cargo = Persona.personal.cargo,
                     codEmpleado = Persona.personal.codEmpleado,
                     descArea = Persona.personal.descArea,
-                    estado = Persona.personal.estadoPersonal,
+                    estado = Persona.personal.estadoEmpleado,
                     fecIngreso = DateTime.Parse(Persona.personal.fechaIngreso),
                     genero = Persona.personal.genero,
                     idtpEmpleado = Persona.personal.idTipoEmpleado,
-                    precio = Persona.personal.precio,
                     salario = Persona.personal.salario
                 };
                 await _context.T120_EMPLEADO.AddAsync(Empleado);
@@ -81,11 +80,10 @@ namespace HistClinica.Repositories.Repositories
                     cargo = Persona.personal.cargo,
                     codEmpleado = Persona.personal.codEmpleado,
                     descArea = Persona.personal.descArea,
-                    estado = Persona.personal.estadoPersonal,
+                    estado = Persona.personal.estadoEmpleado,
                     fecIngreso = DateTime.Parse(Persona.personal.fechaIngreso),
                     genero = Persona.personal.genero,
                     idtpEmpleado = Persona.personal.idTipoEmpleado,
-                    precio = Persona.personal.precio,
                     salario = Persona.personal.salario
                 };
                 _context.Update(Empleado);
@@ -113,8 +111,7 @@ namespace HistClinica.Repositories.Repositories
                                      where p.idPersona == id
                                      select new PersonaDTO
                                      {
-                                         primerNombre = p.primerNombre,
-                                         segundoNombre = p.segundoNombre,
+                                         nombres = p.nombres,
                                          numeroDocumento = p.dniPersona,
                                          personal = new PersonalDTO
                                          {

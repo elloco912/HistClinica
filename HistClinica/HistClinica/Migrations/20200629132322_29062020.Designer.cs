@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HistClinica.Migrations
 {
     [DbContext(typeof(ClinicaServiceContext))]
-    [Migration("20200617194540_17062020")]
-    partial class _17062020
+    [Migration("20200629132322_29062020")]
+    partial class _29062020
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -79,36 +79,6 @@ namespace HistClinica.Migrations
                     b.HasKey("idPerfil");
 
                     b.ToTable("D002_PERFIL");
-                });
-
-            modelBuilder.Entity("HistClinica.Models.D008_CONSULTORIO", b =>
-                {
-                    b.Property<int>("idConsultorio")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("area")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("descripcion")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("idEspecialidad")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("nroConsultorio")
-                        .HasColumnType("int");
-
-                    b.Property<string>("piso")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("tpConsultorio")
-                        .HasColumnType("int");
-
-                    b.HasKey("idConsultorio");
-
-                    b.ToTable("D008_CONSULTORIO");
                 });
 
             modelBuilder.Entity("HistClinica.Models.D00_TBDETALLE", b =>

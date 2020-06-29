@@ -4,11 +4,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HistClinica.Models
+namespace His.Models
 {
 	public class D015_PAGO
 	{
-		[Key]
 		public int idPago { get; set; }
 		public string codTransaccion { get; set; }
 		public string codTransacRetorno { get; set; }

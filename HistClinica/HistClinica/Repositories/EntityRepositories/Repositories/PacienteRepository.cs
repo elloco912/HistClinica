@@ -59,102 +59,22 @@ namespace HistClinica.Repositories.Repositories
             int? idPaciente = null;
             try
             {
-                if (Persona.paciente.idTipoPaciente == 120)//Compañia
-                {
-                    await _context.T001_PACASEGURADO.AddAsync(new T001_PACASEGURADO()
-                    {
-                        cobertura = Persona.paciente.coberturaCompañia,
-                        ordenAtenMed = Persona.paciente.ordenAtencionMedicaCompañia,
-                        nomAseguradora = Persona.paciente.nombreAseguradoraCompañia,
-                        codAsegurado = Persona.paciente.codAseguradoCompañia,
-                        poliza = Persona.paciente.polizaCompañia,
-                        idParentesco = Persona.paciente.idParentescoCompañia,
-                        idPaciente = Persona.paciente.idPaciente,
-                        estado = Persona.estado,
-                        idtpDocumento = Persona.idTipoDocumento,
-                        iniVigencia = Persona.paciente.inicioVigenciaCompañia,
-                        finVigencia = Persona.paciente.finVigenciaCompañia,
-                        tpPlanSalud = Persona.paciente.tpPlanSalud,
-                        nroplanSalud = Persona.paciente.numeroPlanSaludCompañia,
-                        estadoSeguro = Persona.paciente.estadoSeguro,
-                        tpAfiliacion = Persona.paciente.tpAfiliacion,
-                        fecAfiliacion = Persona.paciente.fecAfiliacion,
-                        codTitular = Persona.paciente.codTitular,
-                        moneda = Persona.paciente.moneda,
-                        nomContratante = Persona.paciente.nomContratante,
-                        dniContratante = Persona.numeroDocumento,
-                        planSalud = Persona.paciente.planSalud,
-                        codCobertura = Persona.paciente.codCobertura,
-                        beneficio = Persona.paciente.beneficio,
-                        restriccion = Persona.paciente.restriccion,
-                        copagoFijo = Persona.paciente.copagoFijo,
-                        copagoVariable = Persona.paciente.copagoVariable,
-                        finCarencia = Persona.paciente.finCarencia,
-                        convenio = Persona.paciente.convenio,
-                        descuento = Persona.paciente.descuento
-                    });
-                    await Save();
-                    idAsegurado = (await _context.T001_PACASEGURADO
-                    .FirstOrDefaultAsync(p => p.dniContratante == Persona.numeroDocumento)).idAsegurado;
-                }
-                else if (Persona.paciente.idTipoPaciente == 121)//Convenio
-                {
-                    await _context.T001_PACCONVENIO.AddAsync(new T001_PACCONVENIO()
-                    {
-                        cobertura = Persona.paciente.coberturaCompañia,
-                        idParentesco = Persona.paciente.idParentescoCompañia,
-                        idPaciente = Persona.paciente.idPaciente,
-                        estado = Persona.paciente.estadoConven.ToString(),
-                        idtpDocumento = Persona.idTipoDocumento,
-                        iniVigencia = Persona.paciente.inicioVigenciaCompañia,
-                        finVigencia = Persona.paciente.finVigenciaCompañia,
-                        tpAfiliacion = Persona.paciente.tpAfiliacion,
-                        fecAfiliacion = Persona.paciente.fecAfiliacion,
-                        codTitular = Persona.paciente.codTitular,
-                        moneda = Persona.paciente.moneda,
-                        nomContratante = Persona.paciente.nomContratante,
-                        dniContratante = Persona.numeroDocumento,
-                        beneficio = Persona.paciente.beneficio,
-                        restriccion = Persona.paciente.restriccion,
-                        copagoFijo = Persona.paciente.copagoFijo,
-                        copagoVariable = Persona.paciente.copagoVariable,
-                        estadoConvenio = Persona.paciente.estadoConvenio.ToString(),
-                        ordAtenMedica = Persona.paciente.ordenAtencionMedicaConvenio
-                    });
-                    await Save();
-                    idConvenio = (await _context.T001_PACCONVENIO
-                    .FirstOrDefaultAsync(p => p.dniContratante == idPersona)).idPacConvenio;
-                }
                 await _context.T001_PACIENTE.AddAsync(new T001_PACIENTE()
                 {
-                    idPersona = idPersona,
-                    codPaciente = Persona.paciente.codPaciente,
-                    descripcion = Persona.paciente.descripcion,
-                    dniAcom = Persona.paciente.numeroDocumentoAcompañante,
-                    edadAcom = Persona.paciente.edadAcompañante,
-                    estado = Persona.paciente.estadoPaciente.ToString(),
-                    idAsegurado = idAsegurado,
-                    idFactorrh = Persona.paciente.idFactorRrh,
-                    idgpoSangre = Persona.paciente.idGrupoSanguineo,
-                    idPacConvenio = idConvenio,
-                    idtpPaciente = Persona.paciente.idTipoPaciente,
-                    nombreAcom = Persona.paciente.primerNombreAcompañante + " " + Persona.paciente.segundoNombreAcompañante + " " + Persona.paciente.apellidoPaternoAcompañante + " " + Persona.paciente.apellidoMaternoAcompañante,
-                    nrohc = Persona.paciente.nrohc
-                });
-                await Save();
-                idPaciente = (await _context.T001_PACIENTE
-                    .FirstOrDefaultAsync(p => p.idPersona == idPersona)).idPaciente;
-                await _context.D010_PACACOMPANA.AddAsync(new D010_PACACOMPANA()
-                {
-                    tpDocumento = Persona.paciente.idTipoDocumentoAcompañante.ToString(),
-                    dniAcom = Persona.paciente.numeroDocumentoAcompañante,
-                    nombresAcom = Persona.paciente.primerNombreAcompañante + " " + Persona.paciente.segundoNombreAcompañante,
-                    apePatAcom = Persona.paciente.apellidoPaternoAcompañante,
-                    apeMatAcom = Persona.paciente.apellidoMaternoAcompañante,
-                    parentesco = Persona.paciente.idParentescoAcompañante.ToString(),
-                    idPersona = idPersona,
-                    estado = Persona.paciente.estadoAcompañante.ToString(),
-                    idPaciente = idPaciente
+                    //ToDO:Rellenar todos los datos de Paciente
+                    //idPersona = idPersona,
+                    //codPaciente = Persona.paciente.codPaciente,
+                    //descripcion = Persona.paciente.descripcion,
+                    //dniAcom = Persona.paciente.numeroDocumentoAcompañante,
+                    //edadAcom = Persona.paciente.edadAcompañante,
+                    //estado = Persona.paciente.estadoPaciente.ToString(),
+                    //idAsegurado = idAsegurado,
+                    //idFactorrh = Persona.paciente.idFactorRrh,
+                    //idgpoSangre = Persona.paciente.idGrupoSanguineo,
+                    //idPacConvenio = idConvenio,
+                    //idtpPaciente = Persona.paciente.idTipoPaciente,
+                    //nombreAcom = Persona.paciente.primerNombreAcompañante + " " + Persona.paciente.segundoNombreAcompañante + " " + Persona.paciente.apellidoPaternoAcompañante + " " + Persona.paciente.apellidoMaternoAcompañante,
+                    //nrohc = Persona.paciente.nrohc
                 });
                 await Save();
                 return "Ingreso Exitoso Paciente";
@@ -168,100 +88,34 @@ namespace HistClinica.Repositories.Repositories
         {
             try
             {
-                if (Persona.paciente.idTipoPaciente == 120)//Compañia
-                {
-                    _context.Update(new T001_PACASEGURADO()
-                    {
-                        idAsegurado = (int)Persona.paciente.idAsegurado,
-                        cobertura = Persona.paciente.coberturaCompañia,
-                        ordenAtenMed = Persona.paciente.ordenAtencionMedicaCompañia,
-                        nomAseguradora = Persona.paciente.nombreAseguradoraCompañia,
-                        codAsegurado = Persona.paciente.codAseguradoCompañia,
-                        poliza = Persona.paciente.polizaCompañia,
-                        idParentesco = Persona.paciente.idParentescoCompañia,
-                        idPaciente = Persona.paciente.idPaciente,
-                        estado = Persona.estado,
-                        idtpDocumento = Persona.idTipoDocumento,
-                        iniVigencia = Persona.paciente.inicioVigenciaCompañia,
-                        finVigencia = Persona.paciente.finVigenciaCompañia,
-                        tpPlanSalud = Persona.paciente.tpPlanSalud,
-                        nroplanSalud = Persona.paciente.numeroPlanSaludCompañia,
-                        estadoSeguro = Persona.paciente.estadoSeguro,
-                        tpAfiliacion = Persona.paciente.tpAfiliacion,
-                        fecAfiliacion = Persona.paciente.fecAfiliacion,
-                        codTitular = Persona.paciente.codTitular,
-                        moneda = Persona.paciente.moneda,
-                        nomContratante = Persona.paciente.nomContratante,
-                        dniContratante = Persona.numeroDocumento,
-                        planSalud = Persona.paciente.planSalud,
-                        codCobertura = Persona.paciente.codCobertura,
-                        beneficio = Persona.paciente.beneficio,
-                        restriccion = Persona.paciente.restriccion,
-                        copagoFijo = Persona.paciente.copagoFijo,
-                        copagoVariable = Persona.paciente.copagoVariable,
-                        finCarencia = Persona.paciente.finCarencia,
-                        convenio = Persona.paciente.convenio,
-                        descuento = Persona.paciente.descuento
-                    });
-                    await Save();
-                }
-                else if (Persona.paciente.idTipoPaciente == 121)//Convenio
-                {
-                    _context.Update(new T001_PACCONVENIO()
-                    {
-                        idPacConvenio = (int)Persona.paciente.idAsegurado,
-                        cobertura = Persona.paciente.coberturaCompañia,
-                        idParentesco = Persona.paciente.idParentescoCompañia,
-                        idPaciente = Persona.paciente.idPaciente,
-                        estado = Persona.paciente.estadoConven.ToString(),
-                        idtpDocumento = Persona.idTipoDocumento,
-                        iniVigencia = Persona.paciente.inicioVigenciaCompañia,
-                        finVigencia = Persona.paciente.finVigenciaCompañia,
-                        tpAfiliacion = Persona.paciente.tpAfiliacion,
-                        fecAfiliacion = Persona.paciente.fecAfiliacion,
-                        codTitular = Persona.paciente.codTitular,
-                        moneda = Persona.paciente.moneda,
-                        nomContratante = Persona.paciente.nomContratante,
-                        dniContratante = Persona.numeroDocumento,
-                        beneficio = Persona.paciente.beneficio,
-                        restriccion = Persona.paciente.restriccion,
-                        copagoFijo = Persona.paciente.copagoFijo,
-                        copagoVariable = Persona.paciente.copagoVariable,
-                        estadoConvenio = Persona.paciente.estadoConvenio.ToString(),
-                        ordAtenMedica = Persona.paciente.ordenAtencionMedicaConvenio
-                    });
-                    await Save();
-                }
                 _context.Update(new T001_PACIENTE()
                 {
-                    idPersona = Persona.idPersona,
-                    idPaciente = (int)Persona.paciente.idPaciente,
-                    codPaciente = Persona.paciente.codPaciente,
-                    descripcion = Persona.paciente.descripcion,
-                    dniAcom = Persona.paciente.numeroDocumentoAcompañante,
-                    edadAcom = Persona.paciente.edadAcompañante,
-                    estado = Persona.paciente.estadoPaciente.ToString(),
-                    idAsegurado = Persona.paciente.idAsegurado,
-                    idFactorrh = Persona.paciente.idFactorRrh,
-                    idgpoSangre = Persona.paciente.idGrupoSanguineo,
-                    idPacConvenio = Persona.paciente.idConvenio,
-                    idtpPaciente = Persona.paciente.idTipoPaciente,
-                    nombreAcom = Persona.paciente.primerNombreAcompañante + " " + Persona.paciente.segundoNombreAcompañante + " " + Persona.paciente.apellidoPaternoAcompañante + " " + Persona.paciente.apellidoMaternoAcompañante,
-                    nrohc = Persona.paciente.nrohc
+                    //ToDO:Rellenar todos los datos de Paciente
+                    //idPersona = Persona.idPersona,
+                    //idPaciente = (int)Persona.paciente.idPaciente,
+                    //codPaciente = Persona.paciente.codPaciente,
+                    //descripcion = Persona.paciente.descripcion,
+                    //dniAcom = Persona.paciente.numeroDocumentoAcompañante,
+                    //edadAcom = Persona.paciente.edadAcompañante,
+                    //estado = Persona.paciente.estadoPaciente.ToString(),
+                    //idAsegurado = Persona.paciente.idAsegurado,
+                    //idFactorrh = Persona.paciente.idFactorRrh,
+                    //idgpoSangre = Persona.paciente.idGrupoSanguineo,
+                    //idPacConvenio = Persona.paciente.idConvenio,
+                    //idtpPaciente = Persona.paciente.idTipoPaciente,
+                    //nombreAcom = Persona.paciente.primerNombreAcompañante + " " + Persona.paciente.segundoNombreAcompañante + " " + Persona.paciente.apellidoPaternoAcompañante + " " + Persona.paciente.apellidoMaternoAcompañante,
+                    //nrohc = Persona.paciente.nrohc
+                    //tpDocumento = Persona.paciente.idTipoDocumentoAcompañante.ToString(),
+                    //dniAcom = Persona.paciente.numeroDocumentoAcompañante,
+                    //nombresAcom = Persona.paciente.NombreAcompañante,
+                    //apePatAcom = Persona.apellidoPaterno,
+                    //apeMatAcom = Persona.apellidoMaterno,
+                    //parentesco = Persona.paciente.idParentescoAcompañante.ToString(),
+                    //idPersona = Persona.idPersona,
+                    //estado = Persona.paciente.estadoAcompañante.ToString(),
+                    //idPaciente = Persona.paciente.idPaciente
                 });
-                await Save();
-                _context.Update(new D010_PACACOMPANA()
-                {
-                    tpDocumento = Persona.paciente.idTipoDocumentoAcompañante.ToString(),
-                    dniAcom = Persona.paciente.numeroDocumentoAcompañante,
-                    nombresAcom = Persona.paciente.primerNombreAcompañante + " " + Persona.paciente.segundoNombreAcompañante,
-                    apePatAcom = Persona.apellidoPaterno,
-                    apeMatAcom = Persona.apellidoMaterno,
-                    parentesco = Persona.paciente.idParentescoAcompañante.ToString(),
-                    idPersona = Persona.idPersona,
-                    estado = Persona.paciente.estadoAcompañante.ToString(),
-                    idPaciente = Persona.paciente.idPaciente
-                });
+
                 await Save();
                 return "Actualizacion Exitosa Paciente";
             }
@@ -276,18 +130,19 @@ namespace HistClinica.Repositories.Repositories
                                                    join o in _context.T000_PERSONA on p.idPersona equals o.idPersona
                                                    select new T001_PACIENTE
                                                    {
+                                                       //ToDO:Rellenar todos los datos de Paciente
                                                        idPaciente = p.idPaciente,
                                                        codPaciente = p.codPaciente,
                                                        descripcion = p.descripcion,
                                                        dniAcom = p.dniAcom,
                                                        edadAcom = p.edadAcom,
                                                        estado = p.estado,
-                                                       idAsegurado = p.idAsegurado,
+                                                       //idAsegurado = p.idAsegurado,
                                                        idFactorrh = p.idFactorrh,
                                                        idgpoSangre = p.idgpoSangre,
-                                                       idPacConvenio = p.idPacConvenio,
+                                                       //idPacConvenio = p.idPacConvenio,
                                                        idPersona = p.idPersona,
-                                                       idtpPaciente = p.idtpPaciente,
+                                                       tpPaciente = p.tpPaciente,
                                                        nombreAcom = p.nombreAcom,
                                                        nrohc = p.nrohc
                                                    }).ToListAsync();
@@ -301,8 +156,7 @@ namespace HistClinica.Repositories.Repositories
                                         where p.dniPersona == Dni 
                                         select new PersonaDTO
                                         {
-                                            primerNombre = p.primerNombre,
-                                            segundoNombre = p.segundoNombre,
+                                            nombres = p.nombres,
                                             apellidoPaterno = p.apePaterno,
                                             apellidoMaterno = p.apeMaterno,
                                             numeroDocumento = p.dniPersona,
@@ -334,14 +188,14 @@ namespace HistClinica.Repositories.Repositories
                                              consultorio = (from de in _context.D00_TBDETALLE
                                                             where de.idDet == c.idConsultorio
                                                             select de.descripcion).FirstOrDefault(),
-                                             descripcion = (from sc in _context.T218_SERVICIOSCLI
-                                                            where sc.idservicioCli == c.idservicioCli
+                                             descripcion = (from sc in _context.D00_TBDETALLE
+                                                            where sc.idDet == c.idservicioCli
                                                             select sc.descripcion).FirstOrDefault(),
                                              medico = (from cm in _context.D012_CRONOMEDICO
                                                        join m in _context.T212_MEDICO on cm.idMedico equals m.idMedico
                                                        join p in _context.T000_PERSONA on m.idPersona equals p.idPersona
                                                        where cm.idProgramMedica == c.idProgramMedica
-                                                       select (p.primerNombre + " " + p.segundoNombre + " " + p.apePaterno + " " + p.apeMaterno)).FirstOrDefault(),
+                                                       select (p.nombres + " " + p.apePaterno + " " + p.apeMaterno)).FirstOrDefault(),
                                              especialidad = (from tb in _context.D00_TBDETALLE
                                                              join cm in _context.D012_CRONOMEDICO on c.idProgramMedica equals cm.idProgramMedica
                                                              join m in _context.T212_MEDICO on cm.idMedico equals m.idMedico
