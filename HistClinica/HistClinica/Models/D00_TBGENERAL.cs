@@ -13,6 +13,7 @@ namespace HistClinica.Models
 		public DateTime? fechaCreate { get; set; }
 		public string usuCreate { get; set; }
 		public string estado { get; set; } 
+        public DateTime? fechabaja { get; set; }
 	}
 
 }

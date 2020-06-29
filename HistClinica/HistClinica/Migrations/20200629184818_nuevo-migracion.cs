@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HistClinica.Migrations
 {
-    public partial class _29062020 : Migration
+    public partial class nuevomigracion : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,12 +13,13 @@ namespace HistClinica.Migrations
                 {
                     idDet = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    coddetTab = table.Column<string>(nullable: true),
-                    descripcion = table.Column<string>(nullable: true),
+                    coddetTab = table.Column<string>(nullable: false),
+                    descripcion = table.Column<string>(nullable: false),
                     abrev = table.Column<string>(nullable: true),
                     fuente = table.Column<string>(nullable: true),
                     estado = table.Column<string>(nullable: true),
-                    idTab = table.Column<int>(nullable: true)
+                    idTab = table.Column<int>(nullable: true),
+                    fechabaja = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -35,7 +36,9 @@ namespace HistClinica.Migrations
                     descripcion = table.Column<string>(nullable: true),
                     tipo = table.Column<string>(nullable: true),
                     fechaCreate = table.Column<DateTime>(nullable: true),
-                    usuCreate = table.Column<string>(nullable: true)
+                    usuCreate = table.Column<string>(nullable: true),
+                    estado = table.Column<string>(nullable: true),
+                    fechabaja = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -51,9 +54,9 @@ namespace HistClinica.Migrations
                     loginUser = table.Column<string>(nullable: true),
                     claveUser = table.Column<string>(nullable: true),
                     idEmpleado = table.Column<int>(nullable: true),
-                    estado = table.Column<string>(nullable: true),
-                    usuRegistra = table.Column<string>(nullable: true),
-                    fechaRegistra = table.Column<string>(nullable: true),
+                    estado = table.Column<int>(nullable: false),
+                    usuCrea = table.Column<string>(nullable: true),
+                    fechaCrea = table.Column<string>(nullable: true),
                     usuMod = table.Column<string>(nullable: true),
                     fechaMod = table.Column<string>(nullable: true)
                 },
@@ -76,27 +79,6 @@ namespace HistClinica.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_D002_PERFIL", x => x.idPerfil);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "D010_PACACOMPANA",
-                columns: table => new
-                {
-                    idPacAcom = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    tpDocumento = table.Column<string>(nullable: true),
-                    dniAcom = table.Column<int>(nullable: true),
-                    apePatAcom = table.Column<string>(nullable: true),
-                    apeMatAcom = table.Column<string>(nullable: true),
-                    nombresAcom = table.Column<string>(nullable: true),
-                    parentesco = table.Column<string>(nullable: true),
-                    idPaciente = table.Column<int>(nullable: true),
-                    idPersona = table.Column<int>(nullable: true),
-                    estado = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_D010_PACACOMPANA", x => x.idPacAcom);
                 });
 
             migrationBuilder.CreateTable(
@@ -143,25 +125,21 @@ namespace HistClinica.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "D015_TPEMPLEADO",
-                columns: table => new
-                {
-                    idtpEmpleado = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Descripcion = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_D015_TPEMPLEADO", x => x.idtpEmpleado);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "D024_CAJA",
                 columns: table => new
                 {
                     idCaja = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     nroCaja = table.Column<int>(nullable: true),
+                    montoAper = table.Column<double>(nullable: true),
+                    divisa = table.Column<string>(nullable: true),
+                    turno = table.Column<string>(nullable: true),
+                    pos = table.Column<bool>(nullable: true),
+                    modopago = table.Column<string>(nullable: true),
+                    proveedor = table.Column<string>(nullable: true),
+                    tipo = table.Column<string>(nullable: true),
+                    montoCierre = table.Column<double>(nullable: true),
+                    motivo = table.Column<string>(nullable: true),
                     estado = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -189,13 +167,12 @@ namespace HistClinica.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     apePaterno = table.Column<string>(nullable: true),
                     apeMaterno = table.Column<string>(nullable: true),
-                    primerNombre = table.Column<string>(nullable: true),
-                    segundoNombre = table.Column<string>(nullable: true),
+                    nombres = table.Column<string>(nullable: true),
                     idtpDocumento = table.Column<int>(nullable: true),
                     dniPersona = table.Column<int>(nullable: true),
                     idSexo = table.Column<int>(nullable: true),
                     idEtnico = table.Column<int>(nullable: true),
-                    fecNacimiento = table.Column<string>(nullable: true),
+                    fecNace = table.Column<string>(nullable: true),
                     idUbigeoResi = table.Column<int>(nullable: true),
                     idtipoVia = table.Column<int>(nullable: true),
                     nombreVia = table.Column<string>(nullable: true),
@@ -239,31 +216,39 @@ namespace HistClinica.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "T001_PACASEGURADO",
+                name: "T001_PACIENTE",
                 columns: table => new
                 {
-                    idAsegurado = table.Column<int>(nullable: false)
+                    idPaciente = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    codPaciente = table.Column<string>(nullable: true),
+                    descripcion = table.Column<string>(nullable: true),
+                    nrohc = table.Column<string>(nullable: true),
+                    nombreAcom = table.Column<string>(nullable: true),
+                    edadAcom = table.Column<int>(nullable: true),
+                    dniAcom = table.Column<int>(nullable: true),
+                    idgpoSangre = table.Column<int>(nullable: true),
+                    idFactorrh = table.Column<int>(nullable: true),
                     cobertura = table.Column<string>(nullable: true),
                     ordenAtenMed = table.Column<string>(nullable: true),
-                    nomAseguradora = table.Column<string>(nullable: true),
+                    nomAsegurado = table.Column<string>(nullable: true),
                     codAsegurado = table.Column<string>(nullable: true),
                     poliza = table.Column<string>(nullable: true),
-                    idParentesco = table.Column<int>(nullable: true),
+                    parentesco = table.Column<int>(nullable: true),
                     iniVigencia = table.Column<DateTime>(nullable: true),
                     finVigencia = table.Column<DateTime>(nullable: true),
-                    tpPlanSalud = table.Column<string>(nullable: true),
-                    nroplanSalud = table.Column<int>(nullable: true),
+                    tpPlanSalud = table.Column<int>(nullable: true),
+                    nroPlanSalud = table.Column<int>(nullable: true),
                     estadoSeguro = table.Column<string>(nullable: true),
-                    tpAfiliacion = table.Column<string>(nullable: true),
+                    tpAfiliacion = table.Column<int>(nullable: true),
                     fecAfiliacion = table.Column<DateTime>(nullable: true),
                     codTitular = table.Column<int>(nullable: true),
                     moneda = table.Column<string>(nullable: true),
                     nomContratante = table.Column<string>(nullable: true),
-                    idtpDocumento = table.Column<int>(nullable: true),
+                    tpDocumento = table.Column<int>(nullable: true),
                     dniContratante = table.Column<int>(nullable: true),
                     planSalud = table.Column<string>(nullable: true),
-                    codCobertura = table.Column<string>(nullable: true),
+                    codCobertura = table.Column<int>(nullable: true),
                     beneficio = table.Column<string>(nullable: true),
                     restriccion = table.Column<string>(nullable: true),
                     copagoFijo = table.Column<int>(nullable: true),
@@ -271,63 +256,19 @@ namespace HistClinica.Migrations
                     finCarencia = table.Column<int>(nullable: true),
                     convenio = table.Column<string>(nullable: true),
                     descuento = table.Column<double>(nullable: true),
-                    idPaciente = table.Column<int>(nullable: true),
-                    estado = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_T001_PACASEGURADO", x => x.idAsegurado);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "T001_PACCONVENIO",
-                columns: table => new
-                {
-                    idPacConvenio = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ordAtenMedica = table.Column<string>(nullable: true),
-                    idParentesco = table.Column<int>(nullable: true),
-                    cobertura = table.Column<string>(nullable: true),
-                    iniVigencia = table.Column<DateTime>(nullable: true),
-                    finVigencia = table.Column<DateTime>(nullable: true),
-                    estadoConvenio = table.Column<string>(nullable: true),
-                    tpAfiliacion = table.Column<string>(nullable: true),
-                    fecAfiliacion = table.Column<DateTime>(nullable: true),
-                    codTitular = table.Column<int>(nullable: true),
-                    moneda = table.Column<string>(nullable: true),
-                    nomContratante = table.Column<string>(nullable: true),
-                    idtpDocumento = table.Column<int>(nullable: true),
-                    dniContratante = table.Column<int>(nullable: true),
-                    beneficio = table.Column<string>(nullable: true),
-                    restriccion = table.Column<string>(nullable: true),
-                    copagoFijo = table.Column<int>(nullable: true),
-                    copagoVariable = table.Column<int>(nullable: true),
-                    idPaciente = table.Column<int>(nullable: true),
-                    estado = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_T001_PACCONVENIO", x => x.idPacConvenio);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "T001_PACIENTE",
-                columns: table => new
-                {
-                    idPaciente = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    codPaciente = table.Column<string>(nullable: true),
-                    idtpPaciente = table.Column<int>(nullable: true),
-                    descripcion = table.Column<string>(nullable: true),
-                    nrohc = table.Column<int>(nullable: true),
-                    nombreAcom = table.Column<string>(nullable: true),
-                    edadAcom = table.Column<int>(nullable: true),
-                    dniAcom = table.Column<int>(nullable: true),
-                    idgpoSangre = table.Column<int>(nullable: true),
-                    idFactorrh = table.Column<int>(nullable: true),
+                    codPaConvenio = table.Column<string>(nullable: true),
+                    dsPacConv = table.Column<string>(nullable: true),
+                    statPaconv = table.Column<string>(nullable: true),
+                    codPacSoat = table.Column<string>(nullable: true),
+                    dsPacSoat = table.Column<string>(nullable: true),
+                    statPacSoat = table.Column<string>(nullable: true),
+                    codpacExterno = table.Column<string>(nullable: true),
+                    dspacExter = table.Column<string>(nullable: true),
+                    stapacexter = table.Column<string>(nullable: true),
+                    tpPaciente = table.Column<int>(nullable: true),
                     idPersona = table.Column<int>(nullable: true),
-                    idAsegurado = table.Column<int>(nullable: true),
-                    idPacConvenio = table.Column<int>(nullable: true),
+                    hojafiliacion = table.Column<bool>(nullable: true),
+                    concienteDato = table.Column<bool>(nullable: true),
                     estado = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -393,37 +334,19 @@ namespace HistClinica.Migrations
                 {
                     idEmpleado = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    genero = table.Column<string>(nullable: true),
-                    salario = table.Column<int>(nullable: true),
-                    precio = table.Column<double>(nullable: true),
-                    fecIngreso = table.Column<DateTime>(nullable: true),
-                    idtpEmpleado = table.Column<int>(nullable: true),
                     codEmpleado = table.Column<string>(nullable: true),
                     descArea = table.Column<string>(nullable: true),
                     cargo = table.Column<string>(nullable: true),
+                    fecIngreso = table.Column<DateTime>(nullable: true),
+                    salario = table.Column<int>(nullable: true),
+                    genero = table.Column<string>(nullable: true),
+                    idtpEmpleado = table.Column<int>(nullable: true),
                     idPersona = table.Column<int>(nullable: true),
                     estado = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_T120_EMPLEADO", x => x.idEmpleado);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "T120_ESPECIALIDAD",
-                columns: table => new
-                {
-                    idEspecialidad = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    codEspecial = table.Column<string>(nullable: true),
-                    codSigesa = table.Column<string>(nullable: true),
-                    descripcion = table.Column<string>(nullable: true),
-                    codSubEspecial = table.Column<string>(nullable: true),
-                    descSubEspecial = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_T120_ESPECIALIDAD", x => x.idEspecialidad);
                 });
 
             migrationBuilder.CreateTable(
@@ -447,20 +370,6 @@ namespace HistClinica.Migrations
                 {
                     table.PrimaryKey("PK_T212_MEDICO", x => x.idMedico);
                 });
-
-            migrationBuilder.CreateTable(
-                name: "T218_SERVICIOSCLI",
-                columns: table => new
-                {
-                    idservicioCli = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    descripcion = table.Column<string>(nullable: true),
-                    estado = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_T218_SERVICIOSCLI", x => x.idservicioCli);
-                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -478,16 +387,10 @@ namespace HistClinica.Migrations
                 name: "D002_PERFIL");
 
             migrationBuilder.DropTable(
-                name: "D010_PACACOMPANA");
-
-            migrationBuilder.DropTable(
                 name: "D012_CRONOMEDICO");
 
             migrationBuilder.DropTable(
                 name: "D015_PAGO");
-
-            migrationBuilder.DropTable(
-                name: "D015_TPEMPLEADO");
 
             migrationBuilder.DropTable(
                 name: "D024_CAJA");
@@ -497,12 +400,6 @@ namespace HistClinica.Migrations
 
             migrationBuilder.DropTable(
                 name: "T000_PERSONA");
-
-            migrationBuilder.DropTable(
-                name: "T001_PACASEGURADO");
-
-            migrationBuilder.DropTable(
-                name: "T001_PACCONVENIO");
 
             migrationBuilder.DropTable(
                 name: "T001_PACIENTE");
@@ -517,13 +414,7 @@ namespace HistClinica.Migrations
                 name: "T120_EMPLEADO");
 
             migrationBuilder.DropTable(
-                name: "T120_ESPECIALIDAD");
-
-            migrationBuilder.DropTable(
                 name: "T212_MEDICO");
-
-            migrationBuilder.DropTable(
-                name: "T218_SERVICIOSCLI");
         }
     }
 }

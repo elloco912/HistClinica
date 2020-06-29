@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace HistClinica.Models
 {
@@ -16,6 +17,6 @@ namespace HistClinica.Models
         public string fuente { get; set; }
         public string estado { get; set; }
         public int? idTab { get; set; }
-
+        public DateTime? fechabaja { get; set; }
     }
 }
