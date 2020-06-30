@@ -135,35 +135,41 @@ namespace HistClinica.Repositories.Repositories
                 return "Error en el guardado " + ex.StackTrace;
             }
         }
-        public async Task<List<T068_CITA>> GetAllCitas()
+        public async Task<List<CitaDTO>> GetAllCitas()
         {
-            List<T068_CITA> Citas = await (from c in _context.T068_CITA
-                                           select new T068_CITA
+            List<CitaDTO> Citas = await (from c in _context.T068_CITA
+                                           select new CitaDTO
                                            {
-                                               //ToDO:Implementar todos los datos  de Cita
                                                idCita = c.idCita,
-                                               codCita = c.codCita,
-                                               descripcion = c.descripcion,
-                                               coa = c.coa,
-                                               descuento = c.descuento,
-                                               ejecutado = c.ejecutado,
-                                               estadoReprogram = c.estadoReprogram,
-                                               fechaCita = c.fechaCita,
-                                               idConsultorio = c.idConsultorio,
-                                               idEmpleado = c.idEmpleado,
-                                               idEstadoCita = c.idEstadoCita,
-                                               //idEstAtencion = c.idEstAtencion,
-                                               idPaciente = c.idPaciente,
-                                               idProgramMedica = c.idProgramMedica,
-                                               tpAtencion = c.tpAtencion,
-                                               igv = c.igv,
                                                nroCita = c.nroCita,
-                                               nroHC = c.nroHC,
+                                               idTipoCita = c.tipoCita,
+                                               TipoCita = (from tb in _context.D00_TBDETALLE
+                                                           where tb.idDet == c.tipoCita
+                                                           select tb.descripcion).FirstOrDefault(),
+                                               fecha = (c.fechaCita).Value.Date.ToString(),
+                                               hora = (c.fechaCita).Value.ToString("H:mm"),
+                                               consultorio = (from de in _context.D00_TBDETALLE
+                                                              where de.idDet == c.idConsultorio
+                                                              select de.descripcion).FirstOrDefault(),
+                                               descripcion = (from sc in _context.D00_TBDETALLE
+                                                              where sc.idDet == c.idservicioCli
+                                                              select sc.descripcion).FirstOrDefault(),
+                                               medico = (from cm in _context.D012_CRONOMEDICO
+                                                         join m in _context.T212_MEDICO on cm.idMedico equals m.idMedico
+                                                         join p in _context.T000_PERSONA on m.idPersona equals p.idPersona
+                                                         where cm.idProgramMedica == c.idProgramMedica
+                                                         select (p.nombres + " " + p.apePaterno + " " + p.apeMaterno)).FirstOrDefault(),
+                                               especialidad = (from tb in _context.D00_TBDETALLE
+                                                               join cm in _context.D012_CRONOMEDICO on c.idProgramMedica equals cm.idProgramMedica
+                                                               join m in _context.T212_MEDICO on cm.idMedico equals m.idMedico
+                                                               where tb.idDet == m.idEspecialidad
+                                                               select tb.descripcion).FirstOrDefault(),
                                                precio = c.precio,
-                                               prioridad = c.prioridad,
-                                               //servicio = c.servicio,
-                                               ultCie10 = c.ultCie10,
-                                               idservicioCli = c.idservicioCli
+                                               igv = c.igv,
+                                               descEstado = (from ec in _context.T109_ESTADOCITA where ec.idEstadoCita == c.idEstadoCita select ec.estado).FirstOrDefault(),
+                                               descEstadoPago = (from ep in _context.D015_PAGO
+                                                                 where ep.idCita == c.idCita
+                                                                 select ep.estado).FirstOrDefault()
                                            }).ToListAsync();
 
             return Citas;

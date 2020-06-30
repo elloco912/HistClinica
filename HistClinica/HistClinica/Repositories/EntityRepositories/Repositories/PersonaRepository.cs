@@ -18,14 +18,17 @@ namespace HistClinica.Repositories.Repositories
         private readonly IEmpleadoRepository _empleadoRepository;
         private readonly IPacienteRepository _pacienteRepository;
         private readonly IUsuarioRepository _usuarioRepository;
+        private readonly IDetalleRepository _detalleRepository;
         public PersonaRepository(ClinicaServiceContext context, IMedicoRepository medicorepository, 
-            IEmpleadoRepository empleadoRepository, IPacienteRepository pacienteRepository,IUsuarioRepository usuarioRepository)
+            IEmpleadoRepository empleadoRepository, IPacienteRepository pacienteRepository,
+            IUsuarioRepository usuarioRepository, IDetalleRepository detalleRepository)
         {
             _context = context;
             _medicoRepository = medicorepository;
             _empleadoRepository = empleadoRepository;
             _pacienteRepository = pacienteRepository;
             _usuarioRepository = usuarioRepository;
+            _detalleRepository = detalleRepository;
         }
 
         private bool disposed = false;
@@ -138,7 +141,7 @@ namespace HistClinica.Repositories.Repositories
                 {
                     await _empleadoRepository.InsertEmpleado(persona, idPersona);
                     idEmpleado = await _empleadoRepository.GetIdEmpleado(idPersona);
-                    if (persona.personal.idTipoEmpleado == (int)await getIdTpEmpleado("MEDICA/O"))
+                    if (persona.personal.idTipoEmpleado == (int)await _detalleRepository.GetIdDetalleByDescripcion("MEDICA/O"))
                     {
                         await _medicoRepository.InsertMedico(persona, idPersona, idEmpleado);
                     }
@@ -210,7 +213,7 @@ namespace HistClinica.Repositories.Repositories
                 if (persona.personal.idTipoEmpleado != null)
                 {
                     await _empleadoRepository.UpdateEmpleado(persona);
-                    if (persona.personal.idTipoEmpleado == (int)await getIdTpEmpleado("MEDICA/O"))
+                    if (persona.personal.idTipoEmpleado == (int)await _detalleRepository.GetIdDetalleByDescripcion("MEDICA/O"))
                     {
                         await _medicoRepository.UpdateMedico(persona);
                     }
@@ -339,7 +342,7 @@ namespace HistClinica.Repositories.Repositories
                                           descArea = e.descArea
                                       }).FirstOrDefaultAsync();
             //Tipo de Empleado verificar
-            if (Persona.personal.idTipoEmpleado == (int)await getIdTpEmpleado("MEDICA/O"))
+            if (Persona.personal.idTipoEmpleado == (int)await _detalleRepository.GetIdDetalleByDescripcion("MEDICA/O"))
             {
                 PersonalDTO personaTemporal = new PersonalDTO();
                 personaTemporal = await (from m in _context.T212_MEDICO
