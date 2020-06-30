@@ -957,3 +957,4 @@ C:\Users\User\OneDrive\Desktop\his-net core\HistClinica\HistClinica\HistClinica\
 C:\Users\User\OneDrive\Desktop\his-net core\HistClinica\HistClinica\HistClinica\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.dll
 C:\Users\User\OneDrive\Desktop\his-net core\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.csproj.CoreCompileInputs.cache
 C:\Users\User\OneDrive\Desktop\his-net core\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\User\OneDrive\Desktop\his-net core\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Paciente\AdmicionMedico.cshtml.g.cs
