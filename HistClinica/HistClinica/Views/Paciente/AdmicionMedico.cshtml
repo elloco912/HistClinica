@@ -1,5 +1,5 @@
 ﻿
-@model HistClinica.DTO.PersonaDTO
+@model List<HistClinica.DTO.CitaDTO>
 
 @{
 	ViewBag.Title = "ProgramarCitaAdmision";
@@ -11,7 +11,7 @@
 			<div class="col-sm-12 text-center">
 				<div class="card card-primary">
 					<div class="card-header">
-						<h1>Listado de paciente</h1>
+						<h1>Listado de citas</h1>
 					</div>
 				</div>
 
@@ -90,10 +90,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						@{
-							if (Model != null)
-							{
-								foreach (var item in Model.paciente.cita)
+						@foreach (var item in Model)
 								{
 									<tr>
 										<td>@item.idCita</td>
@@ -121,26 +118,8 @@
 										</td>
 									</tr>
 								}
-							}
-						}
 					</tbody>
 				</table>
-			</div>
-			<div class="col-sm-12 text-right">
-				<span style="margin-right:10px;">TOTAL DE VALOR VENTA - OPERACION GRAVADA</span><span>300</span><br />
-				<span style="margin-right:10px;">IGV(18%)</span><span>54</span><br />
-				<span style="margin-right:10px;">IMPORTE TOTAL</span><span>354</span>
-			</div>
-			<div class="col-sm-12" style="padding-top: 10px;">
-				<div class="row">
-					<div class="col-sm-6">
-
-					</div>
-					<div class="col-sm-6 text-right">
-						<a asp-action="Pago" asp-controller="Paciente" class="btn btn-primary" style="width: 112px;font-size: 16px;">Pagar</a>
-					</div>
-				</div>
-
 			</div>
 		</div>
 	</div>

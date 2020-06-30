@@ -153,6 +153,12 @@ namespace HistClinica.Controllers
             return View(t068_CITA);
         }
 
+        public async Task<JsonResult> BuscarDni(int dni)
+        {
+            var personaDTO = await _pacienteRepository.GetByDnioNombresyApellidos(dni,"","");
+            return Json(personaDTO);
+        }
+
         // POST: Cita/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

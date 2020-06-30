@@ -42,8 +42,12 @@ namespace HistClinica.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(int dniper, string nombre,string apellido)
+        public async Task<IActionResult> Index(int? dniper, string nombre,string apellido)
         {
+            if (dniper == null && nombre == null && apellido == null)
+            {
+                return RedirectToAction("Index");
+            }
             List<PersonaDTO> persona = await _personaRepository.getPersonalxDnioNombresyApellidos(dniper, nombre, apellido);
             return View(persona);
         }

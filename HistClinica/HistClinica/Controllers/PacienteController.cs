@@ -13,12 +13,14 @@ namespace HistClinica.Controllers
         private readonly IPersonaRepository _personaRepository;
         private readonly IPacienteRepository _pacienteRepository;
         private readonly IUtilRepository _utilrepository;
+        private readonly ICitaRepository _citarepository;
 
-        public PacienteController(IPersonaRepository personaRepository, IPacienteRepository pacienteRepository, IUtilRepository utilrepository)
+        public PacienteController(IPersonaRepository personaRepository, IPacienteRepository pacienteRepository, IUtilRepository utilrepository, ICitaRepository citaRepository)
         {
             _personaRepository = personaRepository;
             _pacienteRepository = pacienteRepository;
             _utilrepository = utilrepository;
+            _citarepository = citaRepository;
         }
 
 
@@ -43,6 +45,12 @@ namespace HistClinica.Controllers
         {
             PersonaDTO personaDTO = await _pacienteRepository.GetByDnioNombresyApellidos(dni,nombre,apellidos);
             return View(personaDTO);
+        }
+
+        public async Task<IActionResult> AdmicionMedico()
+        {
+            List<CitaDTO> cita = await _citarepository.GetAllCitas();
+            return View(cita);
         }
 
         // GET: Paciente/Details/5
