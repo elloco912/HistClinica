@@ -18,6 +18,7 @@ namespace HistClinica.Repositories.Interfaces
         Task Save();
 
         Task<DetalleDTO> GetDetalle(int? id);
+        Task<int> GetIdDetalleByDescripcion(string descripcion);
         Task<List<D00_TBDETALLE>> GetDetalleByIdGeneral(int? id);
     }
 }

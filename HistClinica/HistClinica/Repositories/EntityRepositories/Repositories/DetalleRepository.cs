@@ -124,6 +124,13 @@ namespace HistClinica.Repositories.Repositories
             return dto;
         }
 
+        public async Task<int> GetIdDetalleByDescripcion(string descripcion)
+        {
+            return await (from det in _context.D00_TBDETALLE
+                          where det.descripcion == descripcion
+                          select det.idDet).FirstOrDefaultAsync();
+        }
+
         public async Task<List<D00_TBDETALLE>> GetDetalleByIdGeneral(int? id)
         {
             List<D00_TBDETALLE> general = await (from p in _context.D00_TBDETALLE join g in _context.D00_TBGENERAL
