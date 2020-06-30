@@ -33,9 +33,6 @@ namespace HistClinica.Migrations
                     b.Property<string>("estado")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("fechaBaja")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("fechaCrea")
                         .HasColumnType("nvarchar(max)");
 

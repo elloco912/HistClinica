@@ -20,9 +20,9 @@
 			@using (Html.BeginForm())
 			{
 				<div class="row">
-					<div class="col-sm-6">
+					<div class="col-sm-12">
 						<div class="row">
-							<div class="col-sm-6">
+							<div class="col-sm-4">
 								<div class="col-sm-12">
 									<label>
 										Dni:
@@ -32,10 +32,20 @@
 									<input onkeydown="buscar(event)" type="text" id="dni" name="dni" class="form-control" style="width:200px;" />
 								</div>
 							</div>
-							<div class="col-sm-6">
+							<div class="col-sm-4">
 								<div class="col-sm-12">
 									<label>
 										Nombre:
+									</label>
+								</div>
+								<div class="col-sm-12 form-inline">
+									<input onkeydown="buscar(event)" type="text" id="nombre" name="nombre" class="form-control" style="width:200px;" />
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="col-sm-12">
+									<label>
+										Apellidos:
 									</label>
 								</div>
 								<div class="col-sm-12 form-inline">
@@ -44,9 +54,6 @@
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-sm-6">
-
 					</div>
 				</div>
 			}

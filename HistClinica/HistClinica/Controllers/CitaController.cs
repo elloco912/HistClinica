@@ -202,7 +202,7 @@ namespace HistClinica.Controllers
 
             if (dni != 0)
             {
-                PersonaDTO persona = await _pacienteRepository.GetByDni(dni);
+                PersonaDTO persona = await _pacienteRepository.GetByDnioNombresyApellidos(dni,"","");
                 cita.dniPaciente = persona.numeroDocumento;
                 cita.nombrePaciente = persona.nombres + ' ' + persona.apellidoPaterno + ' ' + persona.apellidoMaterno;
                 cita.idPaciente = persona.paciente.idPaciente;

@@ -39,9 +39,9 @@ namespace HistClinica.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(int dni)
+        public async Task<IActionResult> Index(int dni,string nombre, string apellidos)
         {
-            PersonaDTO personaDTO = await _pacienteRepository.GetByDnioNombresyApellidos(dni,"","");
+            PersonaDTO personaDTO = await _pacienteRepository.GetByDnioNombresyApellidos(dni,nombre,apellidos);
             return View(personaDTO);
         }
 
