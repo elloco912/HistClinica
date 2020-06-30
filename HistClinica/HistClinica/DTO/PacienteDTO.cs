@@ -29,7 +29,7 @@ namespace HistClinica.DTO
         public string descripcion { get; set; }
         public string nrohc { get; set; }
         public int? idestado { get; set; }
-        public string estadoPaciente { get; set; }
+        public int? estadoPaciente { get; set; }
         #region Ubicacion
         public int? idDepartamentoUbicacion { get; set; }
         public int? idProvinciaUbicacion { get; set; }
@@ -49,7 +49,7 @@ namespace HistClinica.DTO
         #endregion
         #region Empresa
         public string razonSocialEmpresa { get; set; }
-        public string estadoRucEmpresa { get; set; }
+        public int? estadoRucEmpresa { get; set; }
         public string domicilioFiscalEmpresa { get; set; }
         #endregion
         #region Seguro
@@ -64,9 +64,9 @@ namespace HistClinica.DTO
         public int? tipoPlanSaludCompañia { get; set; }
         public int? numeroPlanSaludCompañia { get; set; }
         public string tpPlanSalud { get; set; }
-        public string estadoSeguro { get; set; }
+        public int? estadoSeguro { get; set; }
         public int? tpAfiliacion { get; set; }
-        public DateTime? fecAfiliacion { get; set; }
+        public string fecAfiliacion { get; set; }
         public int? codTitular { get; set; }
         public string moneda { get; set; }
         public string nomContratante { get; set; }

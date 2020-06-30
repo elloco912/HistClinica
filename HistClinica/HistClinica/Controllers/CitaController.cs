@@ -212,12 +212,6 @@ namespace HistClinica.Controllers
             return View(cita);
         }
 
-        public async Task<JsonResult> BuscarDni(int dni)
-        {
-            var personaDTO = await _pacienteRepository.GetByDni(dni);
-            return Json(personaDTO);
-        }
-
 
         public async Task<IActionResult> AnularCita(int id)
         {

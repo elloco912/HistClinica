@@ -49,6 +49,7 @@ namespace HistClinica.Repositories.Repositories
         {
             D001_USUARIO Usuario = await _context.D001_USUARIO.FindAsync(UsuarioID);
             Usuario.estado = "2";
+            Usuario.fechaBaja = DateTime.Now.ToString();
             _context.Update(Usuario);
             await Save();
         }
@@ -93,9 +94,9 @@ namespace HistClinica.Repositories.Repositories
                     {
                         idEmpleado = persona.personal.idEmpleado,
                         loginUser = (primeraletraapellido + primernombre + diaNacimiento).ToLower(),
-                        fechaRegistra = DateTime.Now.ToString(),
+                        fechaCrea = DateTime.Now.ToString(),
                         claveUser = persona.numeroDocumento.ToString(),
-                        usuRegistra = persona.asignacion.usuRegistra,
+                        usuCrea = persona.asignacion.usuRegistra,
                         estado = "1",
                         usuMod = "",
                         fechaMod = ""

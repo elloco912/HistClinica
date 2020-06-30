@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HistClinica.Migrations
 {
     [DbContext(typeof(ClinicaServiceContext))]
-    [Migration("20200629211829_29062020")]
-    partial class _29062020
+    [Migration("20200630155328_30062020")]
+    partial class _30062020
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,19 +32,22 @@ namespace HistClinica.Migrations
                     b.Property<string>("claveUser")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("estado")
-                        .HasColumnType("int");
+                    b.Property<string>("estado")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fechaBaja")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fechaCrea")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("fechaMod")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("fechaRegistra")
+                    b.Property<string>("usuCrea")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("usuMod")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("usuRegistra")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("idEmpleado", "loginUser");
@@ -154,6 +157,9 @@ namespace HistClinica.Migrations
                     b.Property<string>("dia")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("fechaBaja")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("fechaFin")
                         .HasColumnType("datetime2");
 
@@ -210,6 +216,9 @@ namespace HistClinica.Migrations
 
                     b.Property<DateTime?>("fecRegistro")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("fechaBaja")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("idCita")
                         .HasColumnType("int");
@@ -324,6 +333,9 @@ namespace HistClinica.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("fecNace")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fechabaja")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("fotografia")
@@ -497,14 +509,17 @@ namespace HistClinica.Migrations
                     b.Property<int?>("edadAcom")
                         .HasColumnType("int");
 
-                    b.Property<string>("estado")
+                    b.Property<int>("estado")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("estadoSeguro")
+                        .HasColumnType("int");
+
+                    b.Property<string>("fecAfiliacion")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("estadoSeguro")
+                    b.Property<string>("fechabaja")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("fecAfiliacion")
-                        .HasColumnType("datetime2");
 
                     b.Property<int?>("finCarencia")
                         .HasColumnType("int");
@@ -575,7 +590,7 @@ namespace HistClinica.Migrations
                     b.Property<int?>("tpDocumento")
                         .HasColumnType("int");
 
-                    b.Property<int?>("tpPaciente")
+                    b.Property<int>("tpPaciente")
                         .HasColumnType("int");
 
                     b.Property<int?>("tpPlanSalud")
@@ -608,8 +623,8 @@ namespace HistClinica.Migrations
                     b.Property<string>("ejecutado")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("estado")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("estado")
+                        .HasColumnType("int");
 
                     b.Property<string>("estadoReprogram")
                         .HasColumnType("nvarchar(max)");
@@ -617,13 +632,13 @@ namespace HistClinica.Migrations
                     b.Property<DateTime?>("fechaCita")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime?>("fechabaja")
+                        .HasColumnType("datetime2");
+
                     b.Property<int?>("idConsultorio")
                         .HasColumnType("int");
 
                     b.Property<int?>("idEmpleado")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("idEstaGralPac")
                         .HasColumnType("int");
 
                     b.Property<int?>("idEstadoCita")
@@ -650,8 +665,8 @@ namespace HistClinica.Migrations
                     b.Property<int?>("nroCita")
                         .HasColumnType("int");
 
-                    b.Property<int?>("nroHC")
-                        .HasColumnType("int");
+                    b.Property<string>("nroHC")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double?>("precio")
                         .HasColumnType("float");
@@ -710,14 +725,17 @@ namespace HistClinica.Migrations
                     b.Property<string>("descArea")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("estado")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("estado")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("fecIngreso")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("genero")
+                    b.Property<string>("fechabaja")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("genero")
+                        .HasColumnType("int");
 
                     b.Property<int?>("idPersona")
                         .HasColumnType("int");
@@ -746,7 +764,10 @@ namespace HistClinica.Migrations
                     b.Property<string>("condicion")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("estado")
+                    b.Property<int>("estado")
+                        .HasColumnType("int");
+
+                    b.Property<string>("fechabaja")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("idEmpleado")

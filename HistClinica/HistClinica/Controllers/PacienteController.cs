@@ -31,7 +31,7 @@ namespace HistClinica.Controllers
             if (TempData.ContainsKey("dni"))
             {
                 var dni = TempData["dni"].ToString();
-                PersonaDTO personaDTO = await _pacienteRepository.GetByDni(Convert.ToInt32(dni));
+                PersonaDTO personaDTO = await _pacienteRepository.GetByDnioNombresyApellidos(Convert.ToInt32(dni),"","");
                 return View(personaDTO);
             } 
             return View();
@@ -41,7 +41,7 @@ namespace HistClinica.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(int dni)
         {
-            PersonaDTO personaDTO = await _pacienteRepository.GetByDni(dni);
+            PersonaDTO personaDTO = await _pacienteRepository.GetByDnioNombresyApellidos(dni,"","");
             return View(personaDTO);
         }
 
@@ -53,7 +53,7 @@ namespace HistClinica.Controllers
                 return NotFound();
             }
 
-            var paciente = await _pacienteRepository.GetByDni(id);
+            var paciente = await _pacienteRepository.GetByDnioNombresyApellidos(id,"","");
             if (paciente == null)
             {
                 return NotFound();
@@ -132,7 +132,7 @@ namespace HistClinica.Controllers
                 return NotFound();
             }
 
-            var paciente = await _pacienteRepository.GetByDni(id);
+            var paciente = await _pacienteRepository.GetByDnioNombresyApellidos(id,"","");
             if (paciente == null)
             {
                 return NotFound();
@@ -182,7 +182,7 @@ namespace HistClinica.Controllers
                 return NotFound();
             }
 
-            var paciente = await _pacienteRepository.GetByDni(id);
+            var paciente = await _pacienteRepository.GetByDnioNombresyApellidos(id,"","");
             if (paciente == null)
             {
                 return NotFound();
@@ -196,7 +196,7 @@ namespace HistClinica.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var paciente = await _pacienteRepository.GetByDni(id);
+            var paciente = await _pacienteRepository.GetByDnioNombresyApellidos(id,"","");
             await _pacienteRepository.DeletePaciente(id);
             return RedirectToAction(nameof(Index));
         }

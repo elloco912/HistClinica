@@ -18,5 +18,6 @@ namespace HistClinica.Models
 		public DateTime? fecOkPasarela { get; set; }
 		public int? idCita { get; set; }
 		public string estado { get; set; }
+		public string fechaBaja { get; set; }
 	}
 }

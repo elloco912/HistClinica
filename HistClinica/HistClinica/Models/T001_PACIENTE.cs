@@ -25,9 +25,9 @@ namespace HistClinica.Models
 		public DateTime? finVigencia { get; set; }
 		public int? tpPlanSalud { get; set; }
 		public int? nroPlanSalud { get; set; }
-		public string estadoSeguro { get; set; }
+		public int? estadoSeguro { get; set; }
 		public int? tpAfiliacion { get; set; }
-		public DateTime? fecAfiliacion { get; set; }
+		public string fecAfiliacion { get; set; }
 		public int? codTitular { get; set; }
 		public string moneda { get; set; }
 		public string nomContratante { get; set; }
@@ -51,10 +51,11 @@ namespace HistClinica.Models
 		public string codpacExterno { get; set; }
 		public string dspacExter { get; set; }
 		public string stapacexter { get; set; }
-		public int? tpPaciente { get; set; }
+		public int tpPaciente { get; set; }
 		public int? idPersona { get; set; }
 		public bool? hojafiliacion { get; set; }
 		public bool? concienteDato { get; set; }
-		public string estado { get; set; }
+		public int estado { get; set; }
+		public string fechabaja { get; set; }
 	}
 }

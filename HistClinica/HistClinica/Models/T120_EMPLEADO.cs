@@ -12,9 +12,10 @@ namespace HistClinica.Models
 		public string cargo { get; set; }
 		public DateTime? fecIngreso { get; set; }
 		public int? salario { get; set; }
-		public string genero { get; set; }
+		public int? genero { get; set; }
 		public int? idtpEmpleado { get; set; }
-		public int idPersona { get; set; }
-		public string estado { get; set; }
+		public int? idPersona { get; set; }
+		public int? estado { get; set; }
+		public string fechabaja { get; set; }
 	}
 }

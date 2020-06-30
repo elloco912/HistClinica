@@ -7,7 +7,7 @@ namespace HistClinica.DTO
     public class PersonaDTO
     {
         #region Persona
-        public int idPersona { get; set; }
+        public int? idPersona { get; set; }
 
         [Required(ErrorMessage = "Ingrese apellido paterno")]
         public string apellidoPaterno { get; set; }
@@ -57,7 +57,7 @@ namespace HistClinica.DTO
         [Required(ErrorMessage = "Ingrese el correo")]
         public string correo { get; set; }
         public string domiFiscal { get; set; }
-        public string estado { get; set; }
+        public int? estado { get; set; }
         public string estadoRuc { get; set; }
 
         [Required(ErrorMessage = "Ingrese fecha de nacimiento")]

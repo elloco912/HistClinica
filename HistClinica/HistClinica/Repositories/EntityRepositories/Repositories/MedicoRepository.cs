@@ -46,7 +46,8 @@ namespace HistClinica.Repositories.Repositories
         public async Task DeleteMedico(int MedicoID)
         {
             T212_MEDICO Medico = await _context.T212_MEDICO.FindAsync(MedicoID);
-            Medico.estado = "2";
+            Medico.estado = 2;
+            Medico.fechabaja = DateTime.Now.ToString();
             _context.Update(Medico);
             await Save();
         }
@@ -65,7 +66,8 @@ namespace HistClinica.Repositories.Repositories
                     idEmpleado = idEmpleado,
                     idEspecialidad = persona.personal.idEspecialidad,
                     idPersona = idPersona,
-                    estado = "1"
+                    estado = 1,
+                    fechabaja = null
                 };
                 await _context.T212_MEDICO.AddAsync(Medico);
                 await Save();
@@ -92,7 +94,8 @@ namespace HistClinica.Repositories.Repositories
                     idEmpleado = persona.personal.idEmpleado,
                     idEspecialidad = persona.personal.idEspecialidad,
                     idPersona = persona.idPersona,
-                    estado = "1"
+                    estado = (int)persona.personal.estadoMedico,
+                    fechabaja = persona.personal.fechaBaja
                 };
                 _context.Update(Medico);
                 await Save();
