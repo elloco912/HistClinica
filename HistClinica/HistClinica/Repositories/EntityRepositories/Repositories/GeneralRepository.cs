@@ -48,9 +48,18 @@ namespace HistClinica.Repositories
 
 		public async Task<List<D00_TBGENERAL>> GetByCodigo(string codigo,string descripcion)
 		{
-			List<D00_TBGENERAL> general = await (from p in _context.D00_TBGENERAL
-												 where p.codTab.ToLower().StartsWith(codigo.ToLower()) || p.descripcion.ToLower().StartsWith(descripcion.ToLower())
-												 select p).ToListAsync();
+			List<D00_TBGENERAL> general = new List<D00_TBGENERAL>();
+			try
+			{
+				 general = await (from p in _context.D00_TBGENERAL
+													 where p.codTab == codigo || p.descripcion.Contains(descripcion)
+													 select p).ToListAsync();
+			}
+			catch (Exception ex)
+			{
+				var msj = ex.Message;
+				throw;
+			}
 			return general;
 		}
 

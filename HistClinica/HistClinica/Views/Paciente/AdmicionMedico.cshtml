@@ -1,5 +1,5 @@
 ﻿
-@model HistClinica.DTO.PersonaDTO
+@model List<HistClinica.DTO.CitaDTO>
 
 @{
 	ViewBag.Title = "ProgramarCitaAdmision";
@@ -90,10 +90,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						@{
-							if (Model != null)
-							{
-								foreach (var item in Model.paciente.cita)
+						@foreach (var item in Model)
 								{
 									<tr>
 										<td>@item.idCita</td>
@@ -121,8 +118,6 @@
 										</td>
 									</tr>
 								}
-							}
-						}
 					</tbody>
 				</table>
 			</div>
