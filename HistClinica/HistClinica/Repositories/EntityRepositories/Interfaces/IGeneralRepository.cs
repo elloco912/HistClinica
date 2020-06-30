@@ -11,7 +11,7 @@ namespace HistClinica.Interfaces
 		Task<List<D00_TBGENERAL>> GetAllGeneral();
 		Task<D00_TBGENERAL> GetById(int? id);
 
-		Task<List<D00_TBGENERAL>> GetByCodigo(string codigo);
+		Task<List<D00_TBGENERAL>> GetByCodigo(string codigo,string descripcion);
 		Task<string> InsertGeneral(D00_TBGENERAL general);
 		Task<string> UpdateGeneral(D00_TBGENERAL general);
 		Task<string> DeleteGeneral(D00_TBGENERAL general);

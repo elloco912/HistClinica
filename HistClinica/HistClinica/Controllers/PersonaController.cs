@@ -176,14 +176,13 @@ namespace HistClinica.Controllers
             {
                 try
                 {
-                    if(personaDTO.asignacion.idCaja != null)
+                    if(personaDTO.asignacion != null)
                     {
                         await _cajaRepository.AsignaCaja(personaDTO);
                     }
-                    if(personaDTO.asignacion.claveUser != null)
-                    {
+                 
                         TempData["mensajepersona"] = await _usuarioRepository.InsertUsuario(personaDTO);
-                    }
+                    
                 }
                 catch (DbUpdateConcurrencyException)
                 {

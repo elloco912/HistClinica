@@ -1,5 +1,33 @@
 ﻿$(document).ready(function () {
 
+	//iniciar radio button
+	var id = $('input:radio[name=radiofiltro]:checked').val();
+	if (id == 1) {
+		$('#dni').prop('disabled', false);
+		$('#nombre').prop('disabled', true);
+		$('#apellidos').prop('disabled', true);
+	} else {
+		$('#dni').prop('disabled', true);
+		$('#nombre').prop('disabled', false);
+		$('#apellidos').prop('disabled', false);
+	}
+
+	//evento click radio button filtro de pacientes
+	$("input[name=radiofiltro]").click(function () {
+		
+		var id = $(this).val();
+		if (id == 1) {
+			$('#dni').prop('disabled', false);
+			$('#nombre').prop('disabled', true);
+			$('#apellidos').prop('disabled', true);
+		} else {
+			$('#dni').prop('disabled', true);
+			$('#nombre').prop('disabled', false);
+			$('#apellidos').prop('disabled', false);
+        }
+	});
+
+
 	$("#cronogramagrid .edit").click(function () {
 		var id = $(this).closest("tr").find("td").eq(0).html();
 		$.ajax({
@@ -77,6 +105,27 @@
 			success: function (response) {
 				$('#modalreprogramar').html(response);
 				$('#modalreprogramar').modal('show');
+			},
+			failure: function (response) {
+				alert(response.responseText);
+			},
+			error: function (response) {
+				alert(response.responseText);
+			}
+		});
+	});
+
+	$("#citagrid .detail").click(function () {
+		var id = $(this).closest("tr").find("td").eq(0).html();
+		$.ajax({
+			type: "GET",
+			url: "/Cita/Details",
+			data: { id: id },
+			contentType: "application/json; charset=utf-8",
+			dataType: "html",
+			success: function (response) {
+				$('#modaldetalle').html(response);
+				$('#modaldetalle').modal('show');
 			},
 			failure: function (response) {
 				alert(response.responseText);
@@ -245,6 +294,16 @@ $(document).on('change', '#idmedico', function (event) {
 
 });
 
+$(document).on('change', '#cboafilia', function (event) {
+
+	var id = $("#cboafilia option:selected").val();
+	if (id == 1) {
+		$("#caja").prop('disabled',false);
+	} else {
+		$("#caja").prop('disabled', true);
+    }
+});
+
 
 function cargarmodalCrearTipo() {
 	$.ajax({
@@ -329,9 +388,11 @@ function BuscarCronograma() {
 }
 
 function CargaModalCitas() {
+	var dni = $("#numeroDocumento").val()
 	$.ajax({
 		type: "GET",
 		url: "/Cita/Registro",
+		data: { dni: dni },
 		contentType: "application/json; charset=utf-8",
 		dataType: "html",
 		success: function (response) {

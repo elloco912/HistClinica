@@ -16,78 +16,54 @@
 
 			</div>
 		</div>
-		<div class="row" style="padding-top:30px;">
-			<div class="col-sm-4">
+		<div class="row" style="padding-top:20px;">
+			<div class="col-sm-12 pb-3">
+				<span style="font-size: 18px;">Buscar por:</span>
+				<div class="pl-3 form-check form-check-inline">
+					<input class="form-check-input" type="radio" checked name="radiofiltro" id="inlineRadio1" value="1">
+					<label class="form-check-label" for="inlineRadio1">Por Dni</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" name="radiofiltro" id="inlineRadio2" value="2">
+					<label class="form-check-label" for="inlineRadio2">Por Nombre y apellido</label>
+				</div>
+			</div>
+			<div class="col-sm-12">
 				@using (Html.BeginForm())
 				{
-					<div class="row">
-						<div class="col-sm-3">
-							<select class="form-control">
-								<option value="value">DNI</option>
-							</select>
-						</div>
-						<div class="col-sm-4">
-							<input type="text" id="dni" name="dni" class="form-control" />
-						</div>
-						<div class="col-sm-5">
-							<button class="btn btn-info" type="submit" id="btnBuscar"><i class="fas fa-search"></i></button>
-							<a class="btn btn-primary" type="submit" asp-action="Create" asp-controller="Paciente"><i class="fas fa-user-plus"></i></a>
-							<button class="btn btn-secondary" type="submit" onclick="return getbyID();"><i class="fas fa-edit"></i></button>
-						</div>
+				<div class="row">
+					<div class="col-sm-2">
+						<select class="form-control">
+							<option value="value">DNI</option>
+						</select>
 					</div>
+					<div class="col-sm-2">
+						<input type="text" id="dni" name="dni" class="form-control" />
+					</div>
+					<div class="col-sm-2">
+						<input type="text" id="nombre" name="nombre" class="form-control" placeholder="Ingrese nombre" />
+					</div>
+					<div class="col-sm-2">
+						<input type="text" id="apellidos" name="apellidos" class="form-control" placeholder="Ingrese apellidos" />
+					</div>
+						<div class="col-sm-4">
+			<button class="btn btn-info" type="submit" id="btnBuscar"><i class="fas fa-search"></i></button>
+			<a class="btn btn-primary" type="submit" asp-action="Create" asp-controller="Paciente"><i class="fas fa-user-plus"></i></a>
+			<button class="btn btn-secondary" type="submit" onclick="return getbyID();"><i class="fas fa-edit"></i></button>
+		</div>
+				</div>
 				}
-				<!--	<div class="row" style="padding-top: 10px;">
-				<div class="col-sm-4">
-					<label>Atencion</label>
-				</div>
-				<div class="col-sm-8">
-					<select class="form-control">
-						<option value="value">Call center</option>
-					</select>
-				</div>
 			</div>
-			<div class="row" style="padding-top: 10px;">
+		</div>
+			<div class="row">
 				<div class="col-sm-4">
-					<label>Admision</label>
-				</div>
-				<div class="col-sm-8">
-					<select class="form-control">
-						<option value="value">Seguro convenio</option>
-					</select>
-				</div>
-			</div>
-			<div class="row" style="padding-top: 10px;">
-				<div class="col-sm-4">
-					<label>Seguro</label>
-				</div>
-				<div class="col-sm-8">
-					<select class="form-control">
-						<option value="value">Rimac</option>
-					</select>
-				</div>
-			</div>
-			<div class="row" style="padding-top: 10px;">
-				<div class="col-sm-4">
-					<label>Tarifario</label>
-				</div>
-				<div class="col-sm-8">
-					<select class="form-control">
-						<option value="value">Rimac</option>
-					</select>
-				</div>
-			</div>-->
-			</div>
-
-			<div class="col-sm-4">
-				<div class="card card-light">
-					<div class="card-header">
-						<div class="row">
-							<div class="col-sm-4">
-								<label>Paciente</label>
-							</div>
-							<div class="col-sm-8">
-								<label>@Html.DisplayFor(m => m.apellidoPaterno) @Html.DisplayFor(m => m.apellidoMaterno) @Html.DisplayFor(m => m.nombres) </label>
-							</div>
+				<div class="row pt-3">
+					<div class="col-sm-4">
+						<label>Paciente</label>
+					</div>
+					<div class="col-sm-8">
+						<div class="divpac">
+							<label>@Html.DisplayFor(m => m.apellidoPaterno) @Html.DisplayFor(m => m.apellidoMaterno) @Html.DisplayFor(m => m.nombres) </label>
 						</div>
 					</div>
 				</div>
@@ -115,7 +91,7 @@
 						@Html.TextBoxFor(m => m.edad, new { @class = "form-control", @disabled = "true" })
 					</div>
 				</div>
-				<div class="row" style="padding-top: 10px;">
+				<div class="row pb-2" style="padding-top: 10px;">
 					<div class="col-sm-4">
 						<label>Ocupación</label>
 					</div>
@@ -123,6 +99,9 @@
 						@Html.TextBoxFor(m => m.descripcionOcupacion, new { @class = "form-control", @disabled = "true" })
 					</div>
 				</div>
+			</div>
+
+			<div class="col-sm-4">
 			</div>
 			<div class="col-sm-4">
 
@@ -189,7 +168,7 @@
 										<td>@item.precio</td>
 										<td>
 											<button title="Reprogramar" class="edit btn btn-primary"><i class="fas fa-address-book"></i></button>
-											<button title="Consultar" class="btn btn-primary">
+											<button title="Consultar" class="detail btn btn-primary">
 												<i class="fa fa-search" aria-hidden="true"></i>
 											</button>
 											<button title="Anular" class="anular btn btn-danger">
@@ -234,6 +213,8 @@
 <div id="modaldetallecro" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
 </div>
 <div id="modalanular" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+</div>
+<div id="modaldetalle" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
 </div>
 <script src="~/js/cargavistaparcial.js"></script>
 <script src="~/js/combosaninadoscitas.js"></script>

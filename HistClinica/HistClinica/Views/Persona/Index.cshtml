@@ -17,21 +17,39 @@
 			</div>
 		</div>
 		<div class="col-sm-12" style="padding-top:50px;">
-			<div class="row">
-				<div class="col-sm-12">
-					<div class="row">
-						<div class="col-sm-12">
-							<label>
-								Nombre:
-							</label>
-						</div>
-						<div class="col-sm-12 form-inline">
-							<input onkeydown="buscar(event)" type="text" id="txtnom" name="name" value="" class="form-control" style="width:200px;" />
-							<button type="submit" onclick="getByNombre();" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
+			@using (Html.BeginForm())
+			{
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="col-sm-12">
+									<label>
+										Dni:
+									</label>
+								</div>
+								<div class="col-sm-12 form-inline">
+									<input onkeydown="buscar(event)" type="text" id="dni" name="dni" class="form-control" style="width:200px;" />
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="col-sm-12">
+									<label>
+										Nombre:
+									</label>
+								</div>
+								<div class="col-sm-12 form-inline">
+									<input onkeydown="buscar(event)" type="text" id="nombre" name="nombre" class="form-control" style="width:200px;" />
+									<button type="submit" onclick="getByNombre();" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
+								</div>
+							</div>
 						</div>
 					</div>
+					<div class="col-sm-6">
+
+					</div>
 				</div>
-			</div>
+			}
 		</div>
 		<div class="col-sm-12" style="padding-top: 30px;">
 			<div class="row">

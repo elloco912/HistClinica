@@ -63,7 +63,6 @@ $(document).on('change', '[data-cascade-combo-medico]', function (event) {
 			$(id).html('');
 			$.each(data,
 				function (index, type) {
-					$('#modalcitas #desfecha').val(type.fecprogram);
 					var content = '<option value="' + type.idprogramMed + '">' + type.fecprogram + '</option>';
 					$(id).append(content);
 				});
@@ -100,7 +99,6 @@ $(document).on('change', '[data-cascade-combofec]', function (event) {
 		dataType: "Json",
 		success: function (data) {
 			$(id).html('');
-			$('#modalcitas desfecha').val($("#modalcitas #idProgramMedica option:selected").text());
 			$.each(data,
 				function (index, type) {
 					var content = '<option value="' + type.id + '">' + type.hora + '</option>';
@@ -116,12 +114,12 @@ $(document).on('change', '[data-cascade-combofec]', function (event) {
 	});
 });
 
-$(document).on('change', '#hora', function (event) {
+$(document).on('change', '#horaate', function (event) {
 
-	var text = $("#hora option:selected").text();
+	var text = $("#horaate option:selected").text();
 	$('#deshora').val(text);
 });
-$(document).on('change', '#idProgramMedica', function (event) {
-	var text = $("#hora option:selected").text();
+$(document).on('change', '#fecate', function (event) {
+	var text = $("#fecate option:selected").text();
 	$('#desfecha').val(text);
 });

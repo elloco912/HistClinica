@@ -68,13 +68,13 @@
 							@Html.DropDownListFor(m => m.idProgramMedica, new SelectList(ViewBag.lcronograma, "idprogramMed", "fecprogram"), "Seleccione", new
 					   {
 						   @class = "form-control",
-						   data_cascade_combofec = "#hora",
+						   data_cascade_combofec = "#horaate",
 						   data_cascade_combo_sourcefec = Url.Action("GetHorasByCronograma", "Cita"),
 						   data_cascade_combo_param_namefec = "id",
 						   @id = "fecate"
 					   })
 						</div>
-						<input type="hidden" id="desfecha" />
+						<input type="hidden" id="desfecha" asp-for="fecha" />
 					</div>
 				</div>
 				<div class="col-sm-6">
@@ -83,9 +83,9 @@
 							<label>Hora</label>
 						</div>
 						<div class="col-sm-8">
-							<input type="hidden" id="deshora" />
-							@Html.DropDownList("hora", new SelectList(ViewBag.lhoras, "id", "hora"), "Seleccione", new { @class = "form-control", @id = "hora" })
+							@Html.DropDownList("horaate", new SelectList(ViewBag.lhoras, "id", "hora"), "Seleccione", new { @class = "form-control", @id = "horaate" })
 						</div>
+						<input type="hidden" id="deshora" asp-for="hora" />
 					</div>
 				</div>
 				<div class="col-sm-4"></div>
@@ -121,7 +121,7 @@
 							<label>Servicios</label>
 						</div>
 						<div class="col-sm-8 form-inline">
-							@Html.DropDownListFor(m => m.idServicioCli, new SelectList(ViewBag.servicios, "idservicioCli", "descripcion"), "Seleccione", new { @class = "form-control" })
+							@Html.DropDownListFor(m => m.idServicioCli, new SelectList(ViewBag.servicios, "idtab", "descripcion"), "Seleccione", new { @class = "form-control" })
 						</div>
 					</div>
 				</div>

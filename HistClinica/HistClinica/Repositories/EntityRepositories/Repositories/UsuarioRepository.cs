@@ -83,7 +83,7 @@ namespace HistClinica.Repositories.Repositories
             }
             catch (Exception ex)
             {
-                return "Error en el guardado " + ex.Message;
+                  return "Error en el guardado " + ex.Message;
             }
         }
     }

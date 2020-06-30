@@ -30,14 +30,14 @@ namespace HistClinica.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(string codigo)
+        public async Task<IActionResult> Index(string codigo, string descripcion)
         {
-            if (codigo == null)
+            if (codigo == null && descripcion == null)
             {
                 return RedirectToAction("Index");
             } else
             {
-                List<D00_TBGENERAL> modelo = await _generalRepository.GetByCodigo(codigo);
+                List<D00_TBGENERAL> modelo = await _generalRepository.GetByCodigo(codigo,descripcion);
                 return View(modelo);
             }
         }

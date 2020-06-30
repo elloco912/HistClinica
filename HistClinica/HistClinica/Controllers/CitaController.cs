@@ -44,7 +44,7 @@ namespace HistClinica.Controllers
                 return NotFound();
             }
 
-            return View(t068_CITA);
+            return PartialView(t068_CITA);
         }
 
 
@@ -94,7 +94,7 @@ namespace HistClinica.Controllers
             var lestado = await _utilrepository.getEstadoCita();
             ViewBag.lestado = lestado;
 
-            var servicios = await _utilrepository.getServicios();
+            var servicios = await _utilrepository.GetTipo("Servicio Clinica");
             ViewBag.servicios = servicios;
 
             var t068_CITA = await _repository.GetById(id);
@@ -180,7 +180,7 @@ namespace HistClinica.Controllers
             return Json(horas);
         }
 
-        public async Task<IActionResult> Registro()
+        public async Task<IActionResult> Registro(int dni)
         {
             var lespecialidads = new Object();
             lespecialidads = await _utilrepository.GetTipo("Especialidad");
@@ -197,7 +197,17 @@ namespace HistClinica.Controllers
 
             var lhoras = await _utilrepository.GetHoras();
             ViewBag.lhoras = lhoras;
-            return PartialView();
+
+            CitaDTO cita = new CitaDTO();
+
+            if (dni != 0)
+            {
+                PersonaDTO persona = await _pacienteRepository.GetByDni(dni);
+                cita.dniPaciente = persona.numeroDocumento;
+                cita.nombrePaciente = persona.nombres + ' ' + persona.apellidoPaterno + ' ' + persona.apellidoMaterno;
+                cita.idPaciente = persona.paciente.idPaciente;
+            }
+            return PartialView(cita);
         }
 
         [HttpPost]

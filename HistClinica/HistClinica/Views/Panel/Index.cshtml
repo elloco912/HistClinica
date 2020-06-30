@@ -11,7 +11,7 @@
 	<link href="~/css/estilospanel.css" rel="stylesheet" />
 </head>
 <body>
-	<div class="row">
+	<div class="row pt-5">
 		<div class="col-sm-2">
 
 		</div>
@@ -22,29 +22,41 @@
 						<figure class="snip1104 red">
 							<img style="width: 420px;padding-top: 30px;" src="~/Images/gestioncita.png" />
 							<figcaption>
-								<h2>Admición</h2>
+								<h2>Atencion ambulatoria</h2>
 							</figcaption>
 						</figure>
 					</a>
 				</div>
 				<div class="col-sm-4">
-					<figure style="cursor: pointer;" class="snip1104 red">
-						<img style="width: 220px;padding-top: 30px;" src="~/Images/gestionar.png" />
-						<figcaption>
-							<h2>Gestionar</h2>
-						</figcaption>
-					</figure>
+					<a asp-controller="Home" asp-action="Index">
+						<figure class="snip1104 red">
+							<img style="width: 420px;padding-top: 30px;" src="~/Images/gestioncita.png" />
+							<figcaption>
+								<h2>Atencion hospitalaria</h2>
+							</figcaption>
+						</figure>
+					</a>
 				</div>
+				<div class="col-sm-4">
+					<a asp-controller="Home" asp-action="Index">
+						<figure class="snip1104 red">
+							<img style="width: 420px;padding-top: 30px;" src="~/Images/gestioncita.png" />
+							<figcaption>
+								<h2>Atencion emergencia</h2>
+							</figcaption>
+						</figure>
+					</a>
+				</div>
+			</div>
+			<div class="row">
 				<div class="col-sm-4">
 					<figure style="cursor: pointer;" class="snip1104 red">
 						<img style="width: 220px;padding-top: 30px;" src="~/Images/pago.png" />
 						<figcaption>
-							<h2>Pagos</h2>
+							<h2>Caja</h2>
 						</figcaption>
 					</figure>
 				</div>
-			</div>
-			<div class="row">
 				<div class="col-sm-4">
 					<figure class="snip1104 red">
 						<img style="width: 420px;padding-top: 30px;" src="~/Images/reportes.png" />
