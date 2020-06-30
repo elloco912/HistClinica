@@ -63,13 +63,15 @@ namespace HistClinica.Repositories.Repositories
                     codEmpleado = persona.personal.codEmpleado,
                     descArea = persona.personal.descArea,
                     cargo = persona.personal.cargo,
-                    fecIngreso = DateTime.Parse(persona.personal.fechaIngreso),
+                    fecIngreso = null,
                     salario = persona.personal.salario,
-                    genero = (int)persona.personal.genero,
+                    genero = null,
                     idtpEmpleado = persona.personal.idTipoEmpleado,
                     estado = 1,
                     fechabaja = null
                 };
+                if (persona.personal.genero != null) Empleado.genero = persona.personal.genero;
+                if (persona.personal.fechaIngreso != null) Empleado.fecIngreso = DateTime.Parse(persona.personal.fechaIngreso);
                 await _context.T120_EMPLEADO.AddAsync(Empleado);
                 await Save();
                 return "Ingreso Exitoso Empleado";
