@@ -56,9 +56,10 @@ namespace HistClinica.Repositories.Repositories
         }
         public async Task<string> InsertPaciente(PersonaDTO persona, int idPersona)
         {
+            T001_PACIENTE Paciente;
             try
             {
-                await _context.T001_PACIENTE.AddAsync(new T001_PACIENTE()
+                Paciente = new T001_PACIENTE()
                 {
                     codPaciente = persona.paciente.codPaciente,
                     descripcion = persona.paciente.descripcion,
@@ -78,7 +79,6 @@ namespace HistClinica.Repositories.Repositories
                     finVigencia = persona.paciente.finVigenciaCompañia ?? persona.paciente.finVigenciaConvenio,
                     tpPlanSalud = persona.paciente.tipoPlanSaludCompañia,
                     nroPlanSalud = persona.paciente.numeroPlanSaludCompañia,
-                    estadoSeguro = (int)persona.paciente.estadoSeguro,
                     tpAfiliacion = persona.paciente.tpAfiliacion,
                     fecAfiliacion = persona.paciente.fecAfiliacion,
                     codTitular = persona.paciente.codTitular,
@@ -95,21 +95,26 @@ namespace HistClinica.Repositories.Repositories
                     finCarencia = persona.paciente.finCarencia,
                     convenio = persona.paciente.convenio,
                     descuento = persona.paciente.descuento,
-                    //codPaConvenio = persona.paciente.codPaConvenio,
-                    //dsPacConv = persona.paciente.dsPacConv,
-                    //statPaconv = persona.paciente.
-                    //codPacSoat = dr["codPacSoat"].ToString(),
-                    //dsPacSoat = dr["dsPacSoat"].ToString(),
-                    //statPacSoat = dr["statPacSoat"].ToString(),
-                    //codpacExterno = persona.paciente.cod,
-                    //dspacExter = dr["dspacExter"].ToString(),
-                    //stapacexter = dr["stapacexter"].ToString(),
-                    tpPaciente = (int)persona.paciente.idTipoPaciente,
+                    codPaConvenio = persona.paciente.codPaConvenio,
+                    dsPacConv = persona.paciente.dsPacConv,
+                    statPaconv = persona.paciente.statPaconv,
+                    codPacSoat = persona.paciente.codPacSoat,
+                    dsPacSoat = persona.paciente.dsPacSoat,
+                    statPacSoat = persona.paciente.statPacSoat,
+                    codpacExterno = persona.paciente.codpacExterno,
+                    dspacExter = persona.paciente.dspacExter,
+                    stapacexter = persona.paciente.stapacexter,
                     idPersona = idPersona,
-                    //hojafiliacion = persona.paciente.afi,
-                    //concienteDato = persona.paciente.concienteDato,
-                    estado = 1
-                });
+                    hojafiliacion = persona.paciente.hojafiliacion,
+                    concienteDato = persona.paciente.concienteDato,
+                    estado = 1,
+                    fechabaja = persona.paciente.fechabaja,
+                    estadoSeguro = null,
+                    tpPaciente = null
+                };
+                if (persona.paciente.estadoSeguro != null) Paciente.estadoSeguro = (int)persona.paciente.estadoSeguro;
+                if (persona.paciente.idTipoPaciente != null) Paciente.tpPaciente = (int)persona.paciente.idTipoPaciente;
+                await _context.T001_PACIENTE.AddAsync(Paciente);
                 await Save();
                 return "Ingreso Exitoso Paciente";
             }

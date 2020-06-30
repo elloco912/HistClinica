@@ -30,6 +30,19 @@ namespace HistClinica.DTO
         public string nrohc { get; set; }
         public int? idestado { get; set; }
         public int? estadoPaciente { get; set; }
+        public string codPaConvenio { get; set; }
+        public string dsPacConv { get; set; }
+        public string statPaconv { get; set; }
+        public string codPacSoat { get; set; }
+        public string dsPacSoat { get; set; }
+        public string statPacSoat { get; set; }
+        public string codpacExterno { get; set; }
+        public string dspacExter { get; set; }
+        public string stapacexter { get; set; }
+        public bool? hojafiliacion { get; set; }
+        public bool? concienteDato { get; set; }
+        public string fechabaja { get; set; }
+        
         #region Ubicacion
         public int? idDepartamentoUbicacion { get; set; }
         public int? idProvinciaUbicacion { get; set; }

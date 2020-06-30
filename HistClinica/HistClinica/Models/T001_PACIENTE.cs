@@ -51,11 +51,11 @@ namespace HistClinica.Models
 		public string codpacExterno { get; set; }
 		public string dspacExter { get; set; }
 		public string stapacexter { get; set; }
-		public int tpPaciente { get; set; }
+		public int? tpPaciente { get; set; }
 		public int? idPersona { get; set; }
 		public bool? hojafiliacion { get; set; }
 		public bool? concienteDato { get; set; }
-		public int estado { get; set; }
+		public int? estado { get; set; }
 		public string fechabaja { get; set; }
 	}
 }
