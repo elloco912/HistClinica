@@ -30,11 +30,12 @@ namespace HistClinica.DTO
 
         [Required(ErrorMessage = "Ingrese area")]
         public string descArea { get; set; }
-        public string estadoEmpleado { get; set; }
-        public string estadoMedico { get; set; }
-        public string genero { get; set; }
+        public int? estadoEmpleado { get; set; }
+        public int? estadoMedico { get; set; }
+        public int? genero { get; set; }
         public double? precio { get; set; }
         public int? salario { get; set; }
+        public string fechaBaja { get; set; }
         #endregion
     }
 }

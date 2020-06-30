@@ -43,7 +43,16 @@ namespace HistClinica.Repositories.Repositories
         {
             return await _context.T120_EMPLEADO.AnyAsync(e => e.idEmpleado == id);
         }
-        
+
+        public async Task DeleteEmpleado(int EmpleadoID)
+        {
+            T120_EMPLEADO Empleado = await _context.T120_EMPLEADO.FindAsync(EmpleadoID);
+            Empleado.estado = 2;
+            Empleado.fechabaja = DateTime.Now.ToString();
+            _context.Update(Empleado);
+            await Save();
+        }
+
         public async Task<string> InsertEmpleado(PersonaDTO persona, int idPersona)
         {
             try
@@ -56,9 +65,10 @@ namespace HistClinica.Repositories.Repositories
                     cargo = persona.personal.cargo,
                     fecIngreso = DateTime.Parse(persona.personal.fechaIngreso),
                     salario = persona.personal.salario,
-                    genero = persona.personal.genero,
+                    genero = (int)persona.personal.genero,
                     idtpEmpleado = persona.personal.idTipoEmpleado,
-                    estado = "1"
+                    estado = 1,
+                    fechabaja = null
                 };
                 await _context.T120_EMPLEADO.AddAsync(Empleado);
                 await Save();
@@ -84,7 +94,8 @@ namespace HistClinica.Repositories.Repositories
                     salario = persona.personal.salario,
                     genero = persona.personal.genero,
                     idtpEmpleado = persona.personal.idTipoEmpleado,
-                    estado = persona.personal.estadoEmpleado
+                    estado = persona.personal.estadoEmpleado,
+                    fechabaja = persona.personal.fechaBaja
                 };
                 _context.Update(Empleado);
                 await Save();

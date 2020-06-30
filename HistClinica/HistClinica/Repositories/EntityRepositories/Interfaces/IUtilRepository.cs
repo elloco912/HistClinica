@@ -14,7 +14,7 @@ namespace HistClinica.Repositories.Interfaces
 		Task<object> GetMedicos();
 		Task<object> GetCronogramaByMedico(int id);
 		Task<object> GetHorasByCronograma(int id);
-		Task<object> GetHoras();
+		object GetHoras();
 		Task<object> GetCronograma();
 		Task<List<T109_ESTADOCITA>> getEstadoCita();
 		Task<List<D024_CAJA>> getCajas();

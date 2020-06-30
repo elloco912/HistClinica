@@ -53,7 +53,8 @@ namespace HistClinica.Repositories.Repositories
         public async Task DeleteCaja(int CajaID)
         {
             D024_CAJA Caja = await _context.D024_CAJA.FindAsync(CajaID);
-            _context.D024_CAJA.Remove(Caja);
+            Caja.estado = "2";
+            _context.Update(Caja);
             await Save();
         }
         public async Task<string> InsertCaja(D024_CAJA Caja)

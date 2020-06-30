@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HistClinica.Migrations
 {
-    public partial class _29062020 : Migration
+    public partial class _30062020 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,11 +52,12 @@ namespace HistClinica.Migrations
                     idEmpleado = table.Column<int>(nullable: false),
                     loginUser = table.Column<string>(nullable: false),
                     claveUser = table.Column<string>(nullable: true),
-                    estado = table.Column<int>(nullable: false),
-                    usuRegistra = table.Column<string>(nullable: true),
-                    fechaRegistra = table.Column<string>(nullable: true),
+                    estado = table.Column<string>(nullable: true),
+                    usuCrea = table.Column<string>(nullable: true),
+                    fechaCrea = table.Column<string>(nullable: true),
                     usuMod = table.Column<string>(nullable: true),
-                    fechaMod = table.Column<string>(nullable: true)
+                    fechaMod = table.Column<string>(nullable: true),
+                    fechaBaja = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -95,7 +96,8 @@ namespace HistClinica.Migrations
                     idConsultorio = table.Column<int>(nullable: true),
                     hrInicio = table.Column<string>(nullable: true),
                     hrFin = table.Column<string>(nullable: true),
-                    idEstado = table.Column<int>(nullable: true)
+                    idEstado = table.Column<int>(nullable: true),
+                    fechaBaja = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -115,7 +117,8 @@ namespace HistClinica.Migrations
                     fecRegistro = table.Column<DateTime>(nullable: true),
                     fecOkPasarela = table.Column<DateTime>(nullable: true),
                     idCita = table.Column<int>(nullable: true),
-                    estado = table.Column<string>(nullable: true)
+                    estado = table.Column<string>(nullable: true),
+                    fechaBaja = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -206,7 +209,8 @@ namespace HistClinica.Migrations
                     idemprConvenio = table.Column<int>(nullable: true),
                     idciaSeguro = table.Column<int>(nullable: true),
                     idtipoIafa = table.Column<int>(nullable: true),
-                    estado = table.Column<string>(nullable: true)
+                    estado = table.Column<string>(nullable: true),
+                    fechabaja = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -237,9 +241,9 @@ namespace HistClinica.Migrations
                     finVigencia = table.Column<DateTime>(nullable: true),
                     tpPlanSalud = table.Column<int>(nullable: true),
                     nroPlanSalud = table.Column<int>(nullable: true),
-                    estadoSeguro = table.Column<string>(nullable: true),
+                    estadoSeguro = table.Column<int>(nullable: true),
                     tpAfiliacion = table.Column<int>(nullable: true),
-                    fecAfiliacion = table.Column<DateTime>(nullable: true),
+                    fecAfiliacion = table.Column<string>(nullable: true),
                     codTitular = table.Column<int>(nullable: true),
                     moneda = table.Column<string>(nullable: true),
                     nomContratante = table.Column<string>(nullable: true),
@@ -263,11 +267,12 @@ namespace HistClinica.Migrations
                     codpacExterno = table.Column<string>(nullable: true),
                     dspacExter = table.Column<string>(nullable: true),
                     stapacexter = table.Column<string>(nullable: true),
-                    tpPaciente = table.Column<int>(nullable: true),
+                    tpPaciente = table.Column<int>(nullable: false),
                     idPersona = table.Column<int>(nullable: true),
                     hojafiliacion = table.Column<bool>(nullable: true),
                     concienteDato = table.Column<bool>(nullable: true),
-                    estado = table.Column<string>(nullable: true)
+                    estado = table.Column<int>(nullable: false),
+                    fechabaja = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -286,25 +291,25 @@ namespace HistClinica.Migrations
                     fechaCita = table.Column<DateTime>(nullable: true),
                     ultCie10 = table.Column<string>(nullable: true),
                     tpAtencion = table.Column<int>(nullable: true),
-                    nroHC = table.Column<int>(nullable: true),
-                    idEstadoCita = table.Column<int>(nullable: true),
-                    idEstaGralPac = table.Column<int>(nullable: true),
-                    estadoReprogram = table.Column<string>(nullable: true),
+                    nroHC = table.Column<string>(nullable: true),
                     ejecutado = table.Column<string>(nullable: true),
                     prioridad = table.Column<string>(nullable: true),
                     precio = table.Column<double>(nullable: true),
                     descuento = table.Column<double>(nullable: true),
                     coa = table.Column<double>(nullable: true),
                     igv = table.Column<double>(nullable: true),
+                    estadoReprogram = table.Column<string>(nullable: true),
                     tipoCita = table.Column<int>(nullable: true),
                     motivoRepro = table.Column<string>(nullable: true),
                     motivoAnula = table.Column<string>(nullable: true),
+                    idEstadoCita = table.Column<int>(nullable: true),
                     idPaciente = table.Column<int>(nullable: true),
                     idEmpleado = table.Column<int>(nullable: true),
                     idConsultorio = table.Column<int>(nullable: true),
                     idProgramMedica = table.Column<int>(nullable: true),
                     idservicioCli = table.Column<int>(nullable: true),
-                    estado = table.Column<string>(nullable: true)
+                    estado = table.Column<int>(nullable: true),
+                    fechabaja = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -337,10 +342,11 @@ namespace HistClinica.Migrations
                     cargo = table.Column<string>(nullable: true),
                     fecIngreso = table.Column<DateTime>(nullable: true),
                     salario = table.Column<int>(nullable: true),
-                    genero = table.Column<string>(nullable: true),
+                    genero = table.Column<int>(nullable: true),
                     idtpEmpleado = table.Column<int>(nullable: true),
                     idPersona = table.Column<int>(nullable: true),
-                    estado = table.Column<string>(nullable: true)
+                    estado = table.Column<int>(nullable: true),
+                    fechabaja = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -362,7 +368,8 @@ namespace HistClinica.Migrations
                     idEmpleado = table.Column<int>(nullable: true),
                     idEspecialidad = table.Column<int>(nullable: true),
                     idPersona = table.Column<int>(nullable: true),
-                    estado = table.Column<string>(nullable: true)
+                    estado = table.Column<int>(nullable: false),
+                    fechabaja = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

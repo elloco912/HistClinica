@@ -21,5 +21,6 @@ namespace HistClinica.Models
 		public string hrInicio { get; set; }
 		public string hrFin { get; set; }
 		public int? idEstado { get; set; }
+		public string fechaBaja { get; set; }
 	}
 }

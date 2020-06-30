@@ -101,7 +101,7 @@ namespace HistClinica.Repositories.Repositories
 			return estado;
 		}
 
-		public async Task<object> GetHoras()
+		public object GetHoras()
 		{
 			var horas = new Collection();
 			return horas;

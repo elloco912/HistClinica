@@ -88,7 +88,7 @@ namespace HistClinica.Controllers
             var lcronograma = await _utilrepository.GetCronograma();
             ViewBag.lcronograma = lcronograma;
 
-            var lhoras = await _utilrepository.GetHoras();
+            var lhoras = _utilrepository.GetHoras();
             ViewBag.lhoras = lhoras;
 
             var lestado = await _utilrepository.getEstadoCita();
@@ -195,7 +195,7 @@ namespace HistClinica.Controllers
             var servicios = await _utilrepository.GetTipo("Servicio Clinica");
             ViewBag.servicios = servicios;
 
-            var lhoras = await _utilrepository.GetHoras();
+            var lhoras = _utilrepository.GetHoras();
             ViewBag.lhoras = lhoras;
 
             CitaDTO cita = new CitaDTO();
@@ -220,12 +220,6 @@ namespace HistClinica.Controllers
                 return RedirectToAction("Index","Paciente");
             }
             return View(cita);
-        }
-
-        public async Task<JsonResult> BuscarDni(int dni)
-        {
-            var personaDTO = await _pacienteRepository.GetByDni(dni);
-            return Json(personaDTO);
         }
 
 

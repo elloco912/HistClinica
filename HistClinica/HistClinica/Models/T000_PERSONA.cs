@@ -50,5 +50,6 @@ namespace HistClinica.Models
 		public int? idciaSeguro { get; set; }
 		public int? idtipoIafa { get; set; }
 		public string estado { get; set; }
+		public string fechabaja { get; set; }
 	}
 }

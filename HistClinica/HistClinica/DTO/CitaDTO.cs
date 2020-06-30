@@ -28,8 +28,10 @@ namespace HistClinica.DTO
         public double? precio { get; set; }
         public double? igv { get; set; }
         public double? total { get; set; }
-        public string estado { get; set; }
-        public string estadoPago { get; set; }
+        public int? estado { get; set; }
+        public string descEstado { get; set; }
+        public int? estadoPago { get; set; }
+        public string descEstadoPago { get; set; }
         public string motivoreprogramacion { get; set; }
         public string motivoanulacion { get; set; }
     }
