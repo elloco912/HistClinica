@@ -41,6 +41,13 @@ namespace HistClinica.Controllers
             return View(await _personaRepository.GetAllPersonal());
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Index(int dniper, string nombre,string apellido)
+        {
+            List<PersonaDTO> persona = await _personaRepository.getPersonalxDnioNombresyApellidos(dniper, nombre, apellido);
+            return View(persona);
+        }
+
         // GET: Persona/Details/5
         public async Task<IActionResult> Details(int? id)
         {
