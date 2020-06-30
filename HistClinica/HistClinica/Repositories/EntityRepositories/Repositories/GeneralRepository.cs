@@ -49,7 +49,7 @@ namespace HistClinica.Repositories
 		public async Task<List<D00_TBGENERAL>> GetByCodigo(string codigo,string descripcion)
 		{
 			List<D00_TBGENERAL> general = await (from p in _context.D00_TBGENERAL
-												 where p.codTab == codigo || p.descripcion.ToLower().StartsWith(descripcion.ToLower())
+												 where p.codTab.ToLower().StartsWith(codigo.ToLower()) || p.descripcion.ToLower().StartsWith(descripcion.ToLower())
 												 select p).ToListAsync();
 			return general;
 		}

@@ -18,7 +18,7 @@ namespace HistClinica.DTO
         [Required(ErrorMessage = "Ingrese el nombre")]
         public string nombres { get; set; }
 
-      //  [MaxLength(11)]
+        //  [MaxLength(11)]
         [Required(ErrorMessage = "Ingrese el ruc")]
         public int? ruc { get; set; }
 
@@ -46,7 +46,7 @@ namespace HistClinica.DTO
         [Required(ErrorMessage = "Seleccione el tipo de documento")]
         public int? idTipoDocumento { get; set; }
 
-      //  [MaxLength(8)]
+        //  [MaxLength(8)]
         [Required(ErrorMessage = "Ingrese numero de documento")]
         public int? numeroDocumento { get; set; }
         public string centroEduca { get; set; }

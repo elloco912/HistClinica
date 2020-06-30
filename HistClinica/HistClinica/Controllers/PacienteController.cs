@@ -45,6 +45,11 @@ namespace HistClinica.Controllers
             return View(personaDTO);
         }
 
+        public IActionResult AdmicionMedico()
+        {
+            return View();
+        }
+
         // GET: Paciente/Details/5
         public async Task<IActionResult> Details(int? id)
         {
