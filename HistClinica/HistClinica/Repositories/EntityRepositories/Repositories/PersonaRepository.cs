@@ -17,12 +17,15 @@ namespace HistClinica.Repositories.Repositories
         private readonly IMedicoRepository _medicoRepository;
         private readonly IEmpleadoRepository _empleadoRepository;
         private readonly IPacienteRepository _pacienteRepository;
-        public PersonaRepository(ClinicaServiceContext context, IMedicoRepository medicorepository, IEmpleadoRepository empleadoRepository, IPacienteRepository pacienteRepository)
+        private readonly IUsuarioRepository _usuarioRepository;
+        public PersonaRepository(ClinicaServiceContext context, IMedicoRepository medicorepository, 
+            IEmpleadoRepository empleadoRepository, IPacienteRepository pacienteRepository,IUsuarioRepository usuarioRepository)
         {
             _context = context;
             _medicoRepository = medicorepository;
             _empleadoRepository = empleadoRepository;
             _pacienteRepository = pacienteRepository;
+            _usuarioRepository = usuarioRepository;
         }
 
         private bool disposed = false;
@@ -60,8 +63,19 @@ namespace HistClinica.Repositories.Repositories
         public async Task DeletePersona(int? PersonaID)
         {
             T000_PERSONA Persona = await _context.T000_PERSONA.FindAsync(PersonaID);
-            _context.T000_PERSONA.Remove(Persona);
+            Persona.estado = "2";
+            _context.Update(Persona);
             await Save();
+            int idEmpleado = (from e in _context.T120_EMPLEADO
+                              where e.idPersona == Persona.idPersona
+                              select e.idEmpleado).FirstOrDefault();
+            int idMedico = (from m in _context.T212_MEDICO
+                            where m.idPersona == Persona.idPersona
+                            select m.idMedico).FirstOrDefault();
+
+            await _empleadoRepository.DeleteEmpleado(idEmpleado);
+            await _medicoRepository.DeleteMedico(idMedico);
+            await _usuarioRepository.DeleteUsuario(idEmpleado);
         }
         public async Task<string> InsertPersona(PersonaDTO persona)
         {

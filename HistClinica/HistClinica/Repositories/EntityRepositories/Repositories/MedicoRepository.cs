@@ -43,6 +43,13 @@ namespace HistClinica.Repositories.Repositories
         {
             return await _context.T212_MEDICO.AnyAsync(e => e.idMedico == id);
         }
+        public async Task DeleteMedico(int MedicoID)
+        {
+            T212_MEDICO Medico = await _context.T212_MEDICO.FindAsync(MedicoID);
+            Medico.estado = "2";
+            _context.Update(Medico);
+            await Save();
+        }
         public async Task<string> InsertMedico(PersonaDTO persona, int idPersona, int idEmpleado)
         {
             try

@@ -44,9 +44,17 @@ namespace HistClinica.Repositories.Repositories
         {
             return await _context.D001_USUARIO.AnyAsync(e => e.idEmpleado == id);
         }
+
+        public async Task DeleteUsuario(int? UsuarioID)
+        {
+            D001_USUARIO Usuario = await _context.D001_USUARIO.FindAsync(UsuarioID);
+            Usuario.estado = "2";
+            _context.Update(Usuario);
+            await Save();
+        }
         public async Task<string> InsertUsuario(PersonaDTO persona)
         {
-            T000_PERSONA Persona = await (from p in _context.T000_PERSONA
+            T000_PERSONA _Persona = await (from p in _context.T000_PERSONA
                                         join e in _context.T120_EMPLEADO on p.idPersona equals e.idPersona
                                         where e.idEmpleado == persona.personal.idEmpleado
                                             select p).FirstOrDefaultAsync();
@@ -63,17 +71,32 @@ namespace HistClinica.Repositories.Repositories
                 }
                 else
                 {
-                    string fecNacimiento = Persona.fecNace;
-                    if (fecNacimiento != null) fecNacimiento = Persona.fecNace.Substring(0, 2);
-                    else fecNacimiento = "";
+                    string primeraletraapellido = _Persona.apePaterno.Substring(0, 1).Trim();
+                    string primernombre="";
+                    string diaNacimiento = "";
+                    if(_Persona.nombres.Trim().IndexOf(" ") != -1)
+                    {
+                        int espacioencontrado = _Persona.nombres.Trim().IndexOf(" ");
+                        int tamañocadena = _Persona.nombres.Length;
+                        primernombre = _Persona.nombres.Substring(0, tamañocadena - espacioencontrado).Trim();
+                    }
+                    else
+                    {
+                        primernombre = _Persona.nombres.Trim();
+                    }
+                    if (_Persona.fecNace != null)
+                    {
+                        diaNacimiento = Convert.ToDateTime(_Persona.fecNace).Day.ToString();
+                    }
+                    else return "No se pudo crear usuario por que falta fecha de nacimiento";
                     await _context.D001_USUARIO.AddAsync(new D001_USUARIO()
                     {
                         idEmpleado = persona.personal.idEmpleado,
-                        loginUser = (Persona.apePaterno.Substring(0, 1).Trim() + Persona.nombres.Trim() + fecNacimiento.Trim()).ToLower(),
+                        loginUser = (primeraletraapellido + primernombre + diaNacimiento).ToLower(),
                         fechaRegistra = DateTime.Now.ToString(),
                         claveUser = persona.numeroDocumento.ToString(),
                         usuRegistra = persona.asignacion.usuRegistra,
-                        estado = 1,
+                        estado = "1",
                         usuMod = "",
                         fechaMod = ""
                     });

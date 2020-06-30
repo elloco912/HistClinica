@@ -14,7 +14,7 @@ namespace HistClinica.Models
 		public int? salario { get; set; }
 		public string genero { get; set; }
 		public int? idtpEmpleado { get; set; }
-		public int? idPersona { get; set; }
+		public int idPersona { get; set; }
 		public string estado { get; set; }
 	}
 }

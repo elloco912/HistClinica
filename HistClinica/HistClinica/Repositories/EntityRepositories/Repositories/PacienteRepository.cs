@@ -49,14 +49,12 @@ namespace HistClinica.Repositories.Repositories
         public async Task DeletePaciente(int PacienteID)
         {
             T001_PACIENTE Paciente = await _context.T001_PACIENTE.FindAsync(PacienteID);
-            _context.T001_PACIENTE.Remove(Paciente);
+            Paciente.estado = "2";
+            _context.Update(Paciente);
             await Save();
         }
         public async Task<string> InsertPaciente(PersonaDTO persona, int idPersona)
         {
-            int? idAsegurado = null;
-            int? idConvenio = null;
-            int? idPaciente = null;
             try
             {
                 await _context.T001_PACIENTE.AddAsync(new T001_PACIENTE()

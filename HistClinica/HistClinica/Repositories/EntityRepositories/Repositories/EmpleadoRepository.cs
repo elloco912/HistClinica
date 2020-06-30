@@ -43,7 +43,15 @@ namespace HistClinica.Repositories.Repositories
         {
             return await _context.T120_EMPLEADO.AnyAsync(e => e.idEmpleado == id);
         }
-        
+
+        public async Task DeleteEmpleado(int EmpleadoID)
+        {
+            T120_EMPLEADO Empleado = await _context.T120_EMPLEADO.FindAsync(EmpleadoID);
+            Empleado.estado = "2";
+            _context.Update(Empleado);
+            await Save();
+        }
+
         public async Task<string> InsertEmpleado(PersonaDTO persona, int idPersona)
         {
             try

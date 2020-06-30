@@ -12,6 +12,7 @@ namespace HistClinica.Repositories.Interfaces
         Task<string> InsertUsuario(PersonaDTO persona);
         //Task<string> UpdateUsuario(D001_USUARIO usuario);
         Task<bool> UsuarioExists(int? id);
+        Task DeleteUsuario(int? UsuarioID);
         Task Save();
     }
 }
