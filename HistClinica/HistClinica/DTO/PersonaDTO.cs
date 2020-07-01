@@ -33,7 +33,6 @@ namespace HistClinica.DTO
        [Required(ErrorMessage = "Seleccione el sexo")]
         public int? idSexo { get; set; }
         public int? idGradoInstruccion { get; set; }
-        public int? idEstadoCivil { get; set; }
 
         [DataType(DataType.EmailAddress)]
         [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = "Correo no valido")]
