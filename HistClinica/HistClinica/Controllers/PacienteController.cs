@@ -74,7 +74,8 @@ namespace HistClinica.Controllers
             return View(paciente);
         }
 
-        private async Task CargarCombosPacientes()
+        // GET: Paciente/Create
+        public async Task<IActionResult> Create()
         {
             var lsttipsexo = new Object();
             lsttipsexo = await _utilrepository.GetTipo("sexo");
@@ -115,12 +116,7 @@ namespace HistClinica.Controllers
             var tipdoc = new Object();
             tipdoc = await _utilrepository.GetTipo("Tipo Documento");
             ViewBag.ltipdoc = tipdoc;
-        }
 
-        // GET: Paciente/Create
-        public async Task<IActionResult> Create()
-        {
-            await CargarCombosPacientes();
             return View();
         }
 
@@ -147,13 +143,13 @@ namespace HistClinica.Controllers
             {
                 return NotFound();
             }
-            await CargarCombosPacientes();
-            PersonaDTO persona = await _pacienteRepository.GetById(id);
-            if (persona == null)
+
+            var paciente = await _pacienteRepository.GetByDnioNombresyApellidos(id,"","");
+            if (paciente == null)
             {
                 return NotFound();
             }
-            return View(persona);
+            return View(paciente);
         }
 
         // POST: Paciente/Edit/5
@@ -161,15 +157,18 @@ namespace HistClinica.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(PersonaDTO persona)
+        public async Task<IActionResult> Edit(int id, PersonaDTO persona)
         {
-        
-            if (persona != null)
+            if (id != persona.paciente.idPaciente)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
             {
                 try
                 {
-                    TempData["dni"] = persona.numeroDocumento;
-                    TempData["mensajecita"] = await _pacienteRepository.UpdatePaciente(persona);
+                    await _personaRepository.UpdatePersona(persona);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
