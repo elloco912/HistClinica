@@ -165,20 +165,21 @@ namespace HistClinica.Repositories.Repositories
                     finCarencia = persona.paciente.finCarencia,
                     convenio = persona.paciente.convenio,
                     descuento = persona.paciente.descuento,
-                    //codPaConvenio = persona.paciente.codPaConvenio,
-                    //dsPacConv = persona.paciente.dsPacConv,
-                    //statPaconv = persona.paciente.
-                    //codPacSoat = dr["codPacSoat"].ToString(),
-                    //dsPacSoat = dr["dsPacSoat"].ToString(),
-                    //statPacSoat = dr["statPacSoat"].ToString(),
-                    //codpacExterno = persona.paciente.cod,
-                    //dspacExter = dr["dspacExter"].ToString(),
-                    //stapacexter = dr["stapacexter"].ToString(),
-                    tpPaciente = (int)persona.paciente.idTipoPaciente,
+                    codPaConvenio = persona.paciente.codPaConvenio,
+                    dsPacConv = persona.paciente.dsPacConv,
+                    statPaconv = persona.paciente.statPaconv,
+                    codPacSoat = persona.paciente.codPacSoat,
+                    dsPacSoat = persona.paciente.dsPacSoat,
+                    statPacSoat = persona.paciente.statPacSoat,
+                    codpacExterno = persona.paciente.codpacExterno,
+                    dspacExter = persona.paciente.dspacExter,
+                    stapacexter = persona.paciente.stapacexter,
                     idPersona = persona.idPersona,
-                    //hojafiliacion = persona.paciente.afi,
-                    //concienteDato = persona.paciente.concienteDato,
-                    estado = (int)persona.paciente.estadoPaciente
+                    hojafiliacion = persona.paciente.hojafiliacion,
+                    concienteDato = persona.paciente.concienteDato,
+                    estado = persona.paciente.estadoPaciente,
+                    fechabaja = persona.paciente.fechabaja,
+                    tpPaciente = persona.paciente.idTipoPaciente
                 });
 
                 await Save();
