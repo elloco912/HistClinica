@@ -7,7 +7,11 @@ namespace HistClinica.Models
 	{
 		[Key]
 		public int idTab { get; set; }
+
+		[Required(ErrorMessage = "Seleccione el codigo de tipo")]
 		public string codTab { get; set; }
+
+		[Required(ErrorMessage = "Seleccione la descripcion")]
 		public string descripcion { get; set; }
 		public string tipo { get; set; }
 		public DateTime? fechaCreate { get; set; }

@@ -9,7 +9,7 @@
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
-		@using (Html.BeginForm("AgregarTipo", "Tablas"))
+		@using (Html.BeginForm("AgregarTipo", "Tablas",FormMethod.Post, new { @id = "frmregistrartipo" }))
 		{
 			@Html.AntiForgeryToken()
 			@Html.ValidationSummary(true, "", new { @class = "text-danger" })

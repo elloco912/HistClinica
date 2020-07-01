@@ -135,6 +135,7 @@ namespace HistClinica.Repositories.Repositories
                 return "Error en el guardado " + ex.StackTrace;
             }
         }
+
         public async Task<List<CitaDTO>> GetAllCitas()
         {
             List<CitaDTO> Citas = await (from c in _context.T068_CITA
@@ -169,7 +170,12 @@ namespace HistClinica.Repositories.Repositories
                                                descEstado = (from ec in _context.T109_ESTADOCITA where ec.idEstadoCita == c.idEstadoCita select ec.estado).FirstOrDefault(),
                                                descEstadoPago = (from ep in _context.D015_PAGO
                                                                  where ep.idCita == c.idCita
-                                                                 select ep.estado).FirstOrDefault()
+                                                                 select ep.estado).FirstOrDefault(),
+                                               nombrePaciente = (from pac in _context.T001_PACIENTE
+                                                                 join ci in _context.T068_CITA on pac.idPaciente equals ci.idPaciente
+                                                                 join per in _context.T000_PERSONA on pac.idPersona equals per.idPersona
+                                                                 where pac.idPaciente == ci.idPaciente
+                                                                 select (per.nombres + " " + per.apePaterno + " " + per.apePaterno)).FirstOrDefault()
                                            }).ToListAsync();
 
             return Citas;
@@ -209,9 +215,35 @@ namespace HistClinica.Repositories.Repositories
                                       descEstado = (from ec in _context.T109_ESTADOCITA where ec.idEstadoCita == c.idEstadoCita select ec.estado).FirstOrDefault(),
                                       descEstadoPago = (from ep in _context.D015_PAGO
                                                         where ep.idCita == c.idCita
-                                                        select ep.estado).FirstOrDefault()
+                                                        select ep.estado).FirstOrDefault(),
+                                      dniPaciente = (from pac in _context.T001_PACIENTE join ci in _context.T068_CITA on pac.idPaciente equals ci.idPaciente
+                                                     join per in _context.T000_PERSONA on pac.idPersona equals per.idPersona where pac.idPaciente == ci.idPaciente select per.dniPersona).FirstOrDefault(),
+                                      nombrePaciente = (from pac in _context.T001_PACIENTE
+                                                        join ci in _context.T068_CITA on pac.idPaciente equals ci.idPaciente
+                                                        join per in _context.T000_PERSONA on pac.idPersona equals per.idPersona
+                                                        where pac.idPaciente == ci.idPaciente
+                                                        select (per.nombres + " " + per.apePaterno + " " + per.apePaterno)).FirstOrDefault()
                                   }).FirstOrDefaultAsync();
             return Cita;
+        }
+
+        public async Task<string> CambiarEstadoCita(CitaDTO cita)
+        {
+            try
+            {
+                T068_CITA Cita = (from c in _context.T068_CITA
+                                  where c.idCita == cita.idCita
+                                  select c).FirstOrDefault();
+                Cita.idEstadoCita = cita.estado;
+                Cita.motivoRepro = cita.motivoreprogramacion;
+                _context.Update(Cita);
+                await Save();
+                return "Se cambio el estado de la cita de forma correcta";
+            }
+            catch (Exception ex)
+            {
+                return "Error en el guardado " + ex.StackTrace;
+            }
         }
     }
 }

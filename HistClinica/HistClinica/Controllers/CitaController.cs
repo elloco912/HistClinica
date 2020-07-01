@@ -246,5 +246,19 @@ namespace HistClinica.Controllers
             return RedirectToAction("Index", "Paciente");
         }
 
+        public async Task<IActionResult> CambiarEstadoCita(int id)
+        {
+            var estado = await _utilrepository.getEstadoCita();
+            ViewBag.estado = estado;
+            CitaDTO cita = await _repository.GetById(id);
+            return PartialView(cita);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CambiarEstadoCita(CitaDTO cita)
+        {
+            TempData["msjcita"] = await _repository.CambiarEstadoCita(cita);
+            return RedirectToAction("AdmicionMedico", "Paciente");
+        }
     }
 }

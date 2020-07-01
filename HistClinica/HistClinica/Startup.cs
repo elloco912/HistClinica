@@ -24,6 +24,7 @@ namespace HistClinica
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSession();
             services.AddRazorPages()
            .AddRazorRuntimeCompilation();
             services.AddControllersWithViews();
@@ -60,6 +61,7 @@ namespace HistClinica
             }
             app.UseStaticFiles();
 
+            app.UseSession();
             app.UseRouting();
 
           //  app.UseSession();
