@@ -158,7 +158,6 @@ D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.TagHe
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.TagHelpers.output.cache
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.RazorCoreGenerate.cache
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cita\AnularCita.cshtml.g.cs
-D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cita\Create.cshtml.g.cs
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cita\Delete.cshtml.g.cs
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cita\Details.cshtml.g.cs
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cita\Edit.cshtml.g.cs
@@ -1223,3 +1222,5 @@ C:\Users\User\OneDrive\Desktop\his-net core\HistClinica\HistClinica\HistClinica\
 C:\Users\User\OneDrive\Desktop\his-net core\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\User\OneDrive\Desktop\his-net core\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\User\OneDrive\Desktop\his-net core\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Paciente\Edit.cshtml.g.cs
+D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Cita\CambiarEstadoCita.cshtml.g.cs
+D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\Razor\Views\Paciente\Edit.cshtml.g.cs
