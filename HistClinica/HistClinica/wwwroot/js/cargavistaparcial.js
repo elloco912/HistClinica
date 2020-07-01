@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-	$("#success-alert").fadeOut(1500).slideUp(300, function () {
+	$("#success-alert").fadeOut(2000).slideUp(300, function () {
 		$("#success-alert").slideUp(700);
 	});
 	//iniciar radio button

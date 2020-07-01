@@ -97,7 +97,7 @@ namespace HistClinica.Repositories.Repositories
                     idSexo = persona.idSexo,
                     fecNace = persona.fecNacimiento,
                     idEstCivil = persona.idEstCivil,
-                    idOcupacion = persona.idOcupacion,
+                    idOcupacion = persona.idEstCivil,
                     domiFiscal = persona.domiFiscal,
                     telefono = persona.telefono,
                     celular = persona.celular,
