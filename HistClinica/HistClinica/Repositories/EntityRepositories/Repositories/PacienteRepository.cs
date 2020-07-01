@@ -353,17 +353,22 @@ namespace HistClinica.Repositories.Repositories
                                            idSexo = p.idSexo,
                                            fecNacimiento = p.fecNace,
                                            idOcupacion = p.idOcupacion,
-                                           idGradoInstruccion = p.idGrdInstruc,
+                                           idGrdInstruc = p.idGrdInstruc,
                                            idEstCivil = p.idEstCivil,
                                            celular = p.celular,
                                            idParentesco = p.idParentesco,
                                            idTipoDocumento = p.idtpDocumento,
                                            descripcionOcupacion = (from det in _context.D00_TBDETALLE where det.idDet == p.idOcupacion select det.descripcion).FirstOrDefault(),
+                                           idPersona = p.idPersona,
                                            paciente = new PacienteDTO()
                                            {
                                                idPaciente = (from pa in _context.T001_PACIENTE
                                                              where pa.idPersona == p.idPersona
                                                              select pa.idPaciente).FirstOrDefault(),
+                                               idTipoPaciente = (from pa in _context.T001_PACIENTE
+                                                                 where pa.idPersona == p.idPersona
+                                                                 select pa.tpPaciente).FirstOrDefault(),
+                                               idParentescoPaciente = p.idParentesco,
                                                cita = new List<CitaDTO>()
                                            }
                                        }).FirstOrDefaultAsync();

@@ -32,6 +32,7 @@
 			@using (Html.BeginForm())
 			{
 				<div class="row">
+					@Html.HiddenFor(m => m.paciente.idPaciente)
 					<div class="col-sm-2">
 						<select class="form-control">
 							<option value="value">DNI</option>
@@ -49,7 +50,11 @@
 					<div class="col-sm-4">
 						<button class="btn btn-info" type="submit" id="btnBuscar"><i class="fas fa-search"></i></button>
 						<a class="btn btn-primary" type="submit" asp-action="Create" asp-controller="Paciente"><i class="fas fa-user-plus"></i></a>
-						<button class="btn btn-secondary" type="submit" onclick="return getbyID();"><i class="fas fa-edit"></i></button>
+						@if (Model != null)
+						{
+							<a class="btn btn-secondary" type="submit" asp-action="Edit" asp-controller="Paciente" asp-route-id="@Model.paciente.idPaciente"><i class="fas fa-edit"></i></a>
+
+						}
 					</div>
 				</div>
 			}
