@@ -69,20 +69,19 @@
 		}
 		<div class="row" style="padding-top: 80px;">
 			<div class="col-sm-12">
-				<table class="table table-bordered table-responsive table-hover" id="citagrid">
+				<table class="table table-bordered table-responsive table-hover" id="citamedicogrid">
 					<thead>
 						<tr>
 							<th>#</th>
 							<th>N°</th>
 							<th>Tipo</th>
+							<th>Paciente</th>
 							<th>Fecha</th>
 							<th>Hora</th>
 							<th>Producto</th>
 							<th>Descripción</th>
 							<th>Medico</th>
 							<th>Especialidad</th>
-							<th>Precio</th>
-							<th>IGV</th>
 							<th>Estado</th>
 							<th>Est.Pago</th>
 							<th>Total</th>
@@ -92,31 +91,24 @@
 					<tbody>
 						@foreach (var item in Model)
 								{
-									<tr>
-										<td>@item.idCita</td>
-										<td>@item.nroCita</td>
-										<td>@item.TipoCita</td>
-										<td>@item.fecha</td>
-										<td>@item.hora</td>
-										<td>@item.consultorio</td>
-										<td>@item.descripcion</td>
-										<td>@item.medico</td>
-										<td>@item.especialidad </td>
-										<td>@item.precio</td>
-										<td>@item.igv</td>
-										<td>@item.descEstado</td>
-										<td>@item.descEstadoPago</td>
-										<td>@item.precio</td>
-										<td>
-											<button title="Reprogramar" class="edit btn btn-primary"><i class="fas fa-address-book"></i></button>
-											<button title="Consultar" class="detail btn btn-primary">
-												<i class="fa fa-search" aria-hidden="true"></i>
-											</button>
-											<button title="Anular" class="anular btn btn-danger">
-												<i class="fa fa-minus" aria-hidden="true"></i>
-											</button>
-										</td>
-									</tr>
+						<tr>
+							<td>@item.idCita</td>
+							<td>@item.nroCita</td>
+							<td>@item.TipoCita</td>
+							<td>@item.nombrePaciente</td>
+							<td>@item.fecha</td>
+							<td>@item.hora</td>
+							<td>@item.consultorio</td>
+							<td>@item.descripcion</td>
+							<td>@item.medico</td>
+							<td>@item.especialidad </td>
+							<td>@item.descEstado</td>
+							<td>@item.descEstadoPago</td>
+							<td>@item.precio</td>
+							<td>
+								<button title="Editar" class="edit btn btn-primary"><i class="fas fa-address-book"></i></button>
+							</td>
+						</tr>
 								}
 					</tbody>
 				</table>
@@ -124,20 +116,10 @@
 		</div>
 	</div>
 
-<div class="modal fade" id="modalcitas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 
-</div>
-<div class="modal fade" id="modalreprogramar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 
+<div id="modalcambiarestado" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
 </div>
 
-<div id="modalcronograma" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
-</div>
-<div id="modaldetallecro" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
-</div>
-<div id="modalanular" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
-</div>
-<div id="modaldetalle" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
-</div>
 <script src="~/js/cargavistaparcial.js"></script>
-<script src="~/js/combosaninadoscitas.js"></script>
+

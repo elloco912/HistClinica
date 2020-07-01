@@ -207,7 +207,7 @@ namespace HistClinica.Repositories.Repositories
                                  join pa in _context.T001_PACIENTE on p.idPersona equals pa.idPersona
                                  where p.dniPersona == Dni
                                  select new PersonaDTO
-                                 {
+                                 {   
                                      nombres = p.nombres,
                                      apellidoPaterno = p.apePaterno,
                                      apellidoMaterno = p.apeMaterno,

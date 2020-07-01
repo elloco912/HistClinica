@@ -1,7 +1,9 @@
 ﻿@model HistClinica.Models.D012_CRONOMEDICO
 
-@using (Html.BeginForm("Create","Cronograma"))
+@using (Html.BeginForm("Create", "Cronograma", FormMethod.Post, new { @id = "frmcrearcronograma" }))
 {
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 	<div class="row pb-2">
 		<div class="col-sm-4">
 			<div class="row">
@@ -9,11 +11,14 @@
 					<label>Medico</label>
 				</div>
 				<div class="col-sm-8">
-					@Html.DropDownListFor(m => m.idMedico, new SelectList(ViewBag.listamedicos, "idMedico", "nombres"), "Seleccione", new { @class = "form-control" ,
+					@Html.DropDownListFor(m => m.idMedico, new SelectList(ViewBag.listamedicos, "idMedico", "nombres"), "Seleccione", new
+					{
+						@class = "form-control",
 				   data_cascade_combo = "#stypes",
 				   data_cascade_combo_source = Url.Action("GetEspecialidad", "Cronograma"),
 				   data_cascade_combo_param_name = "id"
 			   })
+					@Html.ValidationMessageFor(model => model.idMedico, "", new { @class = "text-danger" })
 				</div>
 			</div>
 		</div>
@@ -23,7 +28,8 @@
 					<label>Especialidad</label>
 				</div>
 				<div class="col-sm-8">
-					@Html.DropDownListFor(m => m.idEspecialidad, new SelectList(ViewBag.listaespecialidades, "idtab", "descripcion"), new { @class = "form-control", id = "stypes" })
+					@Html.DropDownListFor(m => m.idEspecialidad, new SelectList(ViewBag.listaespecialidades, "idtab", "descripcion"), "Seleccione", new { @class = "form-control", id = "stypes" })
+					@Html.ValidationMessageFor(model => model.idEspecialidad, "", new { @class = "text-danger" })
 				</div>
 			</div>
 		</div>
@@ -33,7 +39,8 @@
 					<label>Consultorio</label>
 				</div>
 				<div class="col-sm-8">
-					@Html.DropDownListFor(m => m.idConsultorio, new SelectList(ViewBag.listaconsultorio, "idtab", "descripcion"), new { @class = "form-control" })
+					@Html.DropDownListFor(m => m.idConsultorio, new SelectList(ViewBag.listaconsultorio, "idtab", "descripcion"), "Seleccione", new { @class = "form-control" })
+					@Html.ValidationMessageFor(model => model.idConsultorio, "", new { @class = "text-danger" })
 				</div>
 			</div>
 		</div>
@@ -46,6 +53,7 @@
 				</div>
 				<div class="col-sm-8">
 					@Html.TextBoxFor(m => m.fechaIni, new { @class = "form-control", @type = "Date" })
+					@Html.ValidationMessageFor(model => model.fechaIni, "", new { @class = "text-danger" })
 				</div>
 			</div>
 		</div>
@@ -56,6 +64,7 @@
 				</div>
 				<div class="col-sm-8">
 					@Html.TextBoxFor(m => m.fechaFin, new { @class = "form-control", @type = "Date" })
+					@Html.ValidationMessageFor(model => model.fechaFin, "", new { @class = "text-danger" })
 				</div>
 			</div>
 		</div>
@@ -65,7 +74,8 @@
 					<label>Hora Inicio</label>
 				</div>
 				<div class="col-sm-8">
-					@Html.DropDownListFor(m => m.hrInicio, new SelectList(ViewBag.listahoras), new { @class = "form-control" })
+					@Html.DropDownListFor(m => m.hrInicio, new SelectList(ViewBag.listahoras), "Seleccione", new { @class = "form-control" })
+					@Html.ValidationMessageFor(model => model.hrInicio, "", new { @class = "text-danger" })
 				</div>
 			</div>
 		</div>
@@ -75,7 +85,8 @@
 					<label>Hora Fin</label>
 				</div>
 				<div class="col-sm-8">
-					@Html.DropDownListFor(m => m.hrFin, new SelectList(ViewBag.listahoras), new { @class = "form-control" })
+					@Html.DropDownListFor(m => m.hrFin, new SelectList(ViewBag.listahoras), "Seleccione", new { @class = "form-control" })
+					@Html.ValidationMessageFor(model => model.hrFin, "", new { @class = "text-danger" })
 				</div>
 			</div>
 		</div>
@@ -87,3 +98,6 @@
 	</div>
 }
 <script src="~/js/comboaninado.js"></script>
+@section Scripts {
+	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

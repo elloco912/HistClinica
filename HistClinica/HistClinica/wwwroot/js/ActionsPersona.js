@@ -1,4 +1,11 @@
-﻿$(document).on('change', '#cboemple', function (event) {
+﻿$(document).ready(function () {
+    $('#numeroDocumento').attr('maxlength', '8');
+    $('#telefono').attr('maxlength', '9');
+    $('#ruc').attr('maxlength', '11');
+    $('#personal_numeroColegio').attr('maxlength', '5');
+});
+
+$(document).on('change', '#cboemple', function (event) {
 
     var id = $("#cboemple option:selected").val();
     if (id == 109) {

@@ -49,6 +49,10 @@ namespace HistClinica.Controllers
 
         public async Task<IActionResult> AdmicionMedico()
         {
+            if (TempData.ContainsKey("msjcita"))
+            {
+                ViewBag.message = TempData["msjcita"].ToString();
+            }
             List<CitaDTO> cita = await _citarepository.GetAllCitas();
             return View(cita);
         }

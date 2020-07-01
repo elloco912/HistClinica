@@ -16,5 +16,7 @@ namespace HistClinica.Repositories.Interfaces
         Task DeleteCita(int CitaID);
         Task<bool> CitaExists(int? id);
         Task Save();
+
+        Task<string> CambiarEstadoCita(CitaDTO cita);
     }
 }

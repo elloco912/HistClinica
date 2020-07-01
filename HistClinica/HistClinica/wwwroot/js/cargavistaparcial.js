@@ -1,5 +1,7 @@
 ﻿$(document).ready(function () {
-
+	$("#success-alert").fadeOut(1500).slideUp(300, function () {
+		$("#success-alert").slideUp(700);
+	});
 	//iniciar radio button
 	var id = $('input:radio[name=radiofiltro]:checked').val();
 	if (id == 1) {
@@ -39,6 +41,7 @@
 			success: function (response) {
 				$('#exampleModal').html(response);
 				$('#exampleModal').modal('show');
+				$.validator.unobtrusive.parse("#frmeditarcronograma");
 			},
 			failure: function (response) {
 				alert(response.responseText);
@@ -61,6 +64,7 @@
 			success: function (response) {
 				$('#modalestado').html(response);
 				$('#modalestado').modal('show');
+				$.validator.unobtrusive.parse("#frmeditarpersona");
 			},
 			failure: function (response) {
 				alert(response.responseText);
@@ -71,6 +75,26 @@
 		});
 	});
 
+	$("#citamedicogrid .edit").click(function () {
+		var id = $(this).closest("tr").find("td").eq(0).html();
+		$.ajax({
+			type: "GET",
+			url: "/Cita/CambiarEstadoCita",
+			data: { id: id },
+			contentType: "application/json; charset=utf-8",
+			dataType: "html",
+			success: function (response) {
+				$('#modalcambiarestado').html(response);
+				$('#modalcambiarestado').modal('show');
+			},
+			failure: function (response) {
+				alert(response.responseText);
+			},
+			error: function (response) {
+				alert(response.responseText);
+			}
+		});
+	});
 
 	$("#citagrid .anular").click(function () {
 		var id = $(this).closest("tr").find("td").eq(0).html();
@@ -212,6 +236,8 @@
 			success: function (response) {
 				$('#modaleditartipo').html(response);
 				$('#modaleditartipo').modal('show');
+				$.validator.unobtrusive.parse("#frmeditartipo");
+
 			},
 			failure: function (response) {
 				alert(response.responseText);
@@ -233,6 +259,7 @@
 			success: function (response) {
 				$('#modaleditardetalle').html(response);
 				$('#modaleditardetalle').modal('show');
+				$.validator.unobtrusive.parse("#frmeditardetalle");
 			},
 			failure: function (response) {
 				alert(response.responseText);
@@ -314,6 +341,7 @@ function cargarmodalCrearTipo() {
 		success: function (response) {
 			$('#modalagregartipo').html(response);
 			$('#modalagregartipo').modal('show');
+			$.validator.unobtrusive.parse("#frmregistrartipo");
 		},
 		failure: function (response) {
 			alert(response.responseText);
@@ -335,6 +363,7 @@ function cargarmodalCrearDetalle() {
 		success: function (response) {
 			$('#modalagregardetalle').html(response);
 			$('#modalagregardetalle').modal('show');
+			$.validator.unobtrusive.parse("#frmregistrardetalle");
 		},
 		failure: function (response) {
 			alert(response.responseText);
@@ -398,6 +427,7 @@ function CargaModalCitas() {
 		success: function (response) {
 			$('#modalcitas').html(response);
 			$('#modalcitas').modal('show');
+			$.validator.unobtrusive.parse("#frmregistrarcita");
 		},
 		failure: function (response) {
 			alert(response.responseText);
