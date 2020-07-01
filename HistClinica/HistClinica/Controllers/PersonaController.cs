@@ -187,11 +187,7 @@ namespace HistClinica.Controllers
             {
                 try
                 {
-                    if(personaDTO.asignacion != null)
-                    {
-                        await _cajaRepository.AsignaCaja(personaDTO);
-                    }
-                 
+                    if (personaDTO.asignacion != null) await _cajaRepository.AsignaCaja(personaDTO);
                     TempData["mensajepersona"] = await _usuarioRepository.InsertUsuario(personaDTO);
                 }
                 catch (DbUpdateConcurrencyException)
@@ -205,9 +201,8 @@ namespace HistClinica.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
-            return View();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

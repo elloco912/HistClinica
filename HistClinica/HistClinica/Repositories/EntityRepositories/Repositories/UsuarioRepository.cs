@@ -65,7 +65,7 @@ namespace HistClinica.Repositories.Repositories
                 {
                     D001_USUARIO Usuario = await (from u in _context.D001_USUARIO where u.idEmpleado == persona.personal.idEmpleado select u).FirstOrDefaultAsync();
                     Usuario.fechaMod = DateTime.Now.ToString();
-                    Usuario.usuMod = persona.asignacion.usuRegistra;
+                    Usuario.usuMod = ""; //ToDo: Agregar usuario de sesiones
                     _context.Update(Usuario);
                     await Save();
                     return "Usuario ya asignado";
@@ -96,7 +96,7 @@ namespace HistClinica.Repositories.Repositories
                         loginUser = (primeraletraapellido + primernombre + diaNacimiento).ToLower(),
                         fechaCrea = DateTime.Now.ToString(),
                         claveUser = persona.numeroDocumento.ToString(),
-                        usuCrea = persona.asignacion.usuRegistra,
+                        usuCrea = "",//ToDo: Agregar usuario de sesiones
                         estado = "1",
                         usuMod = "",
                         fechaMod = ""
