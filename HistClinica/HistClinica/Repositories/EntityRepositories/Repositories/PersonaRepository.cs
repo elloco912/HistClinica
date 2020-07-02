@@ -210,7 +210,7 @@ namespace HistClinica.Repositories.Repositories
                     tpPersona = persona.tpPersona
                 });
                 await Save();
-                if (persona.personal.idTipoEmpleado != null)
+                if (persona.personal != null)
                 {
                     await _empleadoRepository.UpdateEmpleado(persona);
                     if (persona.personal.idTipoEmpleado == (int)await _detalleRepository.GetIdDetalleByDescripcion("MEDICA/O"))
