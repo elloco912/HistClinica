@@ -177,7 +177,7 @@ namespace HistClinica.Repositories.Repositories
                     idPersona = persona.idPersona,
                     hojafiliacion = persona.paciente.hojafiliacion,
                     concienteDato = persona.paciente.concienteDato,
-                    estado = persona.paciente.estadoPaciente,
+                    estado = 1,
                     fechabaja = persona.paciente.fechabaja,
                     tpPaciente = persona.paciente.idTipoPaciente
                 });
@@ -340,34 +340,40 @@ namespace HistClinica.Repositories.Repositories
 
         public async Task<PersonaDTO> GetById(int? id)
         {
-            PersonaDTO Persona = await(from p in _context.T000_PERSONA
-                                       join pa in _context.T001_PACIENTE on p.idPersona equals pa.idPersona
-                                       where pa.idPaciente == id
-                                       select new PersonaDTO
-                                       {
-                                           nombres = p.nombres,
-                                           apellidoPaterno = p.apePaterno,
-                                           apellidoMaterno = p.apeMaterno,
-                                           numeroDocumento = p.dniPersona,
-                                           correo = p.correo,
-                                           edad = p.edad,
-                                           idSexo = p.idSexo,
-                                           fecNacimiento = p.fecNace,
-                                           idOcupacion = p.idOcupacion,
-                                           idGradoInstruccion = p.idGrdInstruc,
-                                           idEstCivil = p.idEstCivil,
-                                           celular = p.celular,
-                                           idParentesco = p.idParentesco,
-                                           idTipoDocumento = p.idtpDocumento,
-                                           descripcionOcupacion = (from det in _context.D00_TBDETALLE where det.idDet == p.idOcupacion select det.descripcion).FirstOrDefault(),
-                                           paciente = new PacienteDTO()
-                                           {
-                                               idPaciente = (from pa in _context.T001_PACIENTE
-                                                             where pa.idPersona == p.idPersona
-                                                             select pa.idPaciente).FirstOrDefault(),
-                                               cita = new List<CitaDTO>()
-                                           }
-                                       }).FirstOrDefaultAsync();
+            PersonaDTO Persona = await (from p in _context.T000_PERSONA
+                                        join pa in _context.T001_PACIENTE on p.idPersona equals pa.idPersona
+                                        where pa.idPaciente == id
+                                        select new PersonaDTO
+                                        {
+                                            nombres = p.nombres,
+                                            apellidoPaterno = p.apePaterno,
+                                            apellidoMaterno = p.apeMaterno,
+                                            numeroDocumento = p.dniPersona,
+                                            correo = p.correo,
+                                            edad = p.edad,
+                                            idSexo = p.idSexo,
+                                            fecNacimiento = p.fecNace,
+                                            idOcupacion = p.idOcupacion,
+                                            idGradoInstruccion = p.idGrdInstruc,
+                                            idEstCivil = p.idEstCivil,
+                                            celular = p.celular,
+                                            idParentesco = p.idParentesco,
+                                            idTipoDocumento = p.idtpDocumento,
+                                            descripcionOcupacion = (from det in _context.D00_TBDETALLE where det.idDet == p.idOcupacion select det.descripcion).FirstOrDefault(),
+                                            idPersona = p.idPersona,
+                                            paciente = new PacienteDTO()
+                                            {
+                                                idPaciente = (from pa in _context.T001_PACIENTE
+                                                              where pa.idPersona == p.idPersona
+                                                              select pa.idPaciente).FirstOrDefault(),
+                                                idTipoPaciente = (from pa in _context.T001_PACIENTE
+                                                                  where pa.idPersona == p.idPersona
+                                                                  select pa.tpPaciente).FirstOrDefault(),
+                                                idParentescoPaciente = p.idParentesco,
+                                                estadoPaciente = pa.estado,
+                                                cita = new List<CitaDTO>()
+                                            }
+                                        }).FirstOrDefaultAsync();
             if (Persona != null)
             {
                 Persona.paciente.cita = (from c in _context.T068_CITA
