@@ -169,7 +169,7 @@ namespace HistClinica.Controllers
                 try
                 {
                     TempData["dni"] = persona.numeroDocumento;
-                    TempData["mensajecita"] = await _pacienteRepository.UpdatePaciente(persona);
+                    TempData["mensajecita"] = await _personaRepository.UpdatePersona(persona);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
