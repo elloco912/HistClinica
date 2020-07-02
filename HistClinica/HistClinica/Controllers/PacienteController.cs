@@ -33,17 +33,17 @@ namespace HistClinica.Controllers
             if (TempData.ContainsKey("dni"))
             {
                 var dni = TempData["dni"].ToString();
-                PersonaDTO personaDTO = await _pacienteRepository.GetByDnioNombresyApellidos(Convert.ToInt32(dni),"","");
+                PersonaDTO personaDTO = await _pacienteRepository.GetByDnioNombresyApellidos(Convert.ToInt32(dni), "", "");
                 return View(personaDTO);
-            } 
+            }
             return View();
-           
+
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(int dni,string nombre, string apellidos)
+        public async Task<IActionResult> Index(int dni, string nombre, string apellidos)
         {
-            PersonaDTO personaDTO = await _pacienteRepository.GetByDnioNombresyApellidos(dni,nombre,apellidos);
+            PersonaDTO personaDTO = await _pacienteRepository.GetByDnioNombresyApellidos(dni, nombre, apellidos);
             return View(personaDTO);
         }
 
@@ -65,7 +65,7 @@ namespace HistClinica.Controllers
                 return NotFound();
             }
 
-            var paciente = await _pacienteRepository.GetByDnioNombresyApellidos(id,"","");
+            var paciente = await _pacienteRepository.GetByDnioNombresyApellidos(id, "", "");
             if (paciente == null)
             {
                 return NotFound();
@@ -163,7 +163,7 @@ namespace HistClinica.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(PersonaDTO persona)
         {
-        
+
             if (persona != null)
             {
                 try
@@ -195,7 +195,7 @@ namespace HistClinica.Controllers
                 return NotFound();
             }
 
-            var paciente = await _pacienteRepository.GetByDnioNombresyApellidos(id,"","");
+            var paciente = await _pacienteRepository.GetByDnioNombresyApellidos(id, "", "");
             if (paciente == null)
             {
                 return NotFound();
@@ -209,7 +209,7 @@ namespace HistClinica.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var paciente = await _pacienteRepository.GetByDnioNombresyApellidos(id,"","");
+            var paciente = await _pacienteRepository.GetByDnioNombresyApellidos(id, "", "");
             await _pacienteRepository.DeletePaciente(id);
             return RedirectToAction(nameof(Index));
         }
