@@ -97,7 +97,7 @@
 								<label id="txtfecingresopersonal">FECHA NACIMIENTO</label>
 							</div>
 							<div class="form-group">
-								@Html.TextBoxFor(m => m.fecNacimiento , new { @class = "form-control", @type = "Date", tabindex = 8 })
+								@Html.TextBoxFor(m => m.fecNacimiento , "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "Date", tabindex = 8, @Value = @DateTime.Now.ToShortDateString() })
 								@Html.ValidationMessageFor(m => m.fecNacimiento, "", new { @class = "text-danger" })
 							</div>
 							<div class="form-group">

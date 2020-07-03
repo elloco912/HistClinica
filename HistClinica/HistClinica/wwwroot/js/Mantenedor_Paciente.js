@@ -47,19 +47,20 @@ $(document).on('change', '#cbotppac', function (event) {
     }, false);
 })();
 
+function isNumberKey(evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode;
+    if (charCode != 46 && charCode > 31
+        && (charCode < 48 || charCode > 57))
+        return false;
+
+    return true;
+}
+
 function camposlongitud() {
-    $('#apepat').attr('maxlength', '30');
-    $('#apemat').attr('maxlength', '30');
-    $('#nombrepac').attr('maxlength', '30');
-    $('#sexo').attr('maxlength', '1');
-    $('#fechnac').attr('maxlength', '10');
-    $('#edad').attr('maxlength', '3');
-    $('#ocupacionpac').attr('maxlength', '30');
-    $('#grdinstruccion').attr('maxlength', '30');
-    $('#estadocivil').attr('maxlength', '10');
-    $('#correopac').attr('maxlength', '30');
+    $('#numeroDocumento').attr('maxlength', '8');
     $('#celular').attr('maxlength', '9');
-    $('#nrodni').attr('maxlength', '8');
+    $('#ruc').attr('maxlength', '11');
+    $('#edad').attr('maxlength', '3');
 }
 
 function soloNumeros(e) {

@@ -129,6 +129,7 @@
 			success: function (response) {
 				$('#modalreprogramar').html(response);
 				$('#modalreprogramar').modal('show');
+				$.validator.unobtrusive.parse("#frmeditcita");
 			},
 			failure: function (response) {
 				alert(response.responseText);
