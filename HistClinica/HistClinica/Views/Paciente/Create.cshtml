@@ -110,7 +110,7 @@
 									<label for="edadpac">*Edad</label>
 								</div>
 								<div class="col-sm-8">
-									@Html.TextBoxFor(m => m.edad, new { @class = "form-control" })
+									@Html.TextBoxFor(m => m.edad, new { @class = "form-control", @onkeypress = "return isNumberKey(event);" })
 									@Html.ValidationMessageFor(m => m.edad, "", new { @class = "text-danger" })
 								</div>
 							</div>
@@ -167,7 +167,7 @@
 									<label for="celularpac">*Celular</label>
 								</div>
 								<div class="col-sm-8">
-									@Html.TextBoxFor(m => m.celular, new { @class = "form-control" })
+									@Html.TextBoxFor(m => m.celular, new { @class = "form-control", @onkeypress = "return isNumberKey(event);" })
 									@Html.ValidationMessageFor(m => m.celular, "", new { @class = "text-danger" })
 
 								</div>
@@ -192,7 +192,7 @@
 									<label for="nrodoc">*Nro. Doc.</label>
 								</div>
 								<div class="col-sm-8">
-									@Html.TextBoxFor(m => m.numeroDocumento, new { @class = "form-control" })
+									@Html.TextBoxFor(m => m.numeroDocumento, new { @class = "form-control", @onkeypress = "return isNumberKey(event);" })
 									@Html.ValidationMessageFor(m => m.numeroDocumento, "", new { @class = "text-danger" })
 								</div>
 							</div>

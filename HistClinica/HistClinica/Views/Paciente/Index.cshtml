@@ -11,7 +11,6 @@
                     <h1>Admision</h1>
                 </div>
             </div>
-
         </div>
     </div>
     <div class="row" style="padding-top:20px;">
@@ -124,7 +123,7 @@
 </div>}
     <div class="row" style="padding-top: 80px;">
         <div class="col-sm-12">
-            <table class="table table-bordered table-responsive table-hover" id="citagrid">
+            <table class="table table-bordered table-responsive table-hover" style="font-size:14px;" id="citagrid">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -153,18 +152,18 @@
                             <td>@item.idCita</td>
                             <td>@item.nroCita</td>
                             <td>@item.TipoCita</td>
-                            <td>@item.fecha</td>
+                            <td nowrap>@item.fecha</td>
                             <td>@item.hora</td>
                             <td>@item.consultorio</td>
                             <td>@item.descripcion</td>
-                            <td>@item.medico</td>
+                            <td nowrap>@item.medico</td>
                             <td>@item.especialidad </td>
-                            <td>@item.precio</td>
-                            <td>@item.igv</td>
+                            <td nowrap>@item.precio</td>
+                            <td nowrap>@item.igv</td>
                             <td>@item.descEstado</td>
                             <td>@item.descEstadoPago</td>
                             <td>@item.precio</td>
-                            <td>
+                            <td nowrap>
                                 <button title="Reprogramar" class="edit btn btn-primary"><i class="fas fa-address-book"></i></button>
                                 <button title="Consultar" class="detail btn btn-primary">
                                     <i class="fa fa-search" aria-hidden="true"></i>
