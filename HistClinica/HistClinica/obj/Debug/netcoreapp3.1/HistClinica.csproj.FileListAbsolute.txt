@@ -411,7 +411,6 @@ D:\HistClinica\HistClinica\HistClinica\bin\Debug\netcoreapp3.1\runtimes\win-x86\
 D:\HistClinica\HistClinica\HistClinica\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 D:\HistClinica\HistClinica\HistClinica\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 D:\HistClinica\HistClinica\HistClinica\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.csprojAssemblyReference.cache
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.AssemblyInfoInputs.cache
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.AssemblyInfo.cs
 D:\HistClinica\HistClinica\HistClinica\obj\Debug\netcoreapp3.1\HistClinica.csproj.CoreCompileInputs.cache
